@@ -45,17 +45,17 @@ class ModRepository {
     jsonMap.forEach((key, data) {
       Mod mod = Mod.fromJson(key, data);
       _allModsMap[mod.id] = mod;
-      data['spawn_weights'].forEach((spawnWeight) {
+      mod.spawnWeights.forEach((spawnWeight) {
         Map<String, List<Mod>> modMap;
 
-        if ("prefix" == data['generation_type']) {
+        if ("prefix" == mod.generationType) {
           modMap = _prefixModMap;
-        } else if ("suffix" == data['generation_type']) {
+        } else if ("suffix" == mod.generationType) {
           modMap = _suffixModMap;
         }
 
-        if (modMap != null && "item" == data['domain'] && !data['is_essence_only']) {
-          String tag = spawnWeight['tag'];
+        if (modMap != null && "item" == mod.domain && !mod.isEssenceOnly) {
+          String tag = spawnWeight.tag;
           List<Mod> modList = modMap[tag];
           if (modList == null) {
             modMap[tag] = List();
@@ -97,29 +97,26 @@ class ModRepository {
       int weight = 1;
       int defaultWeight = 0;
       mod.spawnWeights.forEach((spawnWeight) {
-        int modWeight = spawnWeight['weight'];
-        String modTag = spawnWeight['tag'];
-        if (item.tags.contains(modTag)) {
-          weight *= modWeight;
+        if (item.tags.contains(spawnWeight.tag)) {
+          weight = max(weight, spawnWeight.weight);
         }
-        if (modTag == "default") {
-          defaultWeight = modWeight;
+        if (spawnWeight.tag == "default") {
+          defaultWeight = spawnWeight.weight;
         }
       });
       if (weight == 1) {
         weight = defaultWeight;
       }
-      weightIdMap[mod.id] = weight;
-      totalWeight += weight;
+      if (!weightIdMap.containsKey(mod.id)) {
+        totalWeight += weight;
+        weightIdMap[mod.id] = weight;
+      }
     });
     int roll = rng.nextInt(totalWeight);
     int sum = 0;
     for (MapEntry<String, int> entry in weightIdMap.entries) {
       sum += entry.value;
       if (sum >= roll) {
-        if (_allModsMap[entry.key] == null) {
-          print("Bajs");
-        }
         return _allModsMap[entry.key];
       }
     }

@@ -9,7 +9,7 @@ class CraftingWidget extends StatefulWidget {
 }
 
 class _CraftingWidgetState extends State<CraftingWidget> {
-  Item _item = new Item("Dagger");
+  Item _item = new Item("Thicket Bow");
 
   @override
   void initState() {
