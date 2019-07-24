@@ -84,7 +84,7 @@ class Stat {
     }
     var rng = new Random();
     try {
-      value = rng.nextInt(range) + min;
+      value = rng.nextInt(range) + 1 + min;
     } on RangeError {
       print("Range: $range");
       value = max;
