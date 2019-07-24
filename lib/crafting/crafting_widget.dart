@@ -43,7 +43,7 @@ class _CraftingWidgetState extends State<CraftingWidget> {
                     color: Colors.amber,
                     child: Center(
                         child: Text(
-                          '${_item.getMods()[index]}',
+                          '${_item.getMods()[index].getStatStrings()[0]}',
                           style: TextStyle(color: Colors.black),
                         )),
                   );

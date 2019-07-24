@@ -1,7 +1,9 @@
+import 'dart:math';
+import '../repository/translation_repo.dart';
+
 class Mod {
   String id;
   String name;
-  int value;
   List<SpawnWeight> spawnWeights;
   List<Stat> stats;
   bool isEssenceOnly;
@@ -37,7 +39,11 @@ class Mod {
 
   @override
   String toString() {
-    return name;
+    return TranslationRepository.instance.getTranslationFromStat(stats[0]);
+  }
+
+  List<String> getStatStrings() {
+    return TranslationRepository.instance.getTranslationFromStats(stats);
   }
 
   String debugString() {
@@ -60,10 +66,28 @@ class Stat {
   String id;
   int max;
   int min;
+  int value;
 
-  Stat({this.id, this.max, this.min});
+  Stat({this.id, this.max, this.min, this.value});
 
   factory Stat.fromJson(Map<String, dynamic> json) {
-    return Stat(id: json['id'], max: json['max'], min: json['min']);
+    Stat stat = Stat(id: json['id'], max: json['max'], min: json['min'], value: json['min']);
+    stat.rollValue();
+    return stat;
+  }
+
+  void rollValue() {
+    int range = max - min;
+    if (range == null || range < 1) {
+      value = max;
+      return;
+    }
+    var rng = new Random();
+    try {
+      value = rng.nextInt(range) + min;
+    } on RangeError {
+      print("Range: $range");
+      value = max;
+    }
   }
 }

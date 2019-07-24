@@ -96,18 +96,23 @@ class ModRepository {
     possibleMods.forEach((mod) {
       int weight = 1;
       int defaultWeight = 0;
-      mod.spawnWeights.forEach((spawnWeight) {
+      for (SpawnWeight spawnWeight in mod.spawnWeights) {
+
         if (item.tags.contains(spawnWeight.tag)) {
+          if (spawnWeight.weight == 0) {
+            weight = 0;
+            break;
+          }
           weight = max(weight, spawnWeight.weight);
         }
         if (spawnWeight.tag == "default") {
           defaultWeight = spawnWeight.weight;
         }
-      });
+      }
       if (weight == 1) {
         weight = defaultWeight;
       }
-      if (!weightIdMap.containsKey(mod.id)) {
+      if (weight > 0 && !weightIdMap.containsKey(mod.id)) {
         totalWeight += weight;
         weightIdMap[mod.id] = weight;
       }
@@ -121,14 +126,4 @@ class ModRepository {
       }
     }
   }
-}
-
-class CraftingMod {
-  int weight;
-  String id;
-
-  CraftingMod({
-    this.weight,
-    this.id
-});
 }

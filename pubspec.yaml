@@ -36,6 +36,7 @@ flutter:
 
   assets:
     - data_repo/mods.json
+    - data_repo/stat_translations.json
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
