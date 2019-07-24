@@ -31,7 +31,6 @@ class StatTranslation {
   String getTranslationFromStats(List<Stat> stats) {
 
     List<Stat> statsToUse = List();
-    List<String> idsToUse = List();
     for (Stat stat in stats) {
       if (ids.contains(stat.id)) {
         statsToUse.add(stat);

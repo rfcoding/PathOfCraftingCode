@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'mod.dart';
 import '../repository/mod_repo.dart';
+import '../repository/translation_repo.dart';
 
 class Item {
   String name;
@@ -13,6 +14,7 @@ class Item {
     mods = new List();
     tags = [
       "bow",
+      "bow_elder",
       "ranged",
       "weapon",
     ];
@@ -26,6 +28,12 @@ class Item {
   @override
   String toString() {
     return name;
+  }
+
+  List<String> getStatStrings() {
+    return mods.map((mod) => mod.getStatStrings()).expand((string) => string).toList();
+    //final List<Stat> stats = mods.map((mod) => mod.stats).expand((stat) => stat).toList();
+    //return TranslationRepository.instance.getTranslationFromStats(stats);
   }
 
   void reroll() {
@@ -45,6 +53,15 @@ class Item {
       mods.add(suffix);
     }
 
+  }
+
+  bool alreadyHasModGroup(Mod mod) {
+    for (Mod ownMod in mods) {
+      if (ownMod.group == mod.group) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }

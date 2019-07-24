@@ -72,7 +72,7 @@ class ModRepository {
     item.tags.forEach((tag) {
       List<Mod> mods = _prefixModMap[tag];
       if (mods != null) {
-        possibleMods.addAll(mods);
+        possibleMods.addAll(mods.where((mod) => !item.alreadyHasModGroup(mod)));
       }
     });
     return getMod(possibleMods, item);
@@ -84,7 +84,7 @@ class ModRepository {
     item.tags.forEach((tag) {
       List<Mod> mods = _suffixModMap[tag];
       if (mods != null) {
-        possibleMods.addAll(mods);
+        possibleMods.addAll(mods.where((mod) => !item.alreadyHasModGroup(mod)));
       }
     });
     return getMod(possibleMods, item);

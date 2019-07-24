@@ -50,6 +50,6 @@ class TranslationRepository {
       }
     }
 
-    return statTranslations.map((translation) => translation.getTranslationFromStats(stats)).toList();
+    return statTranslations.map((translation) => translation.getTranslationFromStats(stats)).toSet().toList();
   }
 }
