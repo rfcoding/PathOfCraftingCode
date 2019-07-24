@@ -32,15 +32,6 @@ class TranslationRepository {
     return true;
   }
 
-  String getTranslationFromStat(Stat stat) {
-    StatTranslation statTranslation = _translations[stat.id];
-    if (statTranslation == null) {
-      return "Error";
-    }
-
-    return statTranslation.getTranslation(stat);
-  }
-
   List<String> getTranslationFromStats(List<Stat> stats) {
     List<StatTranslation> statTranslations = List();
     for (Stat stat in stats) {

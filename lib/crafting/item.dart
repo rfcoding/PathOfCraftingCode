@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'mod.dart';
 import '../repository/mod_repo.dart';
-import '../repository/translation_repo.dart';
 
 class Item {
   String name;

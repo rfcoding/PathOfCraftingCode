@@ -16,18 +16,6 @@ class StatTranslation {
     );
   }
 
-  String getTranslation(Stat stat) {
-    if (translations.length == 1) {
-      return translations[0].string;
-    }
-    for (Translation translation in translations) {
-      if (translation.conditionIsTrue(stat)) {
-        return translation.string;
-      }
-    }
-    return "No Translation found";
-  }
-
   String getTranslationFromStats(List<Stat> stats) {
 
     List<Stat> statsToUse = List();
@@ -61,6 +49,7 @@ class StatTranslation {
       }
       return text;
     }
+    return translation.string;
   }
 }
 
@@ -102,9 +91,5 @@ class Translation {
       }
     }
     return true;
-  }
-
-  String formatString(Stat stat) {
-
   }
 }

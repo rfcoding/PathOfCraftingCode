@@ -40,11 +40,6 @@ class Mod {
         group: json['group']);
   }
 
-  @override
-  String toString() {
-    return TranslationRepository.instance.getTranslationFromStat(stats[0]);
-  }
-
   List<String> getStatStrings() {
     return TranslationRepository.instance.getTranslationFromStats(stats);
   }
