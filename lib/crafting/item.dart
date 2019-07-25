@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'mod.dart';
 import '../repository/mod_repo.dart';
+import 'crafting_widget.dart';
 
 abstract class Item {
   String name;
@@ -11,24 +12,16 @@ abstract class Item {
   String itemClass;
   Random rng = new Random();
 
-  Item() {
-    this.name = "Exquisite Blade";
-    mods = new List();
-    tags = [
-      "bow",
-      "bow_elder",
-      "ranged",
-      "weapon",
-    ];
-
-    properties = Properties(
-        attackTime: 741,
-        criticalStrikeChance: 600,
-        physicalDamageMax: 94,
-        physicalDamageMin: 56,
-        range: 13);
-    itemClass = "Two Hand Sword";
-    reroll();
+  Item(String name,
+    List<Mod> mods,
+    List<String> tags,
+    Properties properties,
+    String itemClass) {
+    this.name = name;
+    this.mods = mods;
+    this.tags = tags;
+    this.properties = properties;
+    this.itemClass = itemClass;
   }
 
   List<Mod> getMods() {
@@ -63,6 +56,8 @@ abstract class Item {
       getModListWidget(),
     ]);
   }
+
+  Widget getActionsWidget(CraftingWidgetState state);
 
   Widget getModListWidget() {
     List<Widget> children = getStatStrings().map(statRow).toList();
@@ -127,12 +122,32 @@ abstract class Item {
   }
 
   void reroll();
+  void addMod();
+  void addPrefix() {
+    Mod prefix = ModRepository.instance.getPrefix(this);
+    print("Adding Prefix: ${prefix.debugString()}");
+    mods.add(prefix);
+  }
+
+  void addSuffix() {
+    Mod suffix = ModRepository.instance.getSuffix(this);
+    print("Adding Suffix: ${suffix.debugString()}");
+    mods.add(suffix);
+  }
   Color getTextColor();
   Color getBorderColor();
   Color getBoxColor();
 }
 
 class NormalItem extends Item {
+  NormalItem(
+      String name,
+      List<Mod> mods,
+      List<String> tags,
+      Properties properties,
+      String itemClass)
+      : super(name, mods, tags, properties, itemClass);
+
 
   @override
   Color getBorderColor() {
@@ -153,9 +168,52 @@ class NormalItem extends Item {
   void reroll() {
     //Do nothing
   }
+
+  @override
+  void addMod() {
+    // TODO: implement addMod
+  }
+
+  MagicItem transmute() {
+    MagicItem item = MagicItem(this.name, new List(), this.tags, this.properties, this.itemClass);
+    item.reroll();
+    return item;
+  }
+
+  RareItem alchemy() {
+    RareItem item = RareItem(this.name, new List(), this.tags, this.properties, this.itemClass);
+    item.reroll();
+    return item;
+  }
+
+  @override
+  Widget getActionsWidget(CraftingWidgetState state) {
+    return Row(children: <Widget>[
+      RaisedButton(
+        child: Text("Trans"),
+        onPressed: () {
+          state.itemChanged(this.transmute());
+        },
+      ),
+      RaisedButton(
+        child: Text("Alch"),
+        onPressed: () {
+          state.itemChanged(this.alchemy());
+        },
+      ),
+    ],
+    );
+  }
 }
 
 class MagicItem extends Item {
+  MagicItem(
+      String name,
+      List<Mod> mods,
+      List<String> tags,
+      Properties properties,
+      String itemClass)
+      : super(name, mods, tags, properties, itemClass);
 
   @override
   Color getBorderColor() {
@@ -177,26 +235,93 @@ class MagicItem extends Item {
     mods.clear();
     int nPrefixes = rng.nextInt(2);
     int nSuffixes = max(rng.nextInt(2), 1 - nPrefixes);
-    print("Prefixes: $nPrefixes, Suffixes: $nSuffixes");
     for (int i = 0; i < nPrefixes; i++) {
-      Mod prefix = ModRepository.instance.getPrefix(this);
-      print("Prefix: ${prefix.debugString()}");
-      mods.add(prefix);
+      addPrefix();
     }
-
     for (int i = 0; i < nSuffixes; i++) {
-      Mod suffix = ModRepository.instance.getSuffix(this);
-      print("Suffix: ${suffix.debugString()}");
-      mods.add(suffix);
+      addSuffix();
     }
   }
 
+  RareItem regal() {
+    RareItem item = RareItem(this.name, this.mods, this.tags, this.properties, this.itemClass);
+    item.addMod();
+    return item;
+  }
+
+  MagicItem augment() {
+    addMod();
+    return this;
+  }
+
+  MagicItem alteration() {
+    reroll();
+    return this;
+  }
+
+  NormalItem scour() {
+    return NormalItem(this.name, new List(), this.tags, this.properties, this.itemClass);
+  }
+
+  @override
+  void addMod() {
+    // Max mods
+    if (mods.length == 2) {
+      return;
+    }
+    int nPrefixes = mods.where((mod) => mod.generationType == "prefix").toList().length;
+    if (nPrefixes == 1) {
+      addSuffix();
+    } else {
+      addPrefix();
+    }
+  }
+
+  @override
+  Widget getActionsWidget(CraftingWidgetState state) {
+    return Row(children: <Widget>[
+      RaisedButton(
+        child: Text("Scour"),
+        onPressed: () {
+          state.itemChanged(this.scour());
+        },
+      ),
+      RaisedButton(
+        child: Text("Alt"),
+        onPressed: () {
+          state.itemChanged(this.alteration());
+        },
+      ),
+      RaisedButton(
+        child: Text("Aug"),
+        onPressed: () {
+          state.itemChanged(this.augment());
+        },
+      ),
+      RaisedButton(
+        child: Text("Regal"),
+        onPressed: () {
+          state.itemChanged(this.regal());
+        },
+      ),
+    ],
+
+    );
+  }
 }
 
 class RareItem extends Item {
   Color textColor = Color(0xFFFFFC8A);
   Color boxColor = Color(0xFF201C1C);
   Color borderColor = Color(0xFF89672B);
+
+  RareItem(
+      String name,
+      List<Mod> mods,
+      List<String> tags,
+      Properties properties,
+      String itemClass)
+      : super(name, mods, tags, properties, itemClass);
 
   @override
   Color getBorderColor() {
@@ -218,20 +343,75 @@ class RareItem extends Item {
     mods.clear();
     int nPrefixes = rng.nextInt(3) + 1;
     int nSuffixes = max((rng.nextInt(3) + 1), 4 - nPrefixes);
-    print("Prefixes: $nPrefixes, Suffixes: $nSuffixes");
     for (int i = 0; i < nPrefixes; i++) {
-      Mod prefix = ModRepository.instance.getPrefix(this);
-      print("Prefix: ${prefix.debugString()}");
-      mods.add(prefix);
+      addPrefix();
     }
-
     for (int i = 0; i < nSuffixes; i++) {
-      Mod suffix = ModRepository.instance.getSuffix(this);
-      print("Suffix: ${suffix.debugString()}");
-      mods.add(suffix);
+      addSuffix();
     }
   }
 
+  NormalItem scour() {
+    return NormalItem(this.name, new List(), this.tags, this.properties, this.itemClass);
+  }
+
+  RareItem exalt() {
+    addMod();
+    return this;
+  }
+
+  RareItem chaos() {
+    reroll();
+    return this;
+  }
+
+  @override
+  void addMod() {
+    // Max mods
+    if (mods.length == 6) {
+      return;
+    }
+    int nPrefixes = mods.where((mod) => mod.generationType == "prefix").toList().length;
+    int nSuffixes = mods.where((mod) => mod.generationType == "suffix").toList().length;
+    if (nPrefixes == 3) {
+      addSuffix();
+    } else if (nSuffixes == 3){
+      addPrefix();
+    } else {
+      bool prefix = rng.nextInt(2) == 1;
+      if (prefix) {
+        addPrefix();
+      } else {
+        addSuffix();
+      }
+    }
+  }
+
+  @override
+  Widget getActionsWidget(CraftingWidgetState state) {
+    return Row(children: <Widget>[
+      RaisedButton(
+        child: Text("Scour"),
+        onPressed: () {
+          state.itemChanged(this.scour());
+        },
+      ),
+      RaisedButton(
+        child: Text("Chaos"),
+        onPressed: () {
+          state.itemChanged(this.chaos());
+        },
+      ),
+      RaisedButton(
+        child: Text("Exalt"),
+        onPressed: () {
+          state.itemChanged(this.exalt());
+        },
+      )
+    ],
+
+    );
+  }
 }
 
 class Properties {
