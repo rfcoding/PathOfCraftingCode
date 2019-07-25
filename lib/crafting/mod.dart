@@ -10,6 +10,7 @@ class Mod {
   String domain;
   String generationType;
   String group;
+  String type;
 
   Mod({
     this.id,
@@ -19,7 +20,8 @@ class Mod {
     this.isEssenceOnly,
     this.domain,
     this.generationType,
-    this.group
+    this.group,
+    this.type
   });
 
   factory Mod.fromJson(String key, Map<String, dynamic> json) {
@@ -37,7 +39,8 @@ class Mod {
         isEssenceOnly: json['is_essence_only'],
         domain: json['domain'],
         generationType: json['generation_type'],
-        group: json['group']);
+        group: json['group'],
+        type: json['type']);
   }
 
   List<String> getStatStrings() {

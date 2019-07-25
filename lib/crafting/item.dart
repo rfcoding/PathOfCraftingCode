@@ -103,7 +103,7 @@ abstract class Item {
         ),
         child: Center(
           child: Text(
-            name.toUpperCase(),
+            name,
             style: TextStyle(color: getTextColor(), fontSize: 30),
           ),
         ));
@@ -111,11 +111,48 @@ abstract class Item {
 
   Widget getStatWidget() {
     List<String> statStrings = List();
+    //TODO: split implementation for item types, e.g. weapon, armour etc
+    // Added damage STAT = local_minimum_added_physical_damage &
+    // local_maximum_added_physical_damage
+    // Attack speed STAT = local_attack_speed_+%
+    // Inc phys damage STAT = local_physical_damage_+%
+    int addedMinimumPhysicalDamage = properties.physicalDamageMin;
+    int addedMaximumPhysicalDamage = properties.physicalDamageMax;
+    int increasedPhysicalDamage = 130;
+    int increasedAttackSpeed = 100;
+    int increasedCriticalStrikeChange = 100;
+
+    for (Stat stat in mods.map((mod) => mod.stats).expand((stat) => stat)) {
+      switch (stat.id) {
+        case "local_minimum_added_physical_damage":
+          addedMinimumPhysicalDamage += stat.value;
+          break;
+        case "local_maximum_added_physical_damage":
+          addedMaximumPhysicalDamage += stat.value;
+          break;
+        case "local_attack_speed_+%":
+          increasedAttackSpeed += stat.value;
+          break;
+        case "local_physical_damage_+%":
+          increasedPhysicalDamage += stat.value;
+          break;
+        case "local_critical_strike_chance_+%":
+          increasedCriticalStrikeChange += stat.value;
+          break;
+        default:
+          break;
+      }
+    }
+
+    String addedMinPhysString = "${(addedMinimumPhysicalDamage * increasedPhysicalDamage / 100).toStringAsFixed(0)}";
+    String addedMaxPhysString = "${(addedMaximumPhysicalDamage * increasedPhysicalDamage / 100).toStringAsFixed(0)}";
+    String attacksPerSecondString = "${( (increasedAttackSpeed/100) * (1000/properties.attackTime)).toStringAsFixed(2)}";
+    String criticalStrikeChanceString = "${((properties.criticalStrikeChance/100) * (increasedCriticalStrikeChange / 100)).toStringAsFixed(2)}";
     statStrings.add(itemClass);
-    statStrings.add("Quality 20%");
-    statStrings.add("Physical Damage: ${properties.physicalDamageMin}-${properties.physicalDamageMax}");
-    statStrings.add("Critical Strike Chance: ${(properties.criticalStrikeChance/100).toStringAsFixed(2)}%");
-    statStrings.add("Attacks per second: ${(1000/properties.attackTime).toStringAsFixed(2)}");
+    statStrings.add("Quality 30%");
+    statStrings.add("Physical Damage: $addedMinPhysString-$addedMaxPhysString");
+    statStrings.add("Critical Strike Chance: $criticalStrikeChanceString%");
+    statStrings.add("Attacks per second: $attacksPerSecondString");
     statStrings.add("Weapon Range: ${properties.range}");
     List<Widget> children = statStrings.map(itemDescriptionRow).toList();
     return Column(children: children);
