@@ -1,5 +1,4 @@
 import 'mod.dart' show Stat;
-import 'dart:math';
 
 class StatTranslation {
   List<String> ids;
@@ -36,6 +35,26 @@ class StatTranslation {
     }
 
     return "No translation found";
+  }
+
+  //TODO: use this later to combine stats with same effect, e.g. inc phys damage + inc phys + acc
+  TranslationValueHolder createTranslationValueHolder(Translation translation, List<Stat> stats) {
+    if (stats.length == 1) {
+      return TranslationValueHolder(first: stats[0].value, translation: translation);
+    } else if (stats.length == 2) {
+      int first;
+      int second;
+      for (Stat stat in stats) {
+        int index = ids.indexOf(stat.id);
+        if (index == 0) {
+          first = stat.value;
+        } else if (index == 1) {
+          second = stat.value;
+        }
+      }
+      return TranslationValueHolder(first: first, second: second, translation: translation);
+    }
+    return null;
   }
 
   String formatTranslation(Translation translation, List<Stat> stats) {
@@ -92,4 +111,16 @@ class Translation {
     }
     return true;
   }
+}
+
+class TranslationValueHolder {
+  int first;
+  int second;
+  Translation translation;
+
+  TranslationValueHolder({
+    this.first,
+    this.second,
+    this.translation
+  });
 }

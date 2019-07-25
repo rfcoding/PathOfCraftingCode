@@ -9,7 +9,7 @@ class CraftingWidget extends StatefulWidget {
 }
 
 class _CraftingWidgetState extends State<CraftingWidget> {
-  Item _item = new Item("Thicket Bow");
+  Item _item = new RareItem();
 
   @override
   void initState() {
@@ -24,34 +24,7 @@ class _CraftingWidgetState extends State<CraftingWidget> {
       ),
       body: Column(
         children: <Widget>[
-          Container(
-              height: 50,
-              color: Colors.amber,
-              child: Center(
-                child: Text(
-                  _item.toString(),
-                  style: TextStyle(color: Colors.black, fontSize: 14),
-                ),
-              )),
-          Expanded(
-            //child: SizedBox(
-             // height: 200,
-              child: ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    height: 50,
-                    color: Colors.amber,
-                    child: Center(
-                        child: Text(
-                          '${_item.getStatStrings()[index]}',
-                          style: TextStyle(color: Colors.black),
-                        )),
-                  );
-                },
-                itemCount: _item.getStatStrings().length,
-                padding: const EdgeInsets.all(8.0),
-              ),
-            ),
+          _item.getItemWidget(),
           RaisedButton(
             child: Text("Reroll"),
             onPressed: () {
