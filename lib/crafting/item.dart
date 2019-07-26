@@ -13,7 +13,10 @@ abstract class Item {
   WeaponProperties weaponProperties;
   ArmourProperties armourProperties;
   String itemClass;
+
   Random rng = new Random();
+  Color statTextColor = Color(0xFF677F7F);
+  Color modColor = Color(0xFF959AF6);
 
   Item(String name,
     List<Mod> mods,
@@ -101,14 +104,14 @@ abstract class Item {
             padding: const EdgeInsets.all(4.0),
             child: Text(
               text,
-              style: TextStyle(color: Color(0xFF959AF6), fontSize: 20),
+              style: TextStyle(color: modColor, fontSize: 16),
               textAlign: TextAlign.center,
             ),
           )),
     );
   }
 
-  Widget itemDescriptionRow(String text) {
+  Widget itemModRow(String text) {
     return Container(
       color: Colors.black,
       child: Center(
@@ -116,7 +119,7 @@ abstract class Item {
             padding: const EdgeInsets.all(4.0),
             child: Text(
               text,
-              style: TextStyle(color: Color(0xFF677F7F), fontSize: 20),
+              style: TextStyle(color: statTextColor, fontSize: 16),
               textAlign: TextAlign.center,
             ),
           )),
@@ -125,7 +128,7 @@ abstract class Item {
 
   Widget getTitleWidget() {
     return Container(
-        height: 50,
+        height: 36,
         decoration: new BoxDecoration(
             color: getBoxColor(),
             border: new Border.all(color: getBorderColor(), width: 3)
@@ -133,7 +136,7 @@ abstract class Item {
         child: Center(
           child: Text(
             name,
-            style: TextStyle(color: getTextColor(), fontSize: 30),
+            style: TextStyle(color: getTextColor(), fontSize: 24),
           ),
         ));
   }
@@ -222,9 +225,20 @@ abstract class Item {
       }
     }
 
-    String addedMinimumPhysString = "${(addedMinimumPhysicalDamage * increasedPhysicalDamage / 100).toStringAsFixed(0)}";
-    String addedMaximumPhysString = "${(addedMaximumPhysicalDamage * increasedPhysicalDamage / 100).toStringAsFixed(0)}";
-    String attacksPerSecondString = "${( (increasedAttackSpeed/100) * (1000/weaponProperties.attackTime)).toStringAsFixed(2)}";
+    addedMinimumPhysicalDamage =  (addedMinimumPhysicalDamage * increasedPhysicalDamage / 100).floor();
+    addedMaximumPhysicalDamage = (addedMinimumPhysicalDamage * increasedPhysicalDamage / 100).floor();
+    double attacksPerSecond = (increasedAttackSpeed/100) * (1000/weaponProperties.attackTime);
+    var pDPS = (addedMinimumPhysicalDamage + addedMaximumPhysicalDamage) / 2 * attacksPerSecond;
+    var eDPS = (
+        addedMinimumFireDamage + addedMaximumFireDamage +
+        addedMinimumColdDamage + addedMaximumColdDamage +
+        addedMinimumLightningDamage + addedMaximumLightningDamage)
+        / 2 * attacksPerSecond;
+    var cDPS = (addedMinimumChaosDamage + addedMaximumChaosDamage) / 2 * attacksPerSecond;
+    var DPS = pDPS + eDPS + cDPS;
+    String addedMinimumPhysString = "${addedMinimumPhysicalDamage.toStringAsFixed(0)}";
+    String addedMaximumPhysString = "${addedMaximumPhysicalDamage.toStringAsFixed(0)}";
+    String attacksPerSecondString = "${attacksPerSecond.toStringAsFixed(2)}";
     String criticalStrikeChanceString = "${((weaponProperties.criticalStrikeChance/100) * (increasedCriticalStrikeChange / 100)).toStringAsFixed(2)}";
     statStrings.add(itemClass);
     statStrings.add("Quality 30%");
@@ -244,9 +258,21 @@ abstract class Item {
 
     statStrings.add("Critical Strike Chance: $criticalStrikeChanceString%");
     statStrings.add("Attacks per second: $attacksPerSecondString");
-    //statStrings.add("Weapon Range: ${weaponProperties.range}");
-    List<Widget> children = statStrings.map(itemDescriptionRow).toList();
+    statStrings.add("Weapon Range: ${weaponProperties.range}");
+    List<Widget> children = statStrings.map(itemModRow).toList();
+    children.add(dpsWidget(pDPS, eDPS, DPS));
     return Column(children: children);
+  }
+
+  Widget dpsWidget(double pDps, double eDps, double dps) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Text("DPS: ${dps.toStringAsFixed(1)}", style: TextStyle(color: statTextColor, fontSize: 16)),
+        Text("pDPS: ${pDps.toStringAsFixed(1)}", style: TextStyle(color: statTextColor, fontSize: 16)),
+        Text("eDPS: ${eDps.toStringAsFixed(1)}", style: TextStyle(color: statTextColor, fontSize: 16)),
+      ],
+    );
   }
 
   Widget armourStatWidget() {
@@ -310,7 +336,7 @@ abstract class Item {
       }
     }
 
-    List<Widget> children = statStrings.map(itemDescriptionRow).toList();
+    List<Widget> children = statStrings.map(itemModRow).toList();
     return Column(children: children);
   }
 
