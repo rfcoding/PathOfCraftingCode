@@ -2,25 +2,26 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'mod.dart';
 import '../repository/mod_repo.dart';
-import 'crafting_widget.dart';
+import '../widgets/crafting_widget.dart';
+import 'properties.dart';
 
 abstract class Item {
   String name;
   List<Mod> mods;
   List<String> tags;
-  Properties properties;
+  WeaponProperties weaponProperties;
   String itemClass;
   Random rng = new Random();
 
   Item(String name,
     List<Mod> mods,
     List<String> tags,
-    Properties properties,
+    WeaponProperties properties,
     String itemClass) {
     this.name = name;
     this.mods = mods;
     this.tags = tags;
-    this.properties = properties;
+    this.weaponProperties = properties;
     this.itemClass = itemClass;
   }
 
@@ -112,8 +113,8 @@ abstract class Item {
   Widget getStatWidget() {
     List<String> statStrings = List();
     //TODO: split implementation for item types, e.g. weapon, armour etc
-    int addedMinimumPhysicalDamage = properties.physicalDamageMin;
-    int addedMaximumPhysicalDamage = properties.physicalDamageMax;
+    int addedMinimumPhysicalDamage = weaponProperties.physicalDamageMin;
+    int addedMaximumPhysicalDamage = weaponProperties.physicalDamageMax;
     int addedMinimumColdDamage = 0;
     int addedMaximumColdDamage = 0;
     int addedMinimumFireDamage = 0;
@@ -174,8 +175,8 @@ abstract class Item {
 
     String addedMinimumPhysString = "${(addedMinimumPhysicalDamage * increasedPhysicalDamage / 100).toStringAsFixed(0)}";
     String addedMaximumPhysString = "${(addedMaximumPhysicalDamage * increasedPhysicalDamage / 100).toStringAsFixed(0)}";
-    String attacksPerSecondString = "${( (increasedAttackSpeed/100) * (1000/properties.attackTime)).toStringAsFixed(2)}";
-    String criticalStrikeChanceString = "${((properties.criticalStrikeChance/100) * (increasedCriticalStrikeChange / 100)).toStringAsFixed(2)}";
+    String attacksPerSecondString = "${( (increasedAttackSpeed/100) * (1000/weaponProperties.attackTime)).toStringAsFixed(2)}";
+    String criticalStrikeChanceString = "${((weaponProperties.criticalStrikeChance/100) * (increasedCriticalStrikeChange / 100)).toStringAsFixed(2)}";
     statStrings.add(itemClass);
     statStrings.add("Quality 30%");
     statStrings.add("Physical Damage: $addedMinimumPhysString-$addedMaximumPhysString");
@@ -194,7 +195,7 @@ abstract class Item {
 
     statStrings.add("Critical Strike Chance: $criticalStrikeChanceString%");
     statStrings.add("Attacks per second: $attacksPerSecondString");
-    statStrings.add("Weapon Range: ${properties.range}");
+    statStrings.add("Weapon Range: ${weaponProperties.range}");
     List<Widget> children = statStrings.map(itemDescriptionRow).toList();
     return Column(children: children);
   }
@@ -222,7 +223,7 @@ class NormalItem extends Item {
       String name,
       List<Mod> mods,
       List<String> tags,
-      Properties properties,
+      WeaponProperties properties,
       String itemClass)
       : super(name, mods, tags, properties, itemClass);
 
@@ -253,13 +254,13 @@ class NormalItem extends Item {
   }
 
   MagicItem transmute() {
-    MagicItem item = MagicItem(this.name, new List(), this.tags, this.properties, this.itemClass);
+    MagicItem item = MagicItem(this.name, new List(), this.tags, this.weaponProperties, this.itemClass);
     item.reroll();
     return item;
   }
 
   RareItem alchemy() {
-    RareItem item = RareItem(this.name, new List(), this.tags, this.properties, this.itemClass);
+    RareItem item = RareItem(this.name, new List(), this.tags, this.weaponProperties, this.itemClass);
     item.reroll();
     return item;
   }
@@ -289,7 +290,7 @@ class MagicItem extends Item {
       String name,
       List<Mod> mods,
       List<String> tags,
-      Properties properties,
+      WeaponProperties properties,
       String itemClass)
       : super(name, mods, tags, properties, itemClass);
 
@@ -322,7 +323,7 @@ class MagicItem extends Item {
   }
 
   RareItem regal() {
-    RareItem item = RareItem(this.name, this.mods, this.tags, this.properties, this.itemClass);
+    RareItem item = RareItem(this.name, this.mods, this.tags, this.weaponProperties, this.itemClass);
     item.addMod();
     return item;
   }
@@ -338,7 +339,7 @@ class MagicItem extends Item {
   }
 
   NormalItem scour() {
-    return NormalItem(this.name, new List(), this.tags, this.properties, this.itemClass);
+    return NormalItem(this.name, new List(), this.tags, this.weaponProperties, this.itemClass);
   }
 
   @override
@@ -397,7 +398,7 @@ class RareItem extends Item {
       String name,
       List<Mod> mods,
       List<String> tags,
-      Properties properties,
+      WeaponProperties properties,
       String itemClass)
       : super(name, mods, tags, properties, itemClass);
 
@@ -430,7 +431,7 @@ class RareItem extends Item {
   }
 
   NormalItem scour() {
-    return NormalItem(this.name, new List(), this.tags, this.properties, this.itemClass);
+    return NormalItem(this.name, new List(), this.tags, this.weaponProperties, this.itemClass);
   }
 
   RareItem exalt() {
@@ -505,19 +506,4 @@ class RareItem extends Item {
 
     );
   }
-}
-
-class Properties {
-  int attackTime;
-  int criticalStrikeChance;
-  int physicalDamageMax;
-  int physicalDamageMin;
-  int range;
-
-  Properties(
-      {this.attackTime,
-      this.criticalStrikeChance,
-      this.physicalDamageMax,
-      this.physicalDamageMin,
-      this.range});
 }

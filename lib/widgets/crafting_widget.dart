@@ -1,36 +1,33 @@
 import 'package:flutter/material.dart';
-import 'item.dart';
+import '../crafting/item.dart';
+import '../crafting/base_item.dart';
+import '../crafting/properties.dart';
 
 class CraftingWidget extends StatefulWidget {
+  final BaseItem baseItem;
+
+  CraftingWidget({this.baseItem});
+
   @override
   State<StatefulWidget> createState() {
-    return CraftingWidgetState();
+    return CraftingWidgetState(baseItem);
   }
 }
 
 class CraftingWidgetState extends State<CraftingWidget> {
-  //TODO: replace with JSON
-  Item _item = RareItem(
-      "Exquisite Blade",
-      new List(),
-      [
-        "sword",
-        "two_hand_weapon",
-        "twohand",
-        "weapon",
-        "2h_sword_elder"
-      ],
-      Properties(
-          attackTime: 741,
-          criticalStrikeChance: 600,
-          physicalDamageMax: 94,
-          physicalDamageMin: 56,
-          range: 13),
-      "Two Hand Sword");
+  Item _item;
+
+  CraftingWidgetState(BaseItem baseItem) {
+    _item = NormalItem(
+        baseItem.name,
+        new List(),
+        baseItem.tags,
+        baseItem.weaponProperties,
+        baseItem.itemClass);
+  }
 
   @override
   void initState() {
-    _item.reroll();
     super.initState();
   }
 
@@ -47,8 +44,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
           Expanded(
             child: Align(
                 alignment: Alignment.bottomCenter,
-                child: _item.getActionsWidget(this)
-            ),
+                child: _item.getActionsWidget(this)),
           ),
           //)
         ],

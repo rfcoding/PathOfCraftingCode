@@ -31,4 +31,12 @@ class ItemRepository {
     });
     return true;
   }
+
+  List<String> getItemBaseTypes() {
+    return itemClassMap.keys.toList();
+  }
+
+  List<BaseItem> getBaseItemsForClass(String itemClass) {
+    return itemClassMap[itemClass];
+  }
 }
