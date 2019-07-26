@@ -10,18 +10,21 @@ abstract class Item {
   List<Mod> mods;
   List<String> tags;
   WeaponProperties weaponProperties;
+  ArmourProperties armourProperties;
   String itemClass;
   Random rng = new Random();
 
   Item(String name,
     List<Mod> mods,
     List<String> tags,
-    WeaponProperties properties,
+    WeaponProperties weaponProperties,
+    ArmourProperties armourProperties,
     String itemClass) {
     this.name = name;
     this.mods = mods;
     this.tags = tags;
-    this.weaponProperties = properties;
+    this.weaponProperties = weaponProperties;
+    this.armourProperties = armourProperties;
     this.itemClass = itemClass;
   }
 
@@ -111,6 +114,17 @@ abstract class Item {
   }
 
   Widget getStatWidget() {
+    if (weaponProperties != null) {
+      return weaponStatWidget();
+    } else if (armourProperties != null) {
+      return armourStatWidget();
+    } else {
+      return Column();
+    }
+
+  }
+
+  Widget weaponStatWidget() {
     List<String> statStrings = List();
     //TODO: split implementation for item types, e.g. weapon, armour etc
     int addedMinimumPhysicalDamage = weaponProperties.physicalDamageMin;
@@ -200,6 +214,68 @@ abstract class Item {
     return Column(children: children);
   }
 
+  Widget armourStatWidget() {
+    List<String> statStrings = List();
+    int baseArmour = armourProperties.armour;
+    int baseEvasion = armourProperties.evasion;
+    int baseEnergyShield = armourProperties.energyShield;
+    int armourMultiplier = 130;
+    int evasionMultiplier = 130;
+    int energyShieldMultiplier = 130;
+
+    for (Stat stat in mods.map((mod) => mod.stats).expand((stat) => stat)) {
+      switch (stat.id) {
+        case "local_base_evasion_rating":
+          baseEvasion += stat.value;
+          break;
+        case "local_evasion_rating_+%":
+          evasionMultiplier += stat.value;
+          break;
+        case "local_energy_shield":
+          baseEnergyShield += stat.value;
+          break;
+        case "local_energy_shield_+%":
+          energyShieldMultiplier += stat.value;
+          break;
+        case "local_base_physical_damage_reduction_rating":
+          baseArmour += stat.value;
+          break;
+        case "physical_damage_reduction_rating_+%":
+          armourMultiplier += stat.value;
+          break;
+        default:
+          break;
+      }
+    }
+
+    statStrings.add(itemClass);
+    statStrings.add("Quality 30%");
+
+    if (baseArmour != null) {
+      var totalArmour = baseArmour * armourMultiplier / 100;
+      if (totalArmour > 0) {
+        statStrings.add("Armour: ${totalArmour.toStringAsFixed(0)}");
+      }
+    }
+
+    if (baseEvasion != null) {
+      var totalEvasion = baseEvasion * evasionMultiplier / 100;
+      if (totalEvasion > 0) {
+        statStrings.add("Evasion: ${totalEvasion.toStringAsFixed(0)}");
+      }
+    }
+
+    if (baseEnergyShield != null) {
+      var totalEnergyShield = baseEnergyShield * energyShieldMultiplier / 100;
+      if (totalEnergyShield > 0) {
+        statStrings.add("Energy Shield: ${totalEnergyShield.toStringAsFixed(0)}");
+      }
+    }
+
+    List<Widget> children = statStrings.map(itemDescriptionRow).toList();
+    return Column(children: children);
+  }
+
   void reroll();
   void addMod();
   void addPrefix() {
@@ -223,9 +299,10 @@ class NormalItem extends Item {
       String name,
       List<Mod> mods,
       List<String> tags,
-      WeaponProperties properties,
+      WeaponProperties weaponProperties,
+      ArmourProperties armourProperties,
       String itemClass)
-      : super(name, mods, tags, properties, itemClass);
+      : super(name, mods, tags, weaponProperties, armourProperties, itemClass);
 
 
   @override
@@ -254,13 +331,25 @@ class NormalItem extends Item {
   }
 
   MagicItem transmute() {
-    MagicItem item = MagicItem(this.name, new List(), this.tags, this.weaponProperties, this.itemClass);
+    MagicItem item = MagicItem(
+        this.name,
+        new List(),
+        this.tags,
+        this.weaponProperties,
+        this.armourProperties,
+        this.itemClass);
     item.reroll();
     return item;
   }
 
   RareItem alchemy() {
-    RareItem item = RareItem(this.name, new List(), this.tags, this.weaponProperties, this.itemClass);
+    RareItem item = RareItem(
+        this.name,
+        new List(),
+        this.tags,
+        this.weaponProperties,
+        this.armourProperties,
+        this.itemClass);
     item.reroll();
     return item;
   }
@@ -290,9 +379,10 @@ class MagicItem extends Item {
       String name,
       List<Mod> mods,
       List<String> tags,
-      WeaponProperties properties,
+      WeaponProperties weaponProperties,
+      ArmourProperties armourProperties,
       String itemClass)
-      : super(name, mods, tags, properties, itemClass);
+      : super(name, mods, tags, weaponProperties, armourProperties, itemClass);
 
   @override
   Color getBorderColor() {
@@ -323,7 +413,13 @@ class MagicItem extends Item {
   }
 
   RareItem regal() {
-    RareItem item = RareItem(this.name, this.mods, this.tags, this.weaponProperties, this.itemClass);
+    RareItem item = RareItem(
+        this.name,
+        this.mods,
+        this.tags,
+        this.weaponProperties,
+        this.armourProperties,
+        this.itemClass);
     item.addMod();
     return item;
   }
@@ -339,7 +435,13 @@ class MagicItem extends Item {
   }
 
   NormalItem scour() {
-    return NormalItem(this.name, new List(), this.tags, this.weaponProperties, this.itemClass);
+    return NormalItem(
+        this.name,
+        new List(),
+        this.tags,
+        this.weaponProperties,
+        this.armourProperties,
+        this.itemClass);
   }
 
   @override
@@ -398,9 +500,10 @@ class RareItem extends Item {
       String name,
       List<Mod> mods,
       List<String> tags,
-      WeaponProperties properties,
+      WeaponProperties weaponProperties,
+      ArmourProperties armourProperties,
       String itemClass)
-      : super(name, mods, tags, properties, itemClass);
+      : super(name, mods, tags, weaponProperties, armourProperties, itemClass);
 
   @override
   Color getBorderColor() {
@@ -431,7 +534,13 @@ class RareItem extends Item {
   }
 
   NormalItem scour() {
-    return NormalItem(this.name, new List(), this.tags, this.weaponProperties, this.itemClass);
+    return NormalItem(
+        this.name,
+        new List(),
+        this.tags,
+        this.weaponProperties,
+        this.armourProperties,
+        this.itemClass);
   }
 
   RareItem exalt() {

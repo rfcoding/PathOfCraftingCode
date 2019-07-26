@@ -23,6 +23,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
         new List(),
         baseItem.tags,
         baseItem.weaponProperties,
+        baseItem.armourProperties,
         baseItem.itemClass);
   }
 
