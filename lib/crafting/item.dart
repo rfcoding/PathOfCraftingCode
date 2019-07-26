@@ -8,6 +8,7 @@ import 'properties.dart';
 abstract class Item {
   String name;
   List<Mod> mods;
+  List<Mod> implicits;
   List<String> tags;
   WeaponProperties weaponProperties;
   ArmourProperties armourProperties;
@@ -16,6 +17,7 @@ abstract class Item {
 
   Item(String name,
     List<Mod> mods,
+    List<Mod> implicits,
     List<String> tags,
     WeaponProperties weaponProperties,
     ArmourProperties armourProperties,
@@ -26,6 +28,7 @@ abstract class Item {
     this.weaponProperties = weaponProperties;
     this.armourProperties = armourProperties;
     this.itemClass = itemClass;
+    this.implicits = implicits;
   }
 
   List<Mod> getMods() {
@@ -44,6 +47,14 @@ abstract class Item {
         .toList();
   }
 
+  List<String> getImplicitStrings() {
+    return implicits
+        .where((mod) => mod != null)
+        .map((mod) => mod.getStatStrings())
+        .expand((string) => string)
+        .toList();
+  }
+
   bool alreadyHasModGroup(Mod mod) {
     for (Mod ownMod in mods) {
       if (ownMod.group == mod.group) {
@@ -57,8 +68,22 @@ abstract class Item {
     return Column(children: <Widget>[
       getTitleWidget(),
       getStatWidget(),
+      getImplicitWidget(),
+      divider(),
       getModListWidget(),
     ]);
+  }
+
+  Widget divider() {
+    return Container(
+      color: Colors.black,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
+          child: Divider(height: 8, color: getBorderColor()),
+        )
+      )
+    );
   }
 
   Widget getActionsWidget(CraftingWidgetState state);
@@ -121,7 +146,14 @@ abstract class Item {
     } else {
       return Column();
     }
+  }
 
+  Widget getImplicitWidget() {
+    if (implicits == null || implicits.isEmpty) {
+      return Column();
+    }
+    List<Widget> children = getImplicitStrings().map(statRow).toList();
+    return Column(children: children);
   }
 
   Widget weaponStatWidget() {
@@ -141,7 +173,10 @@ abstract class Item {
     int increasedAttackSpeed = 100;
     int increasedCriticalStrikeChange = 100;
 
-    for (Stat stat in mods.map((mod) => mod.stats).expand((stat) => stat)) {
+    List<Mod> allMods = List();
+    allMods.addAll(mods);
+    allMods.addAll(implicits);
+    for (Stat stat in allMods.map((mod) => mod.stats).expand((stat) => stat)) {
       switch (stat.id) {
         case "local_minimum_added_physical_damage":
           addedMinimumPhysicalDamage += stat.value;
@@ -209,7 +244,7 @@ abstract class Item {
 
     statStrings.add("Critical Strike Chance: $criticalStrikeChanceString%");
     statStrings.add("Attacks per second: $attacksPerSecondString");
-    statStrings.add("Weapon Range: ${weaponProperties.range}");
+    //statStrings.add("Weapon Range: ${weaponProperties.range}");
     List<Widget> children = statStrings.map(itemDescriptionRow).toList();
     return Column(children: children);
   }
@@ -223,7 +258,10 @@ abstract class Item {
     int evasionMultiplier = 130;
     int energyShieldMultiplier = 130;
 
-    for (Stat stat in mods.map((mod) => mod.stats).expand((stat) => stat)) {
+    List<Mod> allMods = List();
+    allMods.addAll(mods);
+    allMods.addAll(implicits);
+    for (Stat stat in allMods.map((mod) => mod.stats).expand((stat) => stat)) {
       switch (stat.id) {
         case "local_base_evasion_rating":
           baseEvasion += stat.value;
@@ -298,11 +336,12 @@ class NormalItem extends Item {
   NormalItem(
       String name,
       List<Mod> mods,
+      List<Mod> implicits,
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
       String itemClass)
-      : super(name, mods, tags, weaponProperties, armourProperties, itemClass);
+      : super(name, mods, implicits, tags, weaponProperties, armourProperties, itemClass);
 
 
   @override
@@ -334,6 +373,7 @@ class NormalItem extends Item {
     MagicItem item = MagicItem(
         this.name,
         new List(),
+        this.implicits,
         this.tags,
         this.weaponProperties,
         this.armourProperties,
@@ -346,6 +386,7 @@ class NormalItem extends Item {
     RareItem item = RareItem(
         this.name,
         new List(),
+        this.implicits,
         this.tags,
         this.weaponProperties,
         this.armourProperties,
@@ -378,11 +419,12 @@ class MagicItem extends Item {
   MagicItem(
       String name,
       List<Mod> mods,
+      List<Mod> implicits,
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
       String itemClass)
-      : super(name, mods, tags, weaponProperties, armourProperties, itemClass);
+      : super(name, mods, implicits, tags, weaponProperties, armourProperties, itemClass);
 
   @override
   Color getBorderColor() {
@@ -416,6 +458,7 @@ class MagicItem extends Item {
     RareItem item = RareItem(
         this.name,
         this.mods,
+        this.implicits,
         this.tags,
         this.weaponProperties,
         this.armourProperties,
@@ -438,6 +481,7 @@ class MagicItem extends Item {
     return NormalItem(
         this.name,
         new List(),
+        this.implicits,
         this.tags,
         this.weaponProperties,
         this.armourProperties,
@@ -499,11 +543,12 @@ class RareItem extends Item {
   RareItem(
       String name,
       List<Mod> mods,
+      List<Mod> implicits,
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
       String itemClass)
-      : super(name, mods, tags, weaponProperties, armourProperties, itemClass);
+      : super(name, mods, implicits, tags, weaponProperties, armourProperties, itemClass);
 
   @override
   Color getBorderColor() {
@@ -537,6 +582,7 @@ class RareItem extends Item {
     return NormalItem(
         this.name,
         new List(),
+        this.implicits,
         this.tags,
         this.weaponProperties,
         this.armourProperties,

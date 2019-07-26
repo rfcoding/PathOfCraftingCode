@@ -21,6 +21,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
     _item = NormalItem(
         baseItem.name,
         new List(),
+        baseItem.implicits,
         baseItem.tags,
         baseItem.weaponProperties,
         baseItem.armourProperties,
@@ -35,10 +36,12 @@ class CraftingWidgetState extends State<CraftingWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text("Crafting Lobby"),
       ),
       body: Column(
+
         children: <Widget>[
           _item.getItemWidget(),
 

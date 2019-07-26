@@ -29,9 +29,10 @@ class MainWidgetState extends State<MainWidget> {
   @override
   void initState() {
     Future.wait({
-      ModRepository.instance.initialize(),
-      TranslationRepository.instance.initialize(),
-      ItemRepository.instance.initialize()}).then((success) {
+      ModRepository.instance.initialize()
+          //Mods are needed before items can load implicits
+          .then((ignore) => ItemRepository.instance.initialize()),
+      TranslationRepository.instance.initialize()}).then((success) {
         setState(() {
           _isInitialized = success.reduce((value, element) => value && element);
         });

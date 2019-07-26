@@ -126,4 +126,8 @@ class ModRepository {
       }
     }
   }
+
+  Mod getModById(String id) {
+    return _allModsMap[id];
+  }
 }
