@@ -112,12 +112,16 @@ abstract class Item {
   Widget getStatWidget() {
     List<String> statStrings = List();
     //TODO: split implementation for item types, e.g. weapon, armour etc
-    // Added damage STAT = local_minimum_added_physical_damage &
-    // local_maximum_added_physical_damage
-    // Attack speed STAT = local_attack_speed_+%
-    // Inc phys damage STAT = local_physical_damage_+%
     int addedMinimumPhysicalDamage = properties.physicalDamageMin;
     int addedMaximumPhysicalDamage = properties.physicalDamageMax;
+    int addedMinimumColdDamage = 0;
+    int addedMaximumColdDamage = 0;
+    int addedMinimumFireDamage = 0;
+    int addedMaximumFireDamage = 0;
+    int addedMinimumLightningDamage = 0;
+    int addedMaximumLightningDamage = 0;
+    int addedMinimumChaosDamage = 0;
+    int addedMaximumChaosDamage = 0;
     int increasedPhysicalDamage = 130;
     int increasedAttackSpeed = 100;
     int increasedCriticalStrikeChange = 100;
@@ -129,6 +133,30 @@ abstract class Item {
           break;
         case "local_maximum_added_physical_damage":
           addedMaximumPhysicalDamage += stat.value;
+          break;
+        case "local_minimum_added_fire_damage":
+          addedMinimumFireDamage += stat.value;
+          break;
+        case "local_maximum_added_fire_damage":
+          addedMaximumFireDamage += stat.value;
+          break;
+        case "local_minimum_added_cold_damage":
+          addedMinimumColdDamage += stat.value;
+          break;
+        case "local_maximum_added_cold_damage":
+          addedMaximumColdDamage += stat.value;
+          break;
+        case "local_minimum_added_lightning_damage":
+          addedMinimumLightningDamage += stat.value;
+          break;
+        case "local_maximum_added_lightning_damage":
+          addedMaximumLightningDamage += stat.value;
+          break;
+        case "local_minimum_added_chaos_damage":
+          addedMinimumChaosDamage += stat.value;
+          break;
+        case "local_maximum_added_chaos_damage":
+          addedMaximumChaosDamage += stat.value;
           break;
         case "local_attack_speed_+%":
           increasedAttackSpeed += stat.value;
@@ -144,13 +172,26 @@ abstract class Item {
       }
     }
 
-    String addedMinPhysString = "${(addedMinimumPhysicalDamage * increasedPhysicalDamage / 100).toStringAsFixed(0)}";
-    String addedMaxPhysString = "${(addedMaximumPhysicalDamage * increasedPhysicalDamage / 100).toStringAsFixed(0)}";
+    String addedMinimumPhysString = "${(addedMinimumPhysicalDamage * increasedPhysicalDamage / 100).toStringAsFixed(0)}";
+    String addedMaximumPhysString = "${(addedMaximumPhysicalDamage * increasedPhysicalDamage / 100).toStringAsFixed(0)}";
     String attacksPerSecondString = "${( (increasedAttackSpeed/100) * (1000/properties.attackTime)).toStringAsFixed(2)}";
     String criticalStrikeChanceString = "${((properties.criticalStrikeChance/100) * (increasedCriticalStrikeChange / 100)).toStringAsFixed(2)}";
     statStrings.add(itemClass);
     statStrings.add("Quality 30%");
-    statStrings.add("Physical Damage: $addedMinPhysString-$addedMaxPhysString");
+    statStrings.add("Physical Damage: $addedMinimumPhysString-$addedMaximumPhysString");
+    if (addedMinimumFireDamage > 0) {
+      statStrings.add("Fire Damage: $addedMinimumFireDamage-$addedMaximumFireDamage");
+    }
+    if (addedMinimumColdDamage > 0) {
+      statStrings.add("Cold Damage: $addedMinimumColdDamage-$addedMaximumColdDamage");
+    }
+    if (addedMinimumLightningDamage > 0) {
+      statStrings.add("Lightning Damage: $addedMinimumLightningDamage-$addedMaximumLightningDamage");
+    }
+    if (addedMinimumChaosDamage > 0) {
+      statStrings.add("Chaos Damage: $addedMinimumChaosDamage-$addedMaximumChaosDamage");
+    }
+
     statStrings.add("Critical Strike Chance: $criticalStrikeChanceString%");
     statStrings.add("Attacks per second: $attacksPerSecondString");
     statStrings.add("Weapon Range: ${properties.range}");
@@ -402,6 +443,15 @@ class RareItem extends Item {
     return this;
   }
 
+  RareItem annulment() {
+    if (mods.isEmpty) {
+      return this;
+    }
+    int annulIndex = rng.nextInt(mods.length);
+    mods.removeAt(annulIndex);
+    return this;
+  }
+
   @override
   void addMod() {
     // Max mods
@@ -443,6 +493,12 @@ class RareItem extends Item {
         child: Text("Exalt"),
         onPressed: () {
           state.itemChanged(this.exalt());
+        },
+      ),
+      RaisedButton(
+        child: Text("Annul"),
+        onPressed: () {
+          state.itemChanged(this.annulment());
         },
       )
     ],
