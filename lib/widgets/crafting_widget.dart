@@ -5,19 +5,20 @@ import '../crafting/properties.dart';
 
 class CraftingWidget extends StatefulWidget {
   final BaseItem baseItem;
+  final List<String> extraTags;
 
-  CraftingWidget({this.baseItem});
+  CraftingWidget({this.baseItem, this.extraTags});
 
   @override
   State<StatefulWidget> createState() {
-    return CraftingWidgetState(baseItem);
+    return CraftingWidgetState(baseItem, extraTags);
   }
 }
 
 class CraftingWidgetState extends State<CraftingWidget> {
   Item _item;
 
-  CraftingWidgetState(BaseItem baseItem) {
+  CraftingWidgetState(BaseItem baseItem, List<String> extraTags) {
     _item = NormalItem(
         baseItem.name,
         new List(),
@@ -26,6 +27,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
         baseItem.weaponProperties,
         baseItem.armourProperties,
         baseItem.itemClass);
+    _item.tags.addAll(extraTags);
   }
 
   @override

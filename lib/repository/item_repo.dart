@@ -1,18 +1,21 @@
 import 'dart:async' show Future;
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/services.dart' show rootBundle;
 import '../crafting/base_item.dart';
+import '../crafting/item_class.dart';
 
 class ItemRepository {
   ItemRepository._privateConstructor();
   static final ItemRepository instance = ItemRepository._privateConstructor();
 
-  Map<String, List<BaseItem>> itemClassMap;
+  Map<String, List<BaseItem>> itemClassToBaseItemMap;
+  Map<String, ItemClass> itemClassMap;
 
   Future<bool> initialize() async {
+    itemClassToBaseItemMap = Map();
     itemClassMap = Map();
-    bool success = await loadBaseItemsFromJson();
+    List<bool> answer = await Future.wait({loadBaseItemsFromJson(), loadItemClassesFromJson()});
+    bool success = answer.reduce((value, element) => value && element);
     return success;
   }
 
@@ -22,21 +25,47 @@ class ItemRepository {
     jsonMap.forEach((key, data) {
       BaseItem item = BaseItem.fromJson(data);
       String itemClass = item.itemClass;
-      if (itemClassMap[itemClass] == null) {
-        itemClassMap[itemClass] = List();
+      if (itemClassToBaseItemMap[itemClass] == null) {
+        itemClassToBaseItemMap[itemClass] = List();
       }
       if (data["domain"] == "item" && data["release_state"] == "released") {
-        itemClassMap[itemClass].add(item);
+        itemClassToBaseItemMap[itemClass].add(item);
       }
     });
     return true;
   }
 
+  Future<bool> loadItemClassesFromJson() async {
+    var data = await rootBundle.loadString('data_repo/item_classes.json');
+    Map<String, dynamic> jsonMap = json.decode(data);
+    jsonMap.forEach((key, data) {
+      ItemClass itemClass = ItemClass.fromJson(data);
+      itemClassMap[key] = itemClass;
+    });
+    return true;
+  }
+
   List<String> getItemBaseTypes() {
-    return itemClassMap.keys.toList();
+    return itemClassToBaseItemMap.keys.toList();
   }
 
   List<BaseItem> getBaseItemsForClass(String itemClass) {
-    return itemClassMap[itemClass];
+    return itemClassToBaseItemMap[itemClass];
+  }
+
+  String getElderTagForItemClass(String id) {
+    ItemClass itemClass = itemClassMap[id];
+    if (itemClass == null) {
+      throw ArgumentError("No such item class");
+    }
+    return itemClass.elderTag;
+  }
+
+  String getShaperTagForItemClass(String id) {
+    ItemClass itemClass = itemClassMap[id];
+    if (itemClass == null) {
+      throw ArgumentError("No such item class");
+    }
+    return itemClass.shaperTag;
   }
 }

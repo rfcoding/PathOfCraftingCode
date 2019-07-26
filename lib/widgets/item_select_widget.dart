@@ -14,6 +14,7 @@ class ItemSelectWidget extends StatefulWidget {
 class ItemSelectState extends State<ItemSelectWidget> {
   BaseItem _baseItem;
   String _baseItemClass = "Amulet";
+  String _shaperOrElder = "None";
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,9 @@ class ItemSelectState extends State<ItemSelectWidget> {
           _itemClassDropdownWidget(),
           Text("Select item"),
           _baseItemDropdownWidget(),
-          Text("Selected item: $_baseItem"),
+          Text("Shaper or Elder"),
+          _shaperOrElderBase(),
+          Text("Selected item: $_shaperOrElder $_baseItem"),
           Expanded(
             child: Align(
                 alignment: Alignment.bottomCenter,
@@ -86,11 +89,41 @@ class ItemSelectState extends State<ItemSelectWidget> {
     );
   }
 
+  Widget _shaperOrElderBase() {
+    return DropdownButton<String> (
+      hint: Text("$_shaperOrElder"),
+      onChanged: (String value) {
+        setState(() {
+          _shaperOrElder = value;
+        });
+      },
+      items: ['Shaper', 'Elder', 'None']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+
   void _startCrafting() {
     if (_baseItem == null) {
       print("No base item selected");
     }
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CraftingWidget(baseItem: _baseItem)));
+    List<String> extraTags = List();
+    switch (_shaperOrElder) {
+      case 'Shaper':
+        extraTags.add(ItemRepository.instance.getShaperTagForItemClass(_baseItem.itemClass));
+        break;
+      case 'Elder':
+        extraTags.add(ItemRepository.instance.getElderTagForItemClass(_baseItem.itemClass));
+        break;
+      case 'None':
+      default:
+        break;
+    }
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CraftingWidget(baseItem: _baseItem, extraTags: extraTags)));
 
   }
 }
