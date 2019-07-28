@@ -2,9 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'mod.dart';
 import '../repository/mod_repo.dart';
-import '../repository/fossil_repo.dart';
 import '../widgets/crafting_widget.dart';
-import '../widgets/fossil_select_dialog_widget.dart';
 import 'properties.dart';
 import 'fossil.dart';
 
@@ -101,31 +99,28 @@ abstract class Item {
   }
 
   Widget statRow(String text) {
-    return Container(
-      color: Colors.black,
-      child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Text(
-              text,
-              style: TextStyle(color: modColor, fontSize: modFontSize),
-              textAlign: TextAlign.center,
-            ),
-          )),
-    );
+    return itemRow(Text(
+      text,
+      style: TextStyle(color: modColor, fontSize: modFontSize),
+      textAlign: TextAlign.center,
+    ));
   }
 
   Widget itemModRow(String text) {
+    return itemRow(Text(
+      text,
+      style: TextStyle(color: statTextColor, fontSize: modFontSize),
+      textAlign: TextAlign.center,
+    ));
+  }
+
+  Widget itemRow(Widget child) {
     return Container(
       color: Colors.black,
       child: Center(
           child: Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Text(
-              text,
-              style: TextStyle(color: statTextColor, fontSize: modFontSize),
-              textAlign: TextAlign.center,
-            ),
+            child: child,
           )),
     );
   }
@@ -155,6 +150,23 @@ abstract class Item {
     }
   }
 
+  TextSpan commaSpan() {
+    return TextSpan(text: ", ", style: TextStyle(color: statTextColor, fontSize: modFontSize));
+  }
+
+  TextSpan coloredText(String text, Color color) {
+    return TextSpan(
+        text: text,
+        style: TextStyle(color: color, fontSize: modFontSize));
+  }
+
+  RichText statWithColoredChildren(String text, List<TextSpan> children) {
+    return RichText(
+        text: TextSpan(text: text,
+            style: TextStyle(color: statTextColor, fontSize: modFontSize),
+            children: children));
+  }
+
   Widget getImplicitWidget() {
     if (implicits == null || implicits.isEmpty) {
       return Column();
@@ -165,8 +177,6 @@ abstract class Item {
 
   Widget weaponStatWidget() {
     List<Widget> statWidgets = List();
-    //List<String> statStrings = List();
-    //TODO: split implementation for item types, e.g. weapon, armour etc
     int addedMinimumPhysicalDamage = weaponProperties.physicalDamageMin;
     int addedMaximumPhysicalDamage = weaponProperties.physicalDamageMax;
     int addedMinimumColdDamage = 0;
@@ -246,60 +256,37 @@ abstract class Item {
     String attacksPerSecondString = "${attacksPerSecond.toStringAsFixed(2)}";
     String criticalStrikeChanceString = "${((weaponProperties.criticalStrikeChance/100) * (increasedCriticalStrikeChange / 100)).toStringAsFixed(2)}";
     statWidgets.add(itemModRow(itemClass));
-    //statStrings.add(itemClass);
-    statWidgets.add(itemModRow("Quality 30%"));
-    //statStrings.add("Quality 30%");
-    statWidgets.add(itemModRow("Physical Damage: $addedMinimumPhysString-$addedMaximumPhysString"));
-    //statStrings.add("Physical Damage: $addedMinimumPhysString-$addedMaximumPhysString");
+    statWidgets.add(itemRow(statWithColoredChildren("Quality: ", [coloredText("+30%", modColor)])));
+    statWidgets.add(itemRow(statWithColoredChildren("Physical Damage: ", [coloredText("$addedMinimumPhysString-$addedMaximumPhysString", modColor)])));
     List<TextSpan> elementalDamageSpans = List();
     if (addedMinimumFireDamage > 0) {
-      elementalDamageSpans.add(TextSpan(
-        text: "($addedMinimumFireDamage-$addedMaximumFireDamage)",
-        style: TextStyle(color: Colors.red)));
-      //elementalDamageSpans.add("Fire Damage: $addedMinimumFireDamage-$addedMaximumFireDamage");
+      elementalDamageSpans.add(coloredText("$addedMinimumFireDamage-$addedMaximumFireDamage", Colors.red));
     }
     if (addedMinimumColdDamage > 0) {
       if (elementalDamageSpans.isNotEmpty) {
-        elementalDamageSpans.add(TextSpan(text: ", ", style: TextStyle(color: statTextColor)));
+        elementalDamageSpans.add(commaSpan());
       }
-      elementalDamageSpans.add(TextSpan(
-          text: "($addedMinimumColdDamage-$addedMaximumColdDamage)",
-          style: TextStyle(color: Colors.cyan)));
-      //statStrings.add("Cold Damage: $addedMinimumColdDamage-$addedMaximumColdDamage");
+      elementalDamageSpans.add(coloredText("$addedMinimumColdDamage-$addedMaximumColdDamage", Colors.cyan));
     }
     if (addedMinimumLightningDamage > 0) {
       if (elementalDamageSpans.isNotEmpty) {
-        elementalDamageSpans.add(TextSpan(text: ", ", style: TextStyle(color: statTextColor)));
+        elementalDamageSpans.add(commaSpan());
       }
-      elementalDamageSpans.add(TextSpan(
-          text: "($addedMinimumLightningDamage-$addedMaximumLightningDamage)",
-          style: TextStyle(color: Colors.yellow)));
-      //statStrings.add("Lightning Damage: $addedMinimumLightningDamage-$addedMaximumLightningDamage");
+      elementalDamageSpans.add(coloredText("$addedMinimumLightningDamage-$addedMaximumLightningDamage", Colors.yellow));
     }
     if (elementalDamageSpans.isNotEmpty) {
-      statWidgets.add(RichText(
-          text: TextSpan(text: "Elemental Damage: ",
-              style: TextStyle(color: statTextColor),
-              children: elementalDamageSpans)));
+      statWidgets.add(itemRow(statWithColoredChildren("Elemental Damage: ", elementalDamageSpans)));
     }
     if (addedMinimumChaosDamage > 0) {
-      statWidgets.add(RichText(
-          text: TextSpan(text: "Chaos Damage: ",
-              style: TextStyle(color: statTextColor),
-              children: <TextSpan>[
-                TextSpan(text: "($addedMinimumChaosDamage-$addedMaximumChaosDamage)",
-                    style: TextStyle(color: Colors.pink[300])),
-              ])));
-      //statStrings.add("Chaos Damage: $addedMinimumChaosDamage-$addedMaximumChaosDamage");
+      statWidgets.add(itemRow(statWithColoredChildren("Chaos Damage: ", [
+        coloredText("$addedMinimumChaosDamage-$addedMaximumChaosDamage",
+            Colors.pink[300])
+      ])));
     }
 
-    statWidgets.add(itemModRow("Critical Strike Chance: $criticalStrikeChanceString%"));
-    //statStrings.add("Critical Strike Chance: $criticalStrikeChanceString%");
-    statWidgets.add(itemModRow("Attacks per second: $attacksPerSecondString"));
+    statWidgets.add(itemRow(statWithColoredChildren("Critical Strike Chance: ", [coloredText("$criticalStrikeChanceString%", increasedCriticalStrikeChange > 100 ? modColor : statTextColor)])));
+    statWidgets.add(itemRow(statWithColoredChildren("Attacks per Second: ", [coloredText("$attacksPerSecondString", increasedAttackSpeed > 100 ? modColor : statTextColor)])));
 
-    //statStrings.add("Attacks per second: $attacksPerSecondString");
-    //statStrings.add("Weapon Range: ${weaponProperties.range}");
-    //List<Widget> children = statStrings.map(itemModRow).toList();
     statWidgets.add(dpsWidget(pDPS, eDPS, DPS));
     return Column(children: statWidgets);
   }
