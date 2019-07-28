@@ -4,6 +4,7 @@ import 'mod.dart';
 import '../repository/mod_repo.dart';
 import '../repository/fossil_repo.dart';
 import '../widgets/crafting_widget.dart';
+import '../widgets/fossil_select_dialog_widget.dart';
 import 'properties.dart';
 import 'fossil.dart';
 
@@ -260,7 +261,7 @@ abstract class Item {
 
     statStrings.add("Critical Strike Chance: $criticalStrikeChanceString%");
     statStrings.add("Attacks per second: $attacksPerSecondString");
-    statStrings.add("Weapon Range: ${weaponProperties.range}");
+    //statStrings.add("Weapon Range: ${weaponProperties.range}");
     List<Widget> children = statStrings.map(itemModRow).toList();
     children.add(dpsWidget(pDPS, eDPS, DPS));
     return Column(children: children);
@@ -344,6 +345,7 @@ abstract class Item {
 
   void reroll({List<Fossil> fossils: const[]});
   void addMod();
+  RareItem useFossils(List<Fossil> fossils);
   void addPrefix({List<Fossil> fossils: const []}) {
     Mod prefix = ModRepository.instance.getPrefix(this, fossils);
     print("Adding Prefix: ${prefix.debugString()}");
@@ -421,6 +423,19 @@ class NormalItem extends Item {
         this.itemClass);
     item.reroll();
     return item;
+  }
+
+  @override
+  RareItem useFossils(List<Fossil> fossils) {
+    RareItem item = RareItem(
+        this.name,
+        List(),
+        this.implicits,
+        this.tags,
+        this.weaponProperties,
+        this.armourProperties,
+        this.itemClass);
+    return item.useFossils(fossils);
   }
 
   @override
@@ -514,6 +529,19 @@ class MagicItem extends Item {
         this.weaponProperties,
         this.armourProperties,
         this.itemClass);
+  }
+
+  @override
+  RareItem useFossils(List<Fossil> fossils) {
+    RareItem item = RareItem(
+        this.name,
+        List(),
+        this.implicits,
+        this.tags,
+        this.weaponProperties,
+        this.armourProperties,
+        this.itemClass);
+    return item.useFossils(fossils);
   }
 
   @override
@@ -695,26 +723,6 @@ class RareItem extends Item {
           ),
         ],
         ),
-        Row(children: <Widget>[
-          RaisedButton(
-            child: Text("Phys"),
-            onPressed: () {
-              state.itemChanged(this.useFossils([
-                FossilRepository.instance.getFossilByName("AttackMods"),
-                FossilRepository.instance.getFossilByName("Physical"),
-                FossilRepository.instance.getFossilByName("BleedPoison"),
-              ]));
-            },
-          ),
-          RaisedButton(
-            child: Text("Dense"),
-            onPressed: () {
-              state.itemChanged(this.useFossils([
-                FossilRepository.instance.getFossilByName("Defences"),
-              ]));
-            },
-          )
-        ],)
       ],
     );
   }

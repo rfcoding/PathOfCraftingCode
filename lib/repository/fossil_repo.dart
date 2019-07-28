@@ -19,8 +19,11 @@ class FossilRepository {
   Future<bool> loadFossilsFromJson() async {
     var data = await rootBundle.loadString('data_repo/fossils.json');
     Map<String, dynamic> jsonMap = json.decode(data);
+
+    var baseItemData = await rootBundle.loadString('data_repo/base_items.json');
+    Map<String, dynamic> baseItemMap = json.decode(baseItemData);
     jsonMap.forEach((key, data) {
-      String name = key.split('/').last.replaceFirst("CurrencyDelveCrafting", "");
+      String name = baseItemMap[key]['name'];
       Fossil fossil = Fossil.fromJson(name, data);
       _fossils.add(fossil);
     });
@@ -29,5 +32,9 @@ class FossilRepository {
 
   Fossil getFossilByName(String name) {
     return _fossils.firstWhere((fossil) => fossil.name == name);
+  }
+
+  List<Fossil> getFossils() {
+    return _fossils;
   }
 }

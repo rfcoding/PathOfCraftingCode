@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../crafting/item.dart';
 import '../crafting/base_item.dart';
-import '../crafting/properties.dart';
+import '../crafting/fossil.dart';
+import '../crafting/item.dart';
+import 'fossil_select_dialog_widget.dart';
 
 class CraftingWidget extends StatefulWidget {
   final BaseItem baseItem;
@@ -11,27 +12,25 @@ class CraftingWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return CraftingWidgetState(baseItem, extraTags);
+    return CraftingWidgetState();
   }
 }
 
 class CraftingWidgetState extends State<CraftingWidget> {
   Item _item;
-
-  CraftingWidgetState(BaseItem baseItem, List<String> extraTags) {
-    _item = NormalItem(
-        baseItem.name,
-        new List(),
-        baseItem.implicits,
-        baseItem.tags,
-        baseItem.weaponProperties,
-        baseItem.armourProperties,
-        baseItem.itemClass);
-    _item.tags.addAll(extraTags);
-  }
+  List<Fossil> _selectedFossils = List();
 
   @override
   void initState() {
+    _item = NormalItem(
+        widget.baseItem.name,
+        new List(),
+        widget.baseItem.implicits,
+        widget.baseItem.tags,
+        widget.baseItem.weaponProperties,
+        widget.baseItem.armourProperties,
+        widget.baseItem.itemClass);
+    _item.tags.addAll(widget.extraTags);
     super.initState();
   }
 
@@ -52,9 +51,33 @@ class CraftingWidgetState extends State<CraftingWidget> {
                 alignment: Alignment.bottomCenter,
                 child: _item.getActionsWidget(this)),
           ),
+          fossilCraftingWidget(),
           //)
         ],
       ),
+    );
+  }
+
+  Widget fossilCraftingWidget() {
+    return Row(
+      children: <Widget>[
+        RaisedButton(
+          child: Text("Use"),
+          onPressed: () => itemChanged(_item.useFossils(_selectedFossils)),
+        ),
+        RaisedButton(
+            child: Text("Select Fossils"),
+            onPressed: () => FossilSelectDialog.getFossilSelectionDialog(
+                context,
+                _selectedFossils
+                    .map((selectedFossil) => selectedFossil.name)
+                    .toList())
+                .then((fossils) {
+              setState(() {
+                _selectedFossils = fossils;
+              });
+            }))
+      ],
     );
   }
 
