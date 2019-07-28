@@ -20,6 +20,7 @@ abstract class Item {
   Random rng = new Random();
   Color statTextColor = Color(0xFF677F7F);
   Color modColor = Color(0xFF959AF6);
+  double modFontSize = 16;
 
   Item(String name,
     List<Mod> mods,
@@ -107,7 +108,7 @@ abstract class Item {
             padding: const EdgeInsets.all(4.0),
             child: Text(
               text,
-              style: TextStyle(color: modColor, fontSize: 16),
+              style: TextStyle(color: modColor, fontSize: modFontSize),
               textAlign: TextAlign.center,
             ),
           )),
@@ -122,7 +123,7 @@ abstract class Item {
             padding: const EdgeInsets.all(4.0),
             child: Text(
               text,
-              style: TextStyle(color: statTextColor, fontSize: 16),
+              style: TextStyle(color: statTextColor, fontSize: modFontSize),
               textAlign: TextAlign.center,
             ),
           )),
@@ -163,7 +164,8 @@ abstract class Item {
   }
 
   Widget weaponStatWidget() {
-    List<String> statStrings = List();
+    List<Widget> statWidgets = List();
+    //List<String> statStrings = List();
     //TODO: split implementation for item types, e.g. weapon, armour etc
     int addedMinimumPhysicalDamage = weaponProperties.physicalDamageMin;
     int addedMaximumPhysicalDamage = weaponProperties.physicalDamageMax;
@@ -243,28 +245,63 @@ abstract class Item {
     String addedMaximumPhysString = "${addedMaximumPhysicalDamage.toStringAsFixed(0)}";
     String attacksPerSecondString = "${attacksPerSecond.toStringAsFixed(2)}";
     String criticalStrikeChanceString = "${((weaponProperties.criticalStrikeChance/100) * (increasedCriticalStrikeChange / 100)).toStringAsFixed(2)}";
-    statStrings.add(itemClass);
-    statStrings.add("Quality 30%");
-    statStrings.add("Physical Damage: $addedMinimumPhysString-$addedMaximumPhysString");
+    statWidgets.add(itemModRow(itemClass));
+    //statStrings.add(itemClass);
+    statWidgets.add(itemModRow("Quality 30%"));
+    //statStrings.add("Quality 30%");
+    statWidgets.add(itemModRow("Physical Damage: $addedMinimumPhysString-$addedMaximumPhysString"));
+    //statStrings.add("Physical Damage: $addedMinimumPhysString-$addedMaximumPhysString");
+    List<TextSpan> elementalDamageSpans = List();
     if (addedMinimumFireDamage > 0) {
-      statStrings.add("Fire Damage: $addedMinimumFireDamage-$addedMaximumFireDamage");
+      elementalDamageSpans.add(TextSpan(
+        text: "($addedMinimumFireDamage-$addedMaximumFireDamage)",
+        style: TextStyle(color: Colors.red)));
+      //elementalDamageSpans.add("Fire Damage: $addedMinimumFireDamage-$addedMaximumFireDamage");
     }
     if (addedMinimumColdDamage > 0) {
-      statStrings.add("Cold Damage: $addedMinimumColdDamage-$addedMaximumColdDamage");
+      if (elementalDamageSpans.isNotEmpty) {
+        elementalDamageSpans.add(TextSpan(text: ", ", style: TextStyle(color: statTextColor)));
+      }
+      elementalDamageSpans.add(TextSpan(
+          text: "($addedMinimumColdDamage-$addedMaximumColdDamage)",
+          style: TextStyle(color: Colors.cyan)));
+      //statStrings.add("Cold Damage: $addedMinimumColdDamage-$addedMaximumColdDamage");
     }
     if (addedMinimumLightningDamage > 0) {
-      statStrings.add("Lightning Damage: $addedMinimumLightningDamage-$addedMaximumLightningDamage");
+      if (elementalDamageSpans.isNotEmpty) {
+        elementalDamageSpans.add(TextSpan(text: ", ", style: TextStyle(color: statTextColor)));
+      }
+      elementalDamageSpans.add(TextSpan(
+          text: "($addedMinimumLightningDamage-$addedMaximumLightningDamage)",
+          style: TextStyle(color: Colors.yellow)));
+      //statStrings.add("Lightning Damage: $addedMinimumLightningDamage-$addedMaximumLightningDamage");
+    }
+    if (elementalDamageSpans.isNotEmpty) {
+      statWidgets.add(RichText(
+          text: TextSpan(text: "Elemental Damage: ",
+              style: TextStyle(color: statTextColor),
+              children: elementalDamageSpans)));
     }
     if (addedMinimumChaosDamage > 0) {
-      statStrings.add("Chaos Damage: $addedMinimumChaosDamage-$addedMaximumChaosDamage");
+      statWidgets.add(RichText(
+          text: TextSpan(text: "Chaos Damage: ",
+              style: TextStyle(color: statTextColor),
+              children: <TextSpan>[
+                TextSpan(text: "($addedMinimumChaosDamage-$addedMaximumChaosDamage)",
+                    style: TextStyle(color: Colors.pink[300])),
+              ])));
+      //statStrings.add("Chaos Damage: $addedMinimumChaosDamage-$addedMaximumChaosDamage");
     }
 
-    statStrings.add("Critical Strike Chance: $criticalStrikeChanceString%");
-    statStrings.add("Attacks per second: $attacksPerSecondString");
+    statWidgets.add(itemModRow("Critical Strike Chance: $criticalStrikeChanceString%"));
+    //statStrings.add("Critical Strike Chance: $criticalStrikeChanceString%");
+    statWidgets.add(itemModRow("Attacks per second: $attacksPerSecondString"));
+
+    //statStrings.add("Attacks per second: $attacksPerSecondString");
     //statStrings.add("Weapon Range: ${weaponProperties.range}");
-    List<Widget> children = statStrings.map(itemModRow).toList();
-    children.add(dpsWidget(pDPS, eDPS, DPS));
-    return Column(children: children);
+    //List<Widget> children = statStrings.map(itemModRow).toList();
+    statWidgets.add(dpsWidget(pDPS, eDPS, DPS));
+    return Column(children: statWidgets);
   }
 
   Widget dpsWidget(double pDps, double eDps, double dps) {
