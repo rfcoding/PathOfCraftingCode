@@ -175,14 +175,10 @@ class ModRepository {
         .toList();
 
     for (FossilModWeight modWeight in negativeWeights) {
-      if (modWeight.weight == 0) {
-        return 0;
-      } else {
-        spawnWeight = modWeight.weight;
-      }
+      spawnWeight *= (modWeight.weight/100).floor();
     }
     for (FossilModWeight modWeight in positiveWeights) {
-      spawnWeight += modWeight.weight;
+      spawnWeight *= (modWeight.weight/100).floor();
     }
     return spawnWeight;
   }
