@@ -2,8 +2,9 @@ import 'dart:async' show Future;
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:poe_clicker/crafting/item.dart';
+import '../crafting/item.dart';
 import '../crafting/mod.dart';
+import '../crafting/fossil.dart';
 
 class ModRepository {
   ModRepository._privateConstructor();
@@ -15,6 +16,7 @@ class ModRepository {
   Map<String, List<Mod>> _prefixModMap;
   Map<String, List<Mod>> _suffixModMap;
   Map<String, Mod> _allModsMap;
+  Map<String, List<String>> _modTagsMap;
 
   bool _initializing;
   bool _initialized;
@@ -25,8 +27,11 @@ class ModRepository {
     _prefixModMap = Map();
     _suffixModMap = Map();
     _allModsMap = Map();
+    _modTagsMap = Map();
 
-    bool success = await loadModsJSONFromLocalStorage();
+    bool success = await loadModTypesJSONFromLocalStorage()
+        .then((success) => loadModsJSONFromLocalStorage());
+
     _initializing = false;
     _initialized = success;
     print("Prefix Mods ${_prefixModMap.keys.toString()}");
@@ -36,14 +41,16 @@ class ModRepository {
 
     print("Number of Amulet prefix mods: ${_prefixModMap['amulet'].length}");
     print("Number of Amulet suffix mods: ${_suffixModMap['amulet'].length}");
-    return success;
+    return _initialized;
   }
 
   Future<bool> loadModsJSONFromLocalStorage() async {
     var data = await rootBundle.loadString('data_repo/mods.json');
     Map<String, dynamic> jsonMap = json.decode(data);
     jsonMap.forEach((key, data) {
-      Mod mod = Mod.fromJson(key, data);
+      String type = data['type'];
+      List<String> tags = _modTagsMap[type];
+      Mod mod = Mod.fromJson(key, data, tags);
       _allModsMap[mod.id] = mod;
       mod.spawnWeights.forEach((spawnWeight) {
         Map<String, List<Mod>> modMap;
@@ -67,7 +74,18 @@ class ModRepository {
     return true;
   }
 
-  Mod getPrefix(Item item) {
+  Future<bool> loadModTypesJSONFromLocalStorage() async {
+    var data = await rootBundle.loadString('data_repo/mod_types.json');
+    Map<String, dynamic> jsonMap = json.decode(data);
+    jsonMap.forEach((key, data) {
+      List<String> tags = new List<String>.from(data['tags']);
+      _modTagsMap[key] = tags;
+    });
+    return true;
+  }
+
+
+  Mod getPrefix(Item item, List<Fossil> fossils) {
     List<Mod> possibleMods = List();
     item.tags.forEach((tag) {
       List<Mod> mods = _prefixModMap[tag];
@@ -75,11 +93,17 @@ class ModRepository {
         possibleMods.addAll(mods.where((mod) => !item.alreadyHasModGroup(mod)));
       }
     });
-    return getMod(possibleMods, item);
+    fossils.map((fossil) => fossil.addedMods).expand((modId) => modId).forEach((modId) {
+      Mod mod = getModById(modId);
+      if (mod.generationType == "prefix" && !item.alreadyHasModGroup(mod)) {
+        possibleMods.add(mod);
+      }
+    });
+    return getMod(possibleMods, item, fossils);
 
   }
 
-  Mod getSuffix(Item item) {
+  Mod getSuffix(Item item, List<Fossil> fossils) {
     List<Mod> possibleMods = List();
     item.tags.forEach((tag) {
       List<Mod> mods = _suffixModMap[tag];
@@ -87,10 +111,16 @@ class ModRepository {
         possibleMods.addAll(mods.where((mod) => !item.alreadyHasModGroup(mod)));
       }
     });
-    return getMod(possibleMods, item);
+    fossils.map((fossil) => fossil.addedMods).expand((modId) => modId).forEach((modId) {
+      Mod mod = getModById(modId);
+      if (mod.generationType == "suffix" && !item.alreadyHasModGroup(mod)) {
+        possibleMods.add(mod);
+      }
+    });
+    return getMod(possibleMods, item, fossils);
   }
 
-  Mod getMod(List<Mod> possibleMods, Item item) {
+  Mod getMod(List<Mod> possibleMods, Item item, List<Fossil> fossils) {
     Map<String, int> weightIdMap = Map();
     int totalWeight = 0;
     possibleMods.forEach((mod) {
@@ -113,6 +143,7 @@ class ModRepository {
         weight = defaultWeight;
       }
       if (weight > 0 && !weightIdMap.containsKey(mod.id)) {
+        weight = calculateFossilWeight(mod, fossils, weight);
         totalWeight += weight;
         weightIdMap[mod.id] = weight;
       }
@@ -125,9 +156,34 @@ class ModRepository {
         return _allModsMap[entry.key];
       }
     }
+    throw StateError("Expected to return mod");
   }
 
   Mod getModById(String id) {
     return _allModsMap[id];
+  }
+
+  int calculateFossilWeight(Mod mod, List<Fossil> fossils, int spawnWeight) {
+    List<FossilModWeight> positiveWeights = fossils.map((fossil) => fossil.positiveModWeights)
+        .expand((weights) => weights)
+        .where((weights) => mod.tags.contains(weights.tag))
+        .toList();
+
+    List<FossilModWeight> negativeWeights = fossils.map((fossil) => fossil.negativeModWeights)
+        .expand((weights) => weights)
+        .where((weights) => mod.tags.contains(weights.tag))
+        .toList();
+
+    for (FossilModWeight modWeight in negativeWeights) {
+      if (modWeight.weight == 0) {
+        return 0;
+      } else {
+        spawnWeight = modWeight.weight;
+      }
+    }
+    for (FossilModWeight modWeight in positiveWeights) {
+      spawnWeight += modWeight.weight;
+    }
+    return spawnWeight;
   }
 }

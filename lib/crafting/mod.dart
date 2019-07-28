@@ -11,6 +11,7 @@ class Mod {
   String generationType;
   String group;
   String type;
+  List<String> tags;
 
   Mod({
     this.id,
@@ -21,10 +22,11 @@ class Mod {
     this.domain,
     this.generationType,
     this.group,
-    this.type
+    this.type,
+    this.tags
   });
 
-  factory Mod.fromJson(String key, Map<String, dynamic> json) {
+  factory Mod.fromJson(String key, Map<String, dynamic> json, List<String> tags) {
     var spawnWeights = json['spawn_weights'] as List;
     List<SpawnWeight> spawnWeightList =
         spawnWeights.map((s) => SpawnWeight.fromJson(s)).toList();
@@ -40,7 +42,8 @@ class Mod {
         domain: json['domain'],
         generationType: json['generation_type'],
         group: json['group'],
-        type: json['type']);
+        type: json['type'],
+        tags: tags);
   }
 
   List<String> getStatStrings() {

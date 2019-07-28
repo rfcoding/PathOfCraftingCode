@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../repository/fossil_repo.dart';
 import '../repository/mod_repo.dart';
 import '../repository/item_repo.dart';
 import '../repository/translation_repo.dart';
@@ -29,10 +30,10 @@ class MainWidgetState extends State<MainWidget> {
   @override
   void initState() {
     Future.wait({
-      ModRepository.instance.initialize()
-          //Mods are needed before items can load implicits
-          .then((ignore) => ItemRepository.instance.initialize()),
-      TranslationRepository.instance.initialize()}).then((success) {
+      ModRepository.instance.initialize().then((ignore) => ItemRepository.instance.initialize()),
+      TranslationRepository.instance.initialize(),
+      FossilRepository.instance.initialize()})
+        .then((success) {
         setState(() {
           _isInitialized = success.reduce((value, element) => value && element);
         });

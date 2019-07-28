@@ -2,8 +2,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'mod.dart';
 import '../repository/mod_repo.dart';
+import '../repository/fossil_repo.dart';
 import '../widgets/crafting_widget.dart';
 import 'properties.dart';
+import 'fossil.dart';
 
 abstract class Item {
   String name;
@@ -226,7 +228,7 @@ abstract class Item {
     }
 
     addedMinimumPhysicalDamage =  (addedMinimumPhysicalDamage * increasedPhysicalDamage / 100).floor();
-    addedMaximumPhysicalDamage = (addedMinimumPhysicalDamage * increasedPhysicalDamage / 100).floor();
+    addedMaximumPhysicalDamage = (addedMaximumPhysicalDamage * increasedPhysicalDamage / 100).floor();
     double attacksPerSecond = (increasedAttackSpeed/100) * (1000/weaponProperties.attackTime);
     var pDPS = (addedMinimumPhysicalDamage + addedMaximumPhysicalDamage) / 2 * attacksPerSecond;
     var eDPS = (
@@ -340,16 +342,16 @@ abstract class Item {
     return Column(children: children);
   }
 
-  void reroll();
+  void reroll({List<Fossil> fossils: const[]});
   void addMod();
-  void addPrefix() {
-    Mod prefix = ModRepository.instance.getPrefix(this);
+  void addPrefix({List<Fossil> fossils: const []}) {
+    Mod prefix = ModRepository.instance.getPrefix(this, fossils);
     print("Adding Prefix: ${prefix.debugString()}");
     mods.add(prefix);
   }
 
-  void addSuffix() {
-    Mod suffix = ModRepository.instance.getSuffix(this);
+  void addSuffix({List<Fossil> fossils: const []}) {
+    Mod suffix = ModRepository.instance.getSuffix(this, fossils);
     print("Adding Suffix: ${suffix.debugString()}");
     mods.add(suffix);
   }
@@ -386,7 +388,7 @@ class NormalItem extends Item {
   }
 
   @override
-  void reroll() {
+  void reroll({List<Fossil> fossils: const[]}) {
     //Do nothing
   }
 
@@ -468,7 +470,7 @@ class MagicItem extends Item {
   }
 
   @override
-  void reroll() {
+  void reroll({List<Fossil> fossils: const[]}) {
     mods.clear();
     int nPrefixes = rng.nextInt(2);
     int nSuffixes = max(rng.nextInt(2), 1 - nPrefixes);
@@ -592,15 +594,15 @@ class RareItem extends Item {
   }
 
   @override
-  void reroll() {
+  void reroll({List<Fossil> fossils: const[]}) {
     mods.clear();
     int nPrefixes = rng.nextInt(3) + 1;
     int nSuffixes = max((rng.nextInt(3) + 1), 4 - nPrefixes);
     for (int i = 0; i < nPrefixes; i++) {
-      addPrefix();
+      addPrefix(fossils: fossils);
     }
     for (int i = 0; i < nSuffixes; i++) {
-      addSuffix();
+      addSuffix(fossils: fossils);
     }
   }
 
@@ -634,6 +636,11 @@ class RareItem extends Item {
     return this;
   }
 
+  RareItem useFossils(List<Fossil> fossils) {
+    reroll(fossils: fossils);
+    return this;
+  }
+
   @override
   void addMod() {
     // Max mods
@@ -658,33 +665,57 @@ class RareItem extends Item {
 
   @override
   Widget getActionsWidget(CraftingWidgetState state) {
-    return Row(children: <Widget>[
-      RaisedButton(
-        child: Text("Scour"),
-        onPressed: () {
-          state.itemChanged(this.scour());
-        },
-      ),
-      RaisedButton(
-        child: Text("Chaos"),
-        onPressed: () {
-          state.itemChanged(this.chaos());
-        },
-      ),
-      RaisedButton(
-        child: Text("Exalt"),
-        onPressed: () {
-          state.itemChanged(this.exalt());
-        },
-      ),
-      RaisedButton(
-        child: Text("Annul"),
-        onPressed: () {
-          state.itemChanged(this.annulment());
-        },
-      )
-    ],
-
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Row(children: <Widget>[
+          RaisedButton(
+            child: Text("Scour"),
+            onPressed: () {
+              state.itemChanged(this.scour());
+            },
+          ),
+          RaisedButton(
+            child: Text("Chaos"),
+            onPressed: () {
+              state.itemChanged(this.chaos());
+            },
+          ),
+          RaisedButton(
+            child: Text("Exalt"),
+            onPressed: () {
+              state.itemChanged(this.exalt());
+            },
+          ),
+          RaisedButton(
+            child: Text("Annul"),
+            onPressed: () {
+              state.itemChanged(this.annulment());
+            },
+          ),
+        ],
+        ),
+        Row(children: <Widget>[
+          RaisedButton(
+            child: Text("Phys"),
+            onPressed: () {
+              state.itemChanged(this.useFossils([
+                FossilRepository.instance.getFossilByName("AttackMods"),
+                FossilRepository.instance.getFossilByName("Physical"),
+                FossilRepository.instance.getFossilByName("BleedPoison"),
+              ]));
+            },
+          ),
+          RaisedButton(
+            child: Text("Dense"),
+            onPressed: () {
+              state.itemChanged(this.useFossils([
+                FossilRepository.instance.getFossilByName("Defences"),
+              ]));
+            },
+          )
+        ],)
+      ],
     );
   }
 }
