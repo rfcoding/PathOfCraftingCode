@@ -24,7 +24,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
   void initState() {
     _item = NormalItem(
         widget.baseItem.name,
-        new List(),
+        List(),
+        List(),
         widget.baseItem.implicits,
         widget.baseItem.tags,
         widget.baseItem.weaponProperties,

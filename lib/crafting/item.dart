@@ -8,7 +8,8 @@ import 'fossil.dart';
 
 abstract class Item {
   String name;
-  List<Mod> mods;
+  List<Mod> prefixes;
+  List<Mod> suffixes;
   List<Mod> implicits;
   List<String> tags;
   WeaponProperties weaponProperties;
@@ -21,14 +22,16 @@ abstract class Item {
   double modFontSize = 16;
 
   Item(String name,
-    List<Mod> mods,
-    List<Mod> implicits,
-    List<String> tags,
-    WeaponProperties weaponProperties,
-    ArmourProperties armourProperties,
-    String itemClass) {
+      List<Mod> prefixes,
+      List<Mod> suffixes,
+      List<Mod> implicits,
+      List<String> tags,
+      WeaponProperties weaponProperties,
+      ArmourProperties armourProperties,
+      String itemClass) {
     this.name = name;
-    this.mods = mods;
+    this.prefixes = prefixes;
+    this.suffixes = suffixes;
     this.tags = tags;
     this.weaponProperties = weaponProperties;
     this.armourProperties = armourProperties;
@@ -37,7 +40,15 @@ abstract class Item {
   }
 
   List<Mod> getMods() {
+    List<Mod> mods = List();
+    mods.addAll(prefixes);
+    mods.addAll(suffixes);
     return mods;
+  }
+
+  void clearMods() {
+    prefixes.clear();
+    suffixes.clear();
   }
 
   @override
@@ -46,7 +57,7 @@ abstract class Item {
   }
 
   List<String> getStatStrings() {
-    return mods
+    return getMods()
         .map((mod) => mod.getStatStrings())
         .expand((string) => string)
         .toList();
@@ -61,7 +72,7 @@ abstract class Item {
   }
 
   bool alreadyHasModGroup(Mod mod) {
-    for (Mod ownMod in mods) {
+    for (Mod ownMod in getMods()) {
       if (ownMod.group == mod.group) {
         return true;
       }
@@ -192,7 +203,7 @@ abstract class Item {
     int increasedCriticalStrikeChange = 100;
 
     List<Mod> allMods = List();
-    allMods.addAll(mods);
+    allMods.addAll(getMods());
     allMods.addAll(implicits);
     for (Stat stat in allMods.map((mod) => mod.stats).expand((stat) => stat)) {
       switch (stat.id) {
@@ -312,7 +323,7 @@ abstract class Item {
     int energyShieldMultiplier = 130;
 
     List<Mod> allMods = List();
-    allMods.addAll(mods);
+    allMods.addAll(getMods());
     allMods.addAll(implicits);
     for (Stat stat in allMods.map((mod) => mod.stats).expand((stat) => stat)) {
       switch (stat.id) {
@@ -373,13 +384,13 @@ abstract class Item {
   void addPrefix({List<Fossil> fossils: const []}) {
     Mod prefix = ModRepository.instance.getPrefix(this, fossils);
     print("Adding Prefix: ${prefix.debugString()}");
-    mods.add(prefix);
+    prefixes.add(prefix);
   }
 
   void addSuffix({List<Fossil> fossils: const []}) {
     Mod suffix = ModRepository.instance.getSuffix(this, fossils);
     print("Adding Suffix: ${suffix.debugString()}");
-    mods.add(suffix);
+    suffixes.add(suffix);
   }
   Color getTextColor();
   Color getBorderColor();
@@ -387,15 +398,23 @@ abstract class Item {
 }
 
 class NormalItem extends Item {
-  NormalItem(
-      String name,
-      List<Mod> mods,
+  NormalItem(String name,
+      List<Mod> prefixes,
+      List<Mod> suffixes,
       List<Mod> implicits,
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
       String itemClass)
-      : super(name, mods, implicits, tags, weaponProperties, armourProperties, itemClass);
+      : super(
+      name,
+      prefixes,
+      suffixes,
+      implicits,
+      tags,
+      weaponProperties,
+      armourProperties,
+      itemClass);
 
 
   @override
@@ -420,12 +439,13 @@ class NormalItem extends Item {
 
   @override
   void addMod() {
-    // TODO: implement addMod
+    // Do nothing
   }
 
   MagicItem transmute() {
     MagicItem item = MagicItem(
         this.name,
+        new List(),
         new List(),
         this.implicits,
         this.tags,
@@ -439,7 +459,8 @@ class NormalItem extends Item {
   RareItem alchemy() {
     RareItem item = RareItem(
         this.name,
-        new List(),
+        List(),
+        List(),
         this.implicits,
         this.tags,
         this.weaponProperties,
@@ -453,6 +474,7 @@ class NormalItem extends Item {
   RareItem useFossils(List<Fossil> fossils) {
     RareItem item = RareItem(
         this.name,
+        List(),
         List(),
         this.implicits,
         this.tags,
@@ -483,15 +505,23 @@ class NormalItem extends Item {
 }
 
 class MagicItem extends Item {
-  MagicItem(
-      String name,
-      List<Mod> mods,
+  MagicItem(String name,
+      List<Mod> prefixes,
+      List<Mod> suffixes,
       List<Mod> implicits,
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
       String itemClass)
-      : super(name, mods, implicits, tags, weaponProperties, armourProperties, itemClass);
+      : super(
+      name,
+      prefixes,
+      suffixes,
+      implicits,
+      tags,
+      weaponProperties,
+      armourProperties,
+      itemClass);
 
   @override
   Color getBorderColor() {
@@ -510,7 +540,7 @@ class MagicItem extends Item {
 
   @override
   void reroll({List<Fossil> fossils: const[]}) {
-    mods.clear();
+    clearMods();
     int nPrefixes = rng.nextInt(2);
     int nSuffixes = max(rng.nextInt(2), 1 - nPrefixes);
     for (int i = 0; i < nPrefixes; i++) {
@@ -524,7 +554,8 @@ class MagicItem extends Item {
   RareItem regal() {
     RareItem item = RareItem(
         this.name,
-        this.mods,
+        this.prefixes,
+        this.suffixes,
         this.implicits,
         this.tags,
         this.weaponProperties,
@@ -548,6 +579,7 @@ class MagicItem extends Item {
     return NormalItem(
         this.name,
         new List(),
+        new List(),
         this.implicits,
         this.tags,
         this.weaponProperties,
@@ -560,6 +592,7 @@ class MagicItem extends Item {
     RareItem item = RareItem(
         this.name,
         List(),
+        List(),
         this.implicits,
         this.tags,
         this.weaponProperties,
@@ -570,11 +603,12 @@ class MagicItem extends Item {
 
   @override
   void addMod() {
+    List<Mod> mods = getMods();
     // Max mods
     if (mods.length == 2) {
       return;
     }
-    int nPrefixes = mods.where((mod) => mod.generationType == "prefix").toList().length;
+    int nPrefixes = prefixes.length;
     if (nPrefixes == 1) {
       addSuffix();
     } else {
@@ -620,15 +654,23 @@ class RareItem extends Item {
   Color boxColor = Color(0xFF201C1C);
   Color borderColor = Color(0xFF89672B);
 
-  RareItem(
-      String name,
-      List<Mod> mods,
+  RareItem(String name,
+      List<Mod> prefixes,
+      List<Mod> suffixes,
       List<Mod> implicits,
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
       String itemClass)
-      : super(name, mods, implicits, tags, weaponProperties, armourProperties, itemClass);
+      : super(
+      name,
+      prefixes,
+      suffixes,
+      implicits,
+      tags,
+      weaponProperties,
+      armourProperties,
+      itemClass);
 
   @override
   Color getBorderColor() {
@@ -647,7 +689,7 @@ class RareItem extends Item {
 
   @override
   void reroll({List<Fossil> fossils: const[]}) {
-    mods.clear();
+    clearMods();
     int nPrefixes = rng.nextInt(3) + 1;
     int nSuffixes = max((rng.nextInt(3) + 1), 4 - nPrefixes);
     for (int i = 0; i < nPrefixes; i++) {
@@ -661,6 +703,7 @@ class RareItem extends Item {
   NormalItem scour() {
     return NormalItem(
         this.name,
+        new List(),
         new List(),
         this.implicits,
         this.tags,
@@ -680,11 +723,20 @@ class RareItem extends Item {
   }
 
   RareItem annulment() {
-    if (mods.isEmpty) {
+    if (prefixes.isEmpty && suffixes.isEmpty) {
       return this;
     }
-    int annulIndex = rng.nextInt(mods.length);
-    mods.removeAt(annulIndex);
+    if (prefixes.isEmpty) {
+      suffixes.removeAt(rng.nextInt(suffixes.length));
+    } else if (suffixes.isEmpty) {
+      prefixes.removeAt(rng.nextInt(prefixes.length));
+    } else {
+      if (rng.nextBool()) {
+        prefixes.removeAt(rng.nextInt(prefixes.length));
+      } else {
+        suffixes.removeAt(rng.nextInt(suffixes.length));
+      }
+    }
     return this;
   }
 
@@ -696,14 +748,12 @@ class RareItem extends Item {
   @override
   void addMod() {
     // Max mods
-    if (mods.length == 6) {
+    if (getMods().length == 6) {
       return;
     }
-    int nPrefixes = mods.where((mod) => mod.generationType == "prefix").toList().length;
-    int nSuffixes = mods.where((mod) => mod.generationType == "suffix").toList().length;
-    if (nPrefixes == 3) {
+    if (prefixes.length == 3) {
       addSuffix();
-    } else if (nSuffixes == 3){
+    } else if (suffixes.length == 3){
       addPrefix();
     } else {
       bool prefix = rng.nextInt(2) == 1;
