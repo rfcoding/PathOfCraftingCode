@@ -2,7 +2,7 @@ import 'properties.dart';
 import '../crafting/mod.dart';
 import '../repository/mod_repo.dart';
 
-class BaseItem {
+class BaseItem implements Comparable<BaseItem> {
 
   String name;
   String itemClass;
@@ -10,7 +10,8 @@ class BaseItem {
   List<Mod> implicits;
   WeaponProperties weaponProperties;
   ArmourProperties armourProperties;
-
+  Requirements requirements;
+  
   BaseItem({
     this.name,
     this.itemClass,
@@ -18,6 +19,7 @@ class BaseItem {
     this.weaponProperties,
     this.armourProperties,
     this.implicits,
+    this.requirements,
   });
 
   factory BaseItem.fromJson(Map<String, dynamic> json) {
@@ -39,13 +41,66 @@ class BaseItem {
       tags: tags,
       implicits: implicitMods,
       weaponProperties: weaponProperties,
-      armourProperties: armourProperties
+      armourProperties: armourProperties,
+      requirements: Requirements.fromJson(json['requirements'])
     );
   }
 
   @override
   String toString() {
-    // TODO: implement toString
     return name;
+  }
+
+  @override
+  int compareTo(BaseItem other) {
+    if (requirements == null || other.requirements == null) {
+      return 0;
+    }
+    int reqCompare = requirements.reqString().compareTo(other.requirements.reqString());
+    if (reqCompare != 0) {
+      return reqCompare;
+    } else {
+      return requirements.level.compareTo(other.requirements.level);
+    }
+  }
+}
+
+class Requirements {
+  int dexterity;
+  int intelligence;
+  int strength;
+  int level;
+  
+  Requirements({
+    this.dexterity,
+    this.intelligence,
+    this.strength,
+    this.level
+  });
+  
+  factory Requirements.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+    return Requirements(
+      dexterity: json['dexterity'],
+      intelligence: json['intelligence'],
+      strength: json['strength'],
+      level: json['level']
+    );
+  }
+
+  String reqString() {
+    String req = "";
+    if (strength > 0) {
+      req += "str";
+    }
+    if (intelligence > 0) {
+      req += "int";
+    }
+    if (dexterity > 0) {
+      req += "dex";
+    }
+    return req;
   }
 }

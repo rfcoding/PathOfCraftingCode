@@ -13,9 +13,15 @@ class ItemSelectWidget extends StatefulWidget {
 
 class ItemSelectState extends State<ItemSelectWidget> {
   BaseItem _baseItem;
-  String _baseItemClass = "Amulet";
+  String _baseItemClass;
   String _shaperOrElder = "None";
 
+  @override
+  void initState() {
+    _baseItemClass = ItemRepository.instance.getItemBaseTypes()[0];
+    _baseItem = ItemRepository.instance.getBaseItemsForClass(_baseItemClass)[0];
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +71,7 @@ class ItemSelectState extends State<ItemSelectWidget> {
       onChanged: (String value) {
         setState(() {
           _baseItemClass = value;
+          _baseItem = ItemRepository.instance.getBaseItemsForClass(_baseItemClass)[0];
         });
       },
     );

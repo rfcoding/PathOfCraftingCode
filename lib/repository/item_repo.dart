@@ -16,6 +16,9 @@ class ItemRepository {
     itemClassMap = Map();
     List<bool> answer = await Future.wait({loadBaseItemsFromJson(), loadItemClassesFromJson()});
     bool success = answer.reduce((value, element) => value && element);
+    for (List<BaseItem> baseItems in itemClassToBaseItemMap.values) {
+      baseItems.sort((a, b) => a.compareTo(b));
+    }
     return success;
   }
 
@@ -25,10 +28,11 @@ class ItemRepository {
     jsonMap.forEach((key, data) {
       BaseItem item = BaseItem.fromJson(data);
       String itemClass = item.itemClass;
-      if (itemClassToBaseItemMap[itemClass] == null) {
-        itemClassToBaseItemMap[itemClass] = List();
-      }
+
       if (data["domain"] == "item" && data["release_state"] == "released") {
+        if (itemClassToBaseItemMap[itemClass] == null) {
+          itemClassToBaseItemMap[itemClass] = List();
+        }
         itemClassToBaseItemMap[itemClass].add(item);
       }
     });
