@@ -73,8 +73,4 @@ class SelectableItem {
   bool selected;
 
   SelectableItem({this.fossil, this.selected: false});
-
-  void toggle() {
-    selected = !selected;
-  }
 }
