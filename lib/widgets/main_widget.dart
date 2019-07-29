@@ -4,24 +4,14 @@ import '../repository/fossil_repo.dart';
 import '../repository/mod_repo.dart';
 import '../repository/item_repo.dart';
 import '../repository/translation_repo.dart';
-import '../widgets/crafting_widget.dart';
 import '../widgets/item_select_widget.dart';
 
 class MainWidget extends StatefulWidget {
 
   @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
-  }
-
-  @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return MainWidgetState();
   }
-
-
 }
 
 class MainWidgetState extends State<MainWidget> {
@@ -41,6 +31,7 @@ class MainWidgetState extends State<MainWidget> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,14 +48,13 @@ class MainWidgetState extends State<MainWidget> {
     }
     return Center(
       child: RaisedButton(
-        onPressed: _navigateToCraftingWidget,
+        onPressed: _navigateToItemSelectWidget,
         child: Text("Craft!"),
       ),
     );
   }
 
-  void _navigateToCraftingWidget() {
+  void _navigateToItemSelectWidget() {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ItemSelectWidget()));
   }
-
 }
