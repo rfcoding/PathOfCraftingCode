@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../crafting/base_item.dart';
 import '../crafting/fossil.dart';
-import '../crafting/item.dart';
+import '../crafting/item/item.dart';
+import '../crafting/item/normal_item.dart';
 import 'fossil_select_dialog_widget.dart';
 
 class CraftingWidget extends StatefulWidget {

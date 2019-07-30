@@ -2,7 +2,7 @@ import 'dart:async' show Future;
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/services.dart' show rootBundle;
-import '../crafting/item.dart';
+import 'package:poe_clicker/crafting/item/item.dart';
 import '../crafting/mod.dart';
 import '../crafting/fossil.dart';
 
