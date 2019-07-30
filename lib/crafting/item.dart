@@ -151,6 +151,15 @@ abstract class Item {
         ));
   }
 
+  Widget imageButton(String assetPath, VoidCallback callback) {
+    return FlatButton(
+      padding: EdgeInsets.all(0.0),
+      child: Image.asset(assetPath, height: 32, width: 32,),
+      //color: Colors.black,
+      onPressed: callback,
+    );
+  }
+
   Widget getStatWidget() {
     if (weaponProperties != null) {
       return weaponStatWidget();
@@ -487,18 +496,8 @@ class NormalItem extends Item {
   @override
   Widget getActionsWidget(CraftingWidgetState state) {
     return Row(children: <Widget>[
-      RaisedButton(
-        child: Text("Trans"),
-        onPressed: () {
-          state.itemChanged(this.transmute());
-        },
-      ),
-      RaisedButton(
-        child: Text("Alch"),
-        onPressed: () {
-          state.itemChanged(this.alchemy());
-        },
-      ),
+      imageButton('assets/images/transmute.png', () => state.itemChanged(this.transmute())),
+      imageButton('assets/images/alchemy.png', () => state.itemChanged(this.alchemy()))
     ],
     );
   }
@@ -619,30 +618,10 @@ class MagicItem extends Item {
   @override
   Widget getActionsWidget(CraftingWidgetState state) {
     return Row(children: <Widget>[
-      RaisedButton(
-        child: Text("Scour"),
-        onPressed: () {
-          state.itemChanged(this.scour());
-        },
-      ),
-      RaisedButton(
-        child: Text("Alt"),
-        onPressed: () {
-          state.itemChanged(this.alteration());
-        },
-      ),
-      RaisedButton(
-        child: Text("Aug"),
-        onPressed: () {
-          state.itemChanged(this.augment());
-        },
-      ),
-      RaisedButton(
-        child: Text("Regal"),
-        onPressed: () {
-          state.itemChanged(this.regal());
-        },
-      ),
+      imageButton('assets/images/scour.png', () => state.itemChanged(this.scour())),
+      imageButton('assets/images/alteration.png', () => state.itemChanged(this.alteration())),
+      imageButton('assets/images/augmentation.png', () => state.itemChanged(this.augment())),
+      imageButton('assets/images/regal.png', () => state.itemChanged(this.regal())),
     ],
 
     );
@@ -767,37 +746,13 @@ class RareItem extends Item {
 
   @override
   Widget getActionsWidget(CraftingWidgetState state) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Row(children: <Widget>[
-          RaisedButton(
-            child: Text("Scour"),
-            onPressed: () {
-              state.itemChanged(this.scour());
-            },
-          ),
-          RaisedButton(
-            child: Text("Chaos"),
-            onPressed: () {
-              state.itemChanged(this.chaos());
-            },
-          ),
-          RaisedButton(
-            child: Text("Exalt"),
-            onPressed: () {
-              state.itemChanged(this.exalt());
-            },
-          ),
-          RaisedButton(
-            child: Text("Annul"),
-            onPressed: () {
-              state.itemChanged(this.annulment());
-            },
-          ),
-        ],
-        ),
+    return
+      Row(children: <Widget>[
+        imageButton('assets/images/scour.png', () => state.itemChanged(this.scour())),
+        imageButton('assets/images/chaos.png', () => state.itemChanged(this.chaos())),
+        imageButton('assets/images/exalted.png', () => state.itemChanged(this.exalt())),
+        imageButton('assets/images/annulment.png', () => state.itemChanged(this.annulment())),
       ],
-    );
+      );
   }
 }
