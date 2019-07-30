@@ -36,7 +36,7 @@ class TranslationRepository {
     List<StatTranslation> statTranslations = List();
     for (Stat stat in stats) {
       StatTranslation statTranslation = _translations[stat.id];
-      if (!statTranslations.contains(statTranslation)) {
+      if (statTranslation != null && !statTranslations.contains(statTranslation)) {
         statTranslations.add(statTranslation);
       }
     }
