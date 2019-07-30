@@ -72,7 +72,7 @@ class RareItem extends Item {
   }
 
   RareItem exalt() {
-    addMod();
+    addRandomMod();
     return this;
   }
 
@@ -143,7 +143,7 @@ class RareItem extends Item {
   }
 
   @override
-  void addMod() {
+  void addRandomMod() {
     // Max mods
     if (getMods().length == 6) {
       return;

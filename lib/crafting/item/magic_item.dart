@@ -65,12 +65,12 @@ class MagicItem extends Item {
         this.weaponProperties,
         this.armourProperties,
         this.itemClass);
-    item.addMod();
+    item.addRandomMod();
     return item;
   }
 
   MagicItem augment() {
-    addMod();
+    addRandomMod();
     return this;
   }
 
@@ -116,7 +116,7 @@ class MagicItem extends Item {
   }
 
   @override
-  void addMod() {
+  void addRandomMod() {
     List<Mod> mods = getMods();
     // Max mods
     if (mods.length == 2) {

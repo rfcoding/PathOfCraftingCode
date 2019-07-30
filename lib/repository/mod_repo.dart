@@ -18,11 +18,9 @@ class ModRepository {
   Map<String, Mod> _allModsMap;
   Map<String, List<String>> _modTagsMap;
 
-  bool _initializing;
   bool _initialized;
 
   Future<bool> initialize() async {
-    _initializing = true;
     _initialized = false;
     _prefixModMap = Map();
     _suffixModMap = Map();
@@ -32,7 +30,6 @@ class ModRepository {
     bool success = await loadModTypesJSONFromLocalStorage()
         .then((success) => loadModsJSONFromLocalStorage());
 
-    _initializing = false;
     _initialized = success;
     print("Prefix Mods ${_prefixModMap.keys.toString()}");
     print("Number of prefix tags: ${_prefixModMap.keys.length}");
@@ -83,7 +80,6 @@ class ModRepository {
     });
     return true;
   }
-
 
   Mod getPrefix(Item item, List<Fossil> fossils) {
     List<Mod> possibleMods = List();

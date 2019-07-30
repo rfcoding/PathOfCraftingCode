@@ -48,7 +48,7 @@ class NormalItem extends Item {
   }
 
   @override
-  void addMod() {
+  void addRandomMod() {
     // Do nothing
   }
 

@@ -4,6 +4,7 @@ import '../repository/fossil_repo.dart';
 import '../repository/mod_repo.dart';
 import '../repository/item_repo.dart';
 import '../repository/translation_repo.dart';
+import '../repository/crafting_bench_repo.dart';
 import '../widgets/item_select_widget.dart';
 
 class MainWidget extends StatefulWidget {
@@ -22,7 +23,8 @@ class MainWidgetState extends State<MainWidget> {
     Future.wait({
       ModRepository.instance.initialize()
           .then((ignore) => ItemRepository.instance.initialize())
-          .then((ignore) => FossilRepository.instance.initialize()),
+          .then((ignore) => FossilRepository.instance.initialize())
+          .then((ignore) => CraftingBenchRepository.instance.initialize()),
       TranslationRepository.instance.initialize()})
         .then((success) {
         setState(() {

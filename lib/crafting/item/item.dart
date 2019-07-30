@@ -78,7 +78,7 @@ abstract class Item {
 
   void reroll({List<Fossil> fossils: const[]});
 
-  void addMod();
+  void addRandomMod();
 
   RareItem useFossils(List<Fossil> fossils);
 
