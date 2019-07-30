@@ -52,6 +52,36 @@ abstract class Item {
     suffixes.clear();
   }
 
+  Item divine() {
+    for (Mod mod in prefixes) {
+      mod.rerollStatValues();
+    }
+    for (Mod mod in suffixes) {
+      mod.rerollStatValues();
+    }
+    return this;
+  }
+
+  void addPrefix({List<Fossil> fossils: const []}) {
+    Mod prefix = ModRepository.instance.getPrefix(this, fossils);
+    print("Adding Prefix: ${prefix.debugString()}");
+    prefix.rerollStatValues();
+    prefixes.add(prefix);
+  }
+
+  void addSuffix({List<Fossil> fossils: const []}) {
+    Mod suffix = ModRepository.instance.getSuffix(this, fossils);
+    print("Adding Suffix: ${suffix.debugString()}");
+    suffix.rerollStatValues();
+    suffixes.add(suffix);
+  }
+
+  void reroll({List<Fossil> fossils: const[]});
+
+  void addMod();
+
+  RareItem useFossils(List<Fossil> fossils);
+
   @override
   String toString() {
     return name;
@@ -389,21 +419,6 @@ abstract class Item {
     return Column(children: children);
   }
 
-  void reroll({List<Fossil> fossils: const[]});
-  void addMod();
-
-  RareItem useFossils(List<Fossil> fossils);
-  void addPrefix({List<Fossil> fossils: const []}) {
-    Mod prefix = ModRepository.instance.getPrefix(this, fossils);
-    print("Adding Prefix: ${prefix.debugString()}");
-    prefixes.add(prefix);
-  }
-
-  void addSuffix({List<Fossil> fossils: const []}) {
-    Mod suffix = ModRepository.instance.getSuffix(this, fossils);
-    print("Adding Suffix: ${suffix.debugString()}");
-    suffixes.add(suffix);
-  }
   Color getTextColor();
   Color getBorderColor();
   Color getBoxColor();

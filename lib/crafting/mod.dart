@@ -53,6 +53,12 @@ class Mod {
   String debugString() {
     return "Name: $name, id: $id";
   }
+
+  void rerollStatValues() {
+    for (Stat stat in stats) {
+      stat.rollValue();
+    }
+  }
 }
 
 class SpawnWeight {
@@ -88,7 +94,7 @@ class Stat {
     }
     var rng = new Random();
     try {
-      value = rng.nextInt(range) + 1 + min;
+      value = rng.nextInt(range + 1) + min;
     } on RangeError {
       print("Range: $range");
       value = max;

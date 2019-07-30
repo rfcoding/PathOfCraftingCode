@@ -127,6 +127,7 @@ class MagicItem extends Item {
       imageButton('assets/images/alteration.png', () => state.itemChanged(this.alteration())),
       imageButton('assets/images/augmentation.png', () => state.itemChanged(this.augment())),
       imageButton('assets/images/regal.png', () => state.itemChanged(this.regal())),
+      imageButton('assets/images/divine.png', () => state.itemChanged(this.divine())),
     ]);
   }
 }
