@@ -342,7 +342,7 @@ abstract class Item {
         case "local_base_physical_damage_reduction_rating":
           baseArmour += stat.value;
           break;
-        case "physical_damage_reduction_rating_+%":
+        case "local_physical_damage_reduction_rating_+%":
           armourMultiplier += stat.value;
           break;
         default:
