@@ -152,11 +152,12 @@ abstract class Item {
   }
 
   Widget imageButton(String assetPath, VoidCallback callback) {
-    return FlatButton(
-      padding: EdgeInsets.all(0.0),
-      child: Image.asset(assetPath, height: 32, width: 32,),
-      //color: Colors.black,
-      onPressed: callback,
+    return InkWell(
+      onTap: callback,
+      child: Container(
+          padding: EdgeInsets.all(8.0),
+          child: Image.asset(assetPath, height: 36, width: 36,)
+      ),
     );
   }
 
