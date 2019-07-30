@@ -52,6 +52,7 @@ class DialogContentState extends State<DialogContent> {
                 return CheckboxListTile(
                     title: Text(widget.selectableItems[index].fossil.name),
                     value: widget.selectableItems[index].selected,
+                    activeColor: Theme.of(context).buttonColor,
                     onChanged: (selected) {
                       setState(() {
                         widget.selectableItems[index].selected = selected;

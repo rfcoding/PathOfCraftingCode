@@ -27,6 +27,7 @@ class FossilRepository {
       Fossil fossil = Fossil.fromJson(name, data);
       _fossils.add(fossil);
     });
+    _fossils.sort((a, b) => a.name.compareTo(b.name));
     return true;
   }
 
