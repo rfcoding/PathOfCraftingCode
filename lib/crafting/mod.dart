@@ -50,6 +50,10 @@ class Mod {
     return TranslationRepository.instance.getTranslationFromStats(stats);
   }
 
+  List<String> getStatStringWithValueRanges() {
+    return TranslationRepository.instance.getTranslationFromStatsWithValueRanges(stats);
+  }
+
   String debugString() {
     return "Name: $name, id: $id";
   }

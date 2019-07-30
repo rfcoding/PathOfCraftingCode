@@ -4,6 +4,7 @@ import '../crafting/fossil.dart';
 import '../crafting/item/item.dart';
 import '../crafting/item/normal_item.dart';
 import 'fossil_select_dialog_widget.dart';
+import 'crafting_bench_options_widget.dart';
 
 class CraftingWidget extends StatefulWidget {
   final BaseItem baseItem;
@@ -92,9 +93,17 @@ class CraftingWidgetState extends State<CraftingWidget> {
   }
 
   Widget masterCraftingWidget() {
-    return RaisedButton(
-      child: Text("Master craft"),
-      onPressed: showMasterCraftingDialog,
+    return Row(
+      children: <Widget>[
+        RaisedButton(
+          child: Text("Meta"),
+          onPressed: showMasterCraftingDialog,
+        ),
+        RaisedButton(
+          child: Text("Bench"),
+          onPressed: _navigateToCraftingBench,
+        )
+      ],
     );
   }
 
@@ -122,6 +131,14 @@ class CraftingWidgetState extends State<CraftingWidget> {
         Navigator.of(context).pop();
       },
     );
+  }
+
+  void _navigateToCraftingBench() {
+    Navigator.push(context, MaterialPageRoute(
+        builder: (BuildContext context) => CraftingBenchOptionsWidget(
+          item: _item
+        )
+    ));
   }
 
   void itemChanged(Item item) {

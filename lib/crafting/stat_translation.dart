@@ -37,6 +37,28 @@ class StatTranslation {
     return "No translation found";
   }
 
+  String getTranslationFromStatsWithValueRanges(List<Stat> stats) {
+
+    List<Stat> statsToUse = List();
+    for (Stat stat in stats) {
+      if (ids.contains(stat.id)) {
+        statsToUse.add(stat);
+      }
+    }
+
+    if (translations.length == 1) {
+      return formatTranslationWithValueRanges(translations[0], statsToUse);
+    } else if (statsToUse.length == 1) {
+      for (Translation translation in translations) {
+        if (translation.conditionIsTrue(stats[0])) {
+          return formatTranslationWithValueRanges(translation, stats);
+        }
+      }
+    }
+
+    return "No translation found";
+  }
+
   //TODO: use this later to combine stats with same effect, e.g. inc phys damage + inc phys + acc
   TranslationValueHolder createTranslationValueHolder(Translation translation, List<Stat> stats) {
     if (stats.length == 1) {
@@ -65,6 +87,26 @@ class StatTranslation {
       for (Stat stat in stats) {
         int index = ids.indexOf(stat.id);
         text = text.replaceFirst("{$index}", translation.format.replaceFirst("#",stat.value.toString()));
+      }
+      return text;
+    }
+    return translation.string;
+  }
+
+  String formatTranslationWithValueRanges(Translation translation, List<Stat> stats) {
+    if (stats.length == 1) {
+      if (stats[0].min == stats[0].max) {
+        return translation.string.replaceFirst("{0}", translation.format.replaceFirst("#", stats[0].value.toString()));
+      }
+      return translation.string.replaceFirst("{0}", translation.format.replaceFirst("#", "(${stats[0].min.toString()}-${stats[0].max.toString()})"));
+    } else if (stats.length == 2) {
+      String text = translation.string;
+      for (Stat stat in stats) {
+        int index = ids.indexOf(stat.id);
+        if (stat.min == stat.max) {
+          text = text.replaceFirst("{$index}", translation.format.replaceFirst("#",stat.value.toString()));
+        }
+        text = text.replaceFirst("{$index}", translation.format.replaceFirst("#", "(${stat.min.toString()}-${stat.max.toString()})"));
       }
       return text;
     }

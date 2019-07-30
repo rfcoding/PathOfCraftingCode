@@ -43,4 +43,16 @@ class TranslationRepository {
 
     return statTranslations.map((translation) => translation.getTranslationFromStats(stats)).toSet().toList();
   }
+
+  List<String> getTranslationFromStatsWithValueRanges(List<Stat> stats) {
+    List<StatTranslation> statTranslations = List();
+    for (Stat stat in stats) {
+      StatTranslation statTranslation = _translations[stat.id];
+      if (statTranslation != null && !statTranslations.contains(statTranslation)) {
+        statTranslations.add(statTranslation);
+      }
+    }
+
+    return statTranslations.map((translation) => translation.getTranslationFromStatsWithValueRanges(stats)).toSet().toList();
+  }
 }

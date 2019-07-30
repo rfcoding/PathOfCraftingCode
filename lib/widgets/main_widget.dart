@@ -5,7 +5,7 @@ import '../repository/mod_repo.dart';
 import '../repository/item_repo.dart';
 import '../repository/translation_repo.dart';
 import '../repository/crafting_bench_repo.dart';
-import '../widgets/item_select_widget.dart';
+import 'item_select_widget.dart';
 
 class MainWidget extends StatefulWidget {
 
