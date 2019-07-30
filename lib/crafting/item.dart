@@ -498,8 +498,7 @@ class NormalItem extends Item {
     return Row(children: <Widget>[
       imageButton('assets/images/transmute.png', () => state.itemChanged(this.transmute())),
       imageButton('assets/images/alchemy.png', () => state.itemChanged(this.alchemy()))
-    ],
-    );
+    ]);
   }
 }
 
@@ -622,9 +621,7 @@ class MagicItem extends Item {
       imageButton('assets/images/alteration.png', () => state.itemChanged(this.alteration())),
       imageButton('assets/images/augmentation.png', () => state.itemChanged(this.augment())),
       imageButton('assets/images/regal.png', () => state.itemChanged(this.regal())),
-    ],
-
-    );
+    ]);
   }
 }
 
@@ -752,7 +749,6 @@ class RareItem extends Item {
         imageButton('assets/images/chaos.png', () => state.itemChanged(this.chaos())),
         imageButton('assets/images/exalted.png', () => state.itemChanged(this.exalt())),
         imageButton('assets/images/annulment.png', () => state.itemChanged(this.annulment())),
-      ],
-      );
+      ]);
   }
 }
