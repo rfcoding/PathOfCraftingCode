@@ -82,6 +82,9 @@ abstract class Item {
 
   RareItem useFossils(List<Fossil> fossils);
 
+  Item scourSuffixes();
+  Item scourPrefixes();
+
   @override
   String toString() {
     return name;

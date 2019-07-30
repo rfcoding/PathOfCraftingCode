@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'item.dart';
 import 'normal_item.dart';
+import 'magic_item.dart';
 import '../mod.dart';
 import '../properties.dart';
 import '../fossil.dart';
@@ -101,6 +102,44 @@ class RareItem extends Item {
   RareItem useFossils(List<Fossil> fossils) {
     reroll(fossils: fossils);
     return this;
+  }
+
+  @override
+  Item scourPrefixes() {
+    // Max prefix => can't add the mod
+    if (prefixes.length == 3) {
+      return this;
+    }
+    prefixes.clear();
+
+    if (suffixes.length == 0) {
+      return NormalItem(
+        name, List(), List(), implicits, tags, weaponProperties, armourProperties, itemClass );
+    } else if (suffixes.length == 1) {
+      return MagicItem(
+          name, List(), suffixes, implicits, tags, weaponProperties, armourProperties, itemClass );
+    } else {
+      return this;
+    }
+  }
+
+  @override
+  Item scourSuffixes() {
+    // Max suffix => can't add the mod
+    if (suffixes.length == 3) {
+      return this;
+    }
+
+    if (prefixes.length == 0) {
+      return NormalItem(
+          name, List(), List(), implicits, tags, weaponProperties, armourProperties, itemClass );
+    } else if (prefixes.length == 1) {
+      return MagicItem(
+          name, prefixes, List(), implicits, tags, weaponProperties, armourProperties, itemClass );
+    } else {
+      suffixes.clear();
+      return this;
+    }
   }
 
   @override

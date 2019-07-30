@@ -53,14 +53,14 @@ class CraftingWidgetState extends State<CraftingWidget> {
                 alignment: Alignment.bottomCenter,
                 child: _item.getActionsWidget(this)),
           ),
-          fossilCraftingWidget(),
+          craftingOptionsWidget(),
           //)
         ],
       ),
     );
   }
 
-  Widget fossilCraftingWidget() {
+  Widget craftingOptionsWidget() {
     return Row(
       children: <Widget>[
         RaisedButton(
@@ -69,17 +69,58 @@ class CraftingWidgetState extends State<CraftingWidget> {
         ),
         RaisedButton(
             child: Text("Select Fossils"),
-            onPressed: () => FossilSelectDialog.getFossilSelectionDialog(
-                context,
-                _selectedFossils
-                    .map((selectedFossil) => selectedFossil.name)
-                    .toList())
-                .then((fossils) {
-              setState(() {
-                _selectedFossils = fossils;
-              });
-            }))
+            onPressed: () =>
+                FossilSelectDialog.getFossilSelectionDialog(
+                    context,
+                    _selectedFossils
+                        .map((selectedFossil) => selectedFossil.name)
+                        .toList())
+                    .then((fossils) {
+                  setState(() {
+                    _selectedFossils = fossils;
+                  });
+                })
+        ),
+        Expanded(
+          child: Align(
+            child: masterCraftingWidget(),
+            alignment: Alignment.centerRight,
+          ),
+        )
       ],
+    );
+  }
+
+  Widget masterCraftingWidget() {
+    return RaisedButton(
+      child: Text("Master craft"),
+      onPressed: showMasterCraftingDialog,
+    );
+  }
+
+  void showMasterCraftingDialog() async {
+    await showDialog(
+        context: context,
+        builder: masterCraftingDialogBuilder
+    );
+  }
+
+  Widget masterCraftingDialogBuilder(BuildContext context) {
+    return SimpleDialog(
+      title: const Text("Master Crafting"),
+      children: <Widget>[
+        masterCraftingOption(context, "Suffixes cannot be changed -> Scour",() => itemChanged(_item.scourPrefixes())),
+        masterCraftingOption(context, "Prefixes cannot be changed -> Scour", () => itemChanged(_item.scourSuffixes())),
+      ],);
+  }
+
+  Widget masterCraftingOption(BuildContext context, String text, Function func) {
+    return SimpleDialogOption(
+      child: Text(text),
+      onPressed: () {
+        func();
+        Navigator.of(context).pop();
+      },
     );
   }
 

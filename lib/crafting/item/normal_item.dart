@@ -95,6 +95,16 @@ class NormalItem extends Item {
   }
 
   @override
+  Item scourPrefixes() {
+    return this;
+  }
+
+  @override
+  Item scourSuffixes() {
+    return this;
+  }
+
+  @override
   Widget getActionsWidget(CraftingWidgetState state) {
     return Row(children: <Widget>[
       imageButton('assets/images/transmute.png', () => state.itemChanged(this.transmute())),

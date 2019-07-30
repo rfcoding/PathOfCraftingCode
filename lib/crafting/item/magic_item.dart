@@ -106,6 +106,16 @@ class MagicItem extends Item {
   }
 
   @override
+  Item scourPrefixes() {
+    return this;
+  }
+
+  @override
+  Item scourSuffixes() {
+    return this;
+  }
+
+  @override
   void addMod() {
     List<Mod> mods = getMods();
     // Max mods
