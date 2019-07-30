@@ -76,9 +76,30 @@ abstract class Item {
     suffixes.add(suffix);
   }
 
+  Item tryAddMasterMod(Mod mod) {
+    switch (mod.generationType) {
+      case "prefix":
+        if (!hasMaxPrefixes()) {
+          prefixes.add(mod);
+        }
+        break;
+      case "suffix":
+        if (!hasMaxSuffixes()) {
+          suffixes.add(mod);
+        }
+        break;
+      default:
+        break;
+    }
+    return this;
+  }
+
   void reroll({List<Fossil> fossils: const[]});
 
   void addRandomMod();
+  
+  bool hasMaxPrefixes();
+  bool hasMaxSuffixes();
 
   RareItem useFossils(List<Fossil> fossils);
 

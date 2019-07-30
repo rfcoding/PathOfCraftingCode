@@ -61,6 +61,7 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
         ListTile(
           title: Text(option.mod.getStatStringWithValueRanges().join("\n")),
           trailing: Text(i.toString()),
+          onTap: () => Navigator.of(context).pop(option.mod),
         )
       );
     }

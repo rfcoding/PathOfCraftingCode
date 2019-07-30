@@ -163,6 +163,15 @@ class RareItem extends Item {
   }
 
   @override
+  bool hasMaxPrefixes() {
+    return prefixes.length >= 3;
+  }
+  @override
+  bool hasMaxSuffixes() {
+    return suffixes.length >= 3;
+  }
+
+  @override
   Widget getActionsWidget(CraftingWidgetState state) {
     return
       Row(children: <Widget>[

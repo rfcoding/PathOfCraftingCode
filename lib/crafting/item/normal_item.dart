@@ -105,6 +105,15 @@ class NormalItem extends Item {
   }
 
   @override
+  bool hasMaxPrefixes() {
+    return true;
+  }
+  @override
+  bool hasMaxSuffixes() {
+    return true;
+  }
+
+  @override
   Widget getActionsWidget(CraftingWidgetState state) {
     return Row(children: <Widget>[
       imageButton('assets/images/transmute.png', () => state.itemChanged(this.transmute())),

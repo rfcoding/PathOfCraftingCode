@@ -3,6 +3,7 @@ import '../crafting/base_item.dart';
 import '../crafting/fossil.dart';
 import '../crafting/item/item.dart';
 import '../crafting/item/normal_item.dart';
+import '../crafting/mod.dart';
 import 'fossil_select_dialog_widget.dart';
 import 'crafting_bench_options_widget.dart';
 
@@ -138,7 +139,12 @@ class CraftingWidgetState extends State<CraftingWidget> {
         builder: (BuildContext context) => CraftingBenchOptionsWidget(
           item: _item
         )
-    ));
+    )).then((result) {
+      Mod mod = result as Mod;
+      if (mod != null) {
+        _item.tryAddMasterMod(mod);
+      }
+    });
   }
 
   void itemChanged(Item item) {

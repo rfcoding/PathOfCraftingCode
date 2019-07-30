@@ -116,6 +116,15 @@ class MagicItem extends Item {
   }
 
   @override
+  bool hasMaxPrefixes() {
+    return prefixes.length >= 1;
+  }
+  @override
+  bool hasMaxSuffixes() {
+    return suffixes.length >= 1;
+  }
+
+  @override
   void addRandomMod() {
     List<Mod> mods = getMods();
     // Max mods

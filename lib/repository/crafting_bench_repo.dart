@@ -32,7 +32,7 @@ class CraftingBenchRepository {
   Map<String, List<CraftingBenchOption>> getCraftingOptionsForItem(Item item) {
     Map<String, List<CraftingBenchOption>> optionsMap = Map();
     for (CraftingBenchOption option in craftingBenchOptions) {
-      if (option.itemClasses.contains(item.itemClass)) {
+      if (itemCanHaveMod(item, option)) {
         if (optionsMap[option.benchGroup] == null) {
           optionsMap[option.benchGroup] = List();
         }
@@ -41,6 +41,17 @@ class CraftingBenchRepository {
     }
     return optionsMap;
   }
+}
+
+bool itemCanHaveMod(Item item, CraftingBenchOption option) {
+  if (!option.itemClasses.contains(item.itemClass)
+      || item.getMods().map((mod) => mod.group).contains(option.mod.group)) {
+    return false;  
+  }
+  if (option.mod.generationType == "prefix") {
+    return !item.hasMaxPrefixes();
+  }
+  return !item.hasMaxSuffixes();
 }
 
 class CraftingBenchOption {
