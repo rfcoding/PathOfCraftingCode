@@ -37,13 +37,16 @@ class ItemSelectState extends State<ItemSelectWidget> {
       child: Column(
         children: <Widget>[
           //Select item class
-          Text("Select item type"),
+          SizedBox(height: 24),
+          Text("Select item type", style: TextStyle(fontSize: 16)),
           _itemClassDropdownWidget(),
-          Text("Select item"),
+          SizedBox(height: 24),
+          Text("Select item", style: TextStyle(fontSize: 16)),
           _baseItemDropdownWidget(),
-          Text("Shaper or Elder"),
+          SizedBox(height: 24),
+          Text("Shaper or Elder", style: TextStyle(fontSize: 16)),
           _shaperOrElderBase(),
-          Text("Selected item: $_shaperOrElder $_baseItem"),
+          Text("Selected item: ${_shaperOrElder != "None"? _shaperOrElder:""} $_baseItem"),
           Expanded(
             child: Align(
                 alignment: Alignment.bottomCenter,
@@ -51,7 +54,8 @@ class ItemSelectState extends State<ItemSelectWidget> {
                     onPressed: _startCrafting,
                     child: Text("Start Crafting!"))
             ),
-          )
+          ),
+          SizedBox(height: 12),
         ],
       ),
     );

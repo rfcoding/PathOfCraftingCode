@@ -6,7 +6,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "PoE clicker",
-      home: MainWidget()
+      home: MainWidget(),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColorDark: Colors.white,
+        accentColor: Colors.black,
+        buttonColor: Colors.amber[800],
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.amber[800],
+          textTheme: ButtonTextTheme.accent
+        )
+
+
+      ),
     );
   }
 
