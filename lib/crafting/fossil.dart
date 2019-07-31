@@ -1,41 +1,16 @@
 
 class Fossil {
-  static const NAME_MAP = {
-    'Abyss' : 'Hollow',
-    'AttackMods' : 'Serrated',
-    'BleedPoison' : 'Corroded',
-    'CasterMods' : 'Aetheric',
-    'Chaos' : 'Aberrant',
-    'Cold' : 'Frigid',
-    'CorruptEssence' : 'Glyphic',
-    'Defences' : 'Dense',
-    'Elemental' : 'Prismatic',
-    'Enchant' : 'Enchanted',
-    'Fire' : 'Scorched',
-    'GemLevel' : 'Faceted',
-    'Life' : 'Pristine',
-    'Lightning' : 'Metallic',
-    'LuckyModRolls' : 'Sanctified',
-    'Mana' : 'Lucent',
-    'MinionsAuras' : 'Bound',
-    'Mirror' : 'Fractured',
-    'Physical' : 'Jagged',
-    'Random' : 'Tangled',
-    'SellPrice' : 'Gilded',
-    'Sockets' : 'Encrusted',
-    'Speed' : 'Shuddering',
-    'Vaal' : 'Bloodstained',
-  };
-
   List<FossilModWeight> positiveModWeights;
   List<FossilModWeight> negativeModWeights;
   List<String> addedMods;
+  List<String> descriptions;
   String name;
 
   Fossil({
     this.positiveModWeights,
     this.negativeModWeights,
     this.addedMods,
+    this.descriptions,
     this.name,
   });
 
@@ -52,6 +27,7 @@ class Fossil {
       positiveModWeights: positiveModWeights,
       negativeModWeights: negativeModWeights,
       addedMods: new List<String>.from(json['added_mods']),
+      descriptions: new List<String>.from(json['descriptions']),
       name: name,
     );
   }

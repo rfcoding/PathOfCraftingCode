@@ -49,8 +49,10 @@ class DialogContentState extends State<DialogContent> {
               shrinkWrap: true,
               itemCount: widget.selectableItems.length,
               itemBuilder: (BuildContext context, int index) {
+                Fossil fossil = widget.selectableItems[index].fossil;
                 return CheckboxListTile(
-                    title: Text(widget.selectableItems[index].fossil.name),
+                    title: Text(fossil.name, style: TextStyle(fontSize: 20),),
+                    subtitle: Text(fossil.descriptions.map((name) => "• " + name).join("\n")),
                     value: widget.selectableItems[index].selected,
                     activeColor: Theme.of(context).buttonColor,
                     onChanged: (selected) {
