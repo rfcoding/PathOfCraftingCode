@@ -288,9 +288,10 @@ abstract class Item {
     int addedMaximumLightningDamage = 0;
     int addedMinimumChaosDamage = 0;
     int addedMaximumChaosDamage = 0;
-    int increasedPhysicalDamage = 130;
+    int increasedPhysicalDamage = 100;
     int increasedAttackSpeed = 100;
     int increasedCriticalStrikeChange = 100;
+    int quality = 30;
 
     List<Mod> allMods = List();
     allMods.addAll(getMods());
@@ -336,11 +337,14 @@ abstract class Item {
         case "local_critical_strike_chance_+%":
           increasedCriticalStrikeChange += stat.value;
           break;
+        case "local_item_quality_+":
+          quality += stat.value;
+          break;
         default:
           break;
       }
     }
-
+    increasedPhysicalDamage += quality;
     addedMinimumPhysicalDamage =  (addedMinimumPhysicalDamage * increasedPhysicalDamage / 100).floor();
     addedMaximumPhysicalDamage = (addedMaximumPhysicalDamage * increasedPhysicalDamage / 100).floor();
     double attacksPerSecond = (increasedAttackSpeed/100) * (1000/weaponProperties.attackTime);
@@ -357,7 +361,7 @@ abstract class Item {
     String attacksPerSecondString = "${attacksPerSecond.toStringAsFixed(2)}";
     String criticalStrikeChanceString = "${((weaponProperties.criticalStrikeChance/100) * (increasedCriticalStrikeChange / 100)).toStringAsFixed(2)}";
     statWidgets.add(itemModRow(itemClass));
-    statWidgets.add(itemRow(statWithColoredChildren("Quality: ", [coloredText("+30%", modColor)])));
+    statWidgets.add(itemRow(statWithColoredChildren("Quality: ", [coloredText("+$quality%", modColor)])));
     statWidgets.add(itemRow(statWithColoredChildren("Physical Damage: ", [coloredText("$addedMinimumPhysString-$addedMaximumPhysString", modColor)])));
     List<TextSpan> elementalDamageSpans = List();
     if (addedMinimumFireDamage > 0) {
@@ -408,9 +412,10 @@ abstract class Item {
     int baseArmour = armourProperties.armour;
     int baseEvasion = armourProperties.evasion;
     int baseEnergyShield = armourProperties.energyShield;
-    int armourMultiplier = 130;
-    int evasionMultiplier = 130;
-    int energyShieldMultiplier = 130;
+    int armourMultiplier = 100;
+    int evasionMultiplier = 100;
+    int energyShieldMultiplier = 100;
+    int quality = 30;
 
     List<Mod> allMods = List();
     allMods.addAll(getMods());
@@ -435,30 +440,33 @@ abstract class Item {
         case "local_physical_damage_reduction_rating_+%":
           armourMultiplier += stat.value;
           break;
+        case "local_item_quality_+":
+          quality += stat.value;
+          break;
         default:
           break;
       }
     }
 
     statStrings.add(itemClass);
-    statStrings.add("Quality 30%");
+    statStrings.add("Quality: +$quality%");
 
     if (baseArmour != null) {
-      var totalArmour = baseArmour * armourMultiplier / 100;
+      var totalArmour = baseArmour * (armourMultiplier + quality) / 100;
       if (totalArmour > 0) {
         statStrings.add("Armour: ${totalArmour.toStringAsFixed(0)}");
       }
     }
 
     if (baseEvasion != null) {
-      var totalEvasion = baseEvasion * evasionMultiplier / 100;
+      var totalEvasion = baseEvasion * (evasionMultiplier + quality) / 100;
       if (totalEvasion > 0) {
         statStrings.add("Evasion: ${totalEvasion.toStringAsFixed(0)}");
       }
     }
 
     if (baseEnergyShield != null) {
-      var totalEnergyShield = baseEnergyShield * energyShieldMultiplier / 100;
+      var totalEnergyShield = baseEnergyShield * (energyShieldMultiplier + quality) / 100;
       if (totalEnergyShield > 0) {
         statStrings.add("Energy Shield: ${totalEnergyShield.toStringAsFixed(0)}");
       }
