@@ -48,6 +48,11 @@ bool itemCanHaveMod(Item item, CraftingBenchOption option) {
       || item.getMods().map((mod) => mod.group).contains(option.mod.group)) {
     return false;  
   }
+
+  if (!item.hasMultiMod() && item.hasMasterMod()) {
+    return false;
+  }
+
   if (option.mod.generationType == "prefix") {
     return !item.hasMaxPrefixes();
   }

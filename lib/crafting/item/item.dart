@@ -94,6 +94,14 @@ abstract class Item {
     return this;
   }
 
+  bool hasMasterMod() {
+    return getMods().any((mod) => mod.domain == "crafted");
+  }
+
+  bool hasMultiMod() {
+    return getMods().any((mod) => mod.group == "ItemGenerationCanHaveMultipleCraftedMods");
+  }
+
   void reroll({List<Fossil> fossils: const[]});
 
   void addRandomMod();
