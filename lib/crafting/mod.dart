@@ -116,3 +116,5 @@ class Stat {
     }
   }
 }
+
+class RemoveMods {}

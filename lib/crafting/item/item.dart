@@ -94,6 +94,12 @@ abstract class Item {
     return this;
   }
 
+  Item removeMasterMods() {
+    prefixes.removeWhere((mod) => mod.domain == "crafted");
+    suffixes.removeWhere((mod) => mod.domain == "crafted");
+    return this;
+  }
+
   bool hasMasterMod() {
     return getMods().any((mod) => mod.domain == "crafted");
   }

@@ -136,13 +136,16 @@ class CraftingWidgetState extends State<CraftingWidget> {
 
   void _navigateToCraftingBench() {
     Navigator.push(context, MaterialPageRoute(
-        builder: (BuildContext context) => CraftingBenchOptionsWidget(
-          item: _item
-        )
+        builder: (BuildContext context) =>
+            CraftingBenchOptionsWidget(
+                item: _item
+            )
     )).then((result) {
-      Mod mod = result as Mod;
-      if (mod != null) {
-        _item.tryAddMasterMod(mod);
+      if (result is Mod) {
+        itemChanged(_item.tryAddMasterMod(result));
+      }
+      if (result is RemoveMods) {
+        itemChanged(_item.removeMasterMods());
       }
     });
   }

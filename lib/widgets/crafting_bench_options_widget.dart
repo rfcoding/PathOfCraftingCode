@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../repository/crafting_bench_repo.dart';
 import '../crafting/item/item.dart';
+import '../crafting/mod.dart';
 
 class CraftingBenchOptionsWidget extends StatefulWidget {
   final Item item;
@@ -37,9 +38,22 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
   }
 
   Widget getBody() {
-    return ListView.builder(
-        itemCount: craftingBenchOptions.keys.length,
-        itemBuilder: buildExpandableListItem
+    return Column(
+      children: <Widget>[
+
+        Expanded(
+          child: ListView.builder(
+              itemCount: craftingBenchOptions.keys.length,
+              itemBuilder: buildExpandableListItem
+          ),
+        ),
+        SizedBox(height: 8,),
+        RaisedButton(
+          child: Text("Remove Crafted Modifiers"),
+          onPressed: () => Navigator.of(context).pop(RemoveMods()),
+        ),
+        SizedBox(height: 8,)
+      ],
     );
   }
 
