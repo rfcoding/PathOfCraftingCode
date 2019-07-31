@@ -160,14 +160,23 @@ abstract class Item {
   Widget getActionsWidget(CraftingWidgetState state);
 
   Widget getModListWidget() {
-    List<Widget> children = getStatStrings().map(statRow).toList();
+    List<Widget> children = List();
+    List<Mod> mods = getMods();
+    mods.sort((a, b) => a.compareTo(b));
+    for (Mod mod in mods) {
+      Color textColor = mod.domain == "crafted" ? Colors.white : modColor;
+      mod.getStatStrings().forEach((statString) {
+        Widget row = statRow(statString, textColor);
+        children.add(row);
+      });
+    }
     return Column(children: children);
   }
 
-  Widget statRow(String text) {
+  Widget statRow(String text, Color color) {
     return itemRow(Text(
       text,
-      style: TextStyle(color: modColor, fontSize: modFontSize),
+      style: TextStyle(color: color, fontSize: modFontSize),
       textAlign: TextAlign.center,
     ));
   }
@@ -247,7 +256,9 @@ abstract class Item {
     if (implicits == null || implicits.isEmpty) {
       return Column();
     }
-    List<Widget> children = getImplicitStrings().map(statRow).toList();
+    List<Widget> children = getImplicitStrings()
+        .map((implicitString) => statRow(implicitString, modColor))
+        .toList();
     return Column(children: children);
   }
 

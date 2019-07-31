@@ -1,7 +1,7 @@
 import 'dart:math';
 import '../repository/translation_repo.dart';
 
-class Mod {
+class Mod implements Comparable<Mod> {
   String id;
   String name;
   List<SpawnWeight> spawnWeights;
@@ -62,6 +62,17 @@ class Mod {
     for (Stat stat in stats) {
       stat.rollValue();
     }
+  }
+
+  @override
+  int compareTo(Mod other) {
+    if (domain == "crafted") {
+      return 1;
+    }
+    if (other.domain == "crafted") {
+      return -1;
+    }
+    return (generationType + group).compareTo(other.generationType + group);
   }
 }
 
