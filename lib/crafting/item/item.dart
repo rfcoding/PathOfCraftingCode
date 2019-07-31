@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../mod.dart';
 import '../../repository/mod_repo.dart';
@@ -6,6 +7,8 @@ import '../../widgets/crafting_widget.dart';
 import '../properties.dart';
 import '../fossil.dart';
 import 'rare_item.dart';
+import 'magic_item.dart';
+import 'normal_item.dart';
 
 abstract class Item {
   String name;
@@ -38,6 +41,70 @@ abstract class Item {
     this.armourProperties = armourProperties;
     this.itemClass = itemClass;
     this.implicits = implicits;
+  }
+
+  factory Item.fromJson(Map<String, dynamic> json) {
+    String rarity = json['rarity'];
+    switch (rarity) {
+      case "rare":
+        return RareItem.fromJson(json);
+        break;
+      case "magic":
+        return MagicItem.fromJson(json);
+        break;
+      case "normal":
+        return NormalItem.fromJson(json);
+        break;
+      }
+    return null;
+  }
+
+  /*
+  String name;
+  List<Mod> prefixes;
+  List<Mod> suffixes;
+  List<Mod> implicits;
+  List<String> tags;
+  WeaponProperties weaponProperties;
+  ArmourProperties armourProperties;
+  String itemClass;
+   */
+  Map<String, dynamic> toJson() {
+    String rarity;
+    if (this is RareItem) {
+      rarity = "rare";
+    } else if (this is MagicItem) {
+      rarity = "magic";
+    } else if (this is NormalItem){
+      rarity = "normal";
+    }
+
+    var properties;
+    if (weaponProperties != null) {
+      properties = weaponProperties.toJson();
+    } else if (armourProperties != null) {
+      properties = armourProperties.toJson();
+    }
+    return {
+      "name": name,
+      "prefixes": Mod.encodeToJson(prefixes),
+      "suffixes": Mod.encodeToJson(suffixes),
+      "implicits": Mod.encodeToJson(implicits),
+      "tags": json.encode(tags),
+      "properties": properties,
+      "item_class": itemClass,
+      "rarity": rarity,
+    };
+  }
+
+  static List encodeToJson(List<Item> items) {
+    List jsonList = List();
+    items.forEach((item) {
+      if (item != null) {
+        jsonList.add(item.toJson());
+      }
+    });
+    return jsonList;
   }
 
   List<Mod> getMods() {
@@ -119,6 +186,7 @@ abstract class Item {
 
   Item scourSuffixes();
   Item scourPrefixes();
+  String getRarity();
 
   @override
   String toString() {

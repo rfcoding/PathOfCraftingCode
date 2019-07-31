@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:convert';
 import '../repository/translation_repo.dart';
 
 class Mod implements Comparable<Mod> {
@@ -46,6 +47,45 @@ class Mod implements Comparable<Mod> {
         tags: tags);
   }
 
+  factory Mod.fromSavedJson(Map<String, dynamic> data) {
+    var key = data['id'];
+    List<String> tags = new List<String>.from(json.decode(data['tags']));
+    return Mod.fromJson(key, data, tags);
+  }
+
+  /*
+  String id;
+  String name;
+  List<SpawnWeight> spawnWeights;
+  List<Stat> stats;
+  bool isEssenceOnly;
+  String domain;
+  String generationType;
+  String group;
+  String type;
+  List<String> tags;
+   */
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "name": name,
+      "spawn_weights": SpawnWeight.encodeToJson(spawnWeights),
+      "stats": Stat.encodeToJson(stats),
+      "is_essence_only": isEssenceOnly,
+      "domain": domain,
+      "generation_type": generationType,
+      "group": group,
+      "type": type,
+      "tags": json.encode(tags)
+    };
+  }
+
+  static List encodeToJson(List<Mod> mods) {
+    List jsonList = List();
+    mods.forEach((mod) => jsonList.add(mod.toJson()));
+    return jsonList;
+  }
+
   List<String> getStatStrings() {
     return TranslationRepository.instance.getTranslationFromStats(stats);
   }
@@ -85,6 +125,19 @@ class SpawnWeight {
   factory SpawnWeight.fromJson(Map<String, dynamic> json) {
     return SpawnWeight(weight: json['weight'], tag: json['tag']);
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "weight": weight,
+      "tag": tag
+    };
+  }
+
+  static List encodeToJson(List<SpawnWeight> spawnWeights) {
+    List jsonList = List();
+    spawnWeights.forEach((spawnWeight) => jsonList.add(spawnWeight.toJson()));
+    return jsonList;
+  }
 }
 
 class Stat {
@@ -99,6 +152,21 @@ class Stat {
     Stat stat = Stat(id: json['id'], max: json['max'], min: json['min'], value: json['min']);
     stat.rollValue();
     return stat;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "max": max,
+      "min": min,
+      "value": value
+    };
+  }
+
+  static List encodeToJson(List<Stat> stats) {
+    List jsonList = List();
+    stats.forEach((stat) => jsonList.add(stat.toJson()));
+    return jsonList;
   }
 
   void rollValue() {

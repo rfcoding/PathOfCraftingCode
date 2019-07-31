@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'dart:convert';
 import 'item.dart';
 import 'normal_item.dart';
 import 'magic_item.dart';
@@ -30,6 +31,40 @@ class RareItem extends Item {
       weaponProperties,
       armourProperties,
       itemClass);
+
+  factory RareItem.fromJson(Map<String, dynamic> data) {
+    var prefixesJson = data['prefixes'] as List;
+    List<Mod> prefixes = prefixesJson.map((prefix) => Mod.fromSavedJson(prefix)).toList();
+    var suffixesJson = data['suffixes'] as List;
+    List<Mod> suffixes = suffixesJson.map((suffix) => Mod.fromSavedJson(suffix)).toList();
+    var implicitsJson = data['implicits'] as List;
+    List<Mod> implicits = implicitsJson.map((implicit) => Mod.fromSavedJson(implicit)).toList();
+    List<String> tags = new List<String>.from(json.decode(data['tags']));
+
+    WeaponProperties weaponProperties;
+    ArmourProperties armourProperties;
+    if (tags.contains("weapon")) {
+      weaponProperties = WeaponProperties.fromJson(data['properties']);
+    } else if (tags.contains("armour")) {
+      armourProperties = ArmourProperties.fromJson(data['properties']);
+    }
+
+    return RareItem(
+      data['name'],
+      prefixes,
+      suffixes,
+      implicits,
+      tags,
+      weaponProperties,
+      armourProperties,
+      data['item_class']
+    );
+  }
+
+  @override
+  String getRarity() {
+    return "rare";
+  }
 
   @override
   Color getBorderColor() {

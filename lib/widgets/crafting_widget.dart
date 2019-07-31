@@ -4,14 +4,16 @@ import '../crafting/fossil.dart';
 import '../crafting/item/item.dart';
 import '../crafting/item/normal_item.dart';
 import '../crafting/mod.dart';
+import '../repository/crafted_items_storage.dart';
 import 'fossil_select_dialog_widget.dart';
 import 'crafting_bench_options_widget.dart';
 
 class CraftingWidget extends StatefulWidget {
   final BaseItem baseItem;
   final List<String> extraTags;
+  final Item item;
 
-  CraftingWidget({this.baseItem, this.extraTags});
+  CraftingWidget({this.baseItem, this.extraTags, this.item});
 
   @override
   State<StatefulWidget> createState() {
@@ -25,16 +27,21 @@ class CraftingWidgetState extends State<CraftingWidget> {
 
   @override
   void initState() {
-    _item = NormalItem(
-        widget.baseItem.name,
-        List(),
-        List(),
-        widget.baseItem.implicits,
-        widget.baseItem.tags,
-        widget.baseItem.weaponProperties,
-        widget.baseItem.armourProperties,
-        widget.baseItem.itemClass);
-    _item.tags.addAll(widget.extraTags);
+    if (widget.item == null) {
+      _item = NormalItem(
+          widget.baseItem.name,
+          List(),
+          List(),
+          widget.baseItem.implicits,
+          widget.baseItem.tags,
+          widget.baseItem.weaponProperties,
+          widget.baseItem.armourProperties,
+          widget.baseItem.itemClass);
+      _item.tags.addAll(widget.extraTags);
+    } else {
+      _item = widget.item;
+    }
+
     super.initState();
   }
 
@@ -97,8 +104,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
     return Row(
       children: <Widget>[
         RaisedButton(
-          child: Text("Meta"),
-          onPressed: showMasterCraftingDialog,
+          child: Text("Save"),
+          onPressed: saveItem,
         ),
         RaisedButton(
           child: Text("Bench"),
@@ -106,6 +113,13 @@ class CraftingWidgetState extends State<CraftingWidget> {
         )
       ],
     );
+  }
+
+  void saveItem() {
+    CraftedItemsStorage.instance.saveItem(_item).then((success) {
+      String message = success ? 'Item saved' : 'Failed to save item';
+      print(message);
+    });
   }
 
   void showMasterCraftingDialog() async {

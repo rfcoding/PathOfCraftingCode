@@ -22,6 +22,23 @@ class WeaponProperties {
       range: json['range'],
     );
   }
+
+  /*
+  int attackTime;
+  int criticalStrikeChance;
+  int physicalDamageMax;
+  int physicalDamageMin;
+  int range;
+   */
+  Map<String, dynamic> toJson() {
+    return {
+      "attack_time": attackTime,
+      "critical_strike_chance": criticalStrikeChance,
+      "physical_damage_min": physicalDamageMin,
+      "physical_damage_max": physicalDamageMax,
+      "range": range
+    };
+  }
 }
 
 class ArmourProperties {
@@ -41,5 +58,13 @@ class ArmourProperties {
       energyShield: json['energy_shield'],
       armour: json['armour'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "evasion": evasion,
+      "energy_shield": energyShield,
+      "armour": armour
+    };
   }
 }
