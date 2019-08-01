@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../mod.dart';
 import '../../repository/mod_repo.dart';
 import '../../widgets/crafting_widget.dart';
+import '../../widgets/utils.dart';
 import '../properties.dart';
 import '../fossil.dart';
 import 'rare_item.dart';
@@ -319,16 +320,6 @@ abstract class Item {
             style: TextStyle(color: getTextColor(), fontSize: 24),
           ),
         ));
-  }
-
-  Widget imageButton(String assetPath, VoidCallback callback) {
-    return InkWell(
-      onTap: callback,
-      child: Container(
-          padding: EdgeInsets.all(8.0),
-          child: Image.asset(assetPath, height: 36, width: 36,)
-      ),
-    );
   }
 
   Widget getStatWidget() {

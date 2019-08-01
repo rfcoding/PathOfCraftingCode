@@ -8,6 +8,7 @@ import '../repository/crafted_items_storage.dart';
 import 'fossil_select_dialog_widget.dart';
 import 'crafting_bench_options_widget.dart';
 import 'essence_widget.dart';
+import 'utils.dart';
 
 class CraftingWidget extends StatefulWidget {
   final BaseItem baseItem;
@@ -74,13 +75,13 @@ class CraftingWidgetState extends State<CraftingWidget> {
   Widget craftingOptionsWidget() {
     return Row(
       children: <Widget>[
-        RaisedButton(
-          child: Text("F"),
-          onPressed: () => itemChanged(_item.useFossils(_selectedFossils)),
+        imageButton(
+            'assets/images/resonator.png',
+                () => itemChanged(_item.useFossils(_selectedFossils))
         ),
-        RaisedButton(
-            child: Text("R"),
-            onPressed: () =>
+        imageButton(
+            'assets/images/fossil.png',
+                () =>
                 FossilSelectDialog.getFossilSelectionDialog(
                     context,
                     _selectedFossils
@@ -92,39 +93,23 @@ class CraftingWidgetState extends State<CraftingWidget> {
                   });
                 })
         ),
-        RaisedButton(
-          child: Text("S"),
-          onPressed: saveItem,
+        imageButton(
+            'assets/images/crafting.png',
+                () => _navigateToCraftingBench()
         ),
-        RaisedButton(
-          child: Text("B"),
-          onPressed: _navigateToCraftingBench,
+        imageButton(
+            'assets/images/essence.png',
+                () => _navigateToEssenceCraftWidget()
         ),
-        RaisedButton(
-          child: Text("E"),
-          onPressed: _navigateToEssenceCraftWidget,
-        ),
-        /*Expanded(
+        Expanded(
           child: Align(
-            child: masterCraftingWidget(),
+            child: RaisedButton(
+              child: Text("Save Item"),
+              onPressed: saveItem,
+            ),
             alignment: Alignment.centerRight,
           ),
-        )*/
-      ],
-    );
-  }
-
-  Widget masterCraftingWidget() {
-    return Row(
-      children: <Widget>[
-        RaisedButton(
-          child: Text("Save"),
-          onPressed: saveItem,
         ),
-        RaisedButton(
-          child: Text("Bench"),
-          onPressed: _navigateToCraftingBench,
-        )
       ],
     );
   }

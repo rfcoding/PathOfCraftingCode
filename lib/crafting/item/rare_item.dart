@@ -8,6 +8,7 @@ import '../mod.dart';
 import '../properties.dart';
 import '../fossil.dart';
 import '../../widgets/crafting_widget.dart';
+import '../../widgets/utils.dart';
 
 class RareItem extends Item {
   Color textColor = Color(0xFFFFFC8A);

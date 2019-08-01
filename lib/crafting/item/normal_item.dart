@@ -7,6 +7,7 @@ import '../mod.dart';
 import '../properties.dart';
 import '../fossil.dart';
 import '../../widgets/crafting_widget.dart';
+import '../../widgets/utils.dart';
 
 class NormalItem extends Item {
   NormalItem(String name,
