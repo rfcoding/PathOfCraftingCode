@@ -81,12 +81,12 @@ class StatTranslation {
 
   String formatTranslation(Translation translation, List<Stat> stats) {
     if (stats.length == 1) {
-      return translation.string.replaceFirst("{0}", translation.formatWithSign(stats[0].value));
+      return translation.string.replaceFirst("{0}", translation.formatWithSign(stats[0]));
     } else if (stats.length == 2) {
       String text = translation.string;
       for (Stat stat in stats) {
         int index = ids.indexOf(stat.id);
-        text = text.replaceFirst("{$index}", translation.format.replaceFirst("#",stat.value.toString()));
+        text = text.replaceFirst("{$index}", translation.formatWithSign(stat));
       }
       return text;
     }
@@ -96,7 +96,7 @@ class StatTranslation {
   String formatTranslationWithValueRanges(Translation translation, List<Stat> stats) {
     if (stats.length == 1) {
       if (stats[0].min == stats[0].max) {
-        return translation.string.replaceFirst("{0}", translation.formatWithSign(stats[0].value));
+        return translation.string.replaceFirst("{0}", translation.formatWithSign(stats[0]));
       }
       return translation.string.replaceFirst("{0}", translation.format.replaceFirst("#", "(${stats[0].min.toString()} – ${stats[0].max.toString()})"));
     } else if (stats.length == 2) {
@@ -118,14 +118,19 @@ class Translation {
   String string;
   String format;
   Map<String, dynamic> condition;
+  List<String> indexHandlers;
 
-  Translation({this.string, this.format, this.condition});
+  Translation({this.string, this.format, this.condition, this.indexHandlers});
 
   factory Translation.fromJson(int index, Map<String, dynamic> json) {
+    List<dynamic> indexHandlers = List<dynamic>.from(json['index_handlers']);
+
+
     return Translation(
       string: json['string'],
       format: json['format'][index],
-      condition: json['condition'][index]
+      condition: json['condition'][index],
+      indexHandlers: List.from(indexHandlers[index]),
     );
   }
 
@@ -154,12 +159,23 @@ class Translation {
     return true;
   }
 
-  String formatWithSign(int value) {
-    if (value >= 0) {
-      return format.replaceFirst("#", value.toString());
-    } else {
-      return format.replaceFirst("+#", value.toString());
+  String formatWithSign(Stat stat) {
+    return format.replaceFirst("+", stat.value.sign > 0 ? "+" : "-")
+      .replaceFirst("#", valueAsDividedString(stat.value));
+  }
+
+  String valueAsDividedString(int value) {
+    int divider = 1;
+    if (indexHandlers.any((value) => value.contains("per_minute_to_per_second"))) {
+      divider = 60;
+    } else if (indexHandlers.contains("divide_by_one_hundred")){
+      divider = 100;
     }
+
+    if (divider == 1) {
+      return value.abs().toString();
+    }
+    return (value.abs() / divider).toStringAsFixed(2);
   }
 }
 
