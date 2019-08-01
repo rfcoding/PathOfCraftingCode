@@ -121,6 +121,7 @@ class ModRepository {
   }
 
   Mod getMod(List<Mod> possibleMods, Item item, List<Fossil> fossils) {
+    bool isBow = item.itemClass == "Bow";
     Map<String, int> weightIdMap = Map();
     int totalWeight = 0;
     possibleMods.forEach((mod) {
@@ -137,6 +138,12 @@ class ModRepository {
         }
         if (spawnWeight.tag == "default") {
           defaultWeight = spawnWeight.weight;
+        }
+      }
+      // Ugly bow hack :(
+      if (isBow) {
+        if (mod.spawnWeights.any((weight) => weight.tag == "bow" && weight.weight > 0)) {
+          weight = mod.spawnWeights.firstWhere((weight) => weight.tag == "bow").weight;
         }
       }
       if (weight == 1) {
