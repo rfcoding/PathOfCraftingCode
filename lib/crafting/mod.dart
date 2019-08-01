@@ -12,6 +12,7 @@ class Mod implements Comparable<Mod> {
   String generationType;
   String group;
   String type;
+  int requiredLevel;
   List<String> tags;
 
   Mod({
@@ -24,6 +25,7 @@ class Mod implements Comparable<Mod> {
     this.generationType,
     this.group,
     this.type,
+    this.requiredLevel,
     this.tags
   });
 
@@ -44,6 +46,7 @@ class Mod implements Comparable<Mod> {
         generationType: json['generation_type'],
         group: json['group'],
         type: json['type'],
+        requiredLevel: json['required_level'],
         tags: tags);
   }
 
@@ -53,18 +56,6 @@ class Mod implements Comparable<Mod> {
     return Mod.fromJson(key, data, tags);
   }
 
-  /*
-  String id;
-  String name;
-  List<SpawnWeight> spawnWeights;
-  List<Stat> stats;
-  bool isEssenceOnly;
-  String domain;
-  String generationType;
-  String group;
-  String type;
-  List<String> tags;
-   */
   Map<String, dynamic> toJson() {
     return {
       "id": id,
@@ -76,6 +67,7 @@ class Mod implements Comparable<Mod> {
       "generation_type": generationType,
       "group": group,
       "type": type,
+      "required_level": requiredLevel,
       "tags": json.encode(tags)
     };
   }

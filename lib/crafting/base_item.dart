@@ -11,6 +11,7 @@ class BaseItem implements Comparable<BaseItem> {
   WeaponProperties weaponProperties;
   ArmourProperties armourProperties;
   Requirements requirements;
+  int itemLevel;
   
   BaseItem({
     this.name,

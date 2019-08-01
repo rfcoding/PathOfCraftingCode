@@ -19,6 +19,7 @@ abstract class Item {
   WeaponProperties weaponProperties;
   ArmourProperties armourProperties;
   String itemClass;
+  int itemLevel;
 
   Random rng = new Random();
   Color statTextColor = Color(0xFF677F7F);
@@ -32,7 +33,8 @@ abstract class Item {
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
-      String itemClass) {
+      String itemClass,
+      int itemLevel) {
     this.name = name;
     this.prefixes = prefixes;
     this.suffixes = suffixes;
@@ -41,6 +43,7 @@ abstract class Item {
     this.armourProperties = armourProperties;
     this.itemClass = itemClass;
     this.implicits = implicits;
+    this.itemLevel = itemLevel;
   }
 
   factory Item.fromJson(Map<String, dynamic> json) {
@@ -94,6 +97,7 @@ abstract class Item {
       "properties": properties,
       "item_class": itemClass,
       "rarity": rarity,
+      "item_level": itemLevel,
     };
   }
 

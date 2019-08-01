@@ -12,9 +12,12 @@ class ItemSelectWidget extends StatefulWidget {
 }
 
 class ItemSelectState extends State<ItemSelectWidget> {
+  final _formKey = GlobalKey<FormState>();
+
   BaseItem _baseItem;
   String _baseItemClass;
   String _shaperOrElder = "None";
+  int itemLevel;
 
   @override
   void initState() {
@@ -33,30 +36,51 @@ class ItemSelectState extends State<ItemSelectWidget> {
   }
 
   Widget _getBody() {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          //Select item class
-          SizedBox(height: 24),
-          Text("Select item type", style: TextStyle(fontSize: 16)),
-          _itemClassDropdownWidget(),
-          SizedBox(height: 24),
-          Text("Select item", style: TextStyle(fontSize: 16)),
-          _baseItemDropdownWidget(),
-          SizedBox(height: 24),
-          Text("Shaper or Elder", style: TextStyle(fontSize: 16)),
-          _shaperOrElderBase(),
-          Text("Selected item: ${_shaperOrElder != "None"? _shaperOrElder:""} $_baseItem"),
-          Expanded(
-            child: Align(
-                alignment: Alignment.bottomCenter,
-                child: RaisedButton(
-                    onPressed: _startCrafting,
-                    child: Text("Start Crafting!"))
-            ),
+    return SingleChildScrollView(
+      child: Form(
+        key: _formKey,
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              //Select item class
+              SizedBox(height: 24),
+              Text("Select item type", style: TextStyle(fontSize: 16)),
+              _itemClassDropdownWidget(),
+              SizedBox(height: 24),
+              Text("Select item", style: TextStyle(fontSize: 16)),
+              _baseItemDropdownWidget(),
+              SizedBox(height: 24),
+              Text("Shaper or Elder", style: TextStyle(fontSize: 16)),
+              _shaperOrElderBase(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 144.0),
+                child: TextFormField(
+                  maxLength: 3,
+                  decoration: new InputDecoration(labelText: "Itemlevel", hintText: "Enter itemlevel"),
+                  keyboardType: TextInputType.number,
+                  onSaved: (input) {
+                    itemLevel = int.parse(input);
+                  },
+                  initialValue: '100',
+                  validator: (text) {
+                    if (text.isEmpty) {
+                      return "No itemlevel selected";
+                    }
+                    int value = int.parse(text);
+                    return value > 0 && value <= 100 ? null : "Itemlevel not between 1 and 100";
+                  },
+                  autovalidate: true,
+                ),
+              ),
+              Text("Selected item: ${_shaperOrElder != "None"? _shaperOrElder:""} $_baseItem"),
+              SizedBox(height: 24),
+              RaisedButton(
+                onPressed: _startCrafting,
+                child: Text("Start Crafting!")),
+              SizedBox(height: 12),
+            ],
           ),
-          SizedBox(height: 12),
-        ],
+        ),
       ),
     );
   }
@@ -134,7 +158,19 @@ class ItemSelectState extends State<ItemSelectWidget> {
       default:
         break;
     }
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CraftingWidget(baseItem: _baseItem, extraTags: extraTags)));
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+      _baseItem.itemLevel = itemLevel;
+
+      Navigator.push(context, MaterialPageRoute(
+          builder: (BuildContext context) =>
+              CraftingWidget(
+                  baseItem: _baseItem,
+                  extraTags: extraTags
+              )
+      ));
+    }
+
 
   }
 }

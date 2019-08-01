@@ -86,7 +86,9 @@ class ModRepository {
     item.tags.forEach((tag) {
       List<Mod> mods = _prefixModMap[tag];
       if (mods != null) {
-        possibleMods.addAll(mods.where((mod) => !item.alreadyHasModGroup(mod)));
+        possibleMods.addAll(mods.where((mod) =>
+        !item.alreadyHasModGroup(mod) &&
+            item.itemLevel >= mod.requiredLevel));
       }
     });
     fossils.map((fossil) => fossil.addedMods).expand((modId) => modId).forEach((modId) {
@@ -104,7 +106,9 @@ class ModRepository {
     item.tags.forEach((tag) {
       List<Mod> mods = _suffixModMap[tag];
       if (mods != null) {
-        possibleMods.addAll(mods.where((mod) => !item.alreadyHasModGroup(mod)));
+        possibleMods.addAll(mods.where((mod) =>
+        !item.alreadyHasModGroup(mod) &&
+            item.itemLevel >= mod.requiredLevel));
       }
     });
     fossils.map((fossil) => fossil.addedMods).expand((modId) => modId).forEach((modId) {

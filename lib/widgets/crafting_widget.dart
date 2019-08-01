@@ -36,7 +36,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
           widget.baseItem.tags,
           widget.baseItem.weaponProperties,
           widget.baseItem.armourProperties,
-          widget.baseItem.itemClass);
+          widget.baseItem.itemClass,
+          widget.baseItem.itemLevel);
       _item.tags.addAll(widget.extraTags);
     } else {
       _item = widget.item;

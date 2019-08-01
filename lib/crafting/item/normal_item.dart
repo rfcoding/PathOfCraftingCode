@@ -16,7 +16,8 @@ class NormalItem extends Item {
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
-      String itemClass)
+      String itemClass,
+      int itemLevel)
       : super(
       name,
       prefixes,
@@ -25,7 +26,8 @@ class NormalItem extends Item {
       tags,
       weaponProperties,
       armourProperties,
-      itemClass);
+      itemClass,
+      itemLevel);
 
   factory NormalItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -52,7 +54,8 @@ class NormalItem extends Item {
         tags,
         weaponProperties,
         armourProperties,
-        data['item_class']
+        data['item_class'],
+        data['item_level'],
     );
   }
   @override
@@ -89,7 +92,8 @@ class NormalItem extends Item {
         this.tags,
         this.weaponProperties,
         this.armourProperties,
-        this.itemClass);
+        this.itemClass,
+        this.itemLevel);
     item.reroll();
     return item;
   }
@@ -103,7 +107,8 @@ class NormalItem extends Item {
         this.tags,
         this.weaponProperties,
         this.armourProperties,
-        this.itemClass);
+        this.itemClass,
+        this.itemLevel);
     item.reroll();
     return item;
   }
@@ -118,7 +123,8 @@ class NormalItem extends Item {
         this.tags,
         this.weaponProperties,
         this.armourProperties,
-        this.itemClass);
+        this.itemClass,
+        this.itemLevel);
     return item.useFossils(fossils);
   }
 

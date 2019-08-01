@@ -17,7 +17,8 @@ class MagicItem extends Item {
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
-      String itemClass)
+      String itemClass,
+      int itemLevel)
       : super(
       name,
       prefixes,
@@ -26,7 +27,8 @@ class MagicItem extends Item {
       tags,
       weaponProperties,
       armourProperties,
-      itemClass);
+      itemClass,
+      itemLevel);
 
   factory MagicItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -53,7 +55,8 @@ class MagicItem extends Item {
         tags,
         weaponProperties,
         armourProperties,
-        data['item_class']
+        data['item_class'],
+        data['item_level']
     );
   }
 
@@ -94,7 +97,8 @@ class MagicItem extends Item {
         this.tags,
         this.weaponProperties,
         this.armourProperties,
-        this.itemClass);
+        this.itemClass,
+        this.itemLevel);
     item.addRandomMod();
     return item;
   }
@@ -118,7 +122,8 @@ class MagicItem extends Item {
         this.tags,
         this.weaponProperties,
         this.armourProperties,
-        this.itemClass);
+        this.itemClass,
+        this.itemLevel);
   }
 
   @override
@@ -131,7 +136,8 @@ class MagicItem extends Item {
         this.tags,
         this.weaponProperties,
         this.armourProperties,
-        this.itemClass);
+        this.itemClass,
+        this.itemLevel);
     return item.useFossils(fossils);
   }
 

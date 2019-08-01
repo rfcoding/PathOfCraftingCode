@@ -21,7 +21,8 @@ class RareItem extends Item {
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
-      String itemClass)
+      String itemClass,
+      int itemLevel)
       : super(
       name,
       prefixes,
@@ -30,7 +31,8 @@ class RareItem extends Item {
       tags,
       weaponProperties,
       armourProperties,
-      itemClass);
+      itemClass,
+      itemLevel);
 
   factory RareItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -57,7 +59,8 @@ class RareItem extends Item {
       tags,
       weaponProperties,
       armourProperties,
-      data['item_class']
+      data['item_class'],
+      data['item_level'],
     );
   }
 
@@ -103,7 +106,8 @@ class RareItem extends Item {
         this.tags,
         this.weaponProperties,
         this.armourProperties,
-        this.itemClass);
+        this.itemClass,
+        this.itemLevel);
   }
 
   RareItem exalt() {
@@ -149,10 +153,26 @@ class RareItem extends Item {
 
     if (suffixes.length == 0) {
       return NormalItem(
-        name, List(), List(), implicits, tags, weaponProperties, armourProperties, itemClass );
+          name,
+          List(),
+          List(),
+          implicits,
+          tags,
+          weaponProperties,
+          armourProperties,
+          itemClass,
+          itemLevel);
     } else if (suffixes.length == 1) {
       return MagicItem(
-          name, List(), suffixes, implicits, tags, weaponProperties, armourProperties, itemClass );
+          name,
+          List(),
+          suffixes,
+          implicits,
+          tags,
+          weaponProperties,
+          armourProperties,
+          itemClass,
+          itemLevel);
     } else {
       return this;
     }
@@ -167,10 +187,26 @@ class RareItem extends Item {
 
     if (prefixes.length == 0) {
       return NormalItem(
-          name, List(), List(), implicits, tags, weaponProperties, armourProperties, itemClass );
+          name,
+          List(),
+          List(),
+          implicits,
+          tags,
+          weaponProperties,
+          armourProperties,
+          itemClass,
+          itemLevel);
     } else if (prefixes.length == 1) {
       return MagicItem(
-          name, prefixes, List(), implicits, tags, weaponProperties, armourProperties, itemClass );
+          name,
+          prefixes,
+          List(),
+          implicits,
+          tags,
+          weaponProperties,
+          armourProperties,
+          itemClass,
+          itemLevel);
     } else {
       suffixes.clear();
       return this;
