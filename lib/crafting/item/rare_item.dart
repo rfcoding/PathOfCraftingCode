@@ -9,6 +9,7 @@ import '../properties.dart';
 import '../fossil.dart';
 import '../../widgets/crafting_widget.dart';
 import '../../widgets/utils.dart';
+import '../../repository/mod_repo.dart';
 
 class RareItem extends Item {
   Color textColor = Color(0xFFFFFC8A);
@@ -102,7 +103,12 @@ class RareItem extends Item {
     }
   }
 
-  NormalItem scour() {
+  Item scour() {
+    if (suffixes.any((mod) => mod.group == "ItemGenerationCannotChangePrefixes")) {
+      return scourSuffixes();
+    } else if (prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes")) {
+      return scourPrefixes();
+    }
     return NormalItem(
         this.name,
         new List(),
@@ -146,12 +152,6 @@ class RareItem extends Item {
 
   @override
   Item scourPrefixes() {
-    // Max prefix => can't add the mod
-    if (prefixes.length == 3) {
-      return this;
-    }
-    prefixes.clear();
-
     if (suffixes.length == 0) {
       return NormalItem(
           name,
@@ -175,17 +175,13 @@ class RareItem extends Item {
           itemClass,
           itemLevel);
     } else {
+      prefixes.clear();
       return this;
     }
   }
 
   @override
   Item scourSuffixes() {
-    // Max suffix => can't add the mod
-    if (suffixes.length == 3) {
-      return this;
-    }
-
     if (prefixes.length == 0) {
       return NormalItem(
           name,
