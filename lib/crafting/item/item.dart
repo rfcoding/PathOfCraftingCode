@@ -25,6 +25,10 @@ abstract class Item {
   Random rng = new Random();
   Color statTextColor = Color(0xFF677F7F);
   Color modColor = Color(0xFF959AF6);
+  Color coldDamage = Color(0xFF3F648E);
+  Color fireDamage = Color(0xFF8A1910);
+  Color lightningDamage = Color(0xFFFAD749);
+  Color chaosDamage = Color(0xFFC0388D);
   double modFontSize = 16;
 
   Item(String name,
@@ -448,19 +452,19 @@ abstract class Item {
     statWidgets.add(itemRow(statWithColoredChildren("Physical Damage: ", [coloredText("$addedMinimumPhysString-$addedMaximumPhysString", modColor)])));
     List<TextSpan> elementalDamageSpans = List();
     if (addedMinimumFireDamage > 0) {
-      elementalDamageSpans.add(coloredText("$addedMinimumFireDamage-$addedMaximumFireDamage", Colors.red));
+      elementalDamageSpans.add(coloredText("$addedMinimumFireDamage-$addedMaximumFireDamage", fireDamage));
     }
     if (addedMinimumColdDamage > 0) {
       if (elementalDamageSpans.isNotEmpty) {
         elementalDamageSpans.add(commaSpan());
       }
-      elementalDamageSpans.add(coloredText("$addedMinimumColdDamage-$addedMaximumColdDamage", Colors.cyan));
+      elementalDamageSpans.add(coloredText("$addedMinimumColdDamage-$addedMaximumColdDamage", coldDamage));
     }
     if (addedMinimumLightningDamage > 0) {
       if (elementalDamageSpans.isNotEmpty) {
         elementalDamageSpans.add(commaSpan());
       }
-      elementalDamageSpans.add(coloredText("$addedMinimumLightningDamage-$addedMaximumLightningDamage", Colors.yellow));
+      elementalDamageSpans.add(coloredText("$addedMinimumLightningDamage-$addedMaximumLightningDamage", lightningDamage));
     }
     if (elementalDamageSpans.isNotEmpty) {
       statWidgets.add(itemRow(statWithColoredChildren("Elemental Damage: ", elementalDamageSpans)));
@@ -468,7 +472,7 @@ abstract class Item {
     if (addedMinimumChaosDamage > 0) {
       statWidgets.add(itemRow(statWithColoredChildren("Chaos Damage: ", [
         coloredText("$addedMinimumChaosDamage-$addedMaximumChaosDamage",
-            Colors.pink[300])
+            chaosDamage)
       ])));
     }
 
