@@ -6,6 +6,7 @@ import '../repository/item_repo.dart';
 import '../repository/translation_repo.dart';
 import '../repository/crafting_bench_repo.dart';
 import '../repository/crafted_items_storage.dart';
+import '../repository/essence_repo.dart';
 import 'item_select_widget.dart';
 import 'saved_items_widget.dart';
 
@@ -28,7 +29,8 @@ class MainWidgetState extends State<MainWidget> {
           .then((ignore) => FossilRepository.instance.initialize())
           .then((ignore) => CraftingBenchRepository.instance.initialize()),
       TranslationRepository.instance.initialize(),
-      CraftedItemsStorage.instance.initialize()})
+      CraftedItemsStorage.instance.initialize(),
+      EssenceRepository.instance.initialize()})
         .then((success) {
         setState(() {
           _isInitialized = success.reduce((value, element) => value && element);

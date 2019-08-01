@@ -7,6 +7,7 @@ import '../crafting/mod.dart';
 import '../repository/crafted_items_storage.dart';
 import 'fossil_select_dialog_widget.dart';
 import 'crafting_bench_options_widget.dart';
+import 'essence_widget.dart';
 
 class CraftingWidget extends StatefulWidget {
   final BaseItem baseItem;
@@ -74,11 +75,11 @@ class CraftingWidgetState extends State<CraftingWidget> {
     return Row(
       children: <Widget>[
         RaisedButton(
-          child: Text("Use"),
+          child: Text("F"),
           onPressed: () => itemChanged(_item.useFossils(_selectedFossils)),
         ),
         RaisedButton(
-            child: Text("Select Fossils"),
+            child: Text("R"),
             onPressed: () =>
                 FossilSelectDialog.getFossilSelectionDialog(
                     context,
@@ -91,12 +92,24 @@ class CraftingWidgetState extends State<CraftingWidget> {
                   });
                 })
         ),
-        Expanded(
+        RaisedButton(
+          child: Text("S"),
+          onPressed: saveItem,
+        ),
+        RaisedButton(
+          child: Text("B"),
+          onPressed: _navigateToCraftingBench,
+        ),
+        RaisedButton(
+          child: Text("E"),
+          onPressed: _navigateToEssenceCraftWidget,
+        ),
+        /*Expanded(
           child: Align(
             child: masterCraftingWidget(),
             alignment: Alignment.centerRight,
           ),
-        )
+        )*/
       ],
     );
   }
@@ -161,6 +174,17 @@ class CraftingWidgetState extends State<CraftingWidget> {
       }
       if (result is RemoveMods) {
         itemChanged(_item.removeMasterMods());
+      }
+    });
+  }
+
+  void _navigateToEssenceCraftWidget() {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (BuildContext context) =>
+          EssenceCraftingWidget(item: _item)
+    )).then((result) {
+      if (result is Mod) {
+        itemChanged(_item.applyEssenceMod(result));
       }
     });
   }

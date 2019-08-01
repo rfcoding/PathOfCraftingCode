@@ -165,6 +165,26 @@ abstract class Item {
     return this;
   }
 
+  RareItem applyEssenceMod(Mod mod) {
+    RareItem item = RareItem(
+        this.name,
+        List(),
+        List(),
+        this.implicits,
+        this.tags,
+        this.weaponProperties,
+        this.armourProperties,
+        this.itemClass,
+        this.itemLevel);
+    if (mod.generationType == "prefix") {
+      item.prefixes.add(mod);
+    } else {
+      item.suffixes.add(mod);
+    }
+    item.fillMods();
+    return item;
+  }
+
   Item removeMasterMods() {
     prefixes.removeWhere((mod) => mod.domain == "crafted");
     suffixes.removeWhere((mod) => mod.domain == "crafted");

@@ -87,8 +87,12 @@ class RareItem extends Item {
   @override
   void reroll({List<Fossil> fossils: const[]}) {
     clearMods();
-    int nPrefixes = rng.nextInt(3) + 1;
-    int nSuffixes = max((rng.nextInt(3) + 1), 4 - nPrefixes);
+    fillMods(fossils: fossils);
+  }
+
+  void fillMods({List<Fossil> fossils: const[]}) {
+    int nPrefixes = rng.nextInt(3 - prefixes.length) + 1;
+    int nSuffixes = max((rng.nextInt(3 - suffixes.length) + 1), 4 - nPrefixes);
     for (int i = 0; i < nPrefixes; i++) {
       addPrefix(fossils: fossils);
     }
