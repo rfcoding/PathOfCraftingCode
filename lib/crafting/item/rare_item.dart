@@ -124,16 +124,12 @@ class RareItem extends Item {
     if (prefixes.isEmpty && suffixes.isEmpty) {
       return this;
     }
-    if (prefixes.isEmpty) {
-      suffixes.removeAt(rng.nextInt(suffixes.length));
-    } else if (suffixes.isEmpty) {
-      prefixes.removeAt(rng.nextInt(prefixes.length));
+    List<Mod> mods = getMods();
+    Mod modToRemove = mods[rng.nextInt(mods.length)];
+    if (modToRemove.generationType == "prefix") {
+      prefixes.remove(modToRemove);
     } else {
-      if (rng.nextBool()) {
-        prefixes.removeAt(rng.nextInt(prefixes.length));
-      } else {
-        suffixes.removeAt(rng.nextInt(suffixes.length));
-      }
+      suffixes.remove(modToRemove);
     }
     return this;
   }
