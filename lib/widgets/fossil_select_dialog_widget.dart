@@ -50,6 +50,7 @@ class DialogContentState extends State<DialogContent> {
               itemCount: widget.selectableItems.length,
               itemBuilder: (BuildContext context, int index) {
                 Fossil fossil = widget.selectableItems[index].fossil;
+                int selectedCount = widget.selectableItems.where((item) => item.selected).length;
                 return CheckboxListTile(
                     title: Text(fossil.name, style: TextStyle(fontSize: 20),),
                     subtitle: Text(fossil.descriptions.map((name) => "• " + name).join("\n")),
@@ -57,7 +58,9 @@ class DialogContentState extends State<DialogContent> {
                     activeColor: Theme.of(context).buttonColor,
                     onChanged: (selected) {
                       setState(() {
-                        widget.selectableItems[index].selected = selected;
+                        if (!selected || selectedCount < 4) {
+                          widget.selectableItems[index].selected = selected;
+                        }
                       });
                     });
               }),
