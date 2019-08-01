@@ -81,7 +81,7 @@ class StatTranslation {
 
   String formatTranslation(Translation translation, List<Stat> stats) {
     if (stats.length == 1) {
-      return translation.string.replaceFirst("{0}", translation.format.replaceFirst("#", stats[0].value.toString()));
+      return translation.string.replaceFirst("{0}", translation.formatWithSign(stats[0].value));
     } else if (stats.length == 2) {
       String text = translation.string;
       for (Stat stat in stats) {
@@ -96,9 +96,9 @@ class StatTranslation {
   String formatTranslationWithValueRanges(Translation translation, List<Stat> stats) {
     if (stats.length == 1) {
       if (stats[0].min == stats[0].max) {
-        return translation.string.replaceFirst("{0}", translation.format.replaceFirst("#", stats[0].value.toString()));
+        return translation.string.replaceFirst("{0}", translation.formatWithSign(stats[0].value));
       }
-      return translation.string.replaceFirst("{0}", translation.format.replaceFirst("#", "(${stats[0].min.toString()}-${stats[0].max.toString()})"));
+      return translation.string.replaceFirst("{0}", translation.format.replaceFirst("#", "(${stats[0].min.toString()} – ${stats[0].max.toString()})"));
     } else if (stats.length == 2) {
       String text = translation.string;
       for (Stat stat in stats) {
@@ -106,7 +106,7 @@ class StatTranslation {
         if (stat.min == stat.max) {
           text = text.replaceFirst("{$index}", translation.format.replaceFirst("#",stat.value.toString()));
         }
-        text = text.replaceFirst("{$index}", translation.format.replaceFirst("#", "(${stat.min.toString()}-${stat.max.toString()})"));
+        text = text.replaceFirst("{$index}", translation.format.replaceFirst("#", "(${stat.min.toString()} – ${stat.max.toString()})"));
       }
       return text;
     }
@@ -152,6 +152,14 @@ class Translation {
       }
     }
     return true;
+  }
+
+  String formatWithSign(int value) {
+    if (value >= 0) {
+      return format.replaceFirst("#", value.toString());
+    } else {
+      return format.replaceFirst("+#", value.toString());
+    }
   }
 }
 
