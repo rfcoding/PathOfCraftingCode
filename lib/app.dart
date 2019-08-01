@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
       title: "PoE clicker",
       home: MainWidget(),
       theme: ThemeData(
+        fontFamily: 'Fontin',
         brightness: Brightness.dark,
         primaryColorDark: Colors.white,
         accentColor: Colors.black,

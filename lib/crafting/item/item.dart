@@ -67,16 +67,6 @@ abstract class Item {
     return null;
   }
 
-  /*
-  String name;
-  List<Mod> prefixes;
-  List<Mod> suffixes;
-  List<Mod> implicits;
-  List<String> tags;
-  WeaponProperties weaponProperties;
-  ArmourProperties armourProperties;
-  String itemClass;
-   */
   Map<String, dynamic> toJson() {
     String rarity;
     if (this is RareItem) {
@@ -343,13 +333,13 @@ abstract class Item {
   TextSpan coloredText(String text, Color color) {
     return TextSpan(
         text: text,
-        style: TextStyle(color: color, fontSize: modFontSize));
+        style: TextStyle(color: color, fontSize: modFontSize, fontFamily: 'Fontin'));
   }
 
   RichText statWithColoredChildren(String text, List<TextSpan> children) {
     return RichText(
         text: TextSpan(text: text,
-            style: TextStyle(color: statTextColor, fontSize: modFontSize),
+            style: TextStyle(color: statTextColor, fontSize: modFontSize, fontFamily: 'Fontin'),
             children: children));
   }
 
