@@ -302,18 +302,47 @@ abstract class Item {
   }
 
   Widget getTitleWidget() {
-    return Container(
-        height: 36,
-        decoration: new BoxDecoration(
-            color: getBoxColor(),
-            border: new Border.all(color: getBorderColor(), width: 3)
+    return Row(
+      children: <Widget>[
+        Container(
+            height: 54,
+            width: 44,
+            decoration: new BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(getHeaderLeftImagePath()),
+                  fit: BoxFit.fill
+              ),
+            )
         ),
-        child: Center(
-          child: Text(
-            name,
-            style: TextStyle(color: getTextColor(), fontSize: 24),
+        Expanded(
+          child: Container(
+              height: 54,
+              decoration: new BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(getHeaderMiddleImagePath()),
+                    fit: BoxFit.fill
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  name,
+                  style: TextStyle(color: getTextColor(), fontSize: 24),
+                ),
+              )
           ),
-        ));
+        ),
+        Container(
+            height: 54,
+            width: 44,
+            decoration: new BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(getHeaderRightImagePath()),
+                  fit: BoxFit.fill
+              ),
+            )
+        ),
+      ],
+    );
   }
 
   Widget getStatWidget() {
@@ -556,4 +585,7 @@ abstract class Item {
   Color getTextColor();
   Color getBorderColor();
   Color getBoxColor();
+  String getHeaderRightImagePath();
+  String getHeaderLeftImagePath();
+  String getHeaderMiddleImagePath();
 }

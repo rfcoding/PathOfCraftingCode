@@ -160,4 +160,20 @@ class NormalItem extends Item {
   String getRarity() {
     return "normal";
   }
+
+  @override
+  String getHeaderLeftImagePath() {
+    return 'assets/images/header-normal-left.png';
+  }
+
+  @override
+  String getHeaderMiddleImagePath() {
+    return 'assets/images/header-normal-middle.png';
+
+  }
+
+  @override
+  String getHeaderRightImagePath() {
+    return 'assets/images/header-normal-right.png';
+  }
 }

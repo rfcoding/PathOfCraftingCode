@@ -191,4 +191,20 @@ class MagicItem extends Item {
   String getRarity() {
     return "magic";
   }
+
+  @override
+  String getHeaderLeftImagePath() {
+    return 'assets/images/header-magic-left.png';
+  }
+
+  @override
+  String getHeaderMiddleImagePath() {
+    return 'assets/images/header-magic-middle.png';
+
+  }
+
+  @override
+  String getHeaderRightImagePath() {
+    return 'assets/images/header-magic-right.png';
+  }
 }

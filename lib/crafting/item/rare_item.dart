@@ -250,4 +250,20 @@ class RareItem extends Item {
         imageButton('assets/images/divine.png', () => state.itemChanged(this.divine())),
       ]);
   }
+
+  @override
+  String getHeaderLeftImagePath() {
+    return 'assets/images/header-double-rare-left.png';
+  }
+
+  @override
+  String getHeaderMiddleImagePath() {
+    return 'assets/images/header-double-rare-middle.png';
+
+  }
+
+  @override
+  String getHeaderRightImagePath() {
+    return 'assets/images/header-double-rare-right.png';
+  }
 }
