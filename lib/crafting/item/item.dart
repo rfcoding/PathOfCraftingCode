@@ -384,7 +384,7 @@ abstract class Item {
       color: Colors.black,
       child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(2.0),
             child: child,
           )),
     );
@@ -557,9 +557,11 @@ abstract class Item {
     if (implicits == null || implicits.isEmpty) {
       return Column();
     }
-    List<Widget> children = getImplicitStrings()
+    List<Widget> children = List();
+    children.add(divider());
+    children.addAll(getImplicitStrings()
         .map((implicitString) => statRow(implicitString, modColor))
-        .toList();
+        .toList());
     return Column(children: children);
   }
 
