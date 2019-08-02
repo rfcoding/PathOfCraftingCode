@@ -238,13 +238,15 @@ abstract class Item {
   }
 
   Widget getItemWidget(bool advancedMods) {
-    return Column(children: <Widget>[
-      getTitleWidget(),
-      getStatWidget(),
-      getImplicitWidget(),
-      divider(),
-      advancedMods ? getAdvancedModWidget() : getModWidget(),
-    ]);
+    return SingleChildScrollView(
+      child: Column(children: <Widget>[
+        getTitleWidget(),
+        getStatWidget(),
+        getImplicitWidget(),
+        divider(),
+        advancedMods ? getAdvancedModWidget() : getModWidget(),
+      ]),
+    );
   }
 
   Widget divider() {

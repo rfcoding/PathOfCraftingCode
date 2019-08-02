@@ -61,13 +61,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
       body: Column(
 
         children: <Widget>[
-          _item.getItemWidget(_showAdvancedMods),
-
-          Expanded(
-            child: Align(
-                alignment: Alignment.bottomCenter,
-                child: _item.getActionsWidget(this)),
-          ),
+          Expanded(child: _item.getItemWidget(_showAdvancedMods)),
+          _item.getActionsWidget(this),
           craftingOptionsWidget(),
           //)
         ],
@@ -81,7 +76,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
         children: <Widget>[
           CheckboxListTile(
               title: Text('Advanced mods', style: TextStyle(fontSize: 20),),
-              subtitle: Text('Enable this to show more information about each mod'),
+              subtitle: Text('Enable to show more information about each mod'),
               value: _showAdvancedMods,
               activeColor: Theme.of(context).buttonColor,
               onChanged: (selected) {
