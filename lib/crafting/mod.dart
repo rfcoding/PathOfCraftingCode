@@ -56,6 +56,26 @@ class Mod implements Comparable<Mod> {
     return Mod.fromJson(key, data, tags);
   }
 
+  factory Mod.copy(Mod mod) {
+    List<Stat> newStats = List();
+    mod.stats.forEach((stat) => newStats.add(Stat.copy(stat)));
+    List<SpawnWeight> newSpawnWeights = List();
+    mod.spawnWeights.forEach((spawnWeight) => newSpawnWeights.add(SpawnWeight.copy(spawnWeight)));
+    return Mod(
+        id: mod.id,
+        name: mod.name,
+        spawnWeights: newSpawnWeights,
+        stats: newStats,
+        isEssenceOnly: mod.isEssenceOnly,
+        domain: mod.domain,
+        generationType: mod.generationType,
+        group: mod.group,
+        type: mod.type,
+        requiredLevel: mod.requiredLevel,
+        tags: List.from(mod.tags),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       "id": id,
@@ -118,6 +138,10 @@ class SpawnWeight {
     return SpawnWeight(weight: json['weight'], tag: json['tag']);
   }
 
+  factory SpawnWeight.copy(SpawnWeight spawnWeight) {
+    return SpawnWeight(weight: spawnWeight.weight, tag: spawnWeight.tag);
+  }
+
   Map<String, dynamic> toJson() {
     return {
       "weight": weight,
@@ -144,6 +168,15 @@ class Stat {
     Stat stat = Stat(id: json['id'], max: json['max'], min: json['min'], value: json['min']);
     stat.rollValue();
     return stat;
+  }
+
+  factory Stat.copy(Stat stat) {
+    return Stat(
+      id: stat.id,
+      max: stat.max,
+      min: stat.min,
+      value: stat.value
+    );
   }
 
   Map<String, dynamic> toJson() {

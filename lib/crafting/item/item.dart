@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../mod.dart';
 import '../../repository/mod_repo.dart';
 import '../../widgets/crafting_widget.dart';
-import '../../widgets/utils.dart';
 import '../properties.dart';
 import '../fossil.dart';
 import 'rare_item.dart';
@@ -238,13 +237,13 @@ abstract class Item {
     return false;
   }
 
-  Widget getItemWidget() {
+  Widget getItemWidget(bool advancedMods) {
     return Column(children: <Widget>[
       getTitleWidget(),
       getStatWidget(),
       getImplicitWidget(),
       divider(),
-      getModListWidget(),
+      advancedMods ? getAdvancedModWidget() : getModWidget(),
     ]);
   }
 
@@ -275,18 +274,66 @@ abstract class Item {
 
   Widget getActionsWidget(CraftingWidgetState state);
 
-  Widget getModListWidget() {
-    List<Widget> children = List();
-    List<Mod> mods = getMods();
+  Widget getAdvancedModWidget() {
+    List<Widget> widgets = List();
+    // TODO: Change to advanced mod here with tier etc
+    widgets.addAll(getModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList()));
+    widgets.addAll(getModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList()));
+    return Column(children: widgets);
+  }
+  
+  Widget getModWidget() {
+    List<Widget> widgets = List();
+    widgets.addAll(getCombinedModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList()));
+    widgets.addAll(getCombinedModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList()));
+    return Column(children: widgets);
+  }
+
+  List<Widget> getModListWidgets(List<Mod> mods) {
+    List<Widget> widgets = List();
     mods.sort((a, b) => a.compareTo(b));
     for (Mod mod in mods) {
       Color textColor = mod.domain == "crafted" ? Colors.white : modColor;
       mod.getStatStrings().forEach((statString) {
         Widget row = statRow(statString, textColor);
-        children.add(row);
+        widgets.add(row);
       });
     }
-    return Column(children: children);
+    return widgets;
+  }
+
+  List<Widget> getCombinedModListWidgets(List<Mod> mods) {
+    Map<String, Stat> combinedStatsMap = Map();
+    mods
+        .map((mod) => mod.stats)
+        .expand((stats) => stats)
+        .forEach((stat) {
+      if (combinedStatsMap[stat.id] == null) {
+        combinedStatsMap[stat.id] = Stat.copy(stat);
+      } else {
+        combinedStatsMap[stat.id].value += stat.value;
+        combinedStatsMap[stat.id].max += stat.max;
+        combinedStatsMap[stat.id].min += stat.min;
+      }
+    });
+
+    List<Mod> combinedMods = mods.map((mod) => Mod.copy(mod)).toList();
+    combinedMods.forEach((mod) {
+      List<Stat> newStats = List();
+      for (Stat stat in mod.stats) {
+        Stat combinedStat =  combinedStatsMap[stat.id];
+        if (combinedStat != null) {
+          stat.value = combinedStat.value;
+          stat.max = combinedStat.max;
+          stat.min = combinedStat.min;
+          combinedStatsMap[stat.id] = null;
+          newStats.add(stat);
+        }
+
+      }
+      mod.stats = newStats;
+    });
+    return getModListWidgets(combinedMods);
   }
 
   Widget statRow(String text, Color color) {

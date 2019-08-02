@@ -26,6 +26,7 @@ class CraftingWidget extends StatefulWidget {
 class CraftingWidgetState extends State<CraftingWidget> {
   Item _item;
   List<Fossil> _selectedFossils = List();
+  bool _showAdvancedMods = false;
 
   @override
   void initState() {
@@ -54,11 +55,13 @@ class CraftingWidgetState extends State<CraftingWidget> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text("Crafting Lobby"),
+
       ),
+      drawer: _getDrawer(),
       body: Column(
 
         children: <Widget>[
-          _item.getItemWidget(),
+          _item.getItemWidget(_showAdvancedMods),
 
           Expanded(
             child: Align(
@@ -72,6 +75,28 @@ class CraftingWidgetState extends State<CraftingWidget> {
     );
   }
 
+  Widget _getDrawer() {
+    return Drawer(
+      child: ListView(
+        children: <Widget>[
+          CheckboxListTile(
+              title: Text('Advanced mods', style: TextStyle(fontSize: 20),),
+              subtitle: Text('Enable this to show more information about each mod'),
+              value: _showAdvancedMods,
+              activeColor: Theme.of(context).buttonColor,
+              onChanged: (selected) {
+                setState(() {
+                  _showAdvancedMods = selected;
+                });
+              }),
+          ListTile(
+            title: Text("Save Item", style: TextStyle(fontSize: 20)),
+            onTap: saveItem,
+          )
+        ],
+      ),
+    );
+  }
   Widget craftingOptionsWidget() {
     return Row(
       children: <Widget>[
@@ -100,15 +125,6 @@ class CraftingWidgetState extends State<CraftingWidget> {
         imageButton(
             'assets/images/essence.png',
                 () => _navigateToEssenceCraftWidget()
-        ),
-        Expanded(
-          child: Align(
-            child: RaisedButton(
-              child: Text("Save Item"),
-              onPressed: saveItem,
-            ),
-            alignment: Alignment.centerRight,
-          ),
         ),
       ],
     );
