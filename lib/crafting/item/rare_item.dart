@@ -252,22 +252,32 @@ class RareItem extends Item {
 
   @override
   String getHeaderLeftImagePath() {
-    return 'assets/images/header-double-rare-left.png';
+    return 'assets/images/header-rare-left.png';
   }
 
   @override
   String getHeaderMiddleImagePath() {
-    return 'assets/images/header-double-rare-middle.png';
+    return 'assets/images/header-rare-middle.png';
 
   }
 
   @override
   String getHeaderRightImagePath() {
-    return 'assets/images/header-double-rare-right.png';
+    return 'assets/images/header-rare-right.png';
   }
 
   @override
   String getDividerImagePath() {
     return 'assets/images/seperator-rare.png';
+  }
+
+  @override
+  double getHeaderDecorationWidth() {
+    return 29;
+  }
+
+  @override
+  double getHeaderHeight() {
+    return 34;
   }
 }

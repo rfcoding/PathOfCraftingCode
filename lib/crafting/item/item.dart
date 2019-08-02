@@ -30,6 +30,8 @@ abstract class Item {
   Color lightningDamage = Color(0xFFFAD749);
   Color chaosDamage = Color(0xFFC0388D);
   double modFontSize = 16;
+  double titleFontSize = 20;
+  double shaperElderDecorationSize = 27;
 
   Item(String name,
       List<Mod> prefixes,
@@ -315,21 +317,111 @@ abstract class Item {
   }
 
   Widget getTitleWidget() {
-    return Row(
-      children: <Widget>[
+    List<Widget> leftStackWidgets = List();
+    List<Widget> rightStackWidgets = List();
+
+    leftStackWidgets.add(
         Container(
-            height: 54,
-            width: 44,
+            height: getHeaderHeight(),
+            width: getHeaderDecorationWidth(),
             decoration: new BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(getHeaderLeftImagePath()),
                   fit: BoxFit.fill
               ),
             )
+        )
+    );
+
+    rightStackWidgets.add(
+        Container(
+            height: getHeaderHeight(),
+            width: getHeaderDecorationWidth(),
+            decoration: new BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(getHeaderRightImagePath()),
+                  fit: BoxFit.fill
+              ),
+            )
+        )
+    );
+
+    if (tags.any((tag) => tag.contains("elder"))) {
+      leftStackWidgets.add(
+          Positioned(
+            top: (getHeaderHeight() - shaperElderDecorationSize) / 2,
+            child: Container(
+                height: shaperElderDecorationSize,
+                width: shaperElderDecorationSize,
+                decoration: new BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(getElderImagePath()),
+                      fit: BoxFit.fill
+                  ),
+                )
+            ),
+          )
+      );
+
+      rightStackWidgets.add(
+          Positioned(
+            top: (getHeaderHeight() - shaperElderDecorationSize) / 2,
+            left: getHeaderDecorationWidth() - shaperElderDecorationSize,
+            child: Container(
+                height: 27,
+                width: 27,
+                decoration: new BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(getElderImagePath()),
+                      fit: BoxFit.fill
+                  ),
+                )
+            ),
+          )
+      );
+    } else if (tags.any((tag) => tag.contains("shaper"))) {
+      leftStackWidgets.add(
+          Positioned(
+            top: (getHeaderHeight() - shaperElderDecorationSize) / 2,
+            child: Container(
+                height: shaperElderDecorationSize,
+                width: shaperElderDecorationSize,
+                decoration: new BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(getShaperImagePath()),
+                      fit: BoxFit.fill
+                  ),
+                )
+            ),
+          )
+      );
+
+      rightStackWidgets.add(
+          Positioned(
+            top: (getHeaderHeight() - shaperElderDecorationSize) / 2,
+            left: getHeaderDecorationWidth() - 27,
+            child: Container(
+                height: shaperElderDecorationSize,
+                width: shaperElderDecorationSize,
+                decoration: new BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(getShaperImagePath()),
+                      fit: BoxFit.fill
+                  ),
+                )
+            ),
+          )
+      );
+    }
+
+    return Row(
+      children: <Widget>[
+        Stack(
+          children: leftStackWidgets,
         ),
         Expanded(
           child: Container(
-              height: 54,
+              height: getHeaderHeight(),
               decoration: new BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(getHeaderMiddleImagePath()),
@@ -339,21 +431,12 @@ abstract class Item {
               child: Center(
                 child: Text(
                   name,
-                  style: TextStyle(color: getTextColor(), fontSize: 24),
+                  style: TextStyle(color: getTextColor(), fontSize: titleFontSize),
                 ),
               )
           ),
         ),
-        Container(
-            height: 54,
-            width: 44,
-            decoration: new BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(getHeaderRightImagePath()),
-                  fit: BoxFit.fill
-              ),
-            )
-        ),
+        Stack(children: rightStackWidgets),
       ],
     );
   }
@@ -595,6 +678,14 @@ abstract class Item {
     return Column(children: children);
   }
 
+  String getElderImagePath() {
+    return 'assets/images/elder-symbol.png';
+  }
+
+  String getShaperImagePath() {
+    return 'assets/images/shaper-symbol.png';
+  }
+
   Color getTextColor();
   Color getBorderColor();
   Color getBoxColor();
@@ -602,4 +693,6 @@ abstract class Item {
   String getHeaderLeftImagePath();
   String getHeaderMiddleImagePath();
   String getDividerImagePath();
+  double getHeaderHeight();
+  double getHeaderDecorationWidth();
 }

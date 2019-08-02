@@ -181,4 +181,14 @@ class NormalItem extends Item {
   String getDividerImagePath() {
     return 'assets/images/seperator-normal.png';
   }
+
+  @override
+  double getHeaderDecorationWidth() {
+    return 29;
+  }
+
+  @override
+  double getHeaderHeight() {
+    return 34;
+  }
 }

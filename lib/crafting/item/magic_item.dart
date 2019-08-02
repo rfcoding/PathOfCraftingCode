@@ -212,4 +212,14 @@ class MagicItem extends Item {
   String getDividerImagePath() {
     return 'assets/images/seperator-magic.png';
   }
+
+  @override
+  double getHeaderDecorationWidth() {
+    return 29;
+  }
+
+  @override
+  double getHeaderHeight() {
+    return 34;
+  }
 }
