@@ -29,6 +29,7 @@ abstract class Item {
   Color lightningDamage = Color(0xFFFAD749);
   Color chaosDamage = Color(0xFFC0388D);
   double modFontSize = 16;
+  double advancedModFontSize =  12;
   double titleFontSize = 20;
   double shaperElderDecorationSize = 27;
 
@@ -279,8 +280,8 @@ abstract class Item {
   Widget getAdvancedModWidget() {
     List<Widget> widgets = List();
     // TODO: Change to advanced mod here with tier etc
-    widgets.addAll(getModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList()));
-    widgets.addAll(getModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList()));
+    widgets.addAll(getAdvancedModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList()));
+    widgets.addAll(getAdvancedModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList()));
     return Column(children: widgets);
   }
   
@@ -296,6 +297,22 @@ abstract class Item {
     mods.sort((a, b) => a.compareTo(b));
     for (Mod mod in mods) {
       Color textColor = mod.domain == "crafted" ? Colors.white : modColor;
+      mod.getStatStrings().forEach((statString) {
+        Widget row = statRow(statString, textColor);
+        widgets.add(row);
+      });
+    }
+    return widgets;
+  }
+
+  List<Widget> getAdvancedModListWidgets(List<Mod> mods) {
+    List<Widget> widgets = List();
+    mods.sort((a, b) => a.compareTo(b));
+    for (Mod mod in mods) {
+      Color textColor = mod.domain == "crafted" ? Colors.white : modColor;
+      String affix = mod.generationType == "prefix" ? "P" : "S";
+      int tier = ModRepository.instance.getModTier(mod);
+      widgets.add(statDescriptionRow("$affix$tier mod \"${mod.name}\""));
       mod.getStatStrings().forEach((statString) {
         Widget row = statRow(statString, textColor);
         widgets.add(row);
@@ -354,12 +371,31 @@ abstract class Item {
     ));
   }
 
+  Widget statDescriptionRow(String text) {
+    return zeroPaddingItemRow(Text(
+      text,
+      style: TextStyle(color: statTextColor, fontSize: advancedModFontSize, fontStyle: FontStyle.italic),
+      textAlign: TextAlign.center,
+    ));
+  }
+
   Widget itemRow(Widget child) {
     return Container(
       color: Colors.black,
       child: Center(
           child: Padding(
             padding: const EdgeInsets.all(4.0),
+            child: child,
+          )),
+    );
+  }
+
+  Widget zeroPaddingItemRow(Widget child) {
+    return Container(
+      color: Colors.black,
+      child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(0),
             child: child,
           )),
     );

@@ -116,6 +116,10 @@ class Mod implements Comparable<Mod> {
     }
   }
 
+  String getGroupTagString() {
+    return id.replaceAll(RegExp(r"[0-9]|[_]"), "");
+  }
+
   @override
   int compareTo(Mod other) {
     if (domain == "crafted") {

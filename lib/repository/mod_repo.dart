@@ -17,6 +17,7 @@ class ModRepository {
   Map<String, List<Mod>> _suffixModMap;
   Map<String, Mod> _allModsMap;
   Map<String, List<String>> _modTagsMap;
+  Map<String, List<Mod>> _modTierMap;
 
   bool _initialized;
 
@@ -26,6 +27,7 @@ class ModRepository {
     _suffixModMap = Map();
     _allModsMap = Map();
     _modTagsMap = Map();
+    _modTierMap = Map();
 
     bool success = await loadModTypesJSONFromLocalStorage()
         .then((success) => loadModsJSONFromLocalStorage());
@@ -49,6 +51,10 @@ class ModRepository {
       List<String> tags = _modTagsMap[type];
       Mod mod = Mod.fromJson(key, data, tags);
       _allModsMap[mod.id] = mod;
+      if (_modTierMap[mod.getGroupTagString()] == null) {
+        _modTierMap[mod.getGroupTagString()] = List();
+      }
+      _modTierMap[mod.getGroupTagString()].add(mod);
       mod.spawnWeights.forEach((spawnWeight) {
         Map<String, List<Mod>> modMap;
 
@@ -168,6 +174,12 @@ class ModRepository {
 
   Mod getModById(String id) {
     return _allModsMap[id];
+  }
+
+  int getModTier(Mod mod) {
+    String id = mod.getGroupTagString();
+    List<Mod> modsInGroup = _modTierMap[id];
+    return modsInGroup != null ? modsInGroup.length - modsInGroup.indexOf(mod) : 1;
   }
 
   int calculateFossilWeight(Mod mod, List<Fossil> fossils, int spawnWeight) {
