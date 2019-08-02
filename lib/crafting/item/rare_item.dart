@@ -9,7 +9,6 @@ import '../properties.dart';
 import '../fossil.dart';
 import '../../widgets/crafting_widget.dart';
 import '../../widgets/utils.dart';
-import '../../repository/mod_repo.dart';
 
 class RareItem extends Item {
   Color textColor = Color(0xFFFFFC8A);
@@ -265,5 +264,10 @@ class RareItem extends Item {
   @override
   String getHeaderRightImagePath() {
     return 'assets/images/header-double-rare-right.png';
+  }
+
+  @override
+  String getDividerImagePath() {
+    return 'assets/images/seperator-rare.png';
   }
 }

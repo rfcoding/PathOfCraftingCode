@@ -247,14 +247,27 @@ abstract class Item {
   }
 
   Widget divider() {
-    return Container(
-      color: Colors.black,
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
-          child: Divider(height: 8, color: getBorderColor()),
+    return Row(
+      children: <Widget>[
+        Expanded(
+          flex: 2, child: Container(height: 8, color: Colors.black),
+        ),
+        Expanded(
+          flex: 6,
+          child: Container(
+              height: 8,
+              decoration: new BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(getDividerImagePath()),
+                    fit: BoxFit.fill
+                ),
+              ),
+          ),
+        ),
+        Expanded(
+          flex: 2, child: Container(height: 8, color: Colors.black),
         )
-      )
+      ],
     );
   }
 
@@ -588,4 +601,5 @@ abstract class Item {
   String getHeaderRightImagePath();
   String getHeaderLeftImagePath();
   String getHeaderMiddleImagePath();
+  String getDividerImagePath();
 }

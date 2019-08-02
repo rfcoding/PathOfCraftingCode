@@ -207,4 +207,9 @@ class MagicItem extends Item {
   String getHeaderRightImagePath() {
     return 'assets/images/header-magic-right.png';
   }
+
+  @override
+  String getDividerImagePath() {
+    return 'assets/images/seperator-magic.png';
+  }
 }

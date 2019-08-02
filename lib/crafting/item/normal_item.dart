@@ -176,4 +176,9 @@ class NormalItem extends Item {
   String getHeaderRightImagePath() {
     return 'assets/images/header-normal-right.png';
   }
+
+  @override
+  String getDividerImagePath() {
+    return 'assets/images/seperator-normal.png';
+  }
 }
