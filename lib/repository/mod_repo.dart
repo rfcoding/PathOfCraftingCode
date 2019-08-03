@@ -75,7 +75,12 @@ class ModRepository {
           }
           modMap[tag].add(mod);
         }
-      };
+      }
+    });
+    _modTierMap.values.forEach((modList) {
+      modList.sort((a, b) {
+        return a.requiredLevel - b.requiredLevel;
+      });
     });
     return true;
   }
