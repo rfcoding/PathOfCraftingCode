@@ -697,14 +697,16 @@ abstract class Item {
   }
 
   Widget armourStatWidget() {
-    List<String> statStrings = List();
+    List<Widget> statWidgets = List();
     int baseArmour = armourProperties.armour;
     int baseEvasion = armourProperties.evasion;
     int baseEnergyShield = armourProperties.energyShield;
+    int baseBlockChance = armourProperties.block;
     int armourMultiplier = 100;
     int evasionMultiplier = 100;
     int energyShieldMultiplier = 100;
     int quality = 30;
+    int addedBlockChance = 0;
 
     List<Mod> allMods = List();
     allMods.addAll(getMods());
@@ -732,37 +734,47 @@ abstract class Item {
         case "local_item_quality_+":
           quality += stat.value;
           break;
+        case "local_additional_block_chance_%":
+          addedBlockChance += stat.value;
+          break;
         default:
           break;
       }
     }
 
-    statStrings.add(itemClass);
-    statStrings.add("Quality: +$quality%");
+    statWidgets.add(itemModRow(itemClass));
+    statWidgets.add(itemRow(statWithColoredChildren("Quality: ", [coloredText("+$quality%", modColor)])));
 
+    if (baseBlockChance != null) {
+      int totalBlockChance = baseBlockChance + addedBlockChance;
+      statWidgets.add(
+          itemRow(
+              statWithColoredChildren(
+                  "Critical Strike Chance: ",
+                  [coloredText("$totalBlockChance%", addedBlockChance > 0 ? modColor : statTextColor)])));
+    }
     if (baseArmour != null) {
       var totalArmour = baseArmour * (armourMultiplier + quality) / 100;
       if (totalArmour > 0) {
-        statStrings.add("Armour: ${totalArmour.toStringAsFixed(0)}");
+        statWidgets.add(itemRow(statWithColoredChildren("Armour: ", [coloredText("${totalArmour.toStringAsFixed(0)}", modColor)])));
       }
     }
 
     if (baseEvasion != null) {
       var totalEvasion = baseEvasion * (evasionMultiplier + quality) / 100;
       if (totalEvasion > 0) {
-        statStrings.add("Evasion: ${totalEvasion.toStringAsFixed(0)}");
+        statWidgets.add(itemRow(statWithColoredChildren("Evasion: ", [coloredText("${totalEvasion.toStringAsFixed(0)}", modColor)])));
       }
     }
 
     if (baseEnergyShield != null) {
       var totalEnergyShield = baseEnergyShield * (energyShieldMultiplier + quality) / 100;
       if (totalEnergyShield > 0) {
-        statStrings.add("Energy Shield: ${totalEnergyShield.toStringAsFixed(0)}");
+        statWidgets.add(itemRow(statWithColoredChildren("Energy Shield: ", [coloredText("${totalEnergyShield.toStringAsFixed(0)}", modColor)])));
       }
     }
 
-    List<Widget> children = statStrings.map(itemModRow).toList();
-    return Column(children: children);
+    return Column(children: statWidgets);
   }
 
   String getElderImagePath() {

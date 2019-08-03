@@ -45,11 +45,13 @@ class ArmourProperties {
   int evasion;
   int energyShield;
   int armour;
+  int block;
 
   ArmourProperties({
     this.evasion,
     this.energyShield,
-    this.armour
+    this.armour,
+    this.block,
   });
 
   factory ArmourProperties.fromJson(json) {
@@ -57,6 +59,7 @@ class ArmourProperties {
       evasion: json['evasion'],
       energyShield: json['energy_shield'],
       armour: json['armour'],
+      block: json['block'],
     );
   }
 
@@ -64,7 +67,8 @@ class ArmourProperties {
     return {
       "evasion": evasion,
       "energy_shield": energyShield,
-      "armour": armour
+      "armour": armour,
+      "block": block,
     };
   }
 }
