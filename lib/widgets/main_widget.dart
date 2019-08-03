@@ -54,19 +54,22 @@ class MainWidgetState extends State<MainWidget> {
       return Center(child: Text("Loading..."));
     }
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          RaisedButton(
-            onPressed: _navigateToItemSelectWidget,
-            child: Text("Craft New Item"),
-          ),
-          SizedBox(height: 8),
-          RaisedButton(
-            onPressed: _navigateToSavedItemsWidget,
-            child: Text("Load Item"),
-          ),
-        ],
+      child: IntrinsicWidth(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              onPressed: _navigateToItemSelectWidget,
+              child: Text("Craft New Item"),
+            ),
+            SizedBox(height: 8),
+            RaisedButton(
+              onPressed: _navigateToSavedItemsWidget,
+              child: Text("Load Item"),
+            ),
+          ],
+        ),
       ),
     );
   }
