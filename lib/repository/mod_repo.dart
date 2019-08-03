@@ -51,19 +51,19 @@ class ModRepository {
       List<String> tags = _modTagsMap[type];
       Mod mod = Mod.fromJson(key, data, tags);
       _allModsMap[mod.id] = mod;
-      if (_modTierMap[mod.getGroupTagString()] == null) {
-        _modTierMap[mod.getGroupTagString()] = List();
+      if (mod.generationType == "prefix" || mod.generationType == "suffix") {
+        if (_modTierMap[mod.getGroupTagString()] == null) {
+          _modTierMap[mod.getGroupTagString()] = List();
+        }
+        _modTierMap[mod.getGroupTagString()].add(mod);
       }
-      _modTierMap[mod.getGroupTagString()].add(mod);
       mod.spawnWeights.forEach((spawnWeight) {
         Map<String, List<Mod>> modMap;
-
         if ("prefix" == mod.generationType) {
           modMap = _prefixModMap;
         } else if ("suffix" == mod.generationType) {
           modMap = _suffixModMap;
         }
-
         if (modMap != null && "item" == mod.domain && !mod.isEssenceOnly) {
           String tag = spawnWeight.tag;
           List<Mod> modList = modMap[tag];
@@ -179,7 +179,8 @@ class ModRepository {
   int getModTier(Mod mod) {
     String id = mod.getGroupTagString();
     List<Mod> modsInGroup = _modTierMap[id];
-    return modsInGroup != null ? modsInGroup.length - modsInGroup.indexOf(mod) : 1;
+    Mod modWithSameId = modsInGroup.firstWhere((m) => m.id == mod.id);
+    return modsInGroup != null ? modsInGroup.length - modsInGroup.indexOf(modWithSameId) : 1;
   }
 
   int calculateFossilWeight(Mod mod, List<Fossil> fossils, int spawnWeight) {

@@ -27,6 +27,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
   Item _item;
   List<Fossil> _selectedFossils = List();
   bool _showAdvancedMods = false;
+  final _saveFormKey = GlobalKey<FormState>();
+
 
   @override
   void initState() {
@@ -86,7 +88,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
               }),
           ListTile(
             title: Text("Save Item", style: TextStyle(fontSize: 20)),
-            onTap: saveItem,
+            onTap: showSaveItemDialog,
           )
         ],
       ),
@@ -126,25 +128,68 @@ class CraftingWidgetState extends State<CraftingWidget> {
   }
 
   void saveItem() {
-    CraftedItemsStorage.instance.saveItem(_item).then((success) {
-      String message = success ? 'Item saved' : 'Failed to save item';
-      print(message);
-    });
+    if (_saveFormKey.currentState.validate()) {
+      _saveFormKey.currentState.save();
+
+      CraftedItemsStorage.instance.saveItem(_item).then((success) {
+        String message = success ? 'Item saved' : 'Failed to save item';
+        print(message);
+      });
+    }
+
+
   }
 
-  void showMasterCraftingDialog() async {
+  void showSaveItemDialog() async {
     await showDialog(
         context: context,
-        builder: masterCraftingDialogBuilder
+        builder: saveItemDialogBuilder
     );
   }
 
-  Widget masterCraftingDialogBuilder(BuildContext context) {
+  Widget saveItemDialogBuilder(BuildContext context) {
     return SimpleDialog(
-      title: const Text("Master Crafting"),
+      title: const Text("Save Item"),
       children: <Widget>[
-        masterCraftingOption(context, "Suffixes cannot be changed -> Scour",() => itemChanged(_item.scourPrefixes())),
-        masterCraftingOption(context, "Prefixes cannot be changed -> Scour", () => itemChanged(_item.scourSuffixes())),
+        Form(
+          key: _saveFormKey,
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: new InputDecoration(labelText: "Item name", hintText: "Enter item name"),
+                    keyboardType: TextInputType.text,
+                    onSaved: (input) {
+                      _item.name = input;
+                    },
+                    initialValue: _item.name,
+                    validator: (text) {
+                      if (text.isEmpty) {
+                        return "No name selected";
+                      }
+                      return null;
+                    },
+                    autovalidate: true,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    RaisedButton(child: Text("Cancel"), onPressed: () {
+                      Navigator.of(context).pop();
+                    }),
+                    RaisedButton(child: Text("Save"), onPressed: () {
+                      Navigator.of(context).pop();
+                      saveItem();
+                    })
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ],);
   }
 
