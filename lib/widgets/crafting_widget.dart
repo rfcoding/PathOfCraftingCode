@@ -62,14 +62,17 @@ class CraftingWidgetState extends State<CraftingWidget> {
       body: Column(
         children: <Widget>[
           Expanded(child: _item.getItemWidget(_showAdvancedMods)),
-          Container(
-          decoration: new BoxDecoration(
-          border: Border.all(color: Color(0xFF433937), width: 3)),
-            child: Column(
-              children: <Widget>[
-                _item.getActionsWidget(this),
-                craftingOptionsWidget(),
-              ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+            decoration: new BoxDecoration(
+            border: Border.all(color: Color(0xFF433937), width: 3)),
+              child: Column(
+                children: <Widget>[
+                  _item.getActionsWidget(this),
+                  craftingOptionsWidget(),
+                ],
+              ),
             ),
           )
         ],
