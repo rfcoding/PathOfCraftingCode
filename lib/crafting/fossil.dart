@@ -3,6 +3,7 @@ class Fossil {
   List<FossilModWeight> positiveModWeights;
   List<FossilModWeight> negativeModWeights;
   List<String> addedMods;
+  List<String> forcedMods;
   List<String> descriptions;
   String name;
 
@@ -10,6 +11,7 @@ class Fossil {
     this.positiveModWeights,
     this.negativeModWeights,
     this.addedMods,
+    this.forcedMods,
     this.descriptions,
     this.name,
   });
@@ -27,6 +29,7 @@ class Fossil {
       positiveModWeights: positiveModWeights,
       negativeModWeights: negativeModWeights,
       addedMods: new List<String>.from(json['added_mods']),
+      forcedMods: new List<String>.from(json['forced_mods']),
       descriptions: new List<String>.from(json['descriptions']),
       name: name,
     );

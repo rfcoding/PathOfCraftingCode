@@ -9,6 +9,7 @@ import '../properties.dart';
 import '../fossil.dart';
 import '../../widgets/crafting_widget.dart';
 import '../../widgets/utils.dart';
+import '../../repository/mod_repo.dart';
 
 class RareItem extends Item {
   Color textColor = Color(0xFFFFFC8A);
@@ -145,7 +146,23 @@ class RareItem extends Item {
   }
 
   RareItem useFossils(List<Fossil> fossils) {
-    reroll(fossils: fossils);
+    List<Mod> forcedMods = fossils
+        .map((fossil) => fossil.forcedMods)
+        .expand((mods) => mods)
+        .map((modId) => ModRepository.instance.getModById(modId))
+        .toList();
+    if (forcedMods.isEmpty) {
+      reroll(fossils: fossils);
+    } else {
+      clearMods();
+      Mod mod = ModRepository.instance.getMod(forcedMods, this, List());
+      if (mod.generationType == "prefix") {
+        prefixes.add(mod);
+      } else {
+        suffixes.add(mod);
+      }
+      fillMods(fossils: fossils);
+    }
     return this;
   }
 
