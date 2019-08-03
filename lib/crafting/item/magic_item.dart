@@ -178,13 +178,22 @@ class MagicItem extends Item {
 
   @override
   Widget getActionsWidget(CraftingWidgetState state) {
-    return Row(children: <Widget>[
-      imageButton('assets/images/scour.png', () => state.itemChanged(this.scour())),
-      imageButton('assets/images/alteration.png', () => state.itemChanged(this.alteration())),
-      imageButton('assets/images/augmentation.png', () => state.itemChanged(this.augment())),
-      imageButton('assets/images/regal.png', () => state.itemChanged(this.regal())),
-      imageButton('assets/images/divine.png', () => state.itemChanged(this.divine())),
-    ]);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          imageButton(
+              'assets/images/scour.png', () => state.itemChanged(this.scour())),
+          imageButton('assets/images/alteration.png', () =>
+              state.itemChanged(this.alteration())),
+          imageButton('assets/images/augmentation.png', () =>
+              state.itemChanged(this.augment())),
+          imageButton(
+              'assets/images/regal.png', () => state.itemChanged(this.regal())),
+          imageButton('assets/images/divine.png', () =>
+              state.itemChanged(this.divine())),
+          emptySquare(),
+        ]);
   }
 
   @override

@@ -47,7 +47,6 @@ class CraftingWidgetState extends State<CraftingWidget> {
     } else {
       _item = widget.item;
     }
-
     super.initState();
   }
 
@@ -61,12 +60,18 @@ class CraftingWidgetState extends State<CraftingWidget> {
       ),
       drawer: _getDrawer(),
       body: Column(
-
         children: <Widget>[
           Expanded(child: _item.getItemWidget(_showAdvancedMods)),
-          _item.getActionsWidget(this),
-          craftingOptionsWidget(),
-          //)
+          Container(
+          decoration: new BoxDecoration(
+          border: Border.all(color: Color(0xFF433937), width: 3)),
+            child: Column(
+              children: <Widget>[
+                _item.getActionsWidget(this),
+                craftingOptionsWidget(),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -98,6 +103,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
     return Builder(
       builder: (BuildContext context) {
         return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             imageButton(
                 'assets/images/resonator.png',
@@ -131,6 +138,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
                 'assets/images/essence.png',
                     () => _navigateToEssenceCraftWidget()
             ),
+            emptySquare(),
+            emptySquare(),
           ],
         );
       }
@@ -146,8 +155,6 @@ class CraftingWidgetState extends State<CraftingWidget> {
         print(message);
       });
     }
-
-
   }
 
   void showSaveItemDialog() async {

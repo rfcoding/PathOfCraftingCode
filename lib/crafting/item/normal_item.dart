@@ -150,10 +150,19 @@ class NormalItem extends Item {
 
   @override
   Widget getActionsWidget(CraftingWidgetState state) {
-    return Row(children: <Widget>[
-      imageButton('assets/images/transmute.png', () => state.itemChanged(this.transmute())),
-      imageButton('assets/images/alchemy.png', () => state.itemChanged(this.alchemy()))
-    ]);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          imageButton('assets/images/transmute.png', () =>
+              state.itemChanged(this.transmute())),
+          imageButton('assets/images/alchemy.png', () =>
+              state.itemChanged(this.alchemy())),
+          emptySquare(),
+          emptySquare(),
+          emptySquare(),
+          emptySquare(),
+        ]);
   }
 
   @override

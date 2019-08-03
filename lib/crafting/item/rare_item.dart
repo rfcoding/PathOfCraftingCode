@@ -258,13 +258,21 @@ class RareItem extends Item {
   @override
   Widget getActionsWidget(CraftingWidgetState state) {
     return
-      Row(children: <Widget>[
-        imageButton('assets/images/scour.png', () => state.itemChanged(this.scour())),
-        imageButton('assets/images/chaos.png', () => state.itemChanged(this.chaos())),
-        imageButton('assets/images/exalted.png', () => state.itemChanged(this.exalt())),
-        imageButton('assets/images/annulment.png', () => state.itemChanged(this.annulment())),
-        imageButton('assets/images/divine.png', () => state.itemChanged(this.divine())),
-      ]);
+      Row(mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            imageButton('assets/images/scour.png', () =>
+                state.itemChanged(this.scour())),
+            imageButton('assets/images/chaos.png', () =>
+                state.itemChanged(this.chaos())),
+            imageButton('assets/images/exalted.png', () =>
+                state.itemChanged(this.exalt())),
+            imageButton('assets/images/annulment.png', () =>
+                state.itemChanged(this.annulment())),
+            imageButton('assets/images/divine.png', () =>
+                state.itemChanged(this.divine())),
+            emptySquare()
+          ]);
   }
 
   @override
