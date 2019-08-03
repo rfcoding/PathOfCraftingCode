@@ -52,27 +52,9 @@ class ItemSelectState extends State<ItemSelectWidget> {
               SizedBox(height: 24),
               Text("Shaper or Elder", style: TextStyle(fontSize: 16)),
               _shaperOrElderBase(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 144.0),
-                child: TextFormField(
-                  maxLength: 3,
-                  decoration: new InputDecoration(labelText: "Itemlevel", hintText: "Enter itemlevel"),
-                  keyboardType: TextInputType.number,
-                  onSaved: (input) {
-                    itemLevel = int.parse(input);
-                  },
-                  initialValue: '100',
-                  validator: (text) {
-                    if (text.isEmpty) {
-                      return "No itemlevel selected";
-                    }
-                    int value = int.parse(text);
-                    return value > 0 && value <= 100 ? null : "Itemlevel not between 1 and 100";
-                  },
-                  autovalidate: true,
-                ),
-              ),
-              Text("Selected item: ${_shaperOrElder != "None"? _shaperOrElder:""} $_baseItem"),
+              SizedBox(height: 24),
+              Text("ItemLevel", style: TextStyle(fontSize: 16)),
+              _itemLevelForm(),
               SizedBox(height: 24),
               RaisedButton(
                 onPressed: _startCrafting,
@@ -139,6 +121,28 @@ class ItemSelectState extends State<ItemSelectWidget> {
           child: Text(value),
         );
       }).toList(),
+    );
+  }
+
+  Widget _itemLevelForm() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 144.0),
+      child: TextFormField(
+        //decoration: new InputDecoration(labelText: "Itemlevel", hintText: "Enter itemlevel"),
+        keyboardType: TextInputType.number,
+        onSaved: (input) {
+          itemLevel = int.parse(input);
+        },
+        initialValue: '100',
+        validator: (text) {
+          if (text.isEmpty) {
+            return "No itemlevel selected";
+          }
+          int value = int.parse(text);
+          return value > 0 && value <= 100 ? null : "Itemlevel not between 1 and 100";
+        },
+        autovalidate: true,
+      ),
     );
   }
 
