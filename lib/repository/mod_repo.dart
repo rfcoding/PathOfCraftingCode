@@ -57,7 +57,10 @@ class ModRepository {
         }
         _modTierMap[mod.getGroupTagString()].add(mod);
       }
-      mod.spawnWeights.forEach((spawnWeight) {
+      for (SpawnWeight spawnWeight in mod.spawnWeights) {
+        if (spawnWeight.weight == 0) {
+          continue;
+        }
         Map<String, List<Mod>> modMap;
         if ("prefix" == mod.generationType) {
           modMap = _prefixModMap;
@@ -72,7 +75,7 @@ class ModRepository {
           }
           modMap[tag].add(mod);
         }
-      });
+      };
     });
     return true;
   }
@@ -103,6 +106,10 @@ class ModRepository {
         possibleMods.add(mod);
       }
     });
+    possibleMods.addAll(_prefixModMap["default"].where((mod) =>
+    !item.alreadyHasModGroup(mod) &&
+        item.itemLevel >= mod.requiredLevel
+    ));
     return getMod(possibleMods, item, fossils);
 
   }
@@ -123,6 +130,11 @@ class ModRepository {
         possibleMods.add(mod);
       }
     });
+
+    possibleMods.addAll(_suffixModMap["default"].where((mod) =>
+    !item.alreadyHasModGroup(mod) &&
+        item.itemLevel >= mod.requiredLevel
+    ));
     return getMod(possibleMods, item, fossils);
   }
 

@@ -110,6 +110,11 @@ class Mod implements Comparable<Mod> {
     return "Name: $name, id: $id";
   }
 
+  @override
+  String toString() {
+    return name;
+  }
+
   void rerollStatValues() {
     for (Stat stat in stats) {
       stat.rollValue();
