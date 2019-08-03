@@ -60,12 +60,14 @@ bool itemCanHaveMod(Item item, CraftingBenchOption option) {
 }
 
 class CraftingBenchOption {
+  String benchDisplayName;
   String benchGroup;
   int benchTier;
   List<String> itemClasses;
   Mod mod;
 
   CraftingBenchOption({
+    this.benchDisplayName,
     this.benchGroup,
     this.benchTier,
     this.itemClasses,
@@ -75,7 +77,10 @@ class CraftingBenchOption {
   factory CraftingBenchOption.fromJson(Map<String, dynamic> json) {
     String modId = json['mod_id'];
     Mod mod = ModRepository.instance.getModById(modId);
+    String benchGroup = json['bench_group'];
+    String displayName = benchGroup.split(RegExp(r"(?=[A-Z])")).join(" ");
     return CraftingBenchOption(
+      benchDisplayName: displayName,
       benchGroup: json['bench_group'],
       benchTier: json['bench_tier'],
       itemClasses: List<String>.from(json['item_classes']),

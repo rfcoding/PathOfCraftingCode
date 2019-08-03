@@ -59,8 +59,9 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
 
   Widget buildExpandableListItem(BuildContext context, int index) {
     final String key = craftingBenchOptions.keys.toList()[index];
+    String displayName = craftingBenchOptions[key][0].benchDisplayName;
     return ExpansionTile(
-      title: Text(key),
+      title: Text(displayName),
       children: <Widget>[
         Column(children: buildExpandedList(craftingBenchOptions[key]),)
       ],
