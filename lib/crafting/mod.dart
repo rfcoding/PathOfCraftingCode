@@ -174,8 +174,10 @@ class Stat {
   Stat({this.id, this.max, this.min, this.value});
 
   factory Stat.fromJson(Map<String, dynamic> json) {
-    Stat stat = Stat(id: json['id'], max: json['max'], min: json['min'], value: json['min']);
-    stat.rollValue();
+    Stat stat = Stat(id: json['id'], max: json['max'], min: json['min'], value: json['value']);
+    if (stat.value == null) {
+      stat.rollValue();
+    }
     return stat;
   }
 
