@@ -95,35 +95,45 @@ class CraftingWidgetState extends State<CraftingWidget> {
     );
   }
   Widget craftingOptionsWidget() {
-    return Row(
-      children: <Widget>[
-        imageButton(
-            'assets/images/resonator.png',
-                () => itemChanged(_item.useFossils(_selectedFossils))
-        ),
-        imageButton(
-            'assets/images/fossil.png',
-                () =>
-                FossilSelectDialog.getFossilSelectionDialog(
-                    context,
-                    _selectedFossils
-                        .map((selectedFossil) => selectedFossil.name)
-                        .toList())
-                    .then((fossils) {
-                  setState(() {
-                    _selectedFossils = fossils;
-                  });
-                })
-        ),
-        imageButton(
-            'assets/images/crafting.png',
-                () => _navigateToCraftingBench()
-        ),
-        imageButton(
-            'assets/images/essence.png',
-                () => _navigateToEssenceCraftWidget()
-        ),
-      ],
+    return Builder(
+      builder: (BuildContext context) {
+        return Row(
+          children: <Widget>[
+            imageButton(
+                'assets/images/resonator.png',
+                    () {
+                  if (_selectedFossils.length == 0) {
+                    _showToast("No fossils selected", context);
+                  } else {
+                    itemChanged(_item.useFossils(_selectedFossils));
+                  }
+                }
+            ),
+            imageButton(
+                'assets/images/fossil.png',
+                    () =>
+                    FossilSelectDialog.getFossilSelectionDialog(
+                        context,
+                        _selectedFossils
+                            .map((selectedFossil) => selectedFossil.name)
+                            .toList())
+                        .then((fossils) {
+                      setState(() {
+                        _selectedFossils = fossils;
+                      });
+                    })
+            ),
+            imageButton(
+                'assets/images/crafting.png',
+                    () => _navigateToCraftingBench()
+            ),
+            imageButton(
+                'assets/images/essence.png',
+                    () => _navigateToEssenceCraftWidget()
+            ),
+          ],
+        );
+      }
     );
   }
 
@@ -228,6 +238,10 @@ class CraftingWidgetState extends State<CraftingWidget> {
         itemChanged(_item.applyEssenceMod(result));
       }
     });
+  }
+
+  void _showToast(String text, BuildContext context) {
+    Scaffold.of(context).showSnackBar(SnackBar(content: Text(text), duration: Duration(milliseconds: 500),));
   }
 
   void itemChanged(Item item) {
