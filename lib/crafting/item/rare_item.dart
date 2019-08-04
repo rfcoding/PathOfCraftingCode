@@ -93,13 +93,30 @@ class RareItem extends Item {
   }
 
   void fillMods({List<Fossil> fossils: const[]}) {
-    int nPrefixes = rng.nextInt(3 - prefixes.length) + 1;
-    int nSuffixes = max((rng.nextInt(3 - suffixes.length) + 1), 4 - nPrefixes);
-    for (int i = 0; i < nPrefixes; i++) {
+    if (prefixes.isEmpty) {
       addPrefix(fossils: fossils);
     }
-    for (int i = 0; i < nSuffixes; i++) {
+    if (suffixes.isEmpty) {
       addSuffix(fossils: fossils);
+    }
+    final int roll = rng.nextInt(100);
+    int numberOfMods = 4;
+    // 65% chance of 4 mods, 25% 5 mods, 10% 6 mods
+    if (roll >= 90) {
+      numberOfMods = 6;
+    } else if (roll >= 65) {
+      numberOfMods = 5;
+    }
+    print("number of mods: $numberOfMods");
+    final int currentNumberOfMods = prefixes.length + suffixes.length;
+    int numberOfNewMods = numberOfMods - currentNumberOfMods;
+    print("number of new mods: $numberOfNewMods");
+    for (int i = 0; i < numberOfNewMods; i++) {
+      if (rng.nextBool()) {
+        addPrefix(fossils: fossils);
+      } else {
+        addSuffix(fossils: fossils);
+      }
     }
   }
 
