@@ -47,13 +47,13 @@ class EssenceCraftingState extends State<EssenceCraftingWidget> {
   Widget _buildExpandableListItem(BuildContext context, int index) {
     final String key = essenceMap.keys.toList()[index];
     return ExpansionTile(
-      title: Text(key),
+      backgroundColor: Color(0xFF231E18),
+      title: Text(key, style: TextStyle(color: Color(0xFFB29155))),
       children: <Widget>[
         Column(
           children: _buildExpandedList(essenceMap[key]),
         )
       ],
-
     );
   }
 
