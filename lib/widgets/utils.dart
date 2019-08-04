@@ -9,10 +9,6 @@ Widget imageButton(String assetPath, VoidCallback callback) {
       child: Container(
         decoration: new BoxDecoration(
           border: Border.all(color: Color(0xFF2A221A), width: 1),
-          /*image: DecorationImage(
-              image: AssetImage(assetPath),
-              fit: BoxFit.fill
-          ),*/
         ),
         child: Image(image: AssetImage(assetPath), ),
       ),
@@ -29,7 +25,6 @@ Widget emptySquare() {
           color: Colors.black
         ),
         child: Image(image: AssetImage('assets/images/empty.png'), ),
-
     ),
   );
 }
