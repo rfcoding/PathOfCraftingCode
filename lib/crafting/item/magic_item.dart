@@ -79,13 +79,13 @@ class MagicItem extends Item {
   @override
   void reroll({List<Fossil> fossils: const[]}) {
     clearMods();
-    int nPrefixes = rng.nextInt(2);
-    int nSuffixes = max(rng.nextInt(2), 1 - nPrefixes);
-    for (int i = 0; i < nPrefixes; i++) {
+    // 1 or 2 mods, 50/50
+    final int nMods = rng.nextInt(2) + 1;
+    if (nMods == 2) {
       addPrefix();
-    }
-    for (int i = 0; i < nSuffixes; i++) {
       addSuffix();
+    } else {
+      rng.nextBool() ? addSuffix() : addPrefix();
     }
   }
 
