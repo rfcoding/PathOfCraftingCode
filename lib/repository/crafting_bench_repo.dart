@@ -77,8 +77,7 @@ class CraftingBenchOption {
   factory CraftingBenchOption.fromJson(Map<String, dynamic> json) {
     String modId = json['mod_id'];
     Mod mod = ModRepository.instance.getModById(modId);
-    String benchGroup = json['bench_group'];
-    String displayName = benchGroup.split(RegExp(r"(?=[A-Z])")).join(" ");
+    String displayName = mod.getStatStringWithValueRanges().join("\n");
     return CraftingBenchOption(
       benchDisplayName: displayName,
       benchGroup: json['bench_group'],

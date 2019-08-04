@@ -59,9 +59,10 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
 
   Widget buildExpandableListItem(BuildContext context, int index) {
     final String key = craftingBenchOptions.keys.toList()[index];
-    String displayName = craftingBenchOptions[key][0].benchDisplayName;
+    String displayName = craftingBenchOptions[key].last.benchDisplayName;
     return ExpansionTile(
-      title: Text(displayName),
+      backgroundColor: Color(0xFF231E18),
+      title: Text(displayName, style: TextStyle(color: Color(0xFFB29155)),),
       children: <Widget>[
         Column(children: buildExpandedList(craftingBenchOptions[key]),)
       ],
@@ -74,7 +75,7 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
       CraftingBenchOption option = craftingBenchOptions[i];
       columnContent.add(
         ListTile(
-          title: Text(option.mod.getStatStringWithValueRanges().join("\n")),
+          title: Text(option.benchDisplayName),
           trailing: Text(i.toString()),
           onTap: () => Navigator.of(context).pop(option.mod),
         )
