@@ -18,12 +18,19 @@ class CraftingBenchOptionsWidget extends StatefulWidget {
 }
 
 class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
+  TextEditingController controller = TextEditingController();
   Map<String, List<CraftingBenchOption>> craftingBenchOptions;
+  String filter;
 
   @override
   void initState() {
-      craftingBenchOptions =
-          CraftingBenchRepository.instance.getCraftingOptionsForItem(widget.item);
+    craftingBenchOptions =
+        CraftingBenchRepository.instance.getCraftingOptionsForItem(widget.item);
+    controller.addListener(() {
+      setState(() {
+        filter = controller.text;
+      });
+    });
     super.initState();
   }
 
@@ -40,7 +47,15 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
   Widget getBody() {
     return Column(
       children: <Widget>[
-
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            decoration: new InputDecoration(
+                labelText: "Filter"
+            ),
+            controller: controller,
+          ),
+        ),
         Expanded(
           child: ListView.builder(
               itemCount: craftingBenchOptions.keys.length,
@@ -60,6 +75,13 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
   Widget buildExpandableListItem(BuildContext context, int index) {
     final String key = craftingBenchOptions.keys.toList()[index];
     String displayName = craftingBenchOptions[key].last.benchDisplayName;
+
+    if (filter != null &&
+        filter.isNotEmpty &&
+        !displayName.toLowerCase().contains(filter.toLowerCase())) {
+      return Container();
+    }
+
     return ExpansionTile(
       backgroundColor: Color(0xFF231E18),
       title: Text(displayName, style: TextStyle(color: Color(0xFFB29155)),),
