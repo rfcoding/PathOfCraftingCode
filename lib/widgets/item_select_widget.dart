@@ -114,7 +114,7 @@ class ItemSelectState extends State<ItemSelectWidget> {
           _shaperOrElder = value;
         });
       },
-      items: ['Shaper', 'Elder', 'None']
+      items: ['None', 'Shaper', 'Elder']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
@@ -128,7 +128,6 @@ class ItemSelectState extends State<ItemSelectWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 144.0),
       child: TextFormField(
-        //decoration: new InputDecoration(labelText: "Itemlevel", hintText: "Enter itemlevel"),
         keyboardType: TextInputType.number,
         onSaved: (input) {
           itemLevel = int.parse(input);
@@ -174,7 +173,5 @@ class ItemSelectState extends State<ItemSelectWidget> {
               )
       ));
     }
-
-
   }
 }
