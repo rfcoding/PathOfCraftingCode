@@ -62,19 +62,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
       body: Column(
         children: <Widget>[
           Expanded(child: _item.getItemWidget(_showAdvancedMods)),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-            decoration: new BoxDecoration(
-            border: Border.all(color: Color(0xFF433937), width: 3)),
-              child: Column(
-                children: <Widget>[
-                  _item.getActionsWidget(this),
-                  craftingOptionsWidget(),
-                ],
-              ),
-            ),
-          )
+          inventoryWidget()
         ],
       ),
     );
@@ -102,6 +90,23 @@ class CraftingWidgetState extends State<CraftingWidget> {
       ),
     );
   }
+
+  Widget inventoryWidget() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+      child: Container(
+        decoration: new BoxDecoration(
+            border: Border.all(color: Color(0xFF433937), width: 3)),
+        child: Column(
+          children: <Widget>[
+            _item.getActionsWidget(this),
+            craftingOptionsWidget(),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget craftingOptionsWidget() {
     return Builder(
       builder: (BuildContext context) {
