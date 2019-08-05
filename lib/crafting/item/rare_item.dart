@@ -166,8 +166,15 @@ class RareItem extends Item {
       return this;
     }
     this.spendingReport.addSpending(CurrencyType.annulment, 1);
-    List<Mod> mods = getMods();
-    Mod modToRemove = mods[rng.nextInt(mods.length)];
+    Mod modToRemove;
+    if (suffixes.any((mod) => mod.group == "ItemGenerationCannotChangePrefixes")) {
+      modToRemove = suffixes[rng.nextInt(suffixes.length)];
+    } else if (prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes")) {
+      modToRemove = prefixes[rng.nextInt(prefixes.length)];
+    } else {
+      List<Mod> mods = getMods();
+      modToRemove = mods[rng.nextInt(mods.length)];
+    }
     if (modToRemove.generationType == "prefix") {
       prefixes.remove(modToRemove);
     } else {
