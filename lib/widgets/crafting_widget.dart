@@ -11,6 +11,7 @@ import 'crafting_bench_options_widget.dart';
 import 'essence_widget.dart';
 import 'utils.dart';
 import 'spending_widget.dart';
+import '../crafting/essence.dart';
 
 class CraftingWidget extends StatefulWidget {
   final BaseItem baseItem;
@@ -263,8 +264,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
       builder: (BuildContext context) =>
           EssenceCraftingWidget(item: _item)
     )).then((result) {
-      if (result is Mod) {
-        itemChanged(_item.applyEssenceMod(result));
+      if (result is Essence) {
+        itemChanged(_item.applyEssence(result));
       }
     });
   }

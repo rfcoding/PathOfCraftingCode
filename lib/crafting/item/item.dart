@@ -10,6 +10,7 @@ import 'rare_item.dart';
 import 'magic_item.dart';
 import 'normal_item.dart';
 import 'spending_report.dart';
+import '../essence.dart';
 
 abstract class Item {
   String name;
@@ -168,7 +169,11 @@ abstract class Item {
     return this;
   }
 
-  RareItem applyEssenceMod(Mod mod) {
+  RareItem applyEssence(Essence essence) {
+    String essenceModId = essence.mods[itemClass];
+    assert(essenceModId != null);
+    Mod mod = ModRepository.instance.getModById(essenceModId);
+    assert(mod != null);
     RareItem item = RareItem(
         this.name,
         List(),
@@ -186,6 +191,7 @@ abstract class Item {
       item.suffixes.add(mod);
     }
     item.fillMods();
+    spendingReport.spendEssence(essence);
     return item;
   }
 

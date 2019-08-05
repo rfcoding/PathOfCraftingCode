@@ -33,6 +33,7 @@ class TranslationRepository {
   }
 
   List<String> getTranslationFromStats(List<Stat> stats) {
+    //TODO: filter out stats "dummy_stat_display_nothing"
     List<StatTranslation> statTranslations = List();
     for (Stat stat in stats) {
       StatTranslation statTranslation = _translations[stat.id];

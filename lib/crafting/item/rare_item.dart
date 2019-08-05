@@ -192,6 +192,7 @@ class RareItem extends Item {
       }
       fillMods(fossils: fossils);
     }
+    spendingReport.spendFossils(fossils);
     return this;
   }
 
