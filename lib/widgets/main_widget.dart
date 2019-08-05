@@ -43,7 +43,7 @@ class MainWidgetState extends State<MainWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("PoE Crafting"),
+        title: Text("Path of Crafting"),
       ),
       body: _getBody(),
     );
@@ -53,24 +53,33 @@ class MainWidgetState extends State<MainWidget> {
     if (!_isInitialized) {
       return Center(child: Text("Loading..."));
     }
-    return Center(
-      child: IntrinsicWidth(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              onPressed: _navigateToItemSelectWidget,
-              child: Text("Craft New Item"),
-            ),
-            SizedBox(height: 8),
-            RaisedButton(
-              onPressed: _navigateToSavedItemsWidget,
-              child: Text("Load Item"),
-            ),
-          ],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 48.0),
+          child: Image(image: AssetImage("assets/icon/icon.png"),),
         ),
-      ),
+        Center(
+          child: IntrinsicWidth(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                RaisedButton(
+                  onPressed: _navigateToItemSelectWidget,
+                  child: Text("Craft New Item"),
+                ),
+                SizedBox(height: 8),
+                RaisedButton(
+                  onPressed: _navigateToSavedItemsWidget,
+                  child: Text("Load Item"),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
