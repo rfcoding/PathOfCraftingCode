@@ -7,6 +7,7 @@ import 'rare_item.dart';
 import '../mod.dart';
 import '../properties.dart';
 import '../fossil.dart';
+import '../currency_type.dart';
 import '../../widgets/crafting_widget.dart';
 import '../../widgets/utils.dart';
 import 'spending_report.dart';
@@ -96,7 +97,7 @@ class MagicItem extends Item {
   }
 
   RareItem regal() {
-    spendingReport.addSpending(regal: 1);
+    spendingReport.addSpending(CurrencyType.regal, 1);
     RareItem item = RareItem(
         this.name,
         this.prefixes,
@@ -116,19 +117,19 @@ class MagicItem extends Item {
     if (prefixes.length + suffixes.length == 2) {
       return this;
     }
-    spendingReport.addSpending(augmentation: 1);
+    spendingReport.addSpending(CurrencyType.augmentation, 1);
     addRandomMod();
     return this;
   }
 
   MagicItem alteration() {
-    spendingReport.addSpending(alteration: 1);
+    spendingReport.addSpending(CurrencyType.alteration, 1);
     reroll();
     return this;
   }
 
   NormalItem scour() {
-    spendingReport.addSpending(scour: 1);
+    spendingReport.addSpending(CurrencyType.scour, 1);
     return NormalItem(
         this.name,
         new List(),

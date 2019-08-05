@@ -45,7 +45,6 @@ class SavedItemsState extends State<SavedItemsWidget> {
   }
 
   Widget listItemBuilder(BuildContext context, int index) {
-    print(items);
     return ListTile(
       title: Text(items[index].name),
       trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {

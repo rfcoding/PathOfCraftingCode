@@ -6,6 +6,7 @@ import 'rare_item.dart';
 import '../mod.dart';
 import '../properties.dart';
 import '../fossil.dart';
+import '../currency_type.dart';
 import '../../widgets/crafting_widget.dart';
 import '../../widgets/utils.dart';
 import 'spending_report.dart';
@@ -90,7 +91,7 @@ class NormalItem extends Item {
   }
 
   MagicItem transmute() {
-    this.spendingReport.addSpending(transmute: 1);
+    this.spendingReport.addSpending(CurrencyType.transmute, 1);
     MagicItem item = MagicItem(
         this.name,
         new List(),
@@ -107,7 +108,7 @@ class NormalItem extends Item {
   }
 
   RareItem alchemy() {
-    this.spendingReport.addSpending(alchemy: 1);
+    this.spendingReport.addSpending(CurrencyType.alchemy, 1);
     RareItem item = RareItem(
         this.name,
         List(),

@@ -6,10 +6,12 @@ import 'magic_item.dart';
 import '../mod.dart';
 import '../properties.dart';
 import '../fossil.dart';
+import '../currency_type.dart';
 import '../../widgets/crafting_widget.dart';
 import '../../widgets/utils.dart';
 import '../../repository/mod_repo.dart';
 import 'spending_report.dart';
+
 
 class RareItem extends Item {
   Color textColor = Color(0xFFFFFC8A);
@@ -125,7 +127,7 @@ class RareItem extends Item {
   }
 
   Item scour() {
-    this.spendingReport.addSpending(scour: 1);
+    this.spendingReport.addSpending(CurrencyType.scour, 1);
     if (suffixes.any((mod) => mod.group == "ItemGenerationCannotChangePrefixes")) {
       return scourSuffixes();
     } else if (prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes")) {
@@ -148,13 +150,13 @@ class RareItem extends Item {
     if (prefixes.length + suffixes.length == 6) {
       return this;
     }
-    this.spendingReport.addSpending(exalt: 1);
+    this.spendingReport.addSpending(CurrencyType.exalt, 1);
     addRandomMod();
     return this;
   }
 
   RareItem chaos() {
-    this.spendingReport.addSpending(chaos: 1);
+    this.spendingReport.addSpending(CurrencyType.chaos, 1);
     reroll();
     return this;
   }
@@ -163,7 +165,7 @@ class RareItem extends Item {
     if (prefixes.isEmpty && suffixes.isEmpty) {
       return this;
     }
-    this.spendingReport.addSpending(annulment: 1);
+    this.spendingReport.addSpending(CurrencyType.annulment, 1);
     List<Mod> mods = getMods();
     Mod modToRemove = mods[rng.nextInt(mods.length)];
     if (modToRemove.generationType == "prefix") {

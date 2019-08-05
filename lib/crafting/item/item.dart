@@ -6,6 +6,7 @@ import '../../repository/mod_repo.dart';
 import '../../widgets/crafting_widget.dart';
 import '../properties.dart';
 import '../fossil.dart';
+import '../currency_type.dart';
 import 'rare_item.dart';
 import 'magic_item.dart';
 import 'normal_item.dart';
@@ -127,7 +128,7 @@ abstract class Item {
   }
 
   Item divine() {
-    spendingReport.addSpending(divine: 1);
+    spendingReport.addSpending(CurrencyType.divine, 1);
     for (Mod mod in prefixes) {
       mod.rerollStatValues();
     }

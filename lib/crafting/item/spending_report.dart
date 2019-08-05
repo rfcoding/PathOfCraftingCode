@@ -2,37 +2,28 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../fossil.dart';
 import '../essence.dart';
+import '../currency_type.dart';
 
 class SpendingReport {
-  int exalt;
-  int divine;
-  int annulment;
-  int chaos;
-  int regal;
-  int alchemy;
-  int scour;
-  int alteration;
-  int augmentation;
-  int transmute;
+  Map<String, int> currencyMap;
   Map<String, int> fossilMap;
   Map<String, int> essenceMap;
 
   SpendingReport({
-    this.exalt: 0,
-    this.divine: 0,
-    this.annulment: 0,
-    this.chaos: 0,
-    this.regal: 0,
-    this.alteration: 0,
-    this.alchemy: 0,
-    this.transmute: 0,
-    this.scour: 0,
-    this.augmentation: 0,
+    this.currencyMap,
     this.fossilMap,
     this.essenceMap,
   });
 
   factory SpendingReport.fromJson(Map<String, dynamic> data) {
+    Map<String, int> currencyMap = Map();
+    if (data['currency'] != null) {
+      var currencyRaw = jsonDecode(data['currency']) as Map;
+      if (currencyRaw != null) {
+        currencyMap = currencyRaw.map((key, value) => MapEntry<String, int>(key, value));
+      }
+    }
+
     Map<String, int> fossilsMap = Map();
     if (data['fossils'] != null) {
       var fossilsRaw = jsonDecode(data['fossils']) as Map;
@@ -50,16 +41,7 @@ class SpendingReport {
     }
 
     return SpendingReport(
-      exalt: data['exalt'],
-      divine: data['divine'],
-      annulment: data['annulment'],
-      chaos: data['chaos'],
-      regal: data['regal'],
-      alteration: data['alteration'],
-      alchemy: data['alchemy'],
-      transmute: data['transmute'],
-      scour: data['scour'],
-      augmentation: data['augmentation'],
+      currencyMap: currencyMap,
       fossilMap: fossilsMap,
       essenceMap: essenceMap
     );
@@ -67,43 +49,20 @@ class SpendingReport {
 
   Map<String, dynamic> toJson() {
     return {
-      "exalt": exalt,
-      "divine": divine,
-      "annulment": annulment,
-      "chaos": chaos,
-      "regal": regal,
-      "alteration": alteration,
-      "alchemy": alchemy,
-      "transmute": transmute,
-      "scour": scour,
-      "augmentation": augmentation,
+      "currency": json.encode(currencyMap),
       "fossils": json.encode(fossilMap),
       "essence": json.encode(essenceMap),
     };
   }
 
-  void addSpending({
-    exalt: 0,
-    divine: 0,
-    annulment: 0,
-    chaos: 0,
-    regal: 0,
-    alteration: 0,
-    alchemy: 0,
-    transmute: 0,
-    scour: 0,
-    augmentation: 0
-  }) {
-    this.exalt += exalt;
-    this.divine += divine;
-    this.annulment += annulment;
-    this.chaos += chaos;
-    this.regal += regal;
-    this.alteration += alteration;
-    this.alchemy += alchemy;
-    this.transmute += transmute;
-    this.scour += scour;
-    this.augmentation += augmentation;
+  void addSpending(String currency, int amount) {
+    if (currencyMap == null) {
+      currencyMap = Map();
+    }
+    if (currencyMap[currency] == null) {
+      currencyMap[currency] = 0;
+    }
+    currencyMap[currency] += amount;
   }
   
   void spendFossils(List<Fossil> fossils) {
@@ -130,22 +89,9 @@ class SpendingReport {
 
   Widget getWidget() {
     List<Widget> listTiles = List();
-    listTiles.add(listTile("Exalt", exalt));
-    listTiles.add(listTile("Divine", divine));
-    listTiles.add(listTile("Annulment", annulment));
-    listTiles.add(listTile("Chaos", chaos));
-    listTiles.add(listTile("Regal", regal));
-    listTiles.add(listTile("Alteration", alteration));
-    listTiles.add(listTile("Alchemy", alchemy));
-    listTiles.add(listTile("Transmute", transmute));
-    listTiles.add(listTile("Scouring", scour));
-    listTiles.add(listTile("Augmentation", augmentation));
-    if (fossilMap != null && fossilMap.isNotEmpty) {
-      listTiles.add(expansionTileFromMap("Fossils", fossilMap));
-    }
-    if (essenceMap != null && essenceMap.isNotEmpty) {
-      listTiles.add(expansionTileFromMap("Essence", essenceMap));
-    }
+    listTiles.add(expansionTileFromMap("Currency", currencyMap != null ? currencyMap : Map()));
+    listTiles.add(expansionTileFromMap("Fossils", fossilMap != null ? fossilMap : Map()));
+    listTiles.add(expansionTileFromMap("Essence", essenceMap != null ? essenceMap : Map()));
     return ListView(children: listTiles);
   }
 
