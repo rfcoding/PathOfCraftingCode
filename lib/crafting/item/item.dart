@@ -293,7 +293,6 @@ abstract class Item {
 
   Widget getAdvancedModWidget() {
     List<Widget> widgets = List();
-    // TODO: Change to advanced mod here with tier etc
     widgets.addAll(getAdvancedModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList()));
     widgets.addAll(getAdvancedModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList()));
     return Column(children: widgets);

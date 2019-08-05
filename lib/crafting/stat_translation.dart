@@ -59,26 +59,6 @@ class StatTranslation {
     return "No translation found";
   }
 
-  //TODO: use this later to combine stats with same effect, e.g. inc phys damage + inc phys + acc
-  TranslationValueHolder createTranslationValueHolder(Translation translation, List<Stat> stats) {
-    if (stats.length == 1) {
-      return TranslationValueHolder(first: stats[0].value, translation: translation);
-    } else if (stats.length == 2) {
-      int first;
-      int second;
-      for (Stat stat in stats) {
-        int index = ids.indexOf(stat.id);
-        if (index == 0) {
-          first = stat.value;
-        } else if (index == 1) {
-          second = stat.value;
-        }
-      }
-      return TranslationValueHolder(first: first, second: second, translation: translation);
-    }
-    return null;
-  }
-
   String formatTranslation(Translation translation, List<Stat> stats) {
     if (stats.length == 1) {
       return translation.string.replaceFirst("{0}", translation.formatWithSign(stats[0]));
@@ -98,15 +78,15 @@ class StatTranslation {
       if (stats[0].min == stats[0].max) {
         return translation.string.replaceFirst("{0}", translation.formatWithSign(stats[0]));
       }
-      return translation.string.replaceFirst("{0}", translation.format.replaceFirst("#", "(${stats[0].min.toString()} – ${stats[0].max.toString()})"));
+      return translation.string.replaceFirst("{0}", translation.formatRangeWithSign(stats[0]));
     } else if (stats.length == 2) {
       String text = translation.string;
       for (Stat stat in stats) {
         int index = ids.indexOf(stat.id);
         if (stat.min == stat.max) {
-          text = text.replaceFirst("{$index}", translation.format.replaceFirst("#",stat.value.toString()));
+          text = text.replaceFirst("{$index}", translation.formatWithSign(stat));
         }
-        text = text.replaceFirst("{$index}", translation.format.replaceFirst("#", "(${stat.min.toString()} – ${stat.max.toString()})"));
+        text = text.replaceFirst("{$index}", translation.formatRangeWithSign(stat));
       }
       return text;
     }
@@ -164,6 +144,11 @@ class Translation {
       .replaceFirst("#", valueAsDividedString(stat.value));
   }
 
+  String formatRangeWithSign(Stat stat) {
+    return format.replaceFirst("+", stat.value > 0 ? "+" : "-")
+        .replaceFirst("#", "(${valueAsDividedString(stat.min)} – ${valueAsDividedString(stat.max)})");
+  }
+
   String valueAsDividedString(int value) {
     int divider = 1;
     if (indexHandlers.any((value) => value.contains("per_minute_to_per_second"))) {
@@ -177,16 +162,4 @@ class Translation {
     }
     return (value.abs() / divider).toStringAsFixed(2);
   }
-}
-
-class TranslationValueHolder {
-  int first;
-  int second;
-  Translation translation;
-
-  TranslationValueHolder({
-    this.first,
-    this.second,
-    this.translation
-  });
 }
