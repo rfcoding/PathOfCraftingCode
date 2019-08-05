@@ -9,6 +9,7 @@ import '../fossil.dart';
 import 'rare_item.dart';
 import 'magic_item.dart';
 import 'normal_item.dart';
+import 'spending_report.dart';
 
 abstract class Item {
   String name;
@@ -20,6 +21,7 @@ abstract class Item {
   ArmourProperties armourProperties;
   String itemClass;
   int itemLevel;
+  SpendingReport spendingReport;
 
   Random rng = new Random();
   Color statTextColor = Color(0xFF677F7F);
@@ -41,7 +43,8 @@ abstract class Item {
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
       String itemClass,
-      int itemLevel) {
+      int itemLevel,
+      SpendingReport spendingReport) {
     this.name = name;
     this.prefixes = prefixes;
     this.suffixes = suffixes;
@@ -51,6 +54,7 @@ abstract class Item {
     this.itemClass = itemClass;
     this.implicits = implicits;
     this.itemLevel = itemLevel;
+    this.spendingReport = spendingReport;
   }
 
   factory Item.fromJson(Map<String, dynamic> json) {
@@ -65,7 +69,7 @@ abstract class Item {
       case "normal":
         return NormalItem.fromJson(json);
         break;
-      }
+    }
     return null;
   }
 
@@ -95,6 +99,7 @@ abstract class Item {
       "item_class": itemClass,
       "rarity": rarity,
       "item_level": itemLevel,
+      "spending_report": spendingReport.toJson()
     };
   }
 
@@ -121,6 +126,7 @@ abstract class Item {
   }
 
   Item divine() {
+    spendingReport.addSpending(divine: 1);
     for (Mod mod in prefixes) {
       mod.rerollStatValues();
     }
@@ -172,7 +178,8 @@ abstract class Item {
         this.weaponProperties,
         this.armourProperties,
         this.itemClass,
-        this.itemLevel);
+        this.itemLevel,
+        this.spendingReport);
     if (mod.generationType == "prefix") {
       item.prefixes.add(mod);
     } else {

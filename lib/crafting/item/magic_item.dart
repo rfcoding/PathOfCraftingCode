@@ -9,6 +9,7 @@ import '../properties.dart';
 import '../fossil.dart';
 import '../../widgets/crafting_widget.dart';
 import '../../widgets/utils.dart';
+import 'spending_report.dart';
 
 class MagicItem extends Item {
   MagicItem(String name,
@@ -19,7 +20,9 @@ class MagicItem extends Item {
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
       String itemClass,
-      int itemLevel)
+      int itemLevel,
+      SpendingReport spendingReport,
+      )
       : super(
       name,
       prefixes,
@@ -29,7 +32,8 @@ class MagicItem extends Item {
       weaponProperties,
       armourProperties,
       itemClass,
-      itemLevel);
+      itemLevel,
+      spendingReport);
 
   factory MagicItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -47,6 +51,7 @@ class MagicItem extends Item {
     } else if (tags.contains("armour")) {
       armourProperties = ArmourProperties.fromJson(data['properties']);
     }
+    dynamic spendingReportData = data['spending_report'];
 
     return MagicItem(
         data['name'],
@@ -57,7 +62,8 @@ class MagicItem extends Item {
         weaponProperties,
         armourProperties,
         data['item_class'],
-        data['item_level']
+        data['item_level'],
+        spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null
     );
   }
 
@@ -90,6 +96,7 @@ class MagicItem extends Item {
   }
 
   RareItem regal() {
+    spendingReport.addSpending(regal: 1);
     RareItem item = RareItem(
         this.name,
         this.prefixes,
@@ -99,22 +106,29 @@ class MagicItem extends Item {
         this.weaponProperties,
         this.armourProperties,
         this.itemClass,
-        this.itemLevel);
+        this.itemLevel,
+        this.spendingReport);
     item.addRandomMod();
     return item;
   }
 
   MagicItem augment() {
+    if (prefixes.length + suffixes.length == 2) {
+      return this;
+    }
+    spendingReport.addSpending(augmentation: 1);
     addRandomMod();
     return this;
   }
 
   MagicItem alteration() {
+    spendingReport.addSpending(alteration: 1);
     reroll();
     return this;
   }
 
   NormalItem scour() {
+    spendingReport.addSpending(scour: 1);
     return NormalItem(
         this.name,
         new List(),
@@ -124,7 +138,8 @@ class MagicItem extends Item {
         this.weaponProperties,
         this.armourProperties,
         this.itemClass,
-        this.itemLevel);
+        this.itemLevel,
+        this.spendingReport);
   }
 
   @override
@@ -138,7 +153,8 @@ class MagicItem extends Item {
         this.weaponProperties,
         this.armourProperties,
         this.itemClass,
-        this.itemLevel);
+        this.itemLevel,
+        this.spendingReport);
     return item.useFossils(fossils);
   }
 

@@ -8,6 +8,7 @@ import '../properties.dart';
 import '../fossil.dart';
 import '../../widgets/crafting_widget.dart';
 import '../../widgets/utils.dart';
+import 'spending_report.dart';
 
 class NormalItem extends Item {
   NormalItem(String name,
@@ -18,7 +19,8 @@ class NormalItem extends Item {
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
       String itemClass,
-      int itemLevel)
+      int itemLevel,
+      SpendingReport spendingReport)
       : super(
       name,
       prefixes,
@@ -28,7 +30,8 @@ class NormalItem extends Item {
       weaponProperties,
       armourProperties,
       itemClass,
-      itemLevel);
+      itemLevel,
+      spendingReport);
 
   factory NormalItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -46,6 +49,7 @@ class NormalItem extends Item {
     } else if (tags.contains("armour")) {
       armourProperties = ArmourProperties.fromJson(data['properties']);
     }
+    dynamic spendingReportData = data['spending_report'];
 
     return NormalItem(
         data['name'],
@@ -57,6 +61,7 @@ class NormalItem extends Item {
         armourProperties,
         data['item_class'],
         data['item_level'],
+        spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null
     );
   }
   @override
@@ -85,6 +90,7 @@ class NormalItem extends Item {
   }
 
   MagicItem transmute() {
+    this.spendingReport.addSpending(transmute: 1);
     MagicItem item = MagicItem(
         this.name,
         new List(),
@@ -94,12 +100,14 @@ class NormalItem extends Item {
         this.weaponProperties,
         this.armourProperties,
         this.itemClass,
-        this.itemLevel);
+        this.itemLevel,
+        this.spendingReport);
     item.reroll();
     return item;
   }
 
   RareItem alchemy() {
+    this.spendingReport.addSpending(alchemy: 1);
     RareItem item = RareItem(
         this.name,
         List(),
@@ -109,7 +117,8 @@ class NormalItem extends Item {
         this.weaponProperties,
         this.armourProperties,
         this.itemClass,
-        this.itemLevel);
+        this.itemLevel,
+        this.spendingReport);
     item.reroll();
     return item;
   }
@@ -125,7 +134,8 @@ class NormalItem extends Item {
         this.weaponProperties,
         this.armourProperties,
         this.itemClass,
-        this.itemLevel);
+        this.itemLevel,
+        this.spendingReport);
     return item.useFossils(fossils);
   }
 

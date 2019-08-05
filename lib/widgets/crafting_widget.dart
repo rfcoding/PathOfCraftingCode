@@ -3,12 +3,14 @@ import '../crafting/base_item.dart';
 import '../crafting/fossil.dart';
 import '../crafting/item/item.dart';
 import '../crafting/item/normal_item.dart';
+import '../crafting/item/spending_report.dart';
 import '../crafting/mod.dart';
 import '../repository/crafted_items_storage.dart';
 import 'fossil_select_dialog_widget.dart';
 import 'crafting_bench_options_widget.dart';
 import 'essence_widget.dart';
 import 'utils.dart';
+import 'spending_widget.dart';
 
 class CraftingWidget extends StatefulWidget {
   final BaseItem baseItem;
@@ -42,7 +44,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
           widget.baseItem.weaponProperties,
           widget.baseItem.armourProperties,
           widget.baseItem.itemClass,
-          widget.baseItem.itemLevel);
+          widget.baseItem.itemLevel,
+          SpendingReport());
       _item.tags.addAll(widget.extraTags);
     } else {
       _item = widget.item;
@@ -85,6 +88,10 @@ class CraftingWidgetState extends State<CraftingWidget> {
           ListTile(
             title: Text("Save Item", style: TextStyle(fontSize: 20)),
             onTap: showSaveItemDialog,
+          ),
+          ListTile(
+            title: Text("Spending Report", style: TextStyle(fontSize: 20)),
+            onTap: _navigateToSpendingReportWidget,
           )
         ],
       ),
@@ -242,6 +249,13 @@ class CraftingWidgetState extends State<CraftingWidget> {
         itemChanged(_item.removeMasterMods());
       }
     });
+  }
+
+  void _navigateToSpendingReportWidget() {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (BuildContext context) =>
+          SpendingWidget(spendingReport: _item.spendingReport,)
+    ));
   }
 
   void _navigateToEssenceCraftWidget() {

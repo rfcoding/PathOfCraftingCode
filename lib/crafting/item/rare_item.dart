@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'dart:convert';
 import 'item.dart';
 import 'normal_item.dart';
@@ -10,6 +9,7 @@ import '../fossil.dart';
 import '../../widgets/crafting_widget.dart';
 import '../../widgets/utils.dart';
 import '../../repository/mod_repo.dart';
+import 'spending_report.dart';
 
 class RareItem extends Item {
   Color textColor = Color(0xFFFFFC8A);
@@ -24,7 +24,8 @@ class RareItem extends Item {
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
       String itemClass,
-      int itemLevel)
+      int itemLevel,
+      SpendingReport spendingReport)
       : super(
       name,
       prefixes,
@@ -34,7 +35,8 @@ class RareItem extends Item {
       weaponProperties,
       armourProperties,
       itemClass,
-      itemLevel);
+      itemLevel,
+      spendingReport);
 
   factory RareItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -53,6 +55,7 @@ class RareItem extends Item {
       armourProperties = ArmourProperties.fromJson(data['properties']);
     }
 
+    dynamic spendingReportData = data['spending_report'];
     return RareItem(
       data['name'],
       prefixes,
@@ -63,6 +66,7 @@ class RareItem extends Item {
       armourProperties,
       data['item_class'],
       data['item_level'],
+      spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : SpendingReport()
     );
   }
 
@@ -121,6 +125,7 @@ class RareItem extends Item {
   }
 
   Item scour() {
+    this.spendingReport.addSpending(scour: 1);
     if (suffixes.any((mod) => mod.group == "ItemGenerationCannotChangePrefixes")) {
       return scourSuffixes();
     } else if (prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes")) {
@@ -135,15 +140,21 @@ class RareItem extends Item {
         this.weaponProperties,
         this.armourProperties,
         this.itemClass,
-        this.itemLevel);
+        this.itemLevel,
+        this.spendingReport);
   }
 
   RareItem exalt() {
+    if (prefixes.length + suffixes.length == 6) {
+      return this;
+    }
+    this.spendingReport.addSpending(exalt: 1);
     addRandomMod();
     return this;
   }
 
   RareItem chaos() {
+    this.spendingReport.addSpending(chaos: 1);
     reroll();
     return this;
   }
@@ -152,6 +163,7 @@ class RareItem extends Item {
     if (prefixes.isEmpty && suffixes.isEmpty) {
       return this;
     }
+    this.spendingReport.addSpending(annulment: 1);
     List<Mod> mods = getMods();
     Mod modToRemove = mods[rng.nextInt(mods.length)];
     if (modToRemove.generationType == "prefix") {
@@ -195,7 +207,8 @@ class RareItem extends Item {
           weaponProperties,
           armourProperties,
           itemClass,
-          itemLevel);
+          itemLevel,
+          spendingReport);
     } else if (suffixes.length == 1) {
       return MagicItem(
           name,
@@ -206,7 +219,8 @@ class RareItem extends Item {
           weaponProperties,
           armourProperties,
           itemClass,
-          itemLevel);
+          itemLevel,
+          spendingReport);
     } else {
       prefixes.clear();
       return this;
@@ -225,7 +239,8 @@ class RareItem extends Item {
           weaponProperties,
           armourProperties,
           itemClass,
-          itemLevel);
+          itemLevel,
+          spendingReport);
     } else if (prefixes.length == 1) {
       return MagicItem(
           name,
@@ -236,7 +251,8 @@ class RareItem extends Item {
           weaponProperties,
           armourProperties,
           itemClass,
-          itemLevel);
+          itemLevel,
+          spendingReport);
     } else {
       suffixes.clear();
       return this;
