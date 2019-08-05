@@ -156,11 +156,20 @@ abstract class Item {
     switch (mod.generationType) {
       case "prefix":
         if (!hasMaxPrefixes()) {
+          //TODO: Get list of all master crafting costs and replace this
+          if (mod.id == "DexMasterItemGenerationCannotChangeSuffixes") {
+            spendingReport.addSpending(CurrencyType.exalt, 2);
+          }
           prefixes.add(mod);
         }
         break;
       case "suffix":
         if (!hasMaxSuffixes()) {
+          //TODO: Get list of all master crafting costs and replace this
+          if (mod.id == "StrMasterItemGenerationCannotChangePrefixes" ||
+              mod.id == "StrIntMasterItemGenerationCanHaveMultipleCraftedMods") {
+            spendingReport.addSpending(CurrencyType.exalt, 2);
+          }
           suffixes.add(mod);
         }
         break;
