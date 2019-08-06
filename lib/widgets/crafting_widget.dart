@@ -56,19 +56,22 @@ class CraftingWidgetState extends State<CraftingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text("Crafting Lobby"),
+    return WillPopScope(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
+          title: Text("Crafting Lobby"),
 
+        ),
+        drawer: _getDrawer(),
+        body: Column(
+          children: <Widget>[
+            Expanded(child: _item.getItemWidget(_showAdvancedMods)),
+            inventoryWidget()
+          ],
+        ),
       ),
-      drawer: _getDrawer(),
-      body: Column(
-        children: <Widget>[
-          Expanded(child: _item.getItemWidget(_showAdvancedMods)),
-          inventoryWidget()
-        ],
-      ),
+      onWillPop: () => _showConfirmDialog(),
     );
   }
 
@@ -267,6 +270,19 @@ class CraftingWidgetState extends State<CraftingWidget> {
       if (result is Essence) {
         itemChanged(_item.applyEssence(result));
       }
+    });
+  }
+
+  Future<bool> _showConfirmDialog() {
+    return showDialog(context: context, builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Leave?"),
+        content: new Text('Do you really want to vendor this item?'),
+        actions: <Widget>[
+          FlatButton(color: Colors.amber[800], textTheme: ButtonTextTheme.accent, child: Text("No"), onPressed: () => Navigator.of(context).pop(false),),
+          FlatButton(color: Colors.amber[800], textTheme: ButtonTextTheme.accent, child: Text("Yes"), onPressed: () => Navigator.of(context).pop(true),),
+        ],
+      );
     });
   }
 
