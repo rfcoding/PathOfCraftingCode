@@ -27,6 +27,8 @@ class CraftingWidget extends StatefulWidget {
 }
 
 class CraftingWidgetState extends State<CraftingWidget> {
+  GlobalKey<ScaffoldState> _globalKey = GlobalKey();
+
   Item _item;
   List<Fossil> _selectedFossils = List();
   bool _showAdvancedMods = false;
@@ -56,22 +58,30 @@ class CraftingWidgetState extends State<CraftingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(
-          title: Text("Crafting Lobby"),
+    return Scaffold(
+      key: _globalKey,
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text("Crafting Lobby"),
 
-        ),
-        drawer: _getDrawer(),
-        body: Column(
+      ),
+      drawer: _getDrawer(),
+      body: WillPopScope(
+        child: Column(
           children: <Widget>[
             Expanded(child: _item.getItemWidget(_showAdvancedMods)),
             inventoryWidget()
           ],
         ),
+        onWillPop: () {
+          if (_globalKey.currentState.isDrawerOpen) {
+            Navigator.pop(context); // closes the drawer if opened
+            return Future.value(false);
+          } else {
+            return _showConfirmDialog();
+          }
+        }
       ),
-      onWillPop: () => _showConfirmDialog(),
     );
   }
 
