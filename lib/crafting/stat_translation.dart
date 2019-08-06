@@ -61,6 +61,28 @@ class StatTranslation {
     return "No translation found";
   }
 
+  String getTranslationFromStatsWithValueAndRanges(List<Stat> stats) {
+
+    List<Stat> statsToUse = List();
+    for (Stat stat in stats) {
+      if (ids.contains(stat.id)) {
+        statsToUse.add(stat);
+      }
+    }
+
+    if (translations.length == 1) {
+      return formatTranslationWithValueAndRanges(translations[0], statsToUse);
+    } else if (statsToUse.length == 1) {
+      for (Translation translation in translations) {
+        if (translation.conditionIsTrue(stats[0])) {
+          return formatTranslationWithValueAndRanges(translation, stats);
+        }
+      }
+    }
+
+    return "No translation found";
+  }
+
   String formatTranslation(Translation translation, List<Stat> stats) {
     if (stats.length == 1) {
       return translation.string.replaceFirst("{0}", translation.formatWithSign(stats[0]));
@@ -89,6 +111,26 @@ class StatTranslation {
           text = text.replaceFirst("{$index}", translation.formatWithSign(stat));
         }
         text = text.replaceFirst("{$index}", translation.formatRangeWithSign(stat));
+      }
+      return text;
+    }
+    return translation.string;
+  }
+
+  String formatTranslationWithValueAndRanges(Translation translation, List<Stat> stats) {
+    if (stats.length == 1) {
+      if (stats[0].min == stats[0].max) {
+        return translation.string.replaceFirst("{0}", translation.formatWithSign(stats[0]));
+      }
+      return translation.string.replaceFirst("{0}", translation.formatWithValueAndRange(stats[0]));
+    } else if (stats.length == 2) {
+      String text = translation.string;
+      for (Stat stat in stats) {
+        int index = ids.indexOf(stat.id);
+        if (stat.min == stat.max) {
+          text = text.replaceFirst("{$index}", translation.formatWithSign(stat));
+        }
+        text = text.replaceFirst("{$index}", translation.formatWithValueAndRange(stat));
       }
       return text;
     }
@@ -149,6 +191,11 @@ class Translation {
   String formatRangeWithSign(Stat stat) {
     return format.replaceFirst("+", stat.value > 0 ? "+" : "-")
         .replaceFirst("#", "(${valueAsDividedString(stat.min)} – ${valueAsDividedString(stat.max)})");
+  }
+
+  String formatWithValueAndRange(Stat stat) {
+    return format.replaceFirst("+", stat.value > 0 ? "+" : "-")
+        .replaceFirst("#", "${valueAsDividedString(stat.value)}(${valueAsDividedString(stat.min)}–${valueAsDividedString(stat.max)})");
   }
 
   String valueAsDividedString(int value) {

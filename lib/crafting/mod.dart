@@ -103,6 +103,10 @@ class Mod implements Comparable<Mod> {
     return TranslationRepository.instance.getTranslationFromStats(stats);
   }
 
+  List<String> getAdvancedStatStrings() {
+    return TranslationRepository.instance.getTranslationFromStatsWithValueAndRanges(stats);
+  }
+
   List<TranslationWithSorting> getStatStringsWithSorting() {
     return TranslationRepository.instance.getTranslationFromStatsWithSorting(stats);
   }

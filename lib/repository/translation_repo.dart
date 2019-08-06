@@ -34,26 +34,14 @@ class TranslationRepository {
   }
 
   List<String> getTranslationFromStats(List<Stat> stats) {
-    List<StatTranslation> statTranslations = List();
-    for (Stat stat in stats.where((stat) => stat.id != "dummy_stat_display_nothing")) {
-      StatTranslation statTranslation = _translations[stat.id];
-      if (statTranslation != null && !statTranslations.contains(statTranslation)) {
-        statTranslations.add(statTranslation);
-      }
-    }
+    List<StatTranslation> statTranslations = getStatTranslations(stats);
 
     return statTranslations.map((translation) => translation.getTranslationFromStats(stats)).toSet().toList();
   }
 
 
   List<TranslationWithSorting> getTranslationFromStatsWithSorting(List<Stat> stats) {
-    List<StatTranslation> statTranslations = List();
-    for (Stat stat in stats.where((stat) => stat.id != "dummy_stat_display_nothing")) {
-      StatTranslation statTranslation = _translations[stat.id];
-      if (statTranslation != null && !statTranslations.contains(statTranslation)) {
-        statTranslations.add(statTranslation);
-      }
-    }
+    List<StatTranslation> statTranslations = getStatTranslations(stats);
 
     return statTranslations.map((translation) =>
         TranslationWithSorting(
@@ -64,14 +52,25 @@ class TranslationRepository {
   }
 
   List<String> getTranslationFromStatsWithValueRanges(List<Stat> stats) {
+    List<StatTranslation> statTranslations = getStatTranslations(stats);
+
+    return statTranslations.map((translation) => translation.getTranslationFromStatsWithValueRanges(stats)).toSet().toList();
+  }
+
+  List<String> getTranslationFromStatsWithValueAndRanges(List<Stat> stats) {
+    List<StatTranslation> statTranslations = getStatTranslations(stats);
+
+    return statTranslations.map((translation) => translation.getTranslationFromStatsWithValueAndRanges(stats)).toSet().toList();
+  }
+
+  List<StatTranslation> getStatTranslations(List<Stat> stats) {
     List<StatTranslation> statTranslations = List();
-    for (Stat stat in stats) {
+    for (Stat stat in stats.where((stat) => stat.id != "dummy_stat_display_nothing")) {
       StatTranslation statTranslation = _translations[stat.id];
       if (statTranslation != null && !statTranslations.contains(statTranslation)) {
         statTranslations.add(statTranslation);
       }
     }
-
-    return statTranslations.map((translation) => translation.getTranslationFromStatsWithValueRanges(stats)).toSet().toList();
+    return statTranslations;
   }
 }

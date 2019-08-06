@@ -335,7 +335,7 @@ abstract class Item {
       String affix = mod.generationType == "prefix" ? "P" : "S";
       int tier = ModRepository.instance.getModTier(mod);
       widgets.add(statDescriptionRow("$affix$tier mod \"${mod.name}\""));
-      mod.getStatStrings().forEach((statString) {
+      mod.getAdvancedStatStrings().forEach((statString) {
         Widget row = statRow(statString, color);
         widgets.add(row);
       });
