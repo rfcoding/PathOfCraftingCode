@@ -18,7 +18,7 @@ class SpendingWidgetState extends State<SpendingWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Crafting Bench Options"),
+          title: Text("Spending Report"),
         ),
         body: Column(
           children: <Widget>[
