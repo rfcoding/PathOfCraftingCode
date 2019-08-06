@@ -30,8 +30,9 @@ class StatTranslation {
       return formatTranslation(translations[0], statsToUse);
     } else if (statsToUse.length == 1) {
       for (Translation translation in translations) {
-        if (translation.conditionIsTrue(stats[0])) {
-          return formatTranslation(translation, stats);
+        List<Stat> statsThatMeetConditions = statsToUse.where((stat) => translation.conditionIsTrue(stat)).toList();
+        if (statsThatMeetConditions.isNotEmpty) {
+          return formatTranslation(translation, statsThatMeetConditions);
         }
       }
     }
@@ -52,8 +53,9 @@ class StatTranslation {
       return formatTranslationWithValueRanges(translations[0], statsToUse);
     } else if (statsToUse.length == 1) {
       for (Translation translation in translations) {
-        if (translation.conditionIsTrue(stats[0])) {
-          return formatTranslationWithValueRanges(translation, stats);
+        List<Stat> statsThatMeetConditions = statsToUse.where((stat) => translation.conditionIsTrue(stat)).toList();
+        if (statsThatMeetConditions.isNotEmpty) {
+          return formatTranslationWithValueRanges(translation, statsThatMeetConditions);
         }
       }
     }
@@ -74,8 +76,9 @@ class StatTranslation {
       return formatTranslationWithValueAndRanges(translations[0], statsToUse);
     } else if (statsToUse.length == 1) {
       for (Translation translation in translations) {
-        if (translation.conditionIsTrue(stats[0])) {
-          return formatTranslationWithValueAndRanges(translation, stats);
+        List<Stat> statsThatMeetConditions = statsToUse.where((stat) => translation.conditionIsTrue(stat)).toList();
+        if (statsThatMeetConditions.isNotEmpty) {
+          return formatTranslationWithValueAndRanges(translation, statsThatMeetConditions);
         }
       }
     }
