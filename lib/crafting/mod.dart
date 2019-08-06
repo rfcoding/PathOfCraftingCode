@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:convert';
 import '../repository/translation_repo.dart';
+import 'stat_translation.dart';
 
 class Mod implements Comparable<Mod> {
   String id;
@@ -100,6 +101,10 @@ class Mod implements Comparable<Mod> {
 
   List<String> getStatStrings() {
     return TranslationRepository.instance.getTranslationFromStats(stats);
+  }
+
+  List<TranslationWithSorting> getStatStringsWithSorting() {
+    return TranslationRepository.instance.getTranslationFromStatsWithSorting(stats);
   }
 
   List<String> getStatStringWithValueRanges() {

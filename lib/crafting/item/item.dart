@@ -12,6 +12,7 @@ import 'magic_item.dart';
 import 'normal_item.dart';
 import 'spending_report.dart';
 import '../essence.dart';
+import '../stat_translation.dart';
 
 abstract class Item {
   String name;
@@ -302,51 +303,49 @@ abstract class Item {
 
   Widget getAdvancedModWidget() {
     List<Widget> widgets = List();
-    widgets.addAll(getAdvancedModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList()));
-    widgets.addAll(getAdvancedModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList()));
+    widgets.addAll(getAdvancedModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList(), modColor));
+    widgets.addAll(getAdvancedModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList(), Colors.white));
     return Column(children: widgets);
   }
   
   Widget getModWidget() {
     List<Widget> widgets = List();
-    widgets.addAll(getCombinedModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList()));
-    widgets.addAll(getCombinedModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList()));
+    widgets.addAll(getCombinedModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList(), modColor));
+    widgets.addAll(getCombinedModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList(), Colors.white));
     return Column(children: widgets);
   }
 
-  List<Widget> getModListWidgets(List<Mod> mods) {
+  List<Widget> getModListWidgets(List<Mod> mods, Color color) {
     List<Widget> widgets = List();
-    mods.sort((a, b) => a.compareTo(b));
-    for (Mod mod in mods) {
-      Color textColor = mod.domain == "crafted" ? Colors.white : modColor;
-      mod.getStatStrings().forEach((statString) {
-        Widget row = statRow(statString, textColor);
-        widgets.add(row);
-      });
-    }
+    List<TranslationWithSorting> translations = mods.map((mod) => mod.getStatStringsWithSorting())
+        .expand((list) => list)
+        .toList();
+    translations.sort((a, b) => a.sorting - b.sorting);
+    translations.forEach((translation) {
+      Widget row = statRow(translation.translation, color);
+      widgets.add(row);
+    });
     return widgets;
   }
 
-  List<Widget> getAdvancedModListWidgets(List<Mod> mods) {
+  List<Widget> getAdvancedModListWidgets(List<Mod> mods, Color color) {
     List<Widget> widgets = List();
     mods.sort((a, b) => a.compareTo(b));
     for (Mod mod in mods) {
-      Color textColor = mod.domain == "crafted" ? Colors.white : modColor;
       String affix = mod.generationType == "prefix" ? "P" : "S";
       int tier = ModRepository.instance.getModTier(mod);
       widgets.add(statDescriptionRow("$affix$tier mod \"${mod.name}\""));
       mod.getStatStrings().forEach((statString) {
-        Widget row = statRow(statString, textColor);
+        Widget row = statRow(statString, color);
         widgets.add(row);
       });
     }
     return widgets;
   }
 
-  List<Widget> getCombinedModListWidgets(List<Mod> mods) {
+  List<Widget> getCombinedModListWidgets(List<Mod> mods, Color color) {
     Map<String, Stat> combinedStatsMap = Map();
-    mods
-        .map((mod) => mod.stats)
+    mods.map((mod) => mod.stats)
         .expand((stats) => stats)
         .forEach((stat) {
       if (combinedStatsMap[stat.id] == null) {
@@ -374,7 +373,7 @@ abstract class Item {
       }
       mod.stats = newStats;
     });
-    return getModListWidgets(combinedMods);
+    return getModListWidgets(combinedMods, color);
   }
 
   Widget statRow(String text, Color color) {

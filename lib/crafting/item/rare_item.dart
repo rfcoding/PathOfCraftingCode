@@ -118,7 +118,11 @@ class RareItem extends Item {
     int numberOfNewMods = numberOfMods - currentNumberOfMods;
     print("number of new mods: $numberOfNewMods");
     for (int i = 0; i < numberOfNewMods; i++) {
-      if (rng.nextBool()) {
+      if (prefixes.length == 3) {
+        addSuffix(fossils: fossils);
+      } else if (suffixes.length == 3) {
+        addPrefix(fossils: fossils);
+      } else if (rng.nextBool()) {
         addPrefix(fossils: fossils);
       } else {
         addSuffix(fossils: fossils);

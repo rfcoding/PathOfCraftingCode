@@ -3,15 +3,17 @@ import 'mod.dart' show Stat;
 class StatTranslation {
   List<String> ids;
   List<Translation> translations;
+  int sortingIndex;
 
-  StatTranslation({this.ids, this.translations});
+  StatTranslation({this.ids, this.translations, this.sortingIndex});
 
-  factory StatTranslation.fromJson(int index, List<String> ids, List<dynamic> json) {
+  factory StatTranslation.fromJson(int index, List<String> ids, int sortingIndex, List<dynamic> json) {
     List<Translation> translationList =
     json.map((e) => Translation.fromJson(index, e)).toList();
     return StatTranslation(
       ids: ids,
-      translations: translationList
+      translations: translationList,
+      sortingIndex: sortingIndex,
     );
   }
 
@@ -162,4 +164,22 @@ class Translation {
     }
     return (value.abs() / divider).toStringAsFixed(2);
   }
+}
+
+class TranslationWithSorting {
+  String translation;
+  int sorting;
+
+  TranslationWithSorting({
+    this.translation,
+    this.sorting
+  });
+
+  @override
+  bool operator ==(other) {
+    return other is TranslationWithSorting && translation == other.translation && sorting == other.sorting;
+  }
+
+  @override
+  int get hashCode => translation.hashCode^sorting.hashCode;
 }

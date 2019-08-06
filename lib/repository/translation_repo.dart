@@ -22,13 +22,14 @@ class TranslationRepository {
   Future<bool> loadStatTranslationJSONFromLocalStorage() async {
     var data = await rootBundle.loadString('data_repo/stat_translations.json');
     var jsonList = json.decode(data);
-    jsonList.forEach((data) {
+    for (int statIndex = 0; statIndex < jsonList.length; statIndex++) {
+      var data = jsonList[statIndex];
       List<String> ids = new List<String>.from(data['ids']);
       for (int i = 0; i < ids.length; i++) {
-        StatTranslation statTranslation = StatTranslation.fromJson(i, ids, data["English"]);
+        StatTranslation statTranslation = StatTranslation.fromJson(i, ids, statIndex, data["English"]);
         _translations[ids[i]] = statTranslation;
       }
-    });
+    }
     return true;
   }
 
@@ -42,6 +43,24 @@ class TranslationRepository {
     }
 
     return statTranslations.map((translation) => translation.getTranslationFromStats(stats)).toSet().toList();
+  }
+
+
+  List<TranslationWithSorting> getTranslationFromStatsWithSorting(List<Stat> stats) {
+    List<StatTranslation> statTranslations = List();
+    for (Stat stat in stats.where((stat) => stat.id != "dummy_stat_display_nothing")) {
+      StatTranslation statTranslation = _translations[stat.id];
+      if (statTranslation != null && !statTranslations.contains(statTranslation)) {
+        statTranslations.add(statTranslation);
+      }
+    }
+
+    return statTranslations.map((translation) =>
+        TranslationWithSorting(
+            translation: translation.getTranslationFromStats(stats),
+            sorting: translation.sortingIndex))
+        .toSet()
+        .toList();
   }
 
   List<String> getTranslationFromStatsWithValueRanges(List<Stat> stats) {
