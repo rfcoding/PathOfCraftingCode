@@ -136,11 +136,15 @@ abstract class Item {
 
   Item divine() {
     spendingReport.addSpending(CurrencyType.divine, 1);
-    for (Mod mod in prefixes) {
-      mod.rerollStatValues();
+    if (!suffixes.any((mod) => mod.group == "ItemGenerationCannotChangePrefixes")) {
+      for (Mod mod in prefixes) {
+        mod.rerollStatValues();
+      }
     }
-    for (Mod mod in suffixes) {
-      mod.rerollStatValues();
+    if (!prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes")) {
+      for (Mod mod in suffixes) {
+        mod.rerollStatValues();
+      }
     }
     return this;
   }
