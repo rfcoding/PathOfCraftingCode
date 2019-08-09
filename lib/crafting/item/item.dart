@@ -58,6 +58,12 @@ abstract class Item {
     this.implicits = implicits;
     this.itemLevel = itemLevel;
     this.spendingReport = spendingReport;
+
+    this.implicits.forEach((implicit) {
+      implicit.stats.forEach((stat) {
+        stat.value = stat.max;
+      });
+    });
   }
 
   factory Item.fromJson(Map<String, dynamic> json) {
