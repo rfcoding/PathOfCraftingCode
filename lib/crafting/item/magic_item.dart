@@ -207,8 +207,13 @@ class MagicItem extends Item {
     if (mods.length == 2) {
       return;
     }
-    int nPrefixes = prefixes.length;
-    if (nPrefixes == 1) {
+    else if (mods.length == 0) {
+      if (rng.nextBool()) {
+        addPrefix();
+      } else {
+        addSuffix();
+      }
+    } else if (prefixes.length == 1) {
       addSuffix();
     } else {
       addPrefix();
