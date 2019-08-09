@@ -136,12 +136,12 @@ abstract class Item {
 
   Item divine() {
     spendingReport.addSpending(CurrencyType.divine, 1);
-    if (!suffixes.any((mod) => mod.group == "ItemGenerationCannotChangePrefixes")) {
+    if (!hasCannotChangePrefixes()) {
       for (Mod mod in prefixes) {
         mod.rerollStatValues();
       }
     }
-    if (!prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes")) {
+    if (!hasCannotChangeSuffixes()) {
       for (Mod mod in suffixes) {
         mod.rerollStatValues();
       }
@@ -228,6 +228,14 @@ abstract class Item {
 
   bool hasMultiMod() {
     return getMods().any((mod) => mod.group == "ItemGenerationCanHaveMultipleCraftedMods");
+  }
+
+  bool hasCannotChangePrefixes() {
+    return suffixes.any((mod) => mod.group == "ItemGenerationCannotChangePrefixes");
+  }
+
+  bool hasCannotChangeSuffixes() {
+    return prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes");
   }
 
   void reroll({List<Fossil> fossils: const[]});

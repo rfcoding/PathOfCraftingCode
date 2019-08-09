@@ -132,9 +132,9 @@ class RareItem extends Item {
 
   Item scour() {
     this.spendingReport.addSpending(CurrencyType.scour, 1);
-    if (suffixes.any((mod) => mod.group == "ItemGenerationCannotChangePrefixes")) {
+    if (hasCannotChangePrefixes()) {
       return scourSuffixes();
-    } else if (prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes")) {
+    } else if (hasCannotChangeSuffixes()) {
       return scourPrefixes();
     }
     return NormalItem(
@@ -171,9 +171,9 @@ class RareItem extends Item {
     }
     this.spendingReport.addSpending(CurrencyType.annulment, 1);
     Mod modToRemove;
-    if (suffixes.any((mod) => mod.group == "ItemGenerationCannotChangePrefixes")) {
+    if (hasCannotChangePrefixes()) {
       modToRemove = suffixes[rng.nextInt(suffixes.length)];
-    } else if (prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes")) {
+    } else if (hasCannotChangeSuffixes()) {
       modToRemove = prefixes[rng.nextInt(prefixes.length)];
     } else {
       List<Mod> mods = getMods();
