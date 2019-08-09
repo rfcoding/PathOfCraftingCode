@@ -143,6 +143,28 @@ class MagicItem extends Item {
         this.spendingReport);
   }
 
+  MagicItem annulment() {
+    if (prefixes.isEmpty && suffixes.isEmpty) {
+      return this;
+    }
+    this.spendingReport.addSpending(CurrencyType.annulment, 1);
+    Mod modToRemove;
+    if (suffixes.any((mod) => mod.group == "ItemGenerationCannotChangePrefixes")) {
+      modToRemove = suffixes[rng.nextInt(suffixes.length)];
+    } else if (prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes")) {
+      modToRemove = prefixes[rng.nextInt(prefixes.length)];
+    } else {
+      List<Mod> mods = getMods();
+      modToRemove = mods[rng.nextInt(mods.length)];
+    }
+    if (modToRemove.generationType == "prefix") {
+      prefixes.remove(modToRemove);
+    } else {
+      suffixes.remove(modToRemove);
+    }
+    return this;
+  }
+
   @override
   RareItem useFossils(List<Fossil> fossils) {
     RareItem item = RareItem(
@@ -207,9 +229,10 @@ class MagicItem extends Item {
               state.itemChanged(this.augment())),
           imageButton(
               'assets/images/regal.png', () => state.itemChanged(this.regal())),
+          imageButton('assets/images/annulment.png', () =>
+              state.itemChanged(this.annulment())),
           imageButton('assets/images/divine.png', () =>
               state.itemChanged(this.divine())),
-          emptySquare(),
         ]);
   }
 
