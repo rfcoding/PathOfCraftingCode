@@ -752,6 +752,23 @@ abstract class Item {
         case "local_physical_damage_reduction_rating_+%":
           armourMultiplier += stat.value;
           break;
+        case "local_armour_and_energy_shield_+%":
+          energyShieldMultiplier += stat.value;
+          armourMultiplier += stat.value;
+          break;
+        case "local_evasion_and_energy_shield_+%":
+          evasionMultiplier += stat.value;
+          energyShieldMultiplier += stat.value;
+          break;
+        case "local_armour_and_evasion_+%":
+          evasionMultiplier += stat.value;
+          armourMultiplier += stat.value;
+          break;
+        case "local_armour_and_evasion_and_energy_shield_+%":
+          evasionMultiplier += stat.value;
+          armourMultiplier += stat.value;
+          energyShieldMultiplier += stat.value;
+          break;
         case "local_item_quality_+":
           quality += stat.value;
           break;
