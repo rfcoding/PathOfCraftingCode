@@ -719,9 +719,9 @@ abstract class Item {
 
   Widget armourStatWidget() {
     List<Widget> statWidgets = List();
-    int baseArmour = armourProperties.armour;
-    int baseEvasion = armourProperties.evasion;
-    int baseEnergyShield = armourProperties.energyShield;
+    int baseArmour = armourProperties.armour != null ? armourProperties.armour : 0;
+    int baseEvasion = armourProperties.evasion != null ? armourProperties.evasion : 0;
+    int baseEnergyShield = armourProperties.energyShield != null ? armourProperties.energyShield : 0;
     int baseBlockChance = armourProperties.block;
     int armourMultiplier = 100;
     int evasionMultiplier = 100;
@@ -774,21 +774,21 @@ abstract class Item {
                   "Critical Strike Chance: ",
                   [coloredText("$totalBlockChance%", addedBlockChance > 0 ? modColor : statTextColor)])));
     }
-    if (baseArmour != null) {
+    if (baseArmour != 0) {
       var totalArmour = baseArmour * (armourMultiplier + quality) / 100;
       if (totalArmour > 0) {
         statWidgets.add(itemRow(statWithColoredChildren("Armour: ", [coloredText("${totalArmour.toStringAsFixed(0)}", modColor)])));
       }
     }
 
-    if (baseEvasion != null) {
+    if (baseEvasion != 0) {
       var totalEvasion = baseEvasion * (evasionMultiplier + quality) / 100;
       if (totalEvasion > 0) {
         statWidgets.add(itemRow(statWithColoredChildren("Evasion: ", [coloredText("${totalEvasion.toStringAsFixed(0)}", modColor)])));
       }
     }
 
-    if (baseEnergyShield != null) {
+    if (baseEnergyShield != 0) {
       var totalEnergyShield = baseEnergyShield * (energyShieldMultiplier + quality) / 100;
       if (totalEnergyShield > 0) {
         statWidgets.add(itemRow(statWithColoredChildren("Energy Shield: ", [coloredText("${totalEnergyShield.toStringAsFixed(0)}", modColor)])));
