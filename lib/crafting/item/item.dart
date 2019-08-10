@@ -170,6 +170,7 @@ abstract class Item {
   }
 
   Item tryAddMasterMod(Mod mod) {
+    mod.rerollStatValues();
     switch (mod.generationType) {
       case "prefix":
         if (!hasMaxPrefixes()) {
