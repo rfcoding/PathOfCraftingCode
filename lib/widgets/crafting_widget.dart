@@ -67,7 +67,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
         title: Text("Crafting Lobby"),
 
       ),
-      drawer: _getDrawer(),
+      endDrawer: _getDrawer(),
       body: WillPopScope(
         child: Column(
           children: <Widget>[
@@ -108,13 +108,13 @@ class CraftingWidgetState extends State<CraftingWidget> {
                 });
               }),
           ListTile(
+            title: Text("Spending Report", style: TextStyle(fontSize: 20)),
+            onTap: _navigateToSpendingReportWidget,
+          ),
+          ListTile(
             title: Text("Save Item", style: TextStyle(fontSize: 20)),
             onTap: showSaveItemDialog,
           ),
-          ListTile(
-            title: Text("Spending Report", style: TextStyle(fontSize: 20)),
-            onTap: _navigateToSpendingReportWidget,
-          )
         ],
       ),
     );
