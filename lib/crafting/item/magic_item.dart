@@ -227,16 +227,19 @@ class MagicItem extends Item {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           imageButton(
-              'assets/images/scour.png', () => state.itemChanged(this.scour())),
-          imageButton('assets/images/alteration.png', () =>
+              'assets/images/scour.png', 'Orb of Scouring', () =>
+              state.itemChanged(this.scour())),
+          imageButton('assets/images/alteration.png', 'Orb of Alteration', () =>
               state.itemChanged(this.alteration())),
-          imageButton('assets/images/augmentation.png', () =>
+          imageButton(
+              'assets/images/augmentation.png', 'Orb of Augmentation', () =>
               state.itemChanged(this.augment())),
           imageButton(
-              'assets/images/regal.png', () => state.itemChanged(this.regal())),
-          imageButton('assets/images/annulment.png', () =>
+              'assets/images/regal.png', 'Regal orb', () =>
+              state.itemChanged(this.regal())),
+          imageButton('assets/images/annulment.png', 'Orb of Annulment', () =>
               state.itemChanged(this.annulment())),
-          imageButton('assets/images/divine.png', () =>
+          imageButton('assets/images/divine.png', 'Divine orb', () =>
               state.itemChanged(this.divine())),
         ]);
   }

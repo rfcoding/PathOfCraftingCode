@@ -308,15 +308,15 @@ class RareItem extends Item {
       Row(mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            imageButton('assets/images/scour.png', () =>
+            imageButton('assets/images/scour.png', 'Orb of Scouring', () =>
                 state.itemChanged(this.scour())),
-            imageButton('assets/images/chaos.png', () =>
+            imageButton('assets/images/chaos.png', 'Chaos orb', () =>
                 state.itemChanged(this.chaos())),
-            imageButton('assets/images/exalted.png', () =>
+            imageButton('assets/images/exalted.png', 'Exalted orb', () =>
                 state.itemChanged(this.exalt())),
-            imageButton('assets/images/annulment.png', () =>
+            imageButton('assets/images/annulment.png', 'Orb of Annulment', () =>
                 state.itemChanged(this.annulment())),
-            imageButton('assets/images/divine.png', () =>
+            imageButton('assets/images/divine.png', 'Divine orb', () =>
                 state.itemChanged(this.divine())),
             emptySquare()
           ]);

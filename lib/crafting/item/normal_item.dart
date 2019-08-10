@@ -165,9 +165,10 @@ class NormalItem extends Item {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          imageButton('assets/images/transmute.png', () =>
+          imageButton(
+              'assets/images/transmute.png', 'Orb of Transmutation', () =>
               state.itemChanged(this.transmute())),
-          imageButton('assets/images/alchemy.png', () =>
+          imageButton('assets/images/alchemy.png', 'Orb of Alchemy', () =>
               state.itemChanged(this.alchemy())),
           emptySquare(),
           emptySquare(),

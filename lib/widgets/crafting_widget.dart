@@ -139,6 +139,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
           children: <Widget>[
             imageButton(
                 'assets/images/resonator.png',
+                'Use selected fossils',
                     () {
                   if (_selectedFossils.length == 0) {
                     _showToast("No fossils selected", context);
@@ -151,6 +152,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
             ),
             imageButton(
                 'assets/images/fossil.png',
+                'Select fossils',
                     () =>
                     FossilSelectDialog.getFossilSelectionDialog(
                         context,
@@ -165,14 +167,16 @@ class CraftingWidgetState extends State<CraftingWidget> {
             ),
             imageButton(
                 'assets/images/crafting.png',
+                'Master crafting mods',
                     () => _navigateToCraftingBench()
             ),
             imageButton(
                 'assets/images/essence.png',
+                'Essences',
                     () => _navigateToEssenceCraftWidget()
             ),
             emptySquare(),
-            iconButton(lastActionImagePath, () => repeatLastAction()
+            iconButton(lastActionImagePath, 'Repeat last action', () => repeatLastAction()
             ),
           ],
         );
