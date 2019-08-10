@@ -295,14 +295,14 @@ abstract class Item {
     return false;
   }
 
-  Widget getItemWidget(bool advancedMods) {
+  Widget getItemWidget(bool advancedMods, Function onTap) {
     return SingleChildScrollView(
       child: Column(children: <Widget>[
         getTitleWidget(),
         getStatWidget(),
         getImplicitWidget(),
         divider(),
-        advancedMods ? getAdvancedModWidget() : getModWidget(),
+        advancedMods ? getAdvancedModWidget(onTap) : getModWidget(onTap),
       ]),
     );
   }
@@ -334,18 +334,18 @@ abstract class Item {
 
   Widget getActionsWidget(CraftingWidgetState state);
 
-  Widget getAdvancedModWidget() {
+  Widget getAdvancedModWidget(Function onTap) {
     List<Widget> widgets = List();
     widgets.addAll(getAdvancedModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList(), modColor));
     widgets.addAll(getAdvancedModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList(), Colors.white));
-    return Column(children: widgets);
+    return GestureDetector(onTap: onTap, child: Column(children: widgets));
   }
   
-  Widget getModWidget() {
+  Widget getModWidget(Function onTap) {
     List<Widget> widgets = List();
     widgets.addAll(getCombinedModListWidgets(getMods().where((mod) => mod.domain != "crafted").toList(), modColor));
     widgets.addAll(getCombinedModListWidgets(getMods().where((mod) => mod.domain == "crafted").toList(), Colors.white));
-    return Column(children: widgets);
+    return GestureDetector(onTap: onTap, child: Column(children: widgets));
   }
 
   List<Widget> getModListWidgets(List<Mod> mods, Color color) {

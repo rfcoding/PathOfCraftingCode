@@ -71,7 +71,13 @@ class CraftingWidgetState extends State<CraftingWidget> {
       body: WillPopScope(
         child: Column(
           children: <Widget>[
-            Expanded(child: _item.getItemWidget(_showAdvancedMods)),
+            Expanded(child: _item.getItemWidget(
+                _showAdvancedMods,
+                () {
+                  setState(() {
+                    _showAdvancedMods = !_showAdvancedMods;
+                  });
+                })),
             inventoryWidget()
           ],
         ),
