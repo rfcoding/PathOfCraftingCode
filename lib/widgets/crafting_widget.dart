@@ -32,6 +32,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
   Item _item;
   List<Fossil> _selectedFossils = List();
   bool _showAdvancedMods = false;
+  Function lastAction;
+  String lastActionImagePath = 'assets/images/empty.png';
   final _saveFormKey = GlobalKey<FormState>();
 
 
@@ -141,7 +143,9 @@ class CraftingWidgetState extends State<CraftingWidget> {
                   if (_selectedFossils.length == 0) {
                     _showToast("No fossils selected", context);
                   } else {
-                    itemChanged(_item.useFossils(_selectedFossils));
+                    doAndStoreAction(
+                            () => itemChanged(_item.useFossils(_selectedFossils)),
+                        'assets/images/resonator.png');
                   }
                 }
             ),
@@ -168,11 +172,24 @@ class CraftingWidgetState extends State<CraftingWidget> {
                     () => _navigateToEssenceCraftWidget()
             ),
             emptySquare(),
-            emptySquare(),
+            iconButton(lastActionImagePath, () => repeatLastAction()
+            ),
           ],
         );
       }
     );
+  }
+
+  void doAndStoreAction(Function action, lastActionImagePath) {
+    this.lastActionImagePath = lastActionImagePath;
+    lastAction = action;
+    action();
+  }
+
+  void repeatLastAction() {
+    if (lastAction != null) {
+      lastAction();
+    }
   }
 
   void saveItem() {
@@ -257,7 +274,10 @@ class CraftingWidgetState extends State<CraftingWidget> {
             )
     )).then((result) {
       if (result is Mod) {
-        itemChanged(_item.tryAddMasterMod(result));
+        doAndStoreAction(
+                () => itemChanged(_item.tryAddMasterMod(result)),
+            'assets/images/crafting.png'
+        );
       }
       if (result is RemoveMods) {
         itemChanged(_item.removeMasterMods());
@@ -274,11 +294,13 @@ class CraftingWidgetState extends State<CraftingWidget> {
 
   void _navigateToEssenceCraftWidget() {
     Navigator.push(context, MaterialPageRoute(
-      builder: (BuildContext context) =>
-          EssenceCraftingWidget(item: _item)
+        builder: (BuildContext context) =>
+            EssenceCraftingWidget(item: _item)
     )).then((result) {
       if (result is Essence) {
-        itemChanged(_item.applyEssence(result));
+        doAndStoreAction(
+                () => itemChanged(_item.applyEssence(result)),
+            'assets/images/essence.png');
       }
     });
   }
