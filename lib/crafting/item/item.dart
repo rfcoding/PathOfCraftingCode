@@ -25,6 +25,8 @@ abstract class Item {
   ArmourProperties armourProperties;
   String itemClass;
   int itemLevel;
+  String domain;
+
   SpendingReport spendingReport;
 
   Random rng = new Random();
@@ -48,6 +50,7 @@ abstract class Item {
       ArmourProperties armourProperties,
       String itemClass,
       int itemLevel,
+      String domain,
       SpendingReport spendingReport) {
     this.name = name;
     this.prefixes = prefixes;
@@ -58,6 +61,7 @@ abstract class Item {
     this.itemClass = itemClass;
     this.implicits = implicits;
     this.itemLevel = itemLevel;
+    this.domain = domain;
     this.spendingReport = spendingReport;
 
     this.implicits.forEach((implicit) {
@@ -109,6 +113,7 @@ abstract class Item {
       "item_class": itemClass,
       "rarity": rarity,
       "item_level": itemLevel,
+      "domain": domain,
       "spending_report": spendingReport.toJson()
     };
   }
@@ -213,17 +218,7 @@ abstract class Item {
     assert(essenceModId != null);
     Mod mod = ModRepository.instance.getModById(essenceModId);
     assert(mod != null);
-    RareItem item = RareItem(
-        this.name,
-        List(),
-        List(),
-        this.implicits,
-        this.tags,
-        this.weaponProperties,
-        this.armourProperties,
-        this.itemClass,
-        this.itemLevel,
-        this.spendingReport);
+    RareItem item = RareItem.fromItem(this, List(), List());
     if (mod.generationType == "prefix") {
       item.prefixes.add(mod);
     } else {
@@ -268,9 +263,22 @@ abstract class Item {
   void reroll({List<Fossil> fossils: const[]});
 
   void addRandomMod();
-  
-  bool hasMaxPrefixes();
-  bool hasMaxSuffixes();
+
+  bool hasMaxPrefixes() {
+    return prefixes.length >= maxNumberOfPrefixes();
+  }
+
+  bool hasMaxSuffixes() {
+    return suffixes.length >= maxNumberOfSuffixes();
+  }
+
+  bool hasMaxMods() {
+    return prefixes.length + suffixes.length >= maxNumberOfAffixes();
+  }
+
+  int maxNumberOfAffixes();
+  int maxNumberOfPrefixes();
+  int maxNumberOfSuffixes();
 
   RareItem useFossils(List<Fossil> fossils);
 

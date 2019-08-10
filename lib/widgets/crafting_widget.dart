@@ -51,6 +51,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
           widget.baseItem.armourProperties,
           widget.baseItem.itemClass,
           widget.baseItem.itemLevel,
+          widget.baseItem.domain,
           SpendingReport());
       _item.tags.addAll(widget.extraTags);
     } else {
@@ -172,16 +173,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
                       });
                     })
             ),
-            imageButton(
-                'assets/images/crafting.png',
-                'Master crafting mods',
-                    () => _navigateToCraftingBench()
-            ),
-            imageButton(
-                'assets/images/essence.png',
-                'Essences',
-                    () => _navigateToEssenceCraftWidget()
-            ),
+            craftingButtonWidget(),
+            essenceButtonWidget(),
             emptySquare(),
             iconButton(lastActionImagePath, 'Repeat last action', () => repeatLastAction()
             ),
@@ -189,6 +182,28 @@ class CraftingWidgetState extends State<CraftingWidget> {
         );
       }
     );
+  }
+
+  Widget essenceButtonWidget() {
+    if (_item.domain == "item") {
+      return imageButton(
+          'assets/images/essence.png',
+          'Essences',
+              () => _navigateToEssenceCraftWidget()
+      );
+    }
+    return emptySquare();
+  }
+
+  Widget craftingButtonWidget() {
+    if (_item.domain == "item") {
+      return imageButton(
+          'assets/images/crafting.png',
+          'Master crafting mods',
+              () => _navigateToCraftingBench()
+      );
+    }
+    return emptySquare();
   }
 
   void doAndStoreAction(Function action, lastActionImagePath) {

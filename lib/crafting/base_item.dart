@@ -12,6 +12,7 @@ class BaseItem implements Comparable<BaseItem> {
   ArmourProperties armourProperties;
   Requirements requirements;
   int itemLevel;
+  String domain;
   
   BaseItem({
     this.name,
@@ -21,6 +22,7 @@ class BaseItem implements Comparable<BaseItem> {
     this.armourProperties,
     this.implicits,
     this.requirements,
+    this.domain,
   });
 
   factory BaseItem.fromJson(Map<String, dynamic> json) {
@@ -43,7 +45,8 @@ class BaseItem implements Comparable<BaseItem> {
       implicits: implicitMods,
       weaponProperties: weaponProperties,
       armourProperties: armourProperties,
-      requirements: Requirements.fromJson(json['requirements'])
+      requirements: Requirements.fromJson(json['requirements']),
+      domain: json['domain'],
     );
   }
 
