@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/repository/crafting_bench_repo.dart';
 import '../mod.dart';
 import '../../repository/mod_repo.dart';
 import '../../widgets/crafting_widget.dart';
@@ -169,31 +170,33 @@ abstract class Item {
     suffixes.add(suffix);
   }
 
-  Item tryAddMasterMod(Mod mod) {
+  Item tryAddMasterMod(CraftingBenchOption option) {
+    final mod = option.mod;
     mod.rerollStatValues();
+    var added = false;
     switch (mod.generationType) {
       case "prefix":
         if (!hasMaxPrefixes()) {
-          //TODO: Get list of all master crafting costs and replace this
-          if (mod.id == "DexMasterItemGenerationCannotChangeSuffixes") {
-            spendingReport.addSpending(CurrencyType.exalt, 2);
-          }
           prefixes.add(mod);
+          added = true;
         }
         break;
       case "suffix":
         if (!hasMaxSuffixes()) {
-          //TODO: Get list of all master crafting costs and replace this
-          if (mod.id == "StrMasterItemGenerationCannotChangePrefixes" ||
-              mod.id == "StrIntMasterItemGenerationCanHaveMultipleCraftedMods") {
-            spendingReport.addSpending(CurrencyType.exalt, 2);
-          }
           suffixes.add(mod);
+          added = true;
         }
         break;
       default:
         break;
     }
+
+    if(added) {
+      for(final cost in option.costs){
+        spendingReport.addSpending(CurrencyType.idToCurrency[cost.itemId], cost.count);
+      }
+    }
+
     return this;
   }
 
@@ -224,6 +227,7 @@ abstract class Item {
   }
 
   Item removeMasterMods() {
+    spendingReport.addSpending(CurrencyType.scour, 1);
     prefixes.removeWhere((mod) => mod.domain == "crafted");
     suffixes.removeWhere((mod) => mod.domain == "crafted");
     return this;

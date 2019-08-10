@@ -59,12 +59,20 @@ bool itemCanHaveMod(Item item, CraftingBenchOption option) {
   return !item.hasMaxSuffixes();
 }
 
+class CraftingBenchOptionCost {
+  final String itemId;
+  final int count;
+
+  CraftingBenchOptionCost(this.itemId, this.count);
+}
+
 class CraftingBenchOption {
   String benchDisplayName;
   String benchGroup;
   int benchTier;
   List<String> itemClasses;
   Mod mod;
+  List<CraftingBenchOptionCost> costs;
 
   CraftingBenchOption({
     this.benchDisplayName,
@@ -72,18 +80,25 @@ class CraftingBenchOption {
     this.benchTier,
     this.itemClasses,
     this.mod,
+    this.costs
   });
 
   factory CraftingBenchOption.fromJson(Map<String, dynamic> json) {
     String modId = json['mod_id'];
     Mod mod = ModRepository.instance.getModById(modId);
     String displayName = mod.getStatStringWithValueRanges().join("\n");
+    List<String> costItemTypes = List<String>.from(json['cost_types']);
+    List<int> costCounts = List<int>.from(json['cost_counts']);
+    final costs = List<CraftingBenchOptionCost>.generate(costItemTypes.length, 
+                                          (index) => CraftingBenchOptionCost(costItemTypes[index], 
+                                                                            costCounts[index]));
     return CraftingBenchOption(
       benchDisplayName: displayName,
       benchGroup: json['bench_group'],
       benchTier: json['bench_tier'],
       itemClasses: List<String>.from(json['item_classes']),
       mod: mod,
+      costs: costs
     );
   }
 }
