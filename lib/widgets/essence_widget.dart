@@ -61,9 +61,14 @@ class EssenceCraftingState extends State<EssenceCraftingWidget> {
     List<Widget> listContent = List();
     for (int i = 0; i < essences.length; i++) {
       Essence essence = essences[i];
+      String essenceModId = essence.mods[widget.item.itemClass];
+      assert(essenceModId != null);
+      Mod mod = ModRepository.instance.getModById(essenceModId);
+      String subtitle = mod.getStatStringWithValueRanges().join('\n');
       listContent.add(
         ListTile(
           title: Text(essence.name),
+          subtitle: Text(subtitle),
           onTap:() =>  _returnWithSelectedEssence(essence),)
       );
     }
