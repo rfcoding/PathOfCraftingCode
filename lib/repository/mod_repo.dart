@@ -49,7 +49,8 @@ class ModRepository {
     jsonMap.forEach((key, data) {
       String type = data['type'];
       List<String> tags = _modTagsMap[type];
-      Mod mod = Mod.fromJson(key, data, tags);
+      List<String> addsTags = List<String>.from(data['adds_tags']);
+      Mod mod = Mod.fromJson(key, data, tags, addsTags);
       _allModsMap[mod.id] = mod;
       if (mod.generationType == "prefix" || mod.generationType == "suffix") {
         if (_modTierMap[mod.getGroupTagString()] == null) {
@@ -97,7 +98,7 @@ class ModRepository {
 
   Mod getPrefix(Item item, List<Fossil> fossils) {
     List<Mod> possibleMods = List();
-    item.tags.forEach((tag) {
+    item.getAllTags().forEach((tag) {
       List<Mod> mods = _prefixModMap[tag];
       if (mods != null) {
         possibleMods.addAll(mods.where((mod) =>
@@ -121,7 +122,7 @@ class ModRepository {
 
   Mod getSuffix(Item item, List<Fossil> fossils) {
     List<Mod> possibleMods = List();
-    item.tags.forEach((tag) {
+    item.getAllTags().forEach((tag) {
       List<Mod> mods = _suffixModMap[tag];
       if (mods != null) {
         possibleMods.addAll(mods.where((mod) =>
@@ -151,8 +152,7 @@ class ModRepository {
       int weight = 1;
       int defaultWeight = 0;
       for (SpawnWeight spawnWeight in mod.spawnWeights) {
-
-        if (item.tags.contains(spawnWeight.tag)) {
+        if (item.getAllTags().contains(spawnWeight.tag)) {
           if (spawnWeight.weight == 0) {
             weight = 0;
             break;
@@ -165,7 +165,10 @@ class ModRepository {
       }
       // Ugly bow hack :(
       if (isBow) {
-        if (mod.spawnWeights.any((weight) => weight.tag == "bow" && weight.weight > 0)) {
+        if ((item.hasCannotRollAttackMods() && mod.spawnWeights.any((weight) => weight.tag == "no_attack_mods"))
+        || (item.hasCannotRollCasterMods() && mod.spawnWeights.any((weight) => weight.tag == "no_caster_mods"))) {
+          weight = 0;
+        } else if (mod.spawnWeights.any((weight) => weight.tag == "bow" && weight.weight > 0)) {
           weight = mod.spawnWeights.firstWhere((weight) => weight.tag == "bow").weight;
         }
       }
@@ -178,6 +181,9 @@ class ModRepository {
         weightIdMap[mod.id] = weight;
       }
     });
+    if (totalWeight == 0) {
+      return null;
+    }
     int roll = rng.nextInt(totalWeight);
     int sum = 0;
     for (MapEntry<String, int> entry in weightIdMap.entries) {

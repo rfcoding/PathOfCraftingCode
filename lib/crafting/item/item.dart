@@ -151,6 +151,9 @@ abstract class Item {
 
   void addPrefix({List<Fossil> fossils: const []}) {
     Mod prefix = ModRepository.instance.getPrefix(this, fossils);
+    if (prefix == null) {
+      return;
+    }
     print("Adding Prefix: ${prefix.debugString()}");
     prefix.rerollStatValues();
     prefixes.add(prefix);
@@ -158,6 +161,9 @@ abstract class Item {
 
   void addSuffix({List<Fossil> fossils: const []}) {
     Mod suffix = ModRepository.instance.getSuffix(this, fossils);
+    if (suffix == null) {
+      return;
+    }
     print("Adding Suffix: ${suffix.debugString()}");
     suffix.rerollStatValues();
     suffixes.add(suffix);
@@ -236,6 +242,14 @@ abstract class Item {
 
   bool hasCannotChangeSuffixes() {
     return prefixes.any((mod) => mod.group == "ItemGenerationCannotChangeSuffixes");
+  }
+
+  bool hasCannotRollAttackMods() {
+    return suffixes.any((mod) => mod.group == "ItemGenerationCannotRollAttackAffixes");
+  }
+
+  bool hasCannotRollCasterMods() {
+    return suffixes.any((mod) => mod.group == "ItemGenerationCannotRollCasterAffixes");
   }
 
   void reroll({List<Fossil> fossils: const[]});
@@ -839,6 +853,17 @@ abstract class Item {
 
   String getShaperImagePath() {
     return 'assets/images/shaper-symbol.png';
+  }
+
+  List<String> getAllTags() {
+    List<String> allTags = List();
+    allTags.addAll(tags);
+    getMods().forEach((mod) {
+      if (mod.addsTags != null && mod.addsTags.isNotEmpty) {
+        allTags.addAll(mod.addsTags);
+      }
+    });
+    return allTags;
   }
 
   Color getTextColor();

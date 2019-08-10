@@ -15,6 +15,7 @@ class Mod implements Comparable<Mod> {
   String type;
   int requiredLevel;
   List<String> tags;
+  List<String> addsTags;
 
   Mod({
     this.id,
@@ -27,34 +28,38 @@ class Mod implements Comparable<Mod> {
     this.group,
     this.type,
     this.requiredLevel,
-    this.tags
+    this.tags,
+    this.addsTags,
   });
 
-  factory Mod.fromJson(String key, Map<String, dynamic> json, List<String> tags) {
-    var spawnWeights = json['spawn_weights'] as List;
+  factory Mod.fromJson(String key, Map<String, dynamic> data, List<String> tags, List<String> addsTags) {
+    var spawnWeights = data['spawn_weights'] as List;
     List<SpawnWeight> spawnWeightList =
         spawnWeights.map((s) => SpawnWeight.fromJson(s)).toList();
 
-    var stats = json['stats'] as List;
+    var stats = data['stats'] as List;
     List<Stat> statList = stats.map((s) => Stat.fromJson(s)).toList();
+
     return Mod(
         id: key,
-        name: json['name'],
+        name: data['name'],
         spawnWeights: spawnWeightList,
         stats: statList,
-        isEssenceOnly: json['is_essence_only'],
-        domain: json['domain'],
-        generationType: json['generation_type'],
-        group: json['group'],
-        type: json['type'],
-        requiredLevel: json['required_level'],
-        tags: tags);
+        isEssenceOnly: data['is_essence_only'],
+        domain: data['domain'],
+        generationType: data['generation_type'],
+        group: data['group'],
+        type: data['type'],
+        requiredLevel: data['required_level'],
+        tags: tags,
+        addsTags: addsTags);
   }
 
   factory Mod.fromSavedJson(Map<String, dynamic> data) {
     var key = data['id'];
     List<String> tags = new List<String>.from(json.decode(data['tags']));
-    return Mod.fromJson(key, data, tags);
+    List<String> addsTags = new List<String>.from(json.decode(data['adds_tags']));
+    return Mod.fromJson(key, data, tags, addsTags);
   }
 
   factory Mod.copy(Mod mod) {
@@ -74,6 +79,7 @@ class Mod implements Comparable<Mod> {
         type: mod.type,
         requiredLevel: mod.requiredLevel,
         tags: List.from(mod.tags),
+        addsTags: List.from(mod.addsTags),
     );
   }
 
@@ -89,7 +95,8 @@ class Mod implements Comparable<Mod> {
       "group": group,
       "type": type,
       "required_level": requiredLevel,
-      "tags": json.encode(tags)
+      "tags": json.encode(tags),
+      "adds_tags": json.encode(addsTags),
     };
   }
 
