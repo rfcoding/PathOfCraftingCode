@@ -174,6 +174,14 @@ abstract class Item {
     final mod = option.mod;
     mod.rerollStatValues();
     var added = false;
+
+    if (getMods().contains(mod)) {
+      getMods().firstWhere((m) => m == mod).rerollStatValues();
+      for(final cost in option.costs){
+        spendingReport.addSpending(CurrencyType.idToCurrency[cost.itemId], cost.count);
+      }
+      return this;
+    }
     switch (mod.generationType) {
       case "prefix":
         if (!hasMaxPrefixes()) {
