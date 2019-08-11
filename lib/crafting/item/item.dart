@@ -841,7 +841,7 @@ abstract class Item {
       statWidgets.add(
           itemRow(
               statWithColoredChildren(
-                  "Critical Strike Chance: ",
+                  "Block Chance: ",
                   [coloredText("$totalBlockChance%", addedBlockChance > 0 ? modColor : statTextColor)])));
     }
     if (baseArmour != 0) {
