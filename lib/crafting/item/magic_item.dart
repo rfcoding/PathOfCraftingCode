@@ -22,6 +22,7 @@ class MagicItem extends Item {
       ArmourProperties armourProperties,
       String itemClass,
       int itemLevel,
+      String domain,
       SpendingReport spendingReport,
       )
       : super(
@@ -34,6 +35,7 @@ class MagicItem extends Item {
       armourProperties,
       itemClass,
       itemLevel,
+      domain,
       spendingReport);
 
   factory MagicItem.fromJson(Map<String, dynamic> data) {
@@ -64,8 +66,24 @@ class MagicItem extends Item {
         armourProperties,
         data['item_class'],
         data['item_level'],
+        data['domain'],
         spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null
     );
+  }
+
+  factory MagicItem.fromItem(Item item, List<Mod> prefixes, List<Mod> suffixes) {
+    return MagicItem(
+        item.name,
+        prefixes,
+        suffixes,
+        item.implicits,
+        item.tags,
+        item.weaponProperties,
+        item.armourProperties,
+        item.itemClass,
+        item.itemLevel,
+        item.domain,
+        item.spendingReport);
   }
 
   @override
@@ -98,23 +116,13 @@ class MagicItem extends Item {
 
   RareItem regal() {
     spendingReport.addSpending(CurrencyType.regal, 1);
-    RareItem item = RareItem(
-        this.name,
-        this.prefixes,
-        this.suffixes,
-        this.implicits,
-        this.tags,
-        this.weaponProperties,
-        this.armourProperties,
-        this.itemClass,
-        this.itemLevel,
-        this.spendingReport);
+    RareItem item = RareItem.fromItem(this, prefixes, suffixes);
     item.addRandomMod();
     return item;
   }
 
   MagicItem augment() {
-    if (prefixes.length + suffixes.length == 2) {
+    if (prefixes.length + suffixes.length == maxNumberOfAffixes()) {
       return this;
     }
     spendingReport.addSpending(CurrencyType.augmentation, 1);
@@ -130,17 +138,7 @@ class MagicItem extends Item {
 
   NormalItem scour() {
     spendingReport.addSpending(CurrencyType.scour, 1);
-    return NormalItem(
-        this.name,
-        new List(),
-        new List(),
-        this.implicits,
-        this.tags,
-        this.weaponProperties,
-        this.armourProperties,
-        this.itemClass,
-        this.itemLevel,
-        this.spendingReport);
+    return NormalItem.fromItem(this, List(), List());
   }
 
   MagicItem annulment() {
@@ -167,17 +165,7 @@ class MagicItem extends Item {
 
   @override
   RareItem useFossils(List<Fossil> fossils) {
-    RareItem item = RareItem(
-        this.name,
-        List(),
-        List(),
-        this.implicits,
-        this.tags,
-        this.weaponProperties,
-        this.armourProperties,
-        this.itemClass,
-        this.itemLevel,
-        this.spendingReport);
+    RareItem item = RareItem.fromItem(this, List(), List());
     return item.useFossils(fossils);
   }
 
@@ -191,20 +179,23 @@ class MagicItem extends Item {
     return this;
   }
 
-  @override
-  bool hasMaxPrefixes() {
-    return prefixes.length >= 1;
+  int maxNumberOfAffixes() {
+    return 2;
   }
-  @override
-  bool hasMaxSuffixes() {
-    return suffixes.length >= 1;
+
+  int maxNumberOfPrefixes() {
+    return 1;
+  }
+
+  int maxNumberOfSuffixes() {
+    return 1;
   }
 
   @override
   void addRandomMod() {
     List<Mod> mods = getMods();
     // Max mods
-    if (mods.length == 2) {
+    if (mods.length == maxNumberOfAffixes()) {
       return;
     }
     else if (mods.length == 0) {
@@ -213,7 +204,7 @@ class MagicItem extends Item {
       } else {
         addSuffix();
       }
-    } else if (prefixes.length == 1) {
+    } else if (hasMaxPrefixes()) {
       addSuffix();
     } else {
       addPrefix();

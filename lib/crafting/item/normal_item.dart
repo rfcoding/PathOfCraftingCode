@@ -21,6 +21,7 @@ class NormalItem extends Item {
       ArmourProperties armourProperties,
       String itemClass,
       int itemLevel,
+      String domain,
       SpendingReport spendingReport)
       : super(
       name,
@@ -32,6 +33,7 @@ class NormalItem extends Item {
       armourProperties,
       itemClass,
       itemLevel,
+      domain,
       spendingReport);
 
   factory NormalItem.fromJson(Map<String, dynamic> data) {
@@ -62,9 +64,26 @@ class NormalItem extends Item {
         armourProperties,
         data['item_class'],
         data['item_level'],
+        data['domain'],
         spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null
     );
   }
+
+  factory NormalItem.fromItem(Item item, List<Mod> prefixes, List<Mod> suffixes) {
+    return NormalItem(
+        item.name,
+        prefixes,
+        suffixes,
+        item.implicits,
+        item.tags,
+        item.weaponProperties,
+        item.armourProperties,
+        item.itemClass,
+        item.itemLevel,
+        item.domain,
+        item.spendingReport);
+  }
+
   @override
   Color getBorderColor() {
     return Color(0xFF696563);
@@ -92,51 +111,21 @@ class NormalItem extends Item {
 
   MagicItem transmute() {
     this.spendingReport.addSpending(CurrencyType.transmute, 1);
-    MagicItem item = MagicItem(
-        this.name,
-        new List(),
-        new List(),
-        this.implicits,
-        this.tags,
-        this.weaponProperties,
-        this.armourProperties,
-        this.itemClass,
-        this.itemLevel,
-        this.spendingReport);
+    MagicItem item = MagicItem.fromItem(this, List(), List());
     item.reroll();
     return item;
   }
 
   RareItem alchemy() {
     this.spendingReport.addSpending(CurrencyType.alchemy, 1);
-    RareItem item = RareItem(
-        this.name,
-        List(),
-        List(),
-        this.implicits,
-        this.tags,
-        this.weaponProperties,
-        this.armourProperties,
-        this.itemClass,
-        this.itemLevel,
-        this.spendingReport);
+    RareItem item = RareItem.fromItem(this, List(), List());
     item.reroll();
     return item;
   }
 
   @override
   RareItem useFossils(List<Fossil> fossils) {
-    RareItem item = RareItem(
-        this.name,
-        List(),
-        List(),
-        this.implicits,
-        this.tags,
-        this.weaponProperties,
-        this.armourProperties,
-        this.itemClass,
-        this.itemLevel,
-        this.spendingReport);
+    RareItem item = RareItem.fromItem(this, List(), List());
     return item.useFossils(fossils);
   }
 
@@ -157,6 +146,21 @@ class NormalItem extends Item {
   @override
   bool hasMaxSuffixes() {
     return true;
+  }
+
+  @override
+  int maxNumberOfAffixes() {
+    return 0;
+  }
+
+  @override
+  int maxNumberOfPrefixes() {
+    return 0;
+  }
+
+  @override
+  int maxNumberOfSuffixes() {
+    return 0;
   }
 
   @override

@@ -29,7 +29,7 @@ class ItemRepository {
       BaseItem item = BaseItem.fromJson(data);
       String itemClass = item.itemClass;
 
-      if (data["domain"] == "item" && data["release_state"] == "released") {
+      if (shouldLoadDomain(data["domain"]) && data["release_state"] == "released") {
         if (itemClassToBaseItemMap[itemClass] == null) {
           itemClassToBaseItemMap[itemClass] = List();
         }
@@ -37,6 +37,10 @@ class ItemRepository {
       }
     });
     return true;
+  }
+
+  bool shouldLoadDomain(String domain) {
+    return domain == "item" || domain == "misc" || domain == "abyss_jewel";
   }
 
   Future<bool> loadItemClassesFromJson() async {

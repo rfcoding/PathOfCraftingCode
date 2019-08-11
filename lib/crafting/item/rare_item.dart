@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'dart:math';
 import 'item.dart';
 import 'normal_item.dart';
 import 'magic_item.dart';
@@ -27,6 +28,7 @@ class RareItem extends Item {
       ArmourProperties armourProperties,
       String itemClass,
       int itemLevel,
+      String domain,
       SpendingReport spendingReport)
       : super(
       name,
@@ -38,6 +40,7 @@ class RareItem extends Item {
       armourProperties,
       itemClass,
       itemLevel,
+      domain,
       spendingReport);
 
   factory RareItem.fromJson(Map<String, dynamic> data) {
@@ -68,8 +71,25 @@ class RareItem extends Item {
       armourProperties,
       data['item_class'],
       data['item_level'],
+      data['domain'],
       spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : SpendingReport()
     );
+  }
+
+
+  factory RareItem.fromItem(Item item, List<Mod> prefixes, List<Mod> suffixes) {
+    return RareItem(
+        item.name,
+        prefixes,
+        suffixes,
+        item.implicits,
+        item.tags,
+        item.weaponProperties,
+        item.armourProperties,
+        item.itemClass,
+        item.itemLevel,
+        item.domain,
+        item.spendingReport);
   }
 
   @override
@@ -105,22 +125,13 @@ class RareItem extends Item {
     if (suffixes.isEmpty) {
       addSuffix(fossils: fossils);
     }
-    final int roll = rng.nextInt(100);
-    int numberOfMods = 4;
-    // 65% chance of 4 mods, 25% 5 mods, 10% 6 mods
-    if (roll >= 90) {
-      numberOfMods = 6;
-    } else if (roll >= 65) {
-      numberOfMods = 5;
-    }
-    print("number of mods: $numberOfMods");
+    int numberOfMods = getNumberOfNewMods();
     final int currentNumberOfMods = prefixes.length + suffixes.length;
     int numberOfNewMods = numberOfMods - currentNumberOfMods;
-    print("number of new mods: $numberOfNewMods");
     for (int i = 0; i < numberOfNewMods; i++) {
-      if (prefixes.length == 3) {
+      if (hasMaxPrefixes()) {
         addSuffix(fossils: fossils);
-      } else if (suffixes.length == 3) {
+      } else if (hasMaxSuffixes()) {
         addPrefix(fossils: fossils);
       } else if (rng.nextBool()) {
         addPrefix(fossils: fossils);
@@ -130,6 +141,26 @@ class RareItem extends Item {
     }
   }
 
+  int getNumberOfNewMods() {
+    final int roll = rng.nextInt(100);
+    int numberOfMods = 0;
+    if (domain == "item") {
+      numberOfMods = 4;
+      // 65% chance of 4 mods, 25% 5 mods, 10% 6 mods
+      if (roll >= 90) {
+        numberOfMods = 6;
+      } else if (roll >= 65) {
+        numberOfMods = 5;
+      }
+    } else {
+      numberOfMods = 3;
+      if (roll >= 85) {
+        numberOfMods = 4;
+      }
+    }
+    return numberOfMods;
+  }
+
   Item scour() {
     this.spendingReport.addSpending(CurrencyType.scour, 1);
     if (hasCannotChangePrefixes()) {
@@ -137,21 +168,11 @@ class RareItem extends Item {
     } else if (hasCannotChangeSuffixes()) {
       return scourPrefixes();
     }
-    return NormalItem(
-        this.name,
-        new List(),
-        new List(),
-        this.implicits,
-        this.tags,
-        this.weaponProperties,
-        this.armourProperties,
-        this.itemClass,
-        this.itemLevel,
-        this.spendingReport);
+    return NormalItem.fromItem(this, List(), List());
   }
 
   RareItem exalt() {
-    if (prefixes.length + suffixes.length == 6) {
+    if (hasMaxMods()) {
       return this;
     }
     this.spendingReport.addSpending(CurrencyType.exalt, 1);
@@ -212,29 +233,9 @@ class RareItem extends Item {
   @override
   Item scourPrefixes() {
     if (suffixes.length == 0) {
-      return NormalItem(
-          name,
-          List(),
-          List(),
-          implicits,
-          tags,
-          weaponProperties,
-          armourProperties,
-          itemClass,
-          itemLevel,
-          spendingReport);
+      return NormalItem.fromItem(this, List(), List());
     } else if (suffixes.length == 1) {
-      return MagicItem(
-          name,
-          List(),
-          suffixes,
-          implicits,
-          tags,
-          weaponProperties,
-          armourProperties,
-          itemClass,
-          itemLevel,
-          spendingReport);
+      return MagicItem.fromItem(this, List(), suffixes);
     } else {
       prefixes.clear();
       return this;
@@ -244,29 +245,9 @@ class RareItem extends Item {
   @override
   Item scourSuffixes() {
     if (prefixes.length == 0) {
-      return NormalItem(
-          name,
-          List(),
-          List(),
-          implicits,
-          tags,
-          weaponProperties,
-          armourProperties,
-          itemClass,
-          itemLevel,
-          spendingReport);
+      return NormalItem.fromItem(this, List(), List());
     } else if (prefixes.length == 1) {
-      return MagicItem(
-          name,
-          prefixes,
-          List(),
-          implicits,
-          tags,
-          weaponProperties,
-          armourProperties,
-          itemClass,
-          itemLevel,
-          spendingReport);
+      return MagicItem.fromItem(this, prefixes, List());
     } else {
       suffixes.clear();
       return this;
@@ -276,16 +257,15 @@ class RareItem extends Item {
   @override
   void addRandomMod() {
     // Max mods
-    if (getMods().length == 6) {
+    if (hasMaxMods()) {
       return;
     }
-    if (prefixes.length == 3) {
+    if (hasMaxPrefixes()) {
       addSuffix();
-    } else if (suffixes.length == 3){
+    } else if (hasMaxSuffixes()){
       addPrefix();
     } else {
-      bool prefix = rng.nextInt(2) == 1;
-      if (prefix) {
+      if (rng.nextBool()) {
         addPrefix();
       } else {
         addSuffix();
@@ -294,12 +274,18 @@ class RareItem extends Item {
   }
 
   @override
-  bool hasMaxPrefixes() {
-    return prefixes.length >= 3;
+  int maxNumberOfAffixes() {
+    return domain == "item" ? 6 : 4;
   }
+
   @override
-  bool hasMaxSuffixes() {
-    return suffixes.length >= 3;
+  int maxNumberOfPrefixes() {
+    return domain == "item" ? 3 : 2;
+  }
+
+  @override
+  int maxNumberOfSuffixes() {
+    return domain == "item" ? 3 : 2;
   }
 
   @override

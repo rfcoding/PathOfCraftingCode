@@ -68,7 +68,7 @@ class ModRepository {
         } else if ("suffix" == mod.generationType) {
           modMap = _suffixModMap;
         }
-        if (modMap != null && "item" == mod.domain && !mod.isEssenceOnly) {
+        if (modMap != null && shouldLoadDomain(mod.domain) && !mod.isEssenceOnly) {
           String tag = spawnWeight.tag;
           List<Mod> modList = modMap[tag];
           if (modList == null) {
@@ -84,6 +84,10 @@ class ModRepository {
       });
     });
     return true;
+  }
+
+  bool shouldLoadDomain(String domain) {
+    return "item" == domain || "misc" == domain || "abyss_jewel" == domain;
   }
 
   Future<bool> loadModTypesJSONFromLocalStorage() async {
@@ -103,10 +107,11 @@ class ModRepository {
       if (mods != null) {
         possibleMods.addAll(mods.where((mod) =>
         !item.alreadyHasModGroup(mod) &&
-            item.itemLevel >= mod.requiredLevel));
+            item.itemLevel >= mod.requiredLevel && mod.domain == item.domain));
       }
     });
-    fossils.map((fossil) => fossil.addedMods).expand((modId) => modId).forEach((modId) {
+    fossils.map((fossil) => fossil.addedMods).expand((modId) => modId).forEach((
+        modId) {
       Mod mod = getModById(modId);
       if (mod.generationType == "prefix" && !item.alreadyHasModGroup(mod)) {
         possibleMods.add(mod);
@@ -114,10 +119,9 @@ class ModRepository {
     });
     possibleMods.addAll(_prefixModMap["default"].where((mod) =>
     !item.alreadyHasModGroup(mod) &&
-        item.itemLevel >= mod.requiredLevel
+        item.itemLevel >= mod.requiredLevel && mod.domain == item.domain
     ));
     return getMod(possibleMods, item, fossils);
-
   }
 
   Mod getSuffix(Item item, List<Fossil> fossils) {
@@ -127,10 +131,12 @@ class ModRepository {
       if (mods != null) {
         possibleMods.addAll(mods.where((mod) =>
         !item.alreadyHasModGroup(mod) &&
-            item.itemLevel >= mod.requiredLevel));
+            item.itemLevel >= mod.requiredLevel
+            && mod.domain == item.domain));
       }
     });
-    fossils.map((fossil) => fossil.addedMods).expand((modId) => modId).forEach((modId) {
+    fossils.map((fossil) => fossil.addedMods).expand((modId) => modId).forEach((
+        modId) {
       Mod mod = getModById(modId);
       if (mod.generationType == "suffix" && !item.alreadyHasModGroup(mod)) {
         possibleMods.add(mod);
@@ -140,6 +146,7 @@ class ModRepository {
     possibleMods.addAll(_suffixModMap["default"].where((mod) =>
     !item.alreadyHasModGroup(mod) &&
         item.itemLevel >= mod.requiredLevel
+        && mod.domain == item.domain
     ));
     return getMod(possibleMods, item, fossils);
   }
