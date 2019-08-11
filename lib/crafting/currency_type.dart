@@ -15,6 +15,8 @@ class CurrencyType {
   static final String vaal = "vaal";
   static final String gcp = "gcp";
   static final String glassblower = "glassblower";
+  static final String armourers = "armourers";
+  static final String whetstone = "whetstone";
 
   static final Map<String, String> idToCurrency = {
     "Metadata/Items/Currency/CurrencyAddModToRare" : exalt,
@@ -33,6 +35,8 @@ class CurrencyType {
     "Metadata/Items/Currency/CurrencyCorrupt": vaal,
     "Metadata/Items/Currency/CurrencyGemQuality": gcp,
     "Metadata/Items/Currency/CurrencyFlaskQuality": glassblower,
+    "Metadata/Items/Currency/CurrencyArmourQuality": armourers,
+    "Metadata/Items/Currency/CurrencyWeaponQuality": whetstone,
   };
 
   static final Map<String, String> idToImagePath = {
@@ -51,6 +55,8 @@ class CurrencyType {
     "Metadata/Items/Currency/CurrencyPassiveRefund": 'assets/images/regret.png',
     "Metadata/Items/Currency/CurrencyCorrupt": 'assets/images/vaal.png',
     "Metadata/Items/Currency/CurrencyGemQuality": 'assets/images/gcp.png',
-    "Metadata/Items/Currency/CurrencyFlaskQuality": 'assets/images/glassblower.png'
+    "Metadata/Items/Currency/CurrencyFlaskQuality": 'assets/images/glassblower.png',
+    "Metadata/Items/Currency/CurrencyArmourQuality": 'assets/images/armourers.png',
+    "Metadata/Items/Currency/CurrencyWeaponQuality": 'assets/images/whetstone.png',
   };
 }
