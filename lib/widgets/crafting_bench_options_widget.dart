@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/crafting/currency_type.dart';
 import '../repository/crafting_bench_repo.dart';
 import '../crafting/item/item.dart';
 import '../crafting/mod.dart';
@@ -98,11 +99,29 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
       columnContent.add(
         ListTile(
           title: Text(option.benchDisplayName),
-          trailing: Text(i.toString()),
-          onTap: () => Navigator.of(context).pop(option.mod),
+          trailing: option.costs.length > 0 
+            ? _buildCostWidget(option.costs[0]) 
+            : Text(i.toString()), 
+          onTap: () => Navigator.of(context).pop(option),
         )
       );
     }
     return columnContent;
+  }
+
+  Widget _buildCostWidget(CraftingBenchOptionCost cost) {
+    final imagePath = CurrencyType.idToImagePath[cost.itemId];
+      
+      if(imagePath == null){
+        print("no image path for currency ${cost.itemId}");
+        return Container();
+      }
+
+      return Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text("${cost.count}x"), 
+                Image(image: AssetImage(imagePath), width: 20, height: 20,),
+                ],);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/repository/crafting_bench_repo.dart';
 import '../crafting/base_item.dart';
 import '../crafting/fossil.dart';
 import '../crafting/item/item.dart';
@@ -283,7 +284,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
                 item: _item
             )
     )).then((result) {
-      if (result is Mod) {
+      if (result is CraftingBenchOption) {
         doAndStoreAction(
                 () => itemChanged(_item.tryAddMasterMod(result)),
             'assets/images/crafting.png'

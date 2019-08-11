@@ -17727,7 +17727,7 @@
       "directions": "Combine 100 Splinters to create a Timeless Eternal Emblem.",
       "full_stack_turns_into": "Metadata/Items/MapFragments/CurrencyLegionFragmentEternal",
       "stack_size": 100,
-      "stack_size_currency_tab": 100
+      "stack_size_currency_tab": 5000
     },
     "release_state": "released",
     "requirements": null,
@@ -17753,7 +17753,7 @@
       "directions": "Combine 100 Splinters to create a Timeless Karui Emblem.",
       "full_stack_turns_into": "Metadata/Items/MapFragments/CurrencyLegionFragmentKarui",
       "stack_size": 100,
-      "stack_size_currency_tab": 100
+      "stack_size_currency_tab": 5000
     },
     "release_state": "released",
     "requirements": null,
@@ -17779,7 +17779,7 @@
       "directions": "Combine 100 Splinters to create a Timeless Maraketh Emblem.",
       "full_stack_turns_into": "Metadata/Items/MapFragments/CurrencyLegionFragmentMaraketh",
       "stack_size": 100,
-      "stack_size_currency_tab": 100
+      "stack_size_currency_tab": 5000
     },
     "release_state": "released",
     "requirements": null,
@@ -17805,7 +17805,7 @@
       "directions": "Combine 100 Splinters to create a Timeless Templar Emblem.",
       "full_stack_turns_into": "Metadata/Items/MapFragments/CurrencyLegionFragmentTemplar",
       "stack_size": 100,
-      "stack_size_currency_tab": 100
+      "stack_size_currency_tab": 5000
     },
     "release_state": "released",
     "requirements": null,
@@ -17831,7 +17831,7 @@
       "directions": "Combine 100 Splinters to create a Timeless Vaal Emblem.",
       "full_stack_turns_into": "Metadata/Items/MapFragments/CurrencyLegionFragmentVaal",
       "stack_size": 100,
-      "stack_size_currency_tab": 100
+      "stack_size_currency_tab": 5000
     },
     "release_state": "released",
     "requirements": null,
@@ -30654,7 +30654,8 @@
       "one_hand_weapon",
       "onehand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Daggers/Dagger4.dds",
@@ -30834,7 +30835,8 @@
       "one_hand_weapon",
       "onehand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Daggers/Dagger2.dds",
@@ -30906,7 +30908,8 @@
       "one_hand_weapon",
       "onehand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Daggers/Dagger4.dds",
@@ -30978,7 +30981,8 @@
       "one_hand_weapon",
       "onehand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Daggers/Dagger2.dds",
@@ -31158,7 +31162,8 @@
       "one_hand_weapon",
       "onehand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Daggers/Dagger4.dds",
@@ -31338,7 +31343,8 @@
       "one_hand_weapon",
       "onehand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Daggers/Dagger2.dds",
@@ -31376,7 +31382,8 @@
       "one_hand_weapon",
       "onehand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Daggers/Dagger9.dds",
@@ -31414,7 +31421,8 @@
       "one_hand_weapon",
       "onehand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Daggers/Dagger9.dds",
@@ -31452,7 +31460,8 @@
       "one_hand_weapon",
       "onehand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Daggers/Dagger9.dds",
@@ -37703,7 +37712,8 @@
       "two_hand_weapon",
       "twohand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff4.dds",
@@ -37739,7 +37749,8 @@
       "two_hand_weapon",
       "twohand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff5.dds",
@@ -37811,7 +37822,8 @@
       "two_hand_weapon",
       "twohand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff7.dds",
@@ -37919,7 +37931,8 @@
       "two_hand_weapon",
       "twohand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff4.dds",
@@ -37955,7 +37968,8 @@
       "two_hand_weapon",
       "twohand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff5.dds",
@@ -38027,7 +38041,8 @@
       "two_hand_weapon",
       "twohand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff7.dds",
@@ -38135,7 +38150,8 @@
       "two_hand_weapon",
       "twohand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff4.dds",
@@ -38171,7 +38187,8 @@
       "two_hand_weapon",
       "twohand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff5.dds",
@@ -38243,7 +38260,8 @@
       "two_hand_weapon",
       "twohand",
       "weapon",
-      "default"
+      "default",
+      "no_caster_mods"
     ],
     "visual_identity": {
       "dds_file": "Art/2DItems/Weapons/TwoHandWeapons/Staves/Staff7.dds",

@@ -2,6 +2,8 @@
   {
     "bench_group": "MapItemDropQuantity",
     "bench_tier": 0,
+    "cost_counts": [],
+    "cost_types": [],
     "item_classes": [
       "Map",
       "MapFragment"
@@ -12,6 +14,8 @@
   {
     "bench_group": "MapItemDropQuantity",
     "bench_tier": 0,
+    "cost_counts": [],
+    "cost_types": [],
     "item_classes": [
       "Map",
       "MapFragment"
@@ -22,6 +26,8 @@
   {
     "bench_group": "MapItemDropQuantity",
     "bench_tier": 0,
+    "cost_counts": [],
+    "cost_types": [],
     "item_classes": [
       "Map",
       "MapFragment"
@@ -32,6 +38,8 @@
   {
     "bench_group": "MapItemDropQuantity",
     "bench_tier": 0,
+    "cost_counts": [],
+    "cost_types": [],
     "item_classes": [
       "Map",
       "MapFragment"
@@ -42,6 +50,8 @@
   {
     "bench_group": "MapItemDropQuantity",
     "bench_tier": 0,
+    "cost_counts": [],
+    "cost_types": [],
     "item_classes": [
       "Map",
       "MapFragment"
@@ -52,6 +62,8 @@
   {
     "bench_group": "MapItemDropQuantity",
     "bench_tier": 0,
+    "cost_counts": [],
+    "cost_types": [],
     "item_classes": [
       "Map",
       "MapFragment"
@@ -62,6 +74,8 @@
   {
     "bench_group": "MapItemDropQuantity",
     "bench_tier": 0,
+    "cost_counts": [],
+    "cost_types": [],
     "item_classes": [
       "Map",
       "MapFragment"
@@ -72,6 +86,8 @@
   {
     "bench_group": "MapItemDropQuantity",
     "bench_tier": 0,
+    "cost_counts": [],
+    "cost_types": [],
     "item_classes": [
       "Map",
       "MapFragment"
@@ -82,6 +98,12 @@
   {
     "bench_group": "AbyssLeagueCrafted",
     "bench_tier": 0,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Map"
     ],
@@ -91,6 +113,12 @@
   {
     "bench_group": "MapAnarchyLeagueCrafted",
     "bench_tier": 0,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Map"
     ],
@@ -100,6 +128,12 @@
   {
     "bench_group": "MapExtraShrines",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Map"
     ],
@@ -109,6 +143,12 @@
   {
     "bench_group": "MapBloodlinesLeagueCrafted",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Map"
     ],
@@ -118,6 +158,12 @@
   {
     "bench_group": "MapExtraStrongBoxes",
     "bench_tier": 0,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Map"
     ],
@@ -127,6 +173,12 @@
   {
     "bench_group": "MapPerandusLeagueCrafted",
     "bench_tier": 0,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Map"
     ],
@@ -136,6 +188,12 @@
   {
     "bench_group": "MapBeyondLeagueCrafted",
     "bench_tier": 0,
+    "cost_counts": [
+      5
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Map"
     ],
@@ -145,6 +203,12 @@
   {
     "bench_group": "IncreasedLife",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Gloves",
@@ -162,6 +226,12 @@
   {
     "bench_group": "FireResistance",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -192,6 +262,12 @@
   {
     "bench_group": "ColdResistance",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -222,6 +298,12 @@
   {
     "bench_group": "LightningResistance",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -252,6 +334,12 @@
   {
     "bench_group": "Strength",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -282,6 +370,12 @@
   {
     "bench_group": "Dexterity",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -311,6 +405,12 @@
   {
     "bench_group": "Intelligence",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -340,6 +440,12 @@
   {
     "bench_group": "FireResistance",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -370,6 +476,12 @@
   {
     "bench_group": "FireResistance",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -398,6 +510,12 @@
   {
     "bench_group": "ColdResistance",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -428,6 +546,12 @@
   {
     "bench_group": "ColdResistance",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -456,6 +580,12 @@
   {
     "bench_group": "LightningResistance",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -486,6 +616,12 @@
   {
     "bench_group": "LightningResistance",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -514,6 +650,12 @@
   {
     "bench_group": "FireAndColdResistance",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -544,6 +686,12 @@
   {
     "bench_group": "FireAndColdResistance",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -574,6 +722,12 @@
   {
     "bench_group": "FireAndColdResistance",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -602,6 +756,12 @@
   {
     "bench_group": "ColdAndLightningResistance",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -632,6 +792,12 @@
   {
     "bench_group": "ColdAndLightningResistance",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -662,6 +828,12 @@
   {
     "bench_group": "ColdAndLightningResistance",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -690,6 +862,12 @@
   {
     "bench_group": "FireAndLightningResistance",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -720,6 +898,12 @@
   {
     "bench_group": "FireAndLightningResistance",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -750,6 +934,12 @@
   {
     "bench_group": "FireAndLightningResistance",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -778,6 +968,12 @@
   {
     "bench_group": "AllResistances",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -788,6 +984,12 @@
   {
     "bench_group": "AllResistances",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -798,6 +1000,12 @@
   {
     "bench_group": "Strength",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -828,6 +1036,12 @@
   {
     "bench_group": "Strength",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -858,6 +1072,12 @@
   {
     "bench_group": "Dexterity",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -887,6 +1107,12 @@
   {
     "bench_group": "Dexterity",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -916,6 +1142,12 @@
   {
     "bench_group": "Intelligence",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -945,6 +1177,12 @@
   {
     "bench_group": "Intelligence",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -974,6 +1212,12 @@
   {
     "bench_group": "AllAttributes",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1003,6 +1247,12 @@
   {
     "bench_group": "AllAttributes",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1032,6 +1282,12 @@
   {
     "bench_group": "MovementVelocity",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -1041,6 +1297,12 @@
   {
     "bench_group": "MovementVelocity",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -1050,6 +1312,12 @@
   {
     "bench_group": "MovementVelocity",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -1059,6 +1327,12 @@
   {
     "bench_group": "IncreasedLife",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Gloves",
@@ -1076,6 +1350,12 @@
   {
     "bench_group": "IncreasedLife",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Gloves",
@@ -1093,6 +1373,12 @@
   {
     "bench_group": "IncreasedLife",
     "bench_tier": 4,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Gloves",
@@ -1106,6 +1392,12 @@
   {
     "bench_group": "IncreasedLife",
     "bench_tier": 5,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -1115,6 +1407,12 @@
   {
     "bench_group": "LifeLeechPermyriad",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -1127,6 +1425,12 @@
   {
     "bench_group": "LifeLeechPermyriad",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -1136,6 +1440,12 @@
   {
     "bench_group": "LifeLeechLocalPermyriad",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1157,6 +1467,12 @@
   {
     "bench_group": "LifeLeechLocalPermyriad",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1176,6 +1492,12 @@
   {
     "bench_group": "ManaLeechLocalPermyriad",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeMagicToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1197,6 +1519,12 @@
   {
     "bench_group": "IncreasedMana",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1226,6 +1554,12 @@
   {
     "bench_group": "IncreasedMana",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1255,6 +1589,12 @@
   {
     "bench_group": "IncreasedMana",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1284,6 +1624,12 @@
   {
     "bench_group": "ManaRegeneration",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1308,6 +1654,12 @@
   {
     "bench_group": "ManaRegeneration",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1332,6 +1684,12 @@
   {
     "bench_group": "LocalPhysicalDamagePercent",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1353,6 +1711,12 @@
   {
     "bench_group": "LocalPhysicalDamagePercent",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1374,6 +1738,12 @@
   {
     "bench_group": "LocalPhysicalDamagePercent",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1395,6 +1765,12 @@
   {
     "bench_group": "LocalPhysicalDamagePercent",
     "bench_tier": 4,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1416,6 +1792,12 @@
   {
     "bench_group": "WeaponSpellDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1428,6 +1810,12 @@
   {
     "bench_group": "WeaponSpellDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1440,6 +1828,12 @@
   {
     "bench_group": "WeaponSpellDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1452,6 +1846,12 @@
   {
     "bench_group": "WeaponSpellDamage",
     "bench_tier": 4,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1464,6 +1864,12 @@
   {
     "bench_group": "WeaponSpellDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1480,6 +1886,12 @@
   {
     "bench_group": "WeaponSpellDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1496,6 +1908,12 @@
   {
     "bench_group": "WeaponSpellDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1512,6 +1930,12 @@
   {
     "bench_group": "WeaponSpellDamage",
     "bench_tier": 4,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1528,6 +1952,12 @@
   {
     "bench_group": "DegenerationDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1549,6 +1979,12 @@
   {
     "bench_group": "DegenerationDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1570,6 +2006,12 @@
   {
     "bench_group": "IncreasedWeaponElementalDamagePercent",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1595,6 +2037,12 @@
   {
     "bench_group": "IncreasedWeaponElementalDamagePercent",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1618,6 +2066,12 @@
   {
     "bench_group": "LocalIncreasedAttackSpeed",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1639,6 +2093,12 @@
   {
     "bench_group": "LocalIncreasedAttackSpeed",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1658,6 +2118,12 @@
   {
     "bench_group": "LocalIncreasedAttackSpeed",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1677,6 +2143,12 @@
   {
     "bench_group": "LocalIncreasedAttackSpeed",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Wand",
       "Bow"
@@ -1687,6 +2159,12 @@
   {
     "bench_group": "IncreasedAttackSpeed",
     "bench_tier": 0,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Gloves",
       "Quiver"
@@ -1697,6 +2175,12 @@
   {
     "bench_group": "IncreasedCastSpeed",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1709,6 +2193,12 @@
   {
     "bench_group": "IncreasedCastSpeed",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1721,6 +2211,12 @@
   {
     "bench_group": "IncreasedCastSpeed",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1733,6 +2229,12 @@
   {
     "bench_group": "IncreasedCastSpeed",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1749,6 +2251,12 @@
   {
     "bench_group": "IncreasedCastSpeed",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1765,6 +2273,12 @@
   {
     "bench_group": "IncreasedCastSpeed",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1781,6 +2295,12 @@
   {
     "bench_group": "FireDamageWeaponPrefix",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1793,6 +2313,12 @@
   {
     "bench_group": "FireDamageWeaponPrefix",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1805,6 +2331,12 @@
   {
     "bench_group": "FireDamageWeaponPrefix",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1817,6 +2349,12 @@
   {
     "bench_group": "FireDamageWeaponPrefix",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1833,6 +2371,12 @@
   {
     "bench_group": "FireDamageWeaponPrefix",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1849,6 +2393,12 @@
   {
     "bench_group": "FireDamageWeaponPrefix",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1865,6 +2415,12 @@
   {
     "bench_group": "FireDamagePercentage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -1888,6 +2444,12 @@
   {
     "bench_group": "FireDamagePercentage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -1911,6 +2473,12 @@
   {
     "bench_group": "ColdDamageWeaponPrefix",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1923,6 +2491,12 @@
   {
     "bench_group": "ColdDamageWeaponPrefix",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1935,6 +2509,12 @@
   {
     "bench_group": "ColdDamageWeaponPrefix",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -1947,6 +2527,12 @@
   {
     "bench_group": "ColdDamageWeaponPrefix",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1963,6 +2549,12 @@
   {
     "bench_group": "ColdDamageWeaponPrefix",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1979,6 +2571,12 @@
   {
     "bench_group": "ColdDamageWeaponPrefix",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -1995,6 +2593,12 @@
   {
     "bench_group": "ColdDamagePercentage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -2018,6 +2622,12 @@
   {
     "bench_group": "ColdDamagePercentage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -2041,6 +2651,12 @@
   {
     "bench_group": "LightningDamageWeaponPrefix",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2053,6 +2669,12 @@
   {
     "bench_group": "LightningDamageWeaponPrefix",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2065,6 +2687,12 @@
   {
     "bench_group": "LightningDamageWeaponPrefix",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2077,6 +2705,12 @@
   {
     "bench_group": "LightningDamageWeaponPrefix",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2093,6 +2727,12 @@
   {
     "bench_group": "LightningDamageWeaponPrefix",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2109,6 +2749,12 @@
   {
     "bench_group": "LightningDamageWeaponPrefix",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2125,6 +2771,12 @@
   {
     "bench_group": "LightningDamagePercentage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -2148,6 +2800,12 @@
   {
     "bench_group": "LightningDamagePercentage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -2171,6 +2829,12 @@
   {
     "bench_group": "ChaosDamageWeaponPrefix",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2183,6 +2847,12 @@
   {
     "bench_group": "ChaosDamageWeaponPrefix",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2195,6 +2865,12 @@
   {
     "bench_group": "ChaosDamageWeaponPrefix",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeMagicToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2207,6 +2883,12 @@
   {
     "bench_group": "ChaosDamageWeaponPrefix",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2223,6 +2905,12 @@
   {
     "bench_group": "ChaosDamageWeaponPrefix",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2239,6 +2927,12 @@
   {
     "bench_group": "ChaosDamageWeaponPrefix",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeMagicToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2255,6 +2949,12 @@
   {
     "bench_group": "IncreasedChaosDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -2278,6 +2978,12 @@
   {
     "bench_group": "IncreasedChaosDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -2301,6 +3007,12 @@
   {
     "bench_group": "LocalAccuracyRating",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2322,6 +3034,12 @@
   {
     "bench_group": "LocalAccuracyRating",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2343,6 +3061,12 @@
   {
     "bench_group": "LocalAccuracyRating",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2364,6 +3088,12 @@
   {
     "bench_group": "IncreasedAccuracy",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Gloves",
       "Helmet",
@@ -2378,6 +3108,12 @@
   {
     "bench_group": "IncreasedAccuracy",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Gloves",
       "Helmet",
@@ -2392,6 +3128,12 @@
   {
     "bench_group": "IncreasedAccuracy",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Gloves",
       "Helmet",
@@ -2406,6 +3148,12 @@
   {
     "bench_group": "PhysicalDamagePercent",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Shield",
       "Amulet"
@@ -2416,6 +3164,12 @@
   {
     "bench_group": "PhysicalDamagePercent",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Shield",
       "Amulet"
@@ -2426,6 +3180,12 @@
   {
     "bench_group": "LocalPhysicalDamageReductionRatingPercent",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2439,6 +3199,12 @@
   {
     "bench_group": "LocalPhysicalDamageReductionRatingPercent",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2452,6 +3218,12 @@
   {
     "bench_group": "LocalPhysicalDamageReductionRatingPercent",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2465,6 +3237,12 @@
   {
     "bench_group": "LocalPhysicalDamageReductionRating",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2478,6 +3256,12 @@
   {
     "bench_group": "LocalPhysicalDamageReductionRating",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Helmet",
@@ -2489,6 +3273,12 @@
   {
     "bench_group": "LocalPhysicalDamageReductionRating",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Shield"
@@ -2499,6 +3289,12 @@
   {
     "bench_group": "LocalEvasionRatingIncreasePercent",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2512,6 +3308,12 @@
   {
     "bench_group": "LocalEvasionRatingIncreasePercent",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2525,6 +3327,12 @@
   {
     "bench_group": "LocalEvasionRatingIncreasePercent",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2538,6 +3346,12 @@
   {
     "bench_group": "LocalEvasionRating",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2551,6 +3365,12 @@
   {
     "bench_group": "LocalEvasionRating",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Helmet",
@@ -2562,6 +3382,12 @@
   {
     "bench_group": "LocalEvasionRating",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Shield"
@@ -2572,6 +3398,12 @@
   {
     "bench_group": "LocalEnergyShieldPercent",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2585,6 +3417,12 @@
   {
     "bench_group": "LocalEnergyShieldPercent",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2598,6 +3436,12 @@
   {
     "bench_group": "LocalEnergyShieldPercent",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2611,6 +3455,12 @@
   {
     "bench_group": "LocalEnergyShield",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2624,6 +3474,12 @@
   {
     "bench_group": "LocalEnergyShield",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Helmet",
@@ -2635,6 +3491,12 @@
   {
     "bench_group": "LocalEnergyShield",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Shield"
@@ -2645,6 +3507,12 @@
   {
     "bench_group": "GlobalEnergyShieldPercent",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -2654,6 +3522,12 @@
   {
     "bench_group": "GlobalEnergyShieldPercent",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -2663,6 +3537,12 @@
   {
     "bench_group": "LocalArmourAndEvasion",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2676,6 +3556,12 @@
   {
     "bench_group": "LocalArmourAndEvasion",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2689,6 +3575,12 @@
   {
     "bench_group": "LocalArmourAndEvasion",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2702,6 +3594,12 @@
   {
     "bench_group": "LocalArmourAndEnergyShield",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2715,6 +3613,12 @@
   {
     "bench_group": "LocalArmourAndEnergyShield",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2728,6 +3632,12 @@
   {
     "bench_group": "LocalArmourAndEnergyShield",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2741,6 +3651,12 @@
   {
     "bench_group": "LocalEvasionAndEnergyShield",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2754,6 +3670,12 @@
   {
     "bench_group": "LocalEvasionAndEnergyShield",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2767,6 +3689,12 @@
   {
     "bench_group": "LocalEvasionAndEnergyShield",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -2780,6 +3708,12 @@
   {
     "bench_group": "LocalFireDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2792,6 +3726,12 @@
   {
     "bench_group": "LocalFireDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2804,6 +3744,12 @@
   {
     "bench_group": "LocalFireDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2816,6 +3762,12 @@
   {
     "bench_group": "LocalFireDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2833,6 +3785,12 @@
   {
     "bench_group": "LocalFireDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2850,6 +3808,12 @@
   {
     "bench_group": "LocalFireDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2867,6 +3831,12 @@
   {
     "bench_group": "FireDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -2877,6 +3847,12 @@
   {
     "bench_group": "FireDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -2887,6 +3863,12 @@
   {
     "bench_group": "LocalColdDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2899,6 +3881,12 @@
   {
     "bench_group": "LocalColdDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2911,6 +3899,12 @@
   {
     "bench_group": "LocalColdDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -2923,6 +3917,12 @@
   {
     "bench_group": "LocalColdDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2940,6 +3940,12 @@
   {
     "bench_group": "LocalColdDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2957,6 +3963,12 @@
   {
     "bench_group": "LocalColdDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -2974,6 +3986,12 @@
   {
     "bench_group": "ColdDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -2984,6 +4002,12 @@
   {
     "bench_group": "ColdDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -2994,6 +4018,12 @@
   {
     "bench_group": "LocalLightningDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3006,6 +4036,12 @@
   {
     "bench_group": "LocalLightningDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3018,6 +4054,12 @@
   {
     "bench_group": "LocalLightningDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3030,6 +4072,12 @@
   {
     "bench_group": "LocalLightningDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3047,6 +4095,12 @@
   {
     "bench_group": "LocalLightningDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3064,6 +4118,12 @@
   {
     "bench_group": "LocalLightningDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3081,6 +4141,12 @@
   {
     "bench_group": "LightningDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -3091,6 +4157,12 @@
   {
     "bench_group": "LightningDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -3101,6 +4173,12 @@
   {
     "bench_group": "LocalPhysicalDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3114,6 +4192,12 @@
   {
     "bench_group": "LocalPhysicalDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3127,6 +4211,12 @@
   {
     "bench_group": "LocalPhysicalDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3140,6 +4230,12 @@
   {
     "bench_group": "LocalPhysicalDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3156,6 +4252,12 @@
   {
     "bench_group": "LocalPhysicalDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3172,6 +4274,12 @@
   {
     "bench_group": "LocalPhysicalDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3188,6 +4296,12 @@
   {
     "bench_group": "PhysicalDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -3200,6 +4314,12 @@
   {
     "bench_group": "PhysicalDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -3210,6 +4330,12 @@
   {
     "bench_group": "ChaosDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet",
@@ -3222,6 +4348,12 @@
   {
     "bench_group": "ChaosDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -3232,6 +4364,12 @@
   {
     "bench_group": "SpellAddedFireDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3244,6 +4382,12 @@
   {
     "bench_group": "SpellAddedFireDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3256,6 +4400,12 @@
   {
     "bench_group": "SpellAddedFireDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3268,6 +4418,12 @@
   {
     "bench_group": "SpellAddedFireDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3284,6 +4440,12 @@
   {
     "bench_group": "SpellAddedFireDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3300,6 +4462,12 @@
   {
     "bench_group": "SpellAddedFireDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3316,6 +4484,12 @@
   {
     "bench_group": "SpellAddedColdDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3328,6 +4502,12 @@
   {
     "bench_group": "SpellAddedColdDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3340,6 +4520,12 @@
   {
     "bench_group": "SpellAddedColdDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3352,6 +4538,12 @@
   {
     "bench_group": "SpellAddedColdDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3368,6 +4560,12 @@
   {
     "bench_group": "SpellAddedColdDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3384,6 +4582,12 @@
   {
     "bench_group": "SpellAddedColdDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3400,6 +4604,12 @@
   {
     "bench_group": "SpellAddedLightningDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3412,6 +4622,12 @@
   {
     "bench_group": "SpellAddedLightningDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3424,6 +4640,12 @@
   {
     "bench_group": "SpellAddedLightningDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3436,6 +4658,12 @@
   {
     "bench_group": "SpellAddedLightningDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3452,6 +4680,12 @@
   {
     "bench_group": "SpellAddedLightningDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3468,6 +4702,12 @@
   {
     "bench_group": "SpellAddedLightningDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3484,6 +4724,12 @@
   {
     "bench_group": "LocalCriticalStrikeChance",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3505,6 +4751,12 @@
   {
     "bench_group": "LocalCriticalStrikeChance",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3526,6 +4778,12 @@
   {
     "bench_group": "LocalCriticalStrikeChance",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3547,6 +4805,12 @@
   {
     "bench_group": "CriticalStrikeMultiplier",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3568,6 +4832,12 @@
   {
     "bench_group": "CriticalStrikeMultiplier",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3589,6 +4859,12 @@
   {
     "bench_group": "CriticalStrikeMultiplier",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3610,6 +4886,12 @@
   {
     "bench_group": "SpellCriticalStrikeChance",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3622,6 +4904,12 @@
   {
     "bench_group": "SpellCriticalStrikeChance",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3634,6 +4922,12 @@
   {
     "bench_group": "SpellCriticalStrikeChance",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3650,6 +4944,12 @@
   {
     "bench_group": "SpellCriticalStrikeChance",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3666,6 +4966,12 @@
   {
     "bench_group": "CriticalStrikeChance",
     "bench_tier": 1,
+    "cost_counts": [
+      9
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Quiver",
       "Amulet"
@@ -3676,6 +4982,12 @@
   {
     "bench_group": "CriticalStrikeChance",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Quiver",
       "Amulet"
@@ -3686,6 +4998,12 @@
   {
     "bench_group": "BeltIncreasedFlaskDuration",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -3695,6 +5013,12 @@
   {
     "bench_group": "BeltIncreasedFlaskDuration",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -3704,6 +5028,12 @@
   {
     "bench_group": "AvoidStun",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeMagicToRare"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves"
@@ -3714,6 +5044,12 @@
   {
     "bench_group": "AvoidStun",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeMagicToRare"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves"
@@ -3724,6 +5060,12 @@
   {
     "bench_group": "AvoidElementalStatusAilments",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves"
@@ -3734,6 +5076,12 @@
   {
     "bench_group": "AvoidElementalStatusAilments",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves"
@@ -3744,6 +5092,12 @@
   {
     "bench_group": "IncreasedShieldBlockPercentage",
     "bench_tier": 1,
+    "cost_counts": [
+      9
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Shield"
     ],
@@ -3753,6 +5107,12 @@
   {
     "bench_group": "IncreasedShieldBlockPercentage",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Shield"
     ],
@@ -3762,6 +5122,12 @@
   {
     "bench_group": "SpellBlockPercentage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Shield"
     ],
@@ -3771,6 +5137,12 @@
   {
     "bench_group": "SpellBlockPercentage",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeMagicToRare"
+    ],
     "item_classes": [
       "Shield"
     ],
@@ -3780,6 +5152,12 @@
   {
     "bench_group": "EnergyShieldDelay",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeMagicToRare"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -3789,6 +5167,12 @@
   {
     "bench_group": "EnergyShieldDelay",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -3798,6 +5182,12 @@
   {
     "bench_group": "DegenDamageTaken",
     "bench_tier": 0,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeMagicToRare"
+    ],
     "item_classes": [
       "Shield"
     ],
@@ -3807,6 +5197,12 @@
   {
     "bench_group": "ItemDropsOnGuardianDeath",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -3816,6 +5212,12 @@
   {
     "bench_group": "MinionLife",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -3825,6 +5227,12 @@
   {
     "bench_group": "MinionLife",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -3834,6 +5242,12 @@
   {
     "bench_group": "MinionDamage",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -3843,6 +5257,12 @@
   {
     "bench_group": "MinionDamageOnWeapon",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3856,6 +5276,12 @@
   {
     "bench_group": "MinionDamageOnWeapon",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3869,6 +5295,12 @@
   {
     "bench_group": "MinionDamageOnWeapon",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -3882,6 +5314,12 @@
   {
     "bench_group": "MinionDamageOnWeapon",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3898,6 +5336,12 @@
   {
     "bench_group": "MinionDamageOnWeapon",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3914,6 +5358,12 @@
   {
     "bench_group": "MinionDamageOnWeapon",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3930,6 +5380,12 @@
   {
     "bench_group": "TrapThrowSpeedOnWeapon",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3951,6 +5407,12 @@
   {
     "bench_group": "TrapThrowSpeedOnWeapon",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3972,6 +5434,12 @@
   {
     "bench_group": "MineLayingSpeedOnWeapon",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -3993,6 +5461,12 @@
   {
     "bench_group": "MineLayingSpeedOnWeapon",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4014,6 +5488,12 @@
   {
     "bench_group": "IncreasedAttackSpeed",
     "bench_tier": 0,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Shield",
       "Ring"
@@ -4024,6 +5504,12 @@
   {
     "bench_group": "IncreasedCastSpeed",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Shield",
       "Amulet"
@@ -4034,6 +5520,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndImpaleChance",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4055,6 +5547,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndImpaleChance",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4076,6 +5574,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndImpaleChance",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4097,6 +5601,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndBleedChance",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4118,6 +5628,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndBleedChance",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4139,6 +5655,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndBleedChance",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4160,6 +5682,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndBlindChance",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4181,6 +5709,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndBlindChance",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4202,6 +5736,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndBlindChance",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4223,6 +5763,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndPoisonChance",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4244,6 +5790,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndPoisonChance",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4265,6 +5817,12 @@
   {
     "bench_group": "LocalIncreasedPhysicalDamageAndPoisonChance",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4286,6 +5844,12 @@
   {
     "bench_group": "FireDamageAndChanceToIgnite",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4299,6 +5863,12 @@
   {
     "bench_group": "FireDamageAndChanceToIgnite",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4312,6 +5882,12 @@
   {
     "bench_group": "FireDamageAndChanceToIgnite",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4325,6 +5901,12 @@
   {
     "bench_group": "FireDamageAndChanceToIgnite",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4341,6 +5923,12 @@
   {
     "bench_group": "FireDamageAndChanceToIgnite",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4357,6 +5945,12 @@
   {
     "bench_group": "FireDamageAndChanceToIgnite",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4373,6 +5967,12 @@
   {
     "bench_group": "ColdDamageAndBaseChanceToFreeze",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4386,6 +5986,12 @@
   {
     "bench_group": "ColdDamageAndBaseChanceToFreeze",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4399,6 +6005,12 @@
   {
     "bench_group": "ColdDamageAndBaseChanceToFreeze",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4412,6 +6024,12 @@
   {
     "bench_group": "ColdDamageAndBaseChanceToFreeze",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4428,6 +6046,12 @@
   {
     "bench_group": "ColdDamageAndBaseChanceToFreeze",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4444,6 +6068,12 @@
   {
     "bench_group": "ColdDamageAndBaseChanceToFreeze",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4460,6 +6090,12 @@
   {
     "bench_group": "LightningDamageAndChanceToShock",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4473,6 +6109,12 @@
   {
     "bench_group": "LightningDamageAndChanceToShock",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4486,6 +6128,12 @@
   {
     "bench_group": "LightningDamageAndChanceToShock",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4499,6 +6147,12 @@
   {
     "bench_group": "LightningDamageAndChanceToShock",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4515,6 +6169,12 @@
   {
     "bench_group": "LightningDamageAndChanceToShock",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4531,6 +6191,12 @@
   {
     "bench_group": "LightningDamageAndChanceToShock",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4547,6 +6213,12 @@
   {
     "bench_group": "ChaosDamageAndChaosSkillDuration",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4560,6 +6232,12 @@
   {
     "bench_group": "ChaosDamageAndChaosSkillDuration",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4573,6 +6251,12 @@
   {
     "bench_group": "ChaosDamageAndChaosSkillDuration",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4586,6 +6270,12 @@
   {
     "bench_group": "ChaosDamageAndChaosSkillDuration",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4602,6 +6292,12 @@
   {
     "bench_group": "ChaosDamageAndChaosSkillDuration",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4618,6 +6314,12 @@
   {
     "bench_group": "ChaosDamageAndChaosSkillDuration",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4634,6 +6336,12 @@
   {
     "bench_group": "SpellDamageAndManaRegenerationRate",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4646,6 +6354,12 @@
   {
     "bench_group": "SpellDamageAndManaRegenerationRate",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4658,6 +6372,12 @@
   {
     "bench_group": "SpellDamageAndManaRegenerationRate",
     "bench_tier": 3,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4670,6 +6390,12 @@
   {
     "bench_group": "SpellDamageAndManaRegenerationRate",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4686,6 +6412,12 @@
   {
     "bench_group": "SpellDamageAndManaRegenerationRate",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4702,6 +6434,12 @@
   {
     "bench_group": "SpellDamageAndManaRegenerationRate",
     "bench_tier": 3,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4718,6 +6456,12 @@
   {
     "bench_group": "SpellDamageAndNonChaosDamageToAddAsChaosDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4730,6 +6474,12 @@
   {
     "bench_group": "SpellDamageAndNonChaosDamageToAddAsChaosDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4742,6 +6492,12 @@
   {
     "bench_group": "SpellDamageAndNonChaosDamageToAddAsChaosDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4754,6 +6510,12 @@
   {
     "bench_group": "SpellDamageAndNonChaosDamageToAddAsChaosDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4770,6 +6532,12 @@
   {
     "bench_group": "SpellDamageAndNonChaosDamageToAddAsChaosDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4786,6 +6554,12 @@
   {
     "bench_group": "SpellDamageAndNonChaosDamageToAddAsChaosDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4802,6 +6576,12 @@
   {
     "bench_group": "MinionDamageAndMinionMaximumLife",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4815,6 +6595,12 @@
   {
     "bench_group": "MinionDamageAndMinionMaximumLife",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4828,6 +6614,12 @@
   {
     "bench_group": "MinionDamageAndMinionMaximumLife",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4841,6 +6633,12 @@
   {
     "bench_group": "MinionDamageAndMinionMaximumLife",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4857,6 +6655,12 @@
   {
     "bench_group": "MinionDamageAndMinionMaximumLife",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4873,6 +6677,12 @@
   {
     "bench_group": "MinionDamageAndMinionMaximumLife",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4889,6 +6699,12 @@
   {
     "bench_group": "MinionAttackAndCastSpeedOnWeapon",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4902,6 +6718,12 @@
   {
     "bench_group": "MinionAttackAndCastSpeedOnWeapon",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4915,6 +6737,12 @@
   {
     "bench_group": "MinionAttackAndCastSpeedOnWeapon",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4928,6 +6756,12 @@
   {
     "bench_group": "MinionAttackAndCastSpeedOnWeapon",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4944,6 +6778,12 @@
   {
     "bench_group": "MinionAttackAndCastSpeedOnWeapon",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4960,6 +6800,12 @@
   {
     "bench_group": "MinionAttackAndCastSpeedOnWeapon",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -4976,6 +6822,12 @@
   {
     "bench_group": "ChaosNonAilmentDamageOverTimeMultiplier",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -4989,6 +6841,12 @@
   {
     "bench_group": "ChaosNonAilmentDamageOverTimeMultiplier",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5002,6 +6860,12 @@
   {
     "bench_group": "ChaosNonAilmentDamageOverTimeMultiplier",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5015,6 +6879,12 @@
   {
     "bench_group": "ChaosNonAilmentDamageOverTimeMultiplier",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -5031,6 +6901,12 @@
   {
     "bench_group": "ChaosNonAilmentDamageOverTimeMultiplier",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -5047,6 +6923,12 @@
   {
     "bench_group": "ChaosNonAilmentDamageOverTimeMultiplier",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -5063,6 +6945,12 @@
   {
     "bench_group": "ColdDamageOverTimeMultiplier",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5075,6 +6963,12 @@
   {
     "bench_group": "ColdDamageOverTimeMultiplier",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5087,6 +6981,12 @@
   {
     "bench_group": "ColdDamageOverTimeMultiplier",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5099,6 +6999,12 @@
   {
     "bench_group": "ColdDamageOverTimeMultiplier",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -5115,6 +7021,12 @@
   {
     "bench_group": "ColdDamageOverTimeMultiplier",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -5131,6 +7043,12 @@
   {
     "bench_group": "ColdDamageOverTimeMultiplier",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -5147,6 +7065,12 @@
   {
     "bench_group": "LocalAttackReduceEnemyElementalResistance",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5168,6 +7092,12 @@
   {
     "bench_group": "LocalAttackReduceEnemyElementalResistance",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5189,6 +7119,12 @@
   {
     "bench_group": "LocalAttackReduceEnemyElementalResistance",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5210,6 +7146,12 @@
   {
     "bench_group": "LocalChaosPenetration",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5231,6 +7173,12 @@
   {
     "bench_group": "LocalChaosPenetration",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5252,6 +7200,12 @@
   {
     "bench_group": "LocalChaosPenetration",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5273,6 +7227,12 @@
   {
     "bench_group": "DoubleDamageChance",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5286,6 +7246,12 @@
   {
     "bench_group": "DoubleDamageChance",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -5299,6 +7265,12 @@
   {
     "bench_group": "DoubleDamageChance",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -5316,6 +7288,12 @@
   {
     "bench_group": "DoubleDamageChance",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -5333,6 +7311,12 @@
   {
     "bench_group": "LocalIncreasedArmourAndEvasionAndLife",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5346,6 +7330,12 @@
   {
     "bench_group": "LocalIncreasedArmourAndEvasionAndLife",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5359,6 +7349,12 @@
   {
     "bench_group": "LocalIncreasedArmourAndEvasionAndLife",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5372,6 +7368,12 @@
   {
     "bench_group": "LocalIncreasedArmourAndEnergyShieldAndLife",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5385,6 +7387,12 @@
   {
     "bench_group": "LocalIncreasedArmourAndEnergyShieldAndLife",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5398,6 +7406,12 @@
   {
     "bench_group": "LocalIncreasedArmourAndEnergyShieldAndLife",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5411,6 +7425,12 @@
   {
     "bench_group": "LocalIncreasedEvasionAndEnergyShieldAndLife",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5424,6 +7444,12 @@
   {
     "bench_group": "LocalIncreasedEvasionAndEnergyShieldAndLife",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5437,6 +7463,12 @@
   {
     "bench_group": "LocalIncreasedEvasionAndEnergyShieldAndLife",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5450,6 +7482,12 @@
   {
     "bench_group": "LocalIncreasedArmourAndLife",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5463,6 +7501,12 @@
   {
     "bench_group": "LocalIncreasedArmourAndLife",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5476,6 +7520,12 @@
   {
     "bench_group": "LocalIncreasedArmourAndLife",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5489,6 +7539,12 @@
   {
     "bench_group": "LocalIncreasedEvasionAndLife",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5502,6 +7558,12 @@
   {
     "bench_group": "LocalIncreasedEvasionAndLife",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5515,6 +7577,12 @@
   {
     "bench_group": "LocalIncreasedEvasionAndLife",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5528,6 +7596,12 @@
   {
     "bench_group": "LocalIncreasedEnergyShieldAndLife",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5541,6 +7615,12 @@
   {
     "bench_group": "LocalIncreasedEnergyShieldAndLife",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5554,6 +7634,12 @@
   {
     "bench_group": "LocalIncreasedEnergyShieldAndLife",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5567,6 +7653,12 @@
   {
     "bench_group": "LocalIncreasedDefencesAndLife",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5580,6 +7672,12 @@
   {
     "bench_group": "LocalIncreasedDefencesAndLife",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5593,6 +7691,12 @@
   {
     "bench_group": "LocalIncreasedDefencesAndLife",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5606,6 +7710,12 @@
   {
     "bench_group": "StrengthAndDexterity",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5623,6 +7733,12 @@
   {
     "bench_group": "StrengthAndDexterity",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5640,6 +7756,12 @@
   {
     "bench_group": "StrengthAndDexterity",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5657,6 +7779,12 @@
   {
     "bench_group": "DexterityAndIntelligence",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5674,6 +7802,12 @@
   {
     "bench_group": "DexterityAndIntelligence",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5691,6 +7825,12 @@
   {
     "bench_group": "DexterityAndIntelligence",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5708,6 +7848,12 @@
   {
     "bench_group": "StrengthAndIntelligence",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5725,6 +7871,12 @@
   {
     "bench_group": "StrengthAndIntelligence",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5742,6 +7894,12 @@
   {
     "bench_group": "StrengthAndIntelligence",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Boots",
@@ -5759,6 +7917,12 @@
   {
     "bench_group": "MinimumEnduranceCharges",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5769,6 +7933,12 @@
   {
     "bench_group": "MinimumPowerCharges",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5779,6 +7949,12 @@
   {
     "bench_group": "MinimumFrenzyCharges",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5789,6 +7965,12 @@
   {
     "bench_group": "IncreasedManaAndRegen",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5799,6 +7981,12 @@
   {
     "bench_group": "IncreasedManaAndRegen",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5809,6 +7997,12 @@
   {
     "bench_group": "IncreasedManaAndRegen",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5819,6 +8013,12 @@
   {
     "bench_group": "ManaAndManaCostPercent",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5829,6 +8029,12 @@
   {
     "bench_group": "ManaAndManaCostPercent",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5839,6 +8045,12 @@
   {
     "bench_group": "ManaAndManaCostPercent",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5849,6 +8061,12 @@
   {
     "bench_group": "ManaAndDamageTakenGoesToManaPercent",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5859,6 +8077,12 @@
   {
     "bench_group": "ManaAndDamageTakenGoesToManaPercent",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5869,6 +8093,12 @@
   {
     "bench_group": "ManaAndDamageTakenGoesToManaPercent",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -5879,6 +8109,12 @@
   {
     "bench_group": "AttackAndCastSpeed",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Amulet",
       "Quiver"
@@ -5889,6 +8125,12 @@
   {
     "bench_group": "AttackAndCastSpeed",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Amulet",
       "Quiver"
@@ -5899,6 +8141,12 @@
   {
     "bench_group": "AttackAndCastSpeed",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet",
       "Quiver"
@@ -5909,6 +8157,12 @@
   {
     "bench_group": "MovementVelocityAndMovementVelocityIfNotHitRecently",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -5918,6 +8172,12 @@
   {
     "bench_group": "MovementVelocityAndMovementVelocityIfNotHitRecently",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -5927,6 +8187,12 @@
   {
     "bench_group": "MovementVelocityAndMovementVelocityIfNotHitRecently",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -5936,6 +8202,12 @@
   {
     "bench_group": "MovementVelocityAndOnslaughtOnKill",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -5945,6 +8217,12 @@
   {
     "bench_group": "MovementVelocityAndOnslaughtOnKill",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -5954,6 +8232,12 @@
   {
     "bench_group": "MovementVelocityAndOnslaughtOnKill",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -5963,6 +8247,12 @@
   {
     "bench_group": "MovementVelocityAndCannotBeChilled",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -5972,6 +8262,12 @@
   {
     "bench_group": "MovementVelocityAndCannotBeChilled",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -5981,6 +8277,12 @@
   {
     "bench_group": "MovementVelocityAndCannotBeChilled",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -5990,6 +8292,12 @@
   {
     "bench_group": "ArmourAndEvasionRating",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Belt",
       "Quiver"
@@ -6000,6 +8308,12 @@
   {
     "bench_group": "ArmourAndEvasionRating",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Belt",
       "Quiver"
@@ -6010,6 +8324,12 @@
   {
     "bench_group": "ArmourAndEvasionRating",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Belt",
       "Quiver"
@@ -6020,6 +8340,12 @@
   {
     "bench_group": "ArmourAndEnergyShield",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6029,6 +8355,12 @@
   {
     "bench_group": "ArmourAndEnergyShield",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6038,6 +8370,12 @@
   {
     "bench_group": "ArmourAndEnergyShield",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6047,6 +8385,12 @@
   {
     "bench_group": "EvasionRatingAndEnergyShield",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Belt",
       "Quiver"
@@ -6057,6 +8401,12 @@
   {
     "bench_group": "EvasionRatingAndEnergyShield",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Belt",
       "Quiver"
@@ -6067,6 +8417,12 @@
   {
     "bench_group": "EvasionRatingAndEnergyShield",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Belt",
       "Quiver"
@@ -6077,6 +8433,12 @@
   {
     "bench_group": "FlaskEffect",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6086,6 +8448,12 @@
   {
     "bench_group": "FlaskEffect",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6095,6 +8463,12 @@
   {
     "bench_group": "FlaskEffect",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6104,6 +8478,12 @@
   {
     "bench_group": "FlaskChanceToNotConsumeCharges",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6113,6 +8493,12 @@
   {
     "bench_group": "FlaskChanceToNotConsumeCharges",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6122,6 +8508,12 @@
   {
     "bench_group": "FlaskEffectAndFlaskChargesGained",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6131,6 +8523,12 @@
   {
     "bench_group": "FlaskEffectAndFlaskChargesGained",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6140,6 +8538,12 @@
   {
     "bench_group": "GlobalCooldownRecovery",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6149,6 +8553,12 @@
   {
     "bench_group": "GlobalCooldownRecovery",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6158,6 +8568,12 @@
   {
     "bench_group": "DamagePerEnduranceCharge",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -6171,6 +8587,12 @@
   {
     "bench_group": "DamagePerEnduranceCharge",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -6187,6 +8609,12 @@
   {
     "bench_group": "DamagePerFrenzyCharge",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -6200,6 +8628,12 @@
   {
     "bench_group": "DamagePerFrenzyCharge",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -6216,6 +8650,12 @@
   {
     "bench_group": "IncreasedDamagePerPowerCharge",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -6229,6 +8669,12 @@
   {
     "bench_group": "IncreasedDamagePerPowerCharge",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -6245,6 +8691,12 @@
   {
     "bench_group": "ConvertPhysicalToFire",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -6254,6 +8706,12 @@
   {
     "bench_group": "ConvertPhysicalToCold",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -6263,6 +8721,12 @@
   {
     "bench_group": "ConvertPhysicalToLightning",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -6272,6 +8736,12 @@
   {
     "bench_group": "MaximumMinionCount",
     "bench_tier": 0,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Helmet",
       "Body Armour"
@@ -6282,6 +8752,12 @@
   {
     "bench_group": "IncreasedAilmentEffectOnEnemies",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Boots",
       "Amulet"
@@ -6292,6 +8768,12 @@
   {
     "bench_group": "IncreasedAilmentEffectOnEnemies",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeMagicToRare"
+    ],
     "item_classes": [
       "Boots",
       "Amulet"
@@ -6302,6 +8784,12 @@
   {
     "bench_group": "AdditionalCurseOnEnemies",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -6311,6 +8799,12 @@
   {
     "bench_group": "CurseEffectiveness",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Shield"
     ],
@@ -6320,6 +8814,12 @@
   {
     "bench_group": "CurseEffectiveness",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Shield"
     ],
@@ -6329,6 +8829,12 @@
   {
     "bench_group": "LifeRegenerationRatePercentage",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Amulet",
       "Shield"
@@ -6339,6 +8845,12 @@
   {
     "bench_group": "LifeRegenerationRatePercentage",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet",
       "Shield"
@@ -6349,6 +8861,12 @@
   {
     "bench_group": "AvoidElementalDamageChanceDuringSoulGainPrevention",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Body Armour",
       "Helmet"
@@ -6359,6 +8877,12 @@
   {
     "bench_group": "AvoidElementalDamageChanceDuringSoulGainPrevention",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Body Armour",
       "Helmet"
@@ -6369,6 +8893,12 @@
   {
     "bench_group": "PhysicalDamageReductionRatingDuringSoulGainPrevention",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Body Armour",
       "Shield"
@@ -6379,6 +8909,12 @@
   {
     "bench_group": "PhysicalDamageReductionRatingDuringSoulGainPrevention",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Body Armour",
       "Shield"
@@ -6389,6 +8925,12 @@
   {
     "bench_group": "PhysicalDamageReductionRatingDuringSoulGainPrevention",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Body Armour",
       "Shield"
@@ -6399,6 +8941,12 @@
   {
     "bench_group": "GainOnslaughtDuringSoulGainPrevention",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Boots",
       "Gloves"
@@ -6409,6 +8957,12 @@
   {
     "bench_group": "DamageWithNonVaalSkillsDuringSoulGainPrevention",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Boots",
       "Gloves"
@@ -6419,6 +8973,12 @@
   {
     "bench_group": "DamageWithNonVaalSkillsDuringSoulGainPrevention",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Boots",
       "Gloves"
@@ -6429,6 +8989,12 @@
   {
     "bench_group": "DamageWithNonVaalSkillsDuringSoulGainPrevention",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Boots",
       "Gloves"
@@ -6439,6 +9005,12 @@
   {
     "bench_group": "SkillAreaOfEffectPercentAndAreaOfEffectGemLevel",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves"
@@ -6449,6 +9021,12 @@
   {
     "bench_group": "ProjectilePierceAndProjectileGemLevel",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves"
@@ -6459,6 +9037,12 @@
   {
     "bench_group": "MeleeRangeAndMeleeGemLevel",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves"
@@ -6469,6 +9053,12 @@
   {
     "bench_group": "CriticalStrikeMultiplierIfRareOrUniqueEnemyNearby",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -6482,6 +9072,12 @@
   {
     "bench_group": "CriticalStrikeMultiplierIfRareOrUniqueEnemyNearby",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -6495,6 +9091,12 @@
   {
     "bench_group": "CriticalStrikeMultiplierIfRareOrUniqueEnemyNearby",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -6508,6 +9110,12 @@
   {
     "bench_group": "CriticalStrikeMultiplierIfRareOrUniqueEnemyNearby",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -6524,6 +9132,12 @@
   {
     "bench_group": "CriticalStrikeMultiplierIfRareOrUniqueEnemyNearby",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -6540,6 +9154,12 @@
   {
     "bench_group": "CriticalStrikeMultiplierIfRareOrUniqueEnemyNearby",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -6556,6 +9176,12 @@
   {
     "bench_group": "AttackSpeedPercentIfRareOrUniqueEnemyNearby",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -6569,6 +9195,12 @@
   {
     "bench_group": "AttackSpeedPercentIfRareOrUniqueEnemyNearby",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -6582,6 +9214,12 @@
   {
     "bench_group": "AttackSpeedPercentIfRareOrUniqueEnemyNearby",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -6595,6 +9233,12 @@
   {
     "bench_group": "AttackSpeedPercentIfRareOrUniqueEnemyNearby",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -6611,6 +9255,12 @@
   {
     "bench_group": "AttackSpeedPercentIfRareOrUniqueEnemyNearby",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -6627,6 +9277,12 @@
   {
     "bench_group": "AttackSpeedPercentIfRareOrUniqueEnemyNearby",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -6643,6 +9299,12 @@
   {
     "bench_group": "EnergyShieldRegenerationRatePerMinuteIfRareOrUniqueEnemyNearby",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour",
       "Belt"
@@ -6653,6 +9315,12 @@
   {
     "bench_group": "EnergyShieldRegenerationRatePerMinuteIfRareOrUniqueEnemyNearby",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Belt"
@@ -6663,6 +9331,12 @@
   {
     "bench_group": "EnergyShieldRegenerationRatePerMinuteIfRareOrUniqueEnemyNearby",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour",
       "Belt"
@@ -6673,6 +9347,12 @@
   {
     "bench_group": "CriticalChanceAndGainFrenzyChargeOnCriticalStrikePercent",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Quiver"
     ],
@@ -6682,6 +9362,12 @@
   {
     "bench_group": "CriticalChanceAndGainFrenzyChargeOnCriticalStrikePercent",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Quiver"
     ],
@@ -6691,6 +9377,12 @@
   {
     "bench_group": "CriticalChanceAndGainFrenzyChargeOnCriticalStrikePercent",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Quiver"
     ],
@@ -6700,6 +9392,12 @@
   {
     "bench_group": "CriticalChanceAndElementalDamagePercentIfHaveCritRecently",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Gloves",
       "Quiver"
@@ -6710,6 +9408,12 @@
   {
     "bench_group": "CriticalChanceAndElementalDamagePercentIfHaveCritRecently",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Gloves",
       "Quiver"
@@ -6720,6 +9424,12 @@
   {
     "bench_group": "CriticalChanceAndElementalDamagePercentIfHaveCritRecently",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Gloves",
       "Quiver"
@@ -6730,6 +9440,12 @@
   {
     "bench_group": "CriticalChanceAndAddedChaosDamageIfHaveCritRecently",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Gloves",
       "Quiver"
@@ -6740,6 +9456,12 @@
   {
     "bench_group": "CriticalChanceAndAddedChaosDamageIfHaveCritRecently",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Gloves",
       "Quiver"
@@ -6750,6 +9472,12 @@
   {
     "bench_group": "CriticalChanceAndAddedChaosDamageIfHaveCritRecently",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Gloves",
       "Quiver"
@@ -6760,6 +9488,12 @@
   {
     "bench_group": "BaseLifeAndMana",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves",
@@ -6775,6 +9509,12 @@
   {
     "bench_group": "BaseLifeAndMana",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves",
@@ -6790,6 +9530,12 @@
   {
     "bench_group": "BaseLifeAndMana",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves",
@@ -6805,6 +9551,12 @@
   {
     "bench_group": "SummonTotemCastSpeed",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Boots",
       "Amulet"
@@ -6815,6 +9567,12 @@
   {
     "bench_group": "SummonTotemCastSpeed",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Boots",
       "Amulet"
@@ -6825,6 +9583,12 @@
   {
     "bench_group": "SummonTotemCastSpeed",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Boots",
       "Amulet"
@@ -6835,6 +9599,12 @@
   {
     "bench_group": "AddedFireAndColdDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Shield",
       "Ring",
@@ -6846,6 +9616,12 @@
   {
     "bench_group": "AddedFireAndColdDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Shield",
       "Ring"
@@ -6856,6 +9632,12 @@
   {
     "bench_group": "AddedFireAndColdDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Shield",
       "Ring"
@@ -6866,6 +9648,12 @@
   {
     "bench_group": "AddedFireAndLightningDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Shield",
       "Ring",
@@ -6877,6 +9665,12 @@
   {
     "bench_group": "AddedFireAndLightningDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Shield",
       "Ring"
@@ -6887,6 +9681,12 @@
   {
     "bench_group": "AddedFireAndLightningDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Shield",
       "Ring"
@@ -6897,6 +9697,12 @@
   {
     "bench_group": "AddedColdAndLightningDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Shield",
       "Ring",
@@ -6908,6 +9714,12 @@
   {
     "bench_group": "AddedColdAndLightningDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Shield",
       "Ring"
@@ -6918,6 +9730,12 @@
   {
     "bench_group": "AddedColdAndLightningDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Shield",
       "Ring"
@@ -6928,6 +9746,12 @@
   {
     "bench_group": "LuckyCriticalsDuringFocus",
     "bench_tier": 0,
+    "cost_counts": [
+      9
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -6937,6 +9761,12 @@
   {
     "bench_group": "DodgeChanceDuringFocus",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Helmet",
       "Boots"
@@ -6947,6 +9777,12 @@
   {
     "bench_group": "DodgeChanceDuringFocus",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Helmet",
       "Boots"
@@ -6957,6 +9793,12 @@
   {
     "bench_group": "DodgeChanceDuringFocus",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Helmet",
       "Boots"
@@ -6967,6 +9809,12 @@
   {
     "bench_group": "PhysicalDamageReductionDuringFocus",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves"
@@ -6977,6 +9825,12 @@
   {
     "bench_group": "PhysicalDamageReductionDuringFocus",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves"
@@ -6987,6 +9841,12 @@
   {
     "bench_group": "PhysicalDamageReductionDuringFocus",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Helmet",
       "Gloves"
@@ -6997,6 +9857,12 @@
   {
     "bench_group": "ShockNearbyEnemiesOnFocus",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -7006,6 +9872,12 @@
   {
     "bench_group": "ShockNearbyEnemiesOnFocus",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -7015,6 +9887,12 @@
   {
     "bench_group": "ShockNearbyEnemiesOnFocus",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -7024,6 +9902,12 @@
   {
     "bench_group": "LifeRegenerationPerEvasionDuringFocus",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -7033,6 +9917,12 @@
   {
     "bench_group": "RestoreManaAndEnergyShieldOnFocus",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -7042,6 +9932,12 @@
   {
     "bench_group": "RestoreManaAndEnergyShieldOnFocus",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -7051,6 +9947,12 @@
   {
     "bench_group": "RestoreManaAndEnergyShieldOnFocus",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -7060,6 +9962,12 @@
   {
     "bench_group": "ChanceToDealDoubleDamageWhileFocused",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7073,6 +9981,12 @@
   {
     "bench_group": "ChanceToDealDoubleDamageWhileFocused",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7086,6 +10000,12 @@
   {
     "bench_group": "ChanceToDealDoubleDamageWhileFocused",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7099,6 +10019,12 @@
   {
     "bench_group": "ChanceToDealDoubleDamageWhileFocused",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7116,6 +10042,12 @@
   {
     "bench_group": "ChanceToDealDoubleDamageWhileFocused",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7133,6 +10065,12 @@
   {
     "bench_group": "ChanceToDealDoubleDamageWhileFocused",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7150,6 +10088,12 @@
   {
     "bench_group": "AttackAndCastSpeedWhileFocused",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -7159,6 +10103,12 @@
   {
     "bench_group": "AttackAndCastSpeedWhileFocused",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -7168,6 +10118,12 @@
   {
     "bench_group": "AttackAndCastSpeedWhileFocused",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -7177,6 +10133,12 @@
   {
     "bench_group": "StatusAilmentsYouInflictDurationWhileFocused",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -7186,6 +10148,12 @@
   {
     "bench_group": "StatusAilmentsYouInflictDurationWhileFocused",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -7195,6 +10163,12 @@
   {
     "bench_group": "StatusAilmentsYouInflictDurationWhileFocused",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -7204,6 +10178,12 @@
   {
     "bench_group": "ImmuneToStatusAilmentsWhileFocused",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -7213,6 +10193,12 @@
   {
     "bench_group": "LifeLeechFromAnyDamagePermyriadWhileFocusedAndVaalPact",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -7222,6 +10208,12 @@
   {
     "bench_group": "FortifyEffectWhileFocused",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -7231,6 +10223,12 @@
   {
     "bench_group": "FortifyEffectWhileFocused",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -7240,6 +10238,12 @@
   {
     "bench_group": "FortifyEffectWhileFocused",
     "bench_tier": 3,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -7249,6 +10253,12 @@
   {
     "bench_group": "TriggerSocketedSpellWhenYouFocus",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -7258,6 +10268,12 @@
   {
     "bench_group": "DamageRemovedFromManaBeforeLifeWhileFocused",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -7267,6 +10283,12 @@
   {
     "bench_group": "MinionsRecoverMaximumLifeWhenYouFocus",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -7276,6 +10298,12 @@
   {
     "bench_group": "SkillsCostNoManaWhileFocused",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -7285,6 +10313,12 @@
   {
     "bench_group": "AllDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Belt"
@@ -7295,6 +10329,12 @@
   {
     "bench_group": "AllDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring",
       "Belt"
@@ -7305,6 +10345,12 @@
   {
     "bench_group": "AllDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Ring",
       "Belt"
@@ -7315,6 +10361,12 @@
   {
     "bench_group": "LocalIncreaseSocketedSupportGemLevel",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7337,6 +10389,12 @@
   {
     "bench_group": "LocalIncreaseSocketedSupportGemLevel",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7359,6 +10417,12 @@
   {
     "bench_group": "IncreaseManaCostFlat",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -7369,6 +10433,12 @@
   {
     "bench_group": "IncreaseManaCostFlat",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -7379,6 +10449,12 @@
   {
     "bench_group": "IncreaseManaCostFlat",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Ring",
       "Amulet"
@@ -7389,6 +10465,12 @@
   {
     "bench_group": "DamageWhileLeeching",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Gloves",
       "Amulet"
@@ -7399,6 +10481,12 @@
   {
     "bench_group": "DamageWhileLeeching",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Gloves",
       "Amulet"
@@ -7409,6 +10497,12 @@
   {
     "bench_group": "DamageWhileLeeching",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Gloves",
       "Amulet"
@@ -7419,6 +10513,12 @@
   {
     "bench_group": "SocketedGemQuality",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyGemQuality"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7441,6 +10541,12 @@
   {
     "bench_group": "SocketedGemQuality",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyGemQuality"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7463,6 +10569,12 @@
   {
     "bench_group": "SocketedGemQuality",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7485,6 +10597,12 @@
   {
     "bench_group": "LocalAddedPhysicalDamageAndCausesBleeding",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7498,6 +10616,12 @@
   {
     "bench_group": "LocalAddedPhysicalDamageAndCausesBleeding",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7511,6 +10635,12 @@
   {
     "bench_group": "LocalAddedPhysicalDamageAndCausesBleeding",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7524,6 +10654,12 @@
   {
     "bench_group": "LocalAddedPhysicalDamageAndCausesBleeding",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7540,6 +10676,12 @@
   {
     "bench_group": "LocalAddedPhysicalDamageAndCausesBleeding",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7556,6 +10698,12 @@
   {
     "bench_group": "LocalAddedPhysicalDamageAndCausesBleeding",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7572,6 +10720,12 @@
   {
     "bench_group": "AlwaysHits",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7591,6 +10745,12 @@
   {
     "bench_group": "DamageDuringFlaskEffect",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -7600,6 +10760,12 @@
   {
     "bench_group": "DamageDuringFlaskEffect",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -7609,6 +10775,12 @@
   {
     "bench_group": "DamageDuringFlaskEffect",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Gloves"
     ],
@@ -7618,6 +10790,12 @@
   {
     "bench_group": "RareOrUniqueMonsterDroppedItemRarity",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -7627,6 +10805,12 @@
   {
     "bench_group": "RareOrUniqueMonsterDroppedItemRarity",
     "bench_tier": 2,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeRandomly"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -7636,6 +10820,12 @@
   {
     "bench_group": "RareOrUniqueMonsterDroppedItemRarity",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeMagicToRare"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -7645,6 +10835,12 @@
   {
     "bench_group": "FireAddedAsChaos",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7658,6 +10854,12 @@
   {
     "bench_group": "FireAddedAsChaos",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7671,6 +10873,12 @@
   {
     "bench_group": "FireAddedAsChaos",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7684,6 +10892,12 @@
   {
     "bench_group": "FireAddedAsChaos",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7701,6 +10915,12 @@
   {
     "bench_group": "FireAddedAsChaos",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7718,6 +10938,12 @@
   {
     "bench_group": "FireAddedAsChaos",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7735,6 +10961,12 @@
   {
     "bench_group": "ColdAddedAsChaos",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7748,6 +10980,12 @@
   {
     "bench_group": "ColdAddedAsChaos",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7761,6 +10999,12 @@
   {
     "bench_group": "ColdAddedAsChaos",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7774,6 +11018,12 @@
   {
     "bench_group": "ColdAddedAsChaos",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7791,6 +11041,12 @@
   {
     "bench_group": "ColdAddedAsChaos",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7808,6 +11064,12 @@
   {
     "bench_group": "ColdAddedAsChaos",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7825,6 +11087,12 @@
   {
     "bench_group": "LightningAddedAsChaos",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7838,6 +11106,12 @@
   {
     "bench_group": "LightningAddedAsChaos",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7851,6 +11125,12 @@
   {
     "bench_group": "LightningAddedAsChaos",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7864,6 +11144,12 @@
   {
     "bench_group": "LightningAddedAsChaos",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7881,6 +11167,12 @@
   {
     "bench_group": "LightningAddedAsChaos",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7898,6 +11190,12 @@
   {
     "bench_group": "LightningAddedAsChaos",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7915,6 +11213,12 @@
   {
     "bench_group": "PhysicalAddedAsChaos",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7928,6 +11232,12 @@
   {
     "bench_group": "PhysicalAddedAsChaos",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7941,6 +11251,12 @@
   {
     "bench_group": "PhysicalAddedAsChaos",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -7954,6 +11270,12 @@
   {
     "bench_group": "PhysicalAddedAsChaos",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7971,6 +11293,12 @@
   {
     "bench_group": "PhysicalAddedAsChaos",
     "bench_tier": 2,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -7988,6 +11316,12 @@
   {
     "bench_group": "PhysicalAddedAsChaos",
     "bench_tier": 3,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyCorrupt"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8005,6 +11339,12 @@
   {
     "bench_group": "PercentageAllAttributes",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -8014,6 +11354,12 @@
   {
     "bench_group": "PercentageAllAttributes",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -8023,6 +11369,12 @@
   {
     "bench_group": "PercentageAllAttributes",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -8032,6 +11384,12 @@
   {
     "bench_group": "LifeAddedAsEnergyShield",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -8041,6 +11399,12 @@
   {
     "bench_group": "LifeAddedAsEnergyShield",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -8050,6 +11414,12 @@
   {
     "bench_group": "LifeAddedAsEnergyShield",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -8059,6 +11429,12 @@
   {
     "bench_group": "SummonWolfOnKill",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -8068,6 +11444,12 @@
   {
     "bench_group": "PhysicalDamageTakenAsFirePercent",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -8077,6 +11459,12 @@
   {
     "bench_group": "PhysicalDamageTakenAsFirePercent",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -8086,6 +11474,12 @@
   {
     "bench_group": "PhysicalDamageTakenAsFirePercent",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Helmet"
     ],
@@ -8095,6 +11489,12 @@
   {
     "bench_group": "AvoidFreeze",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -8104,6 +11504,12 @@
   {
     "bench_group": "AvoidFreeze",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -8113,6 +11519,12 @@
   {
     "bench_group": "AvoidFreeze",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Boots"
     ],
@@ -8122,6 +11534,12 @@
   {
     "bench_group": "CritChanceAndCriticalStrikeMultiplierIfEnemyShatteredRecently",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -8131,6 +11549,12 @@
   {
     "bench_group": "CritChanceAndCriticalStrikeMultiplierIfEnemyShatteredRecently",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -8140,6 +11564,12 @@
   {
     "bench_group": "CritChanceAndCriticalStrikeMultiplierIfEnemyShatteredRecently",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -8149,6 +11579,12 @@
   {
     "bench_group": "IncreasedChaosAndPhysicalDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -8158,6 +11594,12 @@
   {
     "bench_group": "IncreasedChaosAndPhysicalDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -8167,6 +11609,12 @@
   {
     "bench_group": "IncreasedChaosAndPhysicalDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -8176,6 +11624,12 @@
   {
     "bench_group": "IncreasedFireAndLightningDamage",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -8185,6 +11639,12 @@
   {
     "bench_group": "IncreasedFireAndLightningDamage",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -8194,6 +11654,12 @@
   {
     "bench_group": "IncreasedFireAndLightningDamage",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Ring"
     ],
@@ -8203,6 +11669,12 @@
   {
     "bench_group": "LocalFlaskLifeRegenerationPerMinuteDuringFlaskEffect",
     "bench_tier": 0,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "LifeFlask",
       "ManaFlask",
@@ -8216,6 +11688,12 @@
   {
     "bench_group": "LocalFlaskAvoidStunChanceAndMovementSpeedDuringFlaskEffect",
     "bench_tier": 0,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "LifeFlask",
       "ManaFlask",
@@ -8229,6 +11707,12 @@
   {
     "bench_group": "LocalFlaskSkillManaCostDuringFlaskEffect",
     "bench_tier": 0,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "LifeFlask",
       "ManaFlask",
@@ -8242,6 +11726,12 @@
   {
     "bench_group": "LocalFlaskItemFoundRarityDuringFlaskEffect",
     "bench_tier": 0,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "LifeFlask",
       "ManaFlask",
@@ -8255,6 +11745,12 @@
   {
     "bench_group": "LocalFlaskCriticalStrikeChanceDuringFlaskEffect",
     "bench_tier": 0,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "LifeFlask",
       "ManaFlask",
@@ -8268,6 +11764,12 @@
   {
     "bench_group": "LocalFlaskLifeLeechOnDamageTakenPermyriadDuringFlaskEffect",
     "bench_tier": 0,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "LifeFlask",
       "ManaFlask",
@@ -8281,6 +11783,12 @@
   {
     "bench_group": "LocalAttackSpeedAndLocalItemQuality",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8302,6 +11810,12 @@
   {
     "bench_group": "LocalAttackSpeedAndLocalItemQuality",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8321,6 +11835,12 @@
   {
     "bench_group": "LocalCriticalStrikeChanceAndLocalItemQuality",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8342,6 +11862,12 @@
   {
     "bench_group": "LocalCriticalStrikeChanceAndLocalItemQuality",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8363,6 +11889,12 @@
   {
     "bench_group": "LocalAccuracyRatingAndLocalItemQuality",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8384,6 +11916,12 @@
   {
     "bench_group": "LocalAccuracyRatingAndLocalItemQuality",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8405,6 +11943,12 @@
   {
     "bench_group": "LocalAccuracyRatingAndLocalItemQuality",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8426,6 +11970,12 @@
   {
     "bench_group": "LocalAttackSpeedAndLocalDisplayTriggerLevel1BloodRageOnKillChance",
     "bench_tier": 1,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8447,6 +11997,12 @@
   {
     "bench_group": "LocalAttackSpeedAndLocalDisplayTriggerLevel1BloodRageOnKillChance",
     "bench_tier": 2,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8466,6 +12022,12 @@
   {
     "bench_group": "CastSpeedAndGainArcaneSurgeOnKillChance",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -8479,6 +12041,12 @@
   {
     "bench_group": "CastSpeedAndGainArcaneSurgeOnKillChance",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -8492,6 +12060,12 @@
   {
     "bench_group": "CastSpeedAndGainArcaneSurgeOnKillChance",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Two Hand Axe",
       "Two Hand Mace",
@@ -8505,6 +12079,12 @@
   {
     "bench_group": "CastSpeedAndGainArcaneSurgeOnKillChance",
     "bench_tier": 1,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8521,6 +12101,12 @@
   {
     "bench_group": "CastSpeedAndGainArcaneSurgeOnKillChance",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8537,6 +12123,12 @@
   {
     "bench_group": "CastSpeedAndGainArcaneSurgeOnKillChance",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8553,6 +12145,12 @@
   {
     "bench_group": "TriggerSocketedSpellOnSkillUse",
     "bench_tier": 0,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8574,6 +12172,12 @@
   {
     "bench_group": "FireAndChaosDamageResistance",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8604,6 +12208,12 @@
   {
     "bench_group": "FireAndChaosDamageResistance",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8634,6 +12244,12 @@
   {
     "bench_group": "FireAndChaosDamageResistance",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8664,6 +12280,12 @@
   {
     "bench_group": "LightningAndChaosDamageResistance",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8694,6 +12316,12 @@
   {
     "bench_group": "LightningAndChaosDamageResistance",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8724,6 +12352,12 @@
   {
     "bench_group": "LightningAndChaosDamageResistance",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8754,6 +12388,12 @@
   {
     "bench_group": "ColdAndChaosDamageResistance",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToMagic"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8784,6 +12424,12 @@
   {
     "bench_group": "ColdAndChaosDamageResistance",
     "bench_tier": 2,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8814,6 +12460,12 @@
   {
     "bench_group": "ColdAndChaosDamageResistance",
     "bench_tier": 3,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8844,6 +12496,12 @@
   {
     "bench_group": "StrengthAndLocalItemQuality",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyArmourQuality"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8867,6 +12525,12 @@
   {
     "bench_group": "StrengthAndLocalItemQuality",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8890,6 +12554,12 @@
   {
     "bench_group": "StrengthAndLocalItemQuality",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8913,6 +12583,12 @@
   {
     "bench_group": "DexterityAndLocalItemQuality",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyArmourQuality"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8936,6 +12612,12 @@
   {
     "bench_group": "DexterityAndLocalItemQuality",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8959,6 +12641,12 @@
   {
     "bench_group": "DexterityAndLocalItemQuality",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -8982,6 +12670,12 @@
   {
     "bench_group": "IntelligenceAndLocalItemQuality",
     "bench_tier": 1,
+    "cost_counts": [
+      8
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyArmourQuality"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -9005,6 +12699,12 @@
   {
     "bench_group": "IntelligenceAndLocalItemQuality",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -9028,6 +12728,12 @@
   {
     "bench_group": "IntelligenceAndLocalItemQuality",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -9051,6 +12757,12 @@
   {
     "bench_group": "LifeRegenerationRatePerMinuteWhileUsingFlask",
     "bench_tier": 1,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyFlaskQuality"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -9060,6 +12772,12 @@
   {
     "bench_group": "LifeRegenerationRatePerMinuteWhileUsingFlask",
     "bench_tier": 2,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -9069,6 +12787,12 @@
   {
     "bench_group": "LifeRegenerationRatePerMinuteWhileUsingFlask",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Belt"
     ],
@@ -9078,6 +12802,12 @@
   {
     "bench_group": "TrapThrowSpeed",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Amulet",
       "Belt"
@@ -9088,6 +12818,12 @@
   {
     "bench_group": "TrapThrowSpeed",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Amulet",
       "Belt"
@@ -9098,6 +12834,12 @@
   {
     "bench_group": "TrapThrowSpeed",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet",
       "Belt"
@@ -9108,6 +12850,12 @@
   {
     "bench_group": "MineLayingSpeed",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Amulet",
       "Helmet"
@@ -9118,6 +12866,12 @@
   {
     "bench_group": "MineLayingSpeed",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Amulet",
       "Helmet"
@@ -9128,6 +12882,12 @@
   {
     "bench_group": "MineLayingSpeed",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet",
       "Helmet"
@@ -9138,6 +12898,12 @@
   {
     "bench_group": "BrandAttachmentRange",
     "bench_tier": 1,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic"
+    ],
     "item_classes": [
       "Amulet",
       "Gloves"
@@ -9148,6 +12914,12 @@
   {
     "bench_group": "BrandAttachmentRange",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Amulet",
       "Gloves"
@@ -9158,6 +12930,12 @@
   {
     "bench_group": "BrandAttachmentRange",
     "bench_tier": 3,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet",
       "Gloves"
@@ -9168,6 +12946,12 @@
   {
     "bench_group": "PercentageLifeAndMana",
     "bench_tier": 0,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -9177,6 +12961,12 @@
   {
     "bench_group": "BodyBlockPercent",
     "bench_tier": 0,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -9186,6 +12976,12 @@
   {
     "bench_group": "SpellDodgePercentage",
     "bench_tier": 0,
+    "cost_counts": [
+      4
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -9195,6 +12991,12 @@
   {
     "bench_group": "AvoidStunAndElementalStatusAilments",
     "bench_tier": 0,
+    "cost_counts": [
+      6
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Body Armour"
     ],
@@ -9204,6 +13006,12 @@
   {
     "bench_group": "AreaDamageAndAreaOfEffect",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -9213,6 +13021,12 @@
   {
     "bench_group": "AreaDamageAndAreaOfEffect",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -9222,6 +13036,12 @@
   {
     "bench_group": "AreaDamageAndAreaOfEffect",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -9231,6 +13051,12 @@
   {
     "bench_group": "ProjectileDamageAndProjectileSpeed",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -9240,6 +13066,12 @@
   {
     "bench_group": "ProjectileDamageAndProjectileSpeed",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -9249,6 +13081,12 @@
   {
     "bench_group": "ProjectileDamageAndProjectileSpeed",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -9258,6 +13096,12 @@
   {
     "bench_group": "MeleeDamageAndMeleeRange",
     "bench_tier": 1,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyUpgradeToRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -9267,6 +13111,12 @@
   {
     "bench_group": "MeleeDamageAndMeleeRange",
     "bench_tier": 2,
+    "cost_counts": [
+      3
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollRare"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -9276,6 +13126,12 @@
   {
     "bench_group": "MeleeDamageAndMeleeRange",
     "bench_tier": 3,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyModValues"
+    ],
     "item_classes": [
       "Amulet"
     ],
@@ -9285,6 +13141,12 @@
   {
     "bench_group": "ItemGenerationCannotChangePrefixes",
     "bench_tier": 0,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -9315,6 +13177,12 @@
   {
     "bench_group": "ItemGenerationCannotChangeSuffixes",
     "bench_tier": 0,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -9345,6 +13213,12 @@
   {
     "bench_group": "ItemGenerationCanHaveMultipleCraftedMods",
     "bench_tier": 0,
+    "cost_counts": [
+      2
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -9375,6 +13249,12 @@
   {
     "bench_group": "ItemGenerationCannotRollAttackAffixes",
     "bench_tier": 0,
+    "cost_counts": [
+      1
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyAddModToRare"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
@@ -9405,6 +13285,12 @@
   {
     "bench_group": "ItemGenerationCannotRollCasterAffixes",
     "bench_tier": 0,
+    "cost_counts": [
+      5
+    ],
+    "cost_types": [
+      "Metadata/Items/Currency/CurrencyRerollImplicit"
+    ],
     "item_classes": [
       "Dagger",
       "One Hand Axe",
