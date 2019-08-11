@@ -110,7 +110,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
                 });
               }),
           ListTile(
-            title: Text("Spending Report", style: TextStyle(fontSize: 20)),
+            title: Text("Currency Used", style: TextStyle(fontSize: 20)),
             onTap: _navigateToSpendingReportWidget,
           ),
           ListTile(
