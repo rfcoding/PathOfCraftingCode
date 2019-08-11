@@ -106,7 +106,26 @@ class ItemSelectState extends State<ItemSelectWidget> {
     );
   }
 
+  List<String> _getShaperOrElderOptions() {
+    if(_baseItem == null) {
+      return List();
+    }
+    
+    final itemClass = ItemRepository.instance.itemClassMap[_baseItem.itemClass];
+    if(itemClass.elderTag == null && itemClass.shaperTag == null) return List();
+
+    var result = ['None'];
+    if(itemClass.elderTag != null) result.add("Elder");
+    if(itemClass.shaperTag != null) result.add("Shaper");
+    
+    return result;
+  }
+
   Widget _shaperOrElderBase() {
+    final options = _getShaperOrElderOptions();
+    if(options.isEmpty){
+      return Text("Not possible for this item", style: Theme.of(context).textTheme.caption);
+    }
     return DropdownButton<String> (
       hint: Text("$_shaperOrElder"),
       onChanged: (String value) {
@@ -114,8 +133,7 @@ class ItemSelectState extends State<ItemSelectWidget> {
           _shaperOrElder = value;
         });
       },
-      items: ['None', 'Shaper', 'Elder']
-          .map<DropdownMenuItem<String>>((String value) {
+      items: options.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),
@@ -150,12 +168,17 @@ class ItemSelectState extends State<ItemSelectWidget> {
       print("No base item selected");
     }
     List<String> extraTags = List();
+    List<String> possibleShaperOrElderOptions = _getShaperOrElderOptions();
     switch (_shaperOrElder) {
       case 'Shaper':
-        extraTags.add(ItemRepository.instance.getShaperTagForItemClass(_baseItem.itemClass));
+        if(possibleShaperOrElderOptions.contains('Shaper')) {
+          extraTags.add(ItemRepository.instance.getShaperTagForItemClass(_baseItem.itemClass));
+        }
         break;
       case 'Elder':
-        extraTags.add(ItemRepository.instance.getElderTagForItemClass(_baseItem.itemClass));
+        if(possibleShaperOrElderOptions.contains('Elder')) {
+          extraTags.add(ItemRepository.instance.getElderTagForItemClass(_baseItem.itemClass));
+        }
         break;
       case 'None':
       default:
