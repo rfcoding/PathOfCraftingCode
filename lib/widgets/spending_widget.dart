@@ -18,7 +18,7 @@ class SpendingWidgetState extends State<SpendingWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Spending Report"),
+          title: Text("Currence Used"),
         ),
         body: Column(
           children: <Widget>[
