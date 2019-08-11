@@ -112,10 +112,7 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
   Widget _buildCostWidget(CraftingBenchOptionCost cost) {
     final imagePath = CurrencyType.idToImagePath[cost.itemId];
       
-      if(imagePath == null){
-        print("no image path for currency ${cost.itemId}");
-        return Container();
-      }
+      assert(imagePath != null);
 
       return Row(
               mainAxisSize: MainAxisSize.min,
