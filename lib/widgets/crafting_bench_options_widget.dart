@@ -112,7 +112,7 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
   Widget _buildCostWidget(CraftingBenchOptionCost cost) {
     final imagePath = CurrencyType.idToImagePath[cost.itemId];
       
-      assert(imagePath != null);
+      assert(imagePath != null, cost.itemId);
 
       return Row(
               mainAxisSize: MainAxisSize.min,
