@@ -29,7 +29,8 @@ class RareItem extends Item {
       String itemClass,
       int itemLevel,
       String domain,
-      SpendingReport spendingReport)
+      SpendingReport spendingReport,
+      Item imprint)
       : super(
       name,
       prefixes,
@@ -41,7 +42,8 @@ class RareItem extends Item {
       itemClass,
       itemLevel,
       domain,
-      spendingReport);
+      spendingReport,
+      imprint);
 
   factory RareItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -72,7 +74,8 @@ class RareItem extends Item {
       data['item_class'],
       data['item_level'],
       data['domain'],
-      spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : SpendingReport()
+      spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : SpendingReport(),
+      null,
     );
   }
 
@@ -89,7 +92,8 @@ class RareItem extends Item {
         item.itemClass,
         item.itemLevel,
         item.domain,
-        item.spendingReport);
+        item.spendingReport,
+        item.imprint);
   }
 
   @override

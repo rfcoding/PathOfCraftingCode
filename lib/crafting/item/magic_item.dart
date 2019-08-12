@@ -24,6 +24,7 @@ class MagicItem extends Item {
       int itemLevel,
       String domain,
       SpendingReport spendingReport,
+      Item imprint,
       )
       : super(
       name,
@@ -36,7 +37,8 @@ class MagicItem extends Item {
       itemClass,
       itemLevel,
       domain,
-      spendingReport);
+      spendingReport,
+      imprint);
 
   factory MagicItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -67,7 +69,8 @@ class MagicItem extends Item {
         data['item_class'],
         data['item_level'],
         data['domain'],
-        spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null
+        spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null,
+        null
     );
   }
 
@@ -83,7 +86,8 @@ class MagicItem extends Item {
         item.itemClass,
         item.itemLevel,
         item.domain,
-        item.spendingReport);
+        item.spendingReport,
+        item.imprint);
   }
 
   @override

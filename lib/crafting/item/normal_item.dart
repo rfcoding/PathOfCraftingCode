@@ -22,7 +22,8 @@ class NormalItem extends Item {
       String itemClass,
       int itemLevel,
       String domain,
-      SpendingReport spendingReport)
+      SpendingReport spendingReport,
+      Item imprint)
       : super(
       name,
       prefixes,
@@ -34,7 +35,8 @@ class NormalItem extends Item {
       itemClass,
       itemLevel,
       domain,
-      spendingReport);
+      spendingReport,
+      imprint);
 
   factory NormalItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -65,7 +67,8 @@ class NormalItem extends Item {
         data['item_class'],
         data['item_level'],
         data['domain'],
-        spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null
+        spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null,
+        null
     );
   }
 
@@ -81,7 +84,8 @@ class NormalItem extends Item {
         item.itemClass,
         item.itemLevel,
         item.domain,
-        item.spendingReport);
+        item.spendingReport,
+        item.imprint);
   }
 
   @override

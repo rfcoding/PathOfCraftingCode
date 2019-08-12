@@ -28,6 +28,7 @@ abstract class Item {
   String domain;
 
   SpendingReport spendingReport;
+  Item imprint;
 
   Random rng = new Random();
   Color statTextColor = Color(0xFF677F7F);
@@ -51,7 +52,8 @@ abstract class Item {
       String itemClass,
       int itemLevel,
       String domain,
-      SpendingReport spendingReport) {
+      SpendingReport spendingReport,
+      Item imprint) {
     this.name = name;
     this.prefixes = prefixes;
     this.suffixes = suffixes;
@@ -63,6 +65,7 @@ abstract class Item {
     this.itemLevel = itemLevel;
     this.domain = domain;
     this.spendingReport = spendingReport;
+    this.imprint = imprint;
 
     this.implicits.forEach((implicit) {
       implicit.stats.forEach((stat) {
