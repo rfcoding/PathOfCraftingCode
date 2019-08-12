@@ -65,7 +65,11 @@ class _BeastWidgetState extends State<BeastWidget> {
 
   Widget buildListItem(BuildContext context, int index) {
     final craftingOption = craftingOptions[index];
-
+    if (filter != null &&
+        filter.isNotEmpty &&
+        !craftingOption.displayName.toLowerCase().contains(filter.toLowerCase())) {
+      return Container();
+    }
     return ListTile(
       title: Text(craftingOption.displayName),
       subtitle: Text(craftingOption.subheader),
