@@ -182,10 +182,9 @@ abstract class Item {
 
     if (getMods().contains(mod)) {
       getMods().firstWhere((m) => m == mod).rerollStatValues();
-      for(final cost in option.costs){
-        spendingReport.addSpending(CurrencyType.idToCurrency[cost.itemId], cost.count);
-      }
-      return this;
+      prefixes.removeWhere((m) => m.domain == "crafted");
+      suffixes.removeWhere((m) => m.domain == "crafted");
+      spendingReport.addSpending(CurrencyType.scour, 1);
     }
     switch (mod.generationType) {
       case "prefix":
