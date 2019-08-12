@@ -84,7 +84,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
           ],
         ),
         onWillPop: () {
-          if (_globalKey.currentState.isDrawerOpen) {
+          if (_globalKey.currentState.isEndDrawerOpen) {
             Navigator.pop(context); // closes the drawer if opened
             return Future.value(false);
           } else {
