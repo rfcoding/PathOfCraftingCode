@@ -1,5 +1,6 @@
 import 'package:poe_clicker/crafting/item/magic_item.dart';
 import 'package:poe_clicker/crafting/item/rare_item.dart';
+import 'package:poe_clicker/repository/mod_repo.dart';
 
 import 'item/item.dart';
 import 'mod.dart';
@@ -17,6 +18,10 @@ abstract class BeastCraft {
     BeastMagicRestoreImprint(),
     BeastAddPrefixRemoveSuffix(),
     BeastAddSuffixRemovePrefix(),
+    BeastAddMod("GrantsBirdAspectCrafted", "Add Aspect of the Avian skill", BeastCraftCost("Saqawal", 1)),
+    BeastAddMod("GrantsCatAspectCrafted", "Add Aspect of the Cat skill", BeastCraftCost("Saqawal", 1)),
+    BeastAddMod("GrantsCrabAspectCrafted", "Add Aspect of the Crab skill", BeastCraftCost("Saqawal", 1)),
+    BeastAddMod("GrantsSpiderAspectCrafted", "Add Aspect of the Spider skill", BeastCraftCost("Saqawal", 1)),
   ];
   static List<BeastCraft> getBeastCraftsForItem(Item item) {
     return allCrafts.where((craft) => craft.canDoCraft(item)).toList(growable: false);
@@ -93,5 +98,27 @@ class BeastAddSuffixRemovePrefix extends BeastCraft {
         item.prefixes.isNotEmpty &&
         !item.hasCannotChangePrefixes() &&
         !item.hasCannotChangeSuffixes();
+  }
+}
+
+class BeastAddMod extends BeastCraft {
+  final String _modKey;
+  final String _name;
+  final BeastCraftCost _cost;
+
+  String get displayName => _name;
+  BeastCraftCost get cost => _cost;
+
+  BeastAddMod(this._modKey, this._name, this._cost);
+
+  Item doCraft(Item item){
+    Mod mod = ModRepository.instance.getModById(_modKey);
+    item.addMod(mod);
+    return item;
+  }
+
+  bool canDoCraft(Item item){
+    Mod mod = ModRepository.instance.getModById(_modKey);
+    return item.canAddMod(mod);
   }
 }

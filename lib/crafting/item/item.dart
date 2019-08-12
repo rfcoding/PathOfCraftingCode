@@ -178,6 +178,32 @@ abstract class Item {
     suffixes.add(suffix);
   }
 
+  bool canAddMod(Mod mod){
+    if(this.alreadyHasModGroup(mod)){
+      return false;
+    }
+    if(mod.generationType == "prefix"){
+      if(this.hasMaxPrefixes() || this.hasCannotChangePrefixes()){
+        return false;
+      }
+    }
+    else if(mod.generationType == "suffix"){
+      if(this.hasMaxSuffixes() || this.hasCannotChangeSuffixes()){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  void addMod(Mod mod){
+    if(mod.generationType == "prefix"){
+      this.prefixes.add(mod);
+    }
+    else if(mod.generationType == "suffix"){
+      this.suffixes.add(mod);
+    }
+  }
+
   Item tryAddMasterMod(CraftingBenchOption option) {
     final mod = option.mod;
     mod.rerollStatValues();
