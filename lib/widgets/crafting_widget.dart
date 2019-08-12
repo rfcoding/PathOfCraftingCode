@@ -169,7 +169,9 @@ class CraftingWidgetState extends State<CraftingWidget> {
                             .toList())
                         .then((fossils) {
                       setState(() {
-                        _selectedFossils = fossils;
+                        if(fossils != null) {
+                          _selectedFossils = fossils;
+                        }
                       });
                     })
             ),

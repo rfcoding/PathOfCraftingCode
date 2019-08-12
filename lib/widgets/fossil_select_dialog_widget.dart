@@ -15,6 +15,9 @@ class FossilSelectDialog {
         context: context,
         builder: (BuildContext context) =>
             fossilDialog(context, selectableItems));
+    if(result == null) {
+      return null;
+    }
     return result
         .where((item) => item.selected)
         .map((item) => item.fossil)
