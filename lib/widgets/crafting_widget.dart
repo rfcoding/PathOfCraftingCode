@@ -336,6 +336,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
     )).then((result) {
       if(result != null){
         BeastCraft craft = result as BeastCraft;
+        _item.spendingReport.spendBeast(craft.cost);
         itemChanged(craft.doCraft(_item));
       }
     });

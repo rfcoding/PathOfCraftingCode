@@ -6,10 +6,10 @@ import 'item/item.dart';
 import 'mod.dart';
 
 class BeastCraftCost {
-  String itemId;
+  String name;
   int count;
 
-  BeastCraftCost(this.itemId, this.count);
+  BeastCraftCost(this.name, this.count);
 }
 
 abstract class BeastCraft {
@@ -67,7 +67,7 @@ class BeastMagicRestoreImprint extends BeastCraft {
 }
 
 class BeastAddPrefixRemoveSuffix extends BeastCraft {
-  BeastAddPrefixRemoveSuffix() : super(displayName: "Add a Prefix, Remove a Random SuffIx");
+  BeastAddPrefixRemoveSuffix() : super(displayName: "Add a Prefix, Remove a Random SuffIx", cost: BeastCraftCost("Farric Wolf Alpha", 1));
 
   Item doCraft(Item item) {
     item.suffixes.removeAt(item.rng.nextInt(item.suffixes.length));
@@ -85,7 +85,7 @@ class BeastAddPrefixRemoveSuffix extends BeastCraft {
 }
 
 class BeastAddSuffixRemovePrefix extends BeastCraft {
-  BeastAddSuffixRemovePrefix() : super(displayName: "Add a SuffIx, Remove a Random Prefix");
+  BeastAddSuffixRemovePrefix() : super(displayName: "Add a SuffIx, Remove a Random Prefix", cost: BeastCraftCost("Farric Lynx Alpha", 1));
 
   Item doCraft(Item item) {
     item.prefixes.removeAt(item.rng.nextInt(item.prefixes.length));
