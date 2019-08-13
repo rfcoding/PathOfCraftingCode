@@ -114,7 +114,15 @@ class RareItem extends Item {
 
   @override
   void reroll({List<Fossil> fossils: const[]}) {
-    clearMods();
+    if (hasCannotChangePrefixes() && hasCannotChangeSuffixes()) {
+      return;
+    } else if (hasCannotChangePrefixes()) {
+      suffixes.clear();
+    } else if (hasCannotChangeSuffixes()) {
+      prefixes.clear();
+    } else {
+      clearMods();
+    }
     fillMods(fossils: fossils);
   }
 
@@ -162,6 +170,10 @@ class RareItem extends Item {
   }
 
   Item scour() {
+    if ((prefixes.isEmpty && suffixes.isEmpty)
+        || (hasCannotChangePrefixes() && hasCannotChangeSuffixes())) {
+      return this;
+    }
     this.spendingReport.addSpending(CurrencyType.scour, 1);
     if (hasCannotChangePrefixes()) {
       return scourSuffixes();
@@ -187,7 +199,8 @@ class RareItem extends Item {
   }
 
   RareItem annulment() {
-    if (prefixes.isEmpty && suffixes.isEmpty) {
+    if ((prefixes.isEmpty && suffixes.isEmpty)
+        || (hasCannotChangeSuffixes() && hasCannotChangePrefixes())) {
       return this;
     }
     this.spendingReport.addSpending(CurrencyType.annulment, 1);
