@@ -10,21 +10,15 @@ class CraftingBenchRepository {
   CraftingBenchRepository._privateConstructor();
   static final CraftingBenchRepository instance = CraftingBenchRepository._privateConstructor();
 
-  Map<String, List<CraftingBenchOption>> craftingBenchOptionsMap;
   List<CraftingBenchOption> craftingBenchOptions;
 
   Future<bool> initialize() async {
     craftingBenchOptions = List();
-    craftingBenchOptionsMap = Map();
     var data = await rootBundle.loadString('data_repo/crafting_bench_options.json');
     var jsonList = json.decode(data);
     jsonList.forEach((data) {
       CraftingBenchOption craftingBenchOption = CraftingBenchOption.fromJson(data);
       craftingBenchOptions.add(craftingBenchOption);
-      if (craftingBenchOptionsMap[craftingBenchOption.benchGroup] == null) {
-        craftingBenchOptionsMap[craftingBenchOption.benchGroup] = List();
-      }
-      craftingBenchOptionsMap[craftingBenchOption.benchGroup].add(craftingBenchOption);
     });
     return true;
   }
@@ -39,6 +33,7 @@ class CraftingBenchRepository {
         optionsMap[option.benchGroup].add(option);
       }
     }
+    optionsMap.values.forEach((list) => list.sort((a, b) => a.compareTo(b)));
     return optionsMap;
   }
 }
@@ -66,7 +61,7 @@ class CraftingBenchOptionCost {
   CraftingBenchOptionCost(this.itemId, this.count);
 }
 
-class CraftingBenchOption {
+class CraftingBenchOption implements Comparable<CraftingBenchOption> {
   String benchDisplayName;
   String benchGroup;
   int benchTier;
@@ -100,5 +95,10 @@ class CraftingBenchOption {
       mod: mod,
       costs: costs
     );
+  }
+
+  @override
+  int compareTo(CraftingBenchOption other) {
+    return other.benchTier - this.benchTier;
   }
 }
