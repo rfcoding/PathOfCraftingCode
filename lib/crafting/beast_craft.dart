@@ -18,27 +18,28 @@ abstract class BeastCraft {
     BeastMagicRestoreImprint(),
     BeastAddPrefixRemoveSuffix(),
     BeastAddSuffixRemovePrefix(),
-    BeastAddMod("GrantsBirdAspectCrafted", "Add Aspect of the Avian skill", BeastCraftCost("Saqawal", 1)),
-    BeastAddMod("GrantsCatAspectCrafted", "Add Aspect of the Cat skill", BeastCraftCost("Saqawal", 1)),
-    BeastAddMod("GrantsCrabAspectCrafted", "Add Aspect of the Crab skill", BeastCraftCost("Saqawal", 1)),
-    BeastAddMod("GrantsSpiderAspectCrafted", "Add Aspect of the Spider skill", BeastCraftCost("Saqawal", 1)),
+    BeastAddMod("GrantsBirdAspectCrafted", "Add Aspect of the Avian skill", BeastCraftCost("Saqawal, First of the Sky", 1)),
+    BeastAddMod("GrantsCatAspectCrafted", "Add Aspect of the Cat skill", BeastCraftCost("Farrul, First of the Plains", 1)),
+    BeastAddMod("GrantsCrabAspectCrafted", "Add Aspect of the Crab skill", BeastCraftCost("Craiceann, First of the Deep", 1)),
+    BeastAddMod("GrantsSpiderAspectCrafted", "Add Aspect of the Spider skill", BeastCraftCost("Fenumus, First of the Night", 1)),
   ];
   static List<BeastCraft> getBeastCraftsForItem(Item item) {
     return allCrafts.where((craft) => craft.canDoCraft(item)).toList(growable: false);
   }
 
-  String get displayName => "Unnamed craft";
-  String get subheader => "";
-  BeastCraftCost get cost => null;
+  String displayName;
+  String subheader;
+  BeastCraftCost cost;
+
+  BeastCraft({this.displayName, this.subheader, this.cost});
 
   Item doCraft(Item item);
   bool canDoCraft(Item item);
 }
 
-class BeastMagicImprint extends BeastCraft {
-  String get displayName => "Create an Imprint";
-  String get subheader => "Of a Magic Item";
-  BeastCraftCost get cost => BeastCraftCost("ManBearPig", 1);
+class BeastMagicImprint extends BeastCraft {  
+  BeastMagicImprint() : super(displayName: "Create an Imprint", subheader: "Of a Magic Item", cost: BeastCraftCost("Craicic Chimeral", 1));
+
   Item doCraft(Item item) {
     List<Mod> prefixes = List.generate(item.prefixes.length, (index) => Mod.copy(item.prefixes[index]));
     List<Mod> suffixes = List.generate(item.suffixes.length, (index) => Mod.copy(item.suffixes[index]));
@@ -53,8 +54,8 @@ class BeastMagicImprint extends BeastCraft {
 }
 
 class BeastMagicRestoreImprint extends BeastCraft {
-  String get displayName => "Restore Imprinted Item";
-  String get subheader => "Of the Current Item";
+
+  BeastMagicRestoreImprint() : super(displayName: "Restore Imprinted Item");
 
   Item doCraft(Item item) {
     return item.imprint;
@@ -66,7 +67,7 @@ class BeastMagicRestoreImprint extends BeastCraft {
 }
 
 class BeastAddPrefixRemoveSuffix extends BeastCraft {
-  String get displayName => "Add a Prefix, Remove a Random SuffIx";
+  BeastAddPrefixRemoveSuffix() : super(displayName: "Add a Prefix, Remove a Random SuffIx");
 
   Item doCraft(Item item) {
     item.suffixes.removeAt(item.rng.nextInt(item.suffixes.length));
@@ -84,7 +85,7 @@ class BeastAddPrefixRemoveSuffix extends BeastCraft {
 }
 
 class BeastAddSuffixRemovePrefix extends BeastCraft {
-  String get displayName => "Add a SuffIx, Remove a Random Prefix";
+  BeastAddSuffixRemovePrefix() : super(displayName: "Add a SuffIx, Remove a Random Prefix");
 
   Item doCraft(Item item) {
     item.prefixes.removeAt(item.rng.nextInt(item.prefixes.length));
@@ -103,13 +104,8 @@ class BeastAddSuffixRemovePrefix extends BeastCraft {
 
 class BeastAddMod extends BeastCraft {
   final String _modKey;
-  final String _name;
-  final BeastCraftCost _cost;
 
-  String get displayName => _name;
-  BeastCraftCost get cost => _cost;
-
-  BeastAddMod(this._modKey, this._name, this._cost);
+  BeastAddMod(this._modKey, String displayName, BeastCraftCost cost) : super(displayName: displayName, cost: cost);
 
   Item doCraft(Item item){
     Mod mod = ModRepository.instance.getModById(_modKey);

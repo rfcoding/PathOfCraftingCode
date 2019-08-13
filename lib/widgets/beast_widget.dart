@@ -71,26 +71,9 @@ class _BeastWidgetState extends State<BeastWidget> {
       return Container();
     }
     return ListTile(
-      title: Text(craftingOption.displayName),
-      subtitle: Text(craftingOption.subheader),
-      trailing: _buildCostWidget(craftingOption.cost),
+      title: Text(craftingOption.displayName ?? "Unnamed craft"),
+      subtitle: Text(craftingOption.subheader ?? ""),
       onTap: () => Navigator.of(context).pop(craftingOption),
-    );
-  }
-
-  Widget _buildCostWidget(BeastCraftCost cost) {
-    //final imagePath = CurrencyType.idToImagePath[cost.itemId];
-
-    //assert(imagePath != null, cost.itemId);
-    if (cost == null) {
-      return Text("Free");
-    }
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Text("${cost.count}x"),
-        //Image(image: AssetImage(imagePath), width: 20, height: 20,),
-      ],
     );
   }
 }
