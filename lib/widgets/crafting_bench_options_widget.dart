@@ -75,7 +75,7 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
 
   Widget buildExpandableListItem(BuildContext context, int index) {
     final String key = craftingBenchOptions.keys.toList()[index];
-    String displayName = craftingBenchOptions[key].last.benchDisplayName;
+    String displayName = craftingBenchOptions[key].first.benchDisplayName;
 
     if (filter != null &&
         filter.isNotEmpty &&
