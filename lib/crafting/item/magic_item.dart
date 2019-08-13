@@ -70,7 +70,7 @@ class MagicItem extends Item {
         data['item_level'],
         data['domain'],
         spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null,
-        null
+        data['imprint'] != null ? Item.fromJson(data['imprint']) : null
     );
   }
 

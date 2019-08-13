@@ -75,7 +75,7 @@ class RareItem extends Item {
       data['item_level'],
       data['domain'],
       spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : SpendingReport(),
-      null,
+      data['imprint'] != null ? Item.fromJson(data['imprint']) : null,
     );
   }
 

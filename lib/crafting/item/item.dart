@@ -117,7 +117,8 @@ abstract class Item {
       "rarity": rarity,
       "item_level": itemLevel,
       "domain": domain,
-      "spending_report": spendingReport.toJson()
+      "spending_report": spendingReport.toJson(),
+      "imprint": imprint != null ? imprint.toJson() : null
     };
   }
 
