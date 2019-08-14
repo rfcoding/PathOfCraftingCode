@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/crafting/beast_craft.dart';
 import 'package:poe_clicker/repository/crafting_bench_repo.dart';
+import 'package:poe_clicker/widgets/beast_widget.dart';
 import '../crafting/base_item.dart';
 import '../crafting/fossil.dart';
 import '../crafting/item/item.dart';
@@ -52,7 +54,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
           widget.baseItem.itemClass,
           widget.baseItem.itemLevel,
           widget.baseItem.domain,
-          SpendingReport());
+          SpendingReport(),
+          null);
       _item.tags.addAll(widget.extraTags);
     } else {
       _item = widget.item;
@@ -177,7 +180,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
             ),
             craftingButtonWidget(),
             essenceButtonWidget(),
-            emptySquare(),
+            beastButtonWidget(),
             iconButton(lastActionImagePath, 'Repeat last action', () => repeatLastAction()
             ),
           ],
@@ -203,6 +206,17 @@ class CraftingWidgetState extends State<CraftingWidget> {
           'assets/images/crafting.png',
           'Master crafting mods',
               () => _navigateToCraftingBench()
+      );
+    }
+    return emptySquare();
+  }
+
+  Widget beastButtonWidget() {
+    if (_item.domain == "item") {
+      return imageButton(
+          'assets/images/beast.png',
+          'Beast crafting',
+              () => _navigateToMenagerie()
       );
     }
     return emptySquare();
@@ -309,6 +323,21 @@ class CraftingWidgetState extends State<CraftingWidget> {
       }
       if (result is RemoveMods) {
         itemChanged(_item.removeMasterMods());
+      }
+    });
+  }
+
+  void _navigateToMenagerie() {
+    Navigator.push(context, MaterialPageRoute(
+        builder: (BuildContext context) =>
+            BeastWidget(
+                _item
+            )
+    )).then((result) {
+      if(result != null){
+        BeastCraft craft = result as BeastCraft;
+        _item.spendingReport.spendBeast(craft.cost);
+        itemChanged(craft.doCraft(_item));
       }
     });
   }

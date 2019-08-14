@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/crafting/beast_craft.dart';
 import 'dart:convert';
 import '../fossil.dart';
 import '../essence.dart';
@@ -8,11 +9,13 @@ class SpendingReport {
   Map<String, int> currencyMap;
   Map<String, int> fossilMap;
   Map<String, int> essenceMap;
+  Map<String, int> beastMap;
 
   SpendingReport({
     this.currencyMap,
     this.fossilMap,
     this.essenceMap,
+    this.beastMap,
   });
 
   factory SpendingReport.fromJson(Map<String, dynamic> data) {
@@ -40,10 +43,19 @@ class SpendingReport {
       }
     }
 
+    Map<String, int> beastMap = Map();
+    if(data['beast'] != null) {
+      var beastsRaw = jsonDecode(data['beast']) as Map;
+      if(beastsRaw != null) {
+        beastMap = beastsRaw.map((key, value) => MapEntry<String, int>(key, value));
+      }
+    }
+
     return SpendingReport(
       currencyMap: currencyMap,
       fossilMap: fossilsMap,
-      essenceMap: essenceMap
+      essenceMap: essenceMap,
+      beastMap: beastMap,
     );
   }
 
@@ -52,6 +64,7 @@ class SpendingReport {
       "currency": json.encode(currencyMap),
       "fossils": json.encode(fossilMap),
       "essence": json.encode(essenceMap),
+      "beast": json.encode(beastMap),
     };
   }
 
@@ -87,11 +100,25 @@ class SpendingReport {
     essenceMap[essence.name] += 1;
   }
 
+  void spendBeast(BeastCraftCost cost){
+    if(cost == null) {
+      return;
+    }
+    if(beastMap == null) {
+      beastMap = Map();
+    }
+    if(beastMap[cost.name] == null) {
+      beastMap[cost.name] = 0;
+    }
+    beastMap[cost.name] += cost.count;
+  }
+
   Widget getWidget() {
     List<Widget> listTiles = List();
     listTiles.add(expansionTileFromMap("Currency", currencyMap != null ? currencyMap : Map()));
     listTiles.add(expansionTileFromMap("Fossils", fossilMap != null ? fossilMap : Map()));
     listTiles.add(expansionTileFromMap("Essence", essenceMap != null ? essenceMap : Map()));
+    listTiles.add(expansionTileFromMap("Beasts", beastMap != null ? beastMap : Map()));
     return ListView(children: listTiles);
   }
 

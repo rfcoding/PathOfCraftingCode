@@ -28,6 +28,7 @@ abstract class Item {
   String domain;
 
   SpendingReport spendingReport;
+  Item imprint;
 
   Random rng = new Random();
   Color statTextColor = Color(0xFF677F7F);
@@ -51,7 +52,8 @@ abstract class Item {
       String itemClass,
       int itemLevel,
       String domain,
-      SpendingReport spendingReport) {
+      SpendingReport spendingReport,
+      Item imprint) {
     this.name = name;
     this.prefixes = prefixes;
     this.suffixes = suffixes;
@@ -63,6 +65,7 @@ abstract class Item {
     this.itemLevel = itemLevel;
     this.domain = domain;
     this.spendingReport = spendingReport;
+    this.imprint = imprint;
 
     this.implicits.forEach((implicit) {
       implicit.stats.forEach((stat) {
@@ -114,7 +117,8 @@ abstract class Item {
       "rarity": rarity,
       "item_level": itemLevel,
       "domain": domain,
-      "spending_report": spendingReport.toJson()
+      "spending_report": spendingReport.toJson(),
+      "imprint": imprint != null ? imprint.toJson() : null
     };
   }
 
@@ -173,6 +177,32 @@ abstract class Item {
     print("Adding Suffix: ${suffix.debugString()}");
     suffix.rerollStatValues();
     suffixes.add(suffix);
+  }
+
+  bool canAddMod(Mod mod){
+    if(this.alreadyHasModGroup(mod)){
+      return false;
+    }
+    if(mod.generationType == "prefix"){
+      if(this.hasMaxPrefixes() || this.hasCannotChangePrefixes()){
+        return false;
+      }
+    }
+    else if(mod.generationType == "suffix"){
+      if(this.hasMaxSuffixes() || this.hasCannotChangeSuffixes()){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  void addMod(Mod mod){
+    if(mod.generationType == "prefix"){
+      this.prefixes.add(mod);
+    }
+    else if(mod.generationType == "suffix"){
+      this.suffixes.add(mod);
+    }
   }
 
   Item tryAddMasterMod(CraftingBenchOption option) {
