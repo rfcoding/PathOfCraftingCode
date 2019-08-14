@@ -41,6 +41,7 @@ class BeastMagicImprint extends BeastCraft {
   BeastMagicImprint() : super(displayName: "Create an Imprint", subheader: "Of a Magic Item", cost: BeastCraftCost("Craicic Chimeral", 1));
 
   Item doCraft(Item item) {
+    item.imprint = null;
     List<Mod> prefixes = List.generate(item.prefixes.length, (index) => Mod.copy(item.prefixes[index]));
     List<Mod> suffixes = List.generate(item.suffixes.length, (index) => Mod.copy(item.suffixes[index]));
     Item imprint = MagicItem.fromItem(item, prefixes, suffixes);
