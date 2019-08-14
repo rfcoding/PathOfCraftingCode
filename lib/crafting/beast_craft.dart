@@ -14,6 +14,7 @@ class BeastCraftCost {
 
 abstract class BeastCraft {
   static List<BeastCraft> allCrafts = [
+    BeastRestoreAndAddMagicImprint(),
     BeastMagicImprint(),
     BeastMagicRestoreImprint(),
     BeastAddPrefixRemoveSuffix(),
@@ -53,6 +54,24 @@ class BeastMagicImprint extends BeastCraft {
     return item is MagicItem;
   }
 }
+
+class BeastRestoreAndAddMagicImprint extends BeastCraft {  
+  BeastRestoreAndAddMagicImprint() : super(displayName: "Restore and create a new Imprint", subheader: "Of a Magic Item", cost: BeastCraftCost("Craicic Chimeral", 1));
+
+  Item doCraft(Item item) {
+    item = item.imprint;
+    List<Mod> prefixes = List.generate(item.prefixes.length, (index) => Mod.copy(item.prefixes[index]));
+    List<Mod> suffixes = List.generate(item.suffixes.length, (index) => Mod.copy(item.suffixes[index]));
+    Item imprint = MagicItem.fromItem(item, prefixes, suffixes);
+    item.imprint = imprint;
+    return item;
+  }
+
+  bool canDoCraft(Item item) {
+    return item.imprint != null;
+  }
+}
+
 
 class BeastMagicRestoreImprint extends BeastCraft {
 
