@@ -7,7 +7,15 @@ class FossilRepository {
 
   FossilRepository._privateConstructor();
   static final FossilRepository instance = FossilRepository._privateConstructor();
-
+  static final Set<String> DO_NOT_USE_FOSSILS = ({
+    "Metadata/Items/Currency/CurrencyDelveCraftingEnchant",
+    "Metadata/Items/Currency/CurrencyDelveCraftingSockets",
+    "Metadata/Items/Currency/CurrencyDelveCraftingMirror",
+    "Metadata/Items/Currency/CurrencyDelveCraftingSellPrice",
+    "Metadata/Items/Currency/CurrencyDelveCraftingQuality",
+    "Metadata/Items/Currency/CurrencyDelveCraftingLuckyModRolls",
+    "Metadata/Items/Currency/CurrencyDelveCraftingCorruptEssence"
+  });
   List<Fossil> _fossils;
 
   Future<bool> initialize() async {
@@ -22,11 +30,16 @@ class FossilRepository {
 
     var baseItemData = await rootBundle.loadString('data_repo/base_items.json');
     Map<String, dynamic> baseItemMap = json.decode(baseItemData);
-    jsonMap.forEach((key, data) {
+    for (MapEntry<String, dynamic> mapEntry in jsonMap.entries) {
+      String key = mapEntry.key;
+      if (DO_NOT_USE_FOSSILS.contains(key)) {
+        continue;
+      }
+      dynamic data = mapEntry.value;
       String name = baseItemMap[key]['name'];
       Fossil fossil = Fossil.fromJson(name, data);
       _fossils.add(fossil);
-    });
+    }
     _fossils.sort((a, b) => a.name.compareTo(b.name));
     return true;
   }
