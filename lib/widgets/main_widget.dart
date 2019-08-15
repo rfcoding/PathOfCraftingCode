@@ -9,6 +9,7 @@ import '../repository/crafted_items_storage.dart';
 import '../repository/essence_repo.dart';
 import 'item_select_widget.dart';
 import 'saved_items_widget.dart';
+import 'about_widget.dart';
 
 class MainWidget extends StatefulWidget {
 
@@ -75,6 +76,11 @@ class MainWidgetState extends State<MainWidget> {
                   onPressed: _navigateToSavedItemsWidget,
                   child: Text("Load Item"),
                 ),
+                SizedBox(height: 8,),
+                RaisedButton(
+                  onPressed: _navigateToAboutWidget,
+                  child: Text("About"),
+                )
               ],
             ),
           ),
@@ -89,5 +95,9 @@ class MainWidgetState extends State<MainWidget> {
 
   void _navigateToSavedItemsWidget() {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SavedItemsWidget()));
+  }
+  
+  void _navigateToAboutWidget() {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AboutWidget()));
   }
 }
