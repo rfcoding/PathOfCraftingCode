@@ -90,6 +90,22 @@ abstract class Item {
     return null;
   }
 
+  factory Item.copy(Item item) {
+    if (item is RareItem) {
+      List<Mod> prefixes = List.generate(item.prefixes.length, (index) => Mod.copy(item.prefixes[index]));
+      List<Mod> suffixes = List.generate(item.suffixes.length, (index) => Mod.copy(item.suffixes[index]));
+      return RareItem.fromItem(item, prefixes, suffixes);
+    } else if (item is MagicItem) {
+      List<Mod> prefixes = List.generate(item.prefixes.length, (index) => Mod.copy(item.prefixes[index]));
+      List<Mod> suffixes = List.generate(item.suffixes.length, (index) => Mod.copy(item.suffixes[index]));
+      return MagicItem.fromItem(item, prefixes, suffixes);
+    } else if (item is NormalItem) {
+      return NormalItem.fromItem(item, List(), List());
+    } else {
+      return null;
+    }
+  }
+
   Map<String, dynamic> toJson() {
     String rarity;
     if (this is RareItem) {

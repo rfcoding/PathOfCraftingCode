@@ -78,7 +78,10 @@ class BeastMagicRestoreImprint extends BeastCraft {
   BeastMagicRestoreImprint() : super(displayName: "Restore Imprinted Item");
 
   Item doCraft(Item item) {
-    return item.imprint;
+    item = item.imprint;
+    List<Mod> prefixes = List.generate(item.prefixes.length, (index) => Mod.copy(item.prefixes[index]));
+    List<Mod> suffixes = List.generate(item.suffixes.length, (index) => Mod.copy(item.suffixes[index]));
+    return MagicItem.fromItem(item, prefixes, suffixes);
   }
 
   bool canDoCraft(Item item) {

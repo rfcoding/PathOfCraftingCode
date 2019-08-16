@@ -53,7 +53,7 @@ class SavedItemsState extends State<SavedItemsWidget> {
           items = CraftedItemsStorage.instance.loadItems();
         });
       }),
-      onTap:() => _navigateToCraftingWidget(items[index]),
+      onTap:() => _navigateToCraftingWidget(Item.copy(items[index])),
     );
   }
 
