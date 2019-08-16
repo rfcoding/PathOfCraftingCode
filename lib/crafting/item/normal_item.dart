@@ -85,7 +85,7 @@ class NormalItem extends Item {
         item.itemLevel,
         item.domain,
         item.spendingReport,
-        item.imprint);
+        item != null ? Item.copy(item.imprint) : null);
   }
 
   @override
