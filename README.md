@@ -14,3 +14,14 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Build release Android
+
+1. Build the app bundle
+`flutter build appbundle`
+
+2. Build apks from appbundle
+`bundletool build-apks --bundle=build/app/outputs/bundle/release/app.aab --output=/Users/fpet/Documents/builds.apks`
+
+3. Install appbundle on phone
+`bundletool install-apks --apks=/Users/fpet/Documents/builds.apks --adb /Users/fpet/Library/Android/sdk/platform-tools/adb`
