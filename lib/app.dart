@@ -5,6 +5,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "PoE clicker",
       home: MainWidget(),
       theme: ThemeData(
