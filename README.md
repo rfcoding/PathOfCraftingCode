@@ -18,10 +18,13 @@ samples, guidance on mobile development, and a full API reference.
 ## Build release Android
 
 1. Build the app bundle
-`flutter build appbundle`
+flutter build appbundle
 
-2. Build apks from appbundle
-`bundletool build-apks --bundle=build/app/outputs/bundle/release/app.aab --output=/Users/fpet/Documents/builds.apks`
+2. Remove old build 
+rm /Users/fpet/Documents/builds.apks
 
-3. Install appbundle on phone
-`bundletool install-apks --apks=/Users/fpet/Documents/builds.apks --adb /Users/fpet/Library/Android/sdk/platform-tools/adb`
+3. Build apks from appbundle
+bundletool build-apks --bundle=build/app/outputs/bundle/release/app.aab --output=/Users/fpet/Documents/builds.apks
+
+4. Install appbundle on phone
+bundletool install-apks --apks=/Users/fpet/Documents/builds.apks --adb /Users/fpet/Library/Android/sdk/platform-tools/adb
