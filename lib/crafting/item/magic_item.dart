@@ -68,7 +68,8 @@ class MagicItem extends Item {
         armourProperties,
         data['item_class'],
         data['item_level'],
-        data['domain'],
+        // Shitty fix for loading old items
+        data['domain'] != null ? data['domain'] : 'item',
         spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null,
         data['imprint'] != null ? Item.fromJson(data['imprint']) : null
     );

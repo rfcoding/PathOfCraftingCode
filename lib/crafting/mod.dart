@@ -58,7 +58,13 @@ class Mod implements Comparable<Mod> {
   factory Mod.fromSavedJson(Map<String, dynamic> data) {
     var key = data['id'];
     List<String> tags = new List<String>.from(json.decode(data['tags']));
-    List<String> addsTags = new List<String>.from(json.decode(data['adds_tags']));
+    List<String> addsTags;
+    if (data['adds_tags'] == null) {
+      addsTags = List();
+    } else {
+      addsTags = new List<String>.from(json.decode(data['adds_tags']));
+    }
+
     return Mod.fromJson(key, data, tags, addsTags);
   }
 
