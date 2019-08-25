@@ -18,6 +18,15 @@ class SpendingReport {
     this.beastMap,
   });
 
+  factory SpendingReport.empty() {
+    return SpendingReport(
+      currencyMap: Map(),
+      fossilMap: Map(),
+      essenceMap: Map(),
+      beastMap: Map()
+    );
+  }
+
   factory SpendingReport.fromJson(Map<String, dynamic> data) {
     Map<String, int> currencyMap = Map();
     if (data['currency'] != null) {
@@ -113,7 +122,7 @@ class SpendingReport {
     beastMap[cost.name] += cost.count;
   }
 
-  Widget getWidget() {
+  Widget getListWidget() {
     List<Widget> listTiles = List();
     listTiles.add(expansionTileFromMap("Currency", currencyMap != null ? currencyMap : Map()));
     listTiles.add(expansionTileFromMap("Fossils", fossilMap != null ? fossilMap : Map()));

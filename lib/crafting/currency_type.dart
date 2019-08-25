@@ -1,3 +1,5 @@
+import 'package:poe_clicker/repository/item_repo.dart';
+
 class CurrencyType {
   static final String exalt = "exalt";
   static final String divine = "divine";
@@ -59,4 +61,29 @@ class CurrencyType {
     "Metadata/Items/Currency/CurrencyArmourQuality": 'assets/images/armourers.png',
     "Metadata/Items/Currency/CurrencyWeaponQuality": 'assets/images/whetstone.png',
   };
+
+  static final Map<String, String> currencyToId = {
+    exalt: "Metadata/Items/Currency/CurrencyAddModToRare",
+    divine: "Metadata/Items/Currency/CurrencyModValues",
+    annulment: "Metadata/Items/Currency/CurrencyRemoveMod",
+    chaos: "Metadata/Items/Currency/CurrencyRerollRare",
+    regal: "Metadata/Items/Currency/CurrencyUpgradeMagicToRare",
+    alchemy: "Metadata/Items/Currency/CurrencyUpgradeToRare",
+    scour: "Metadata/Items/Currency/CurrencyConvertToNormal",
+    alteration: "Metadata/Items/Currency/CurrencyRerollMagic",
+    augmentation: "Metadata/Items/Currency/CurrencyAddModToMagic",
+    transmute: "Metadata/Items/Currency/CurrencyUpgradeToMagic",
+    chance: "Metadata/Items/Currency/CurrencyUpgradeRandomly",
+    blessed: "Metadata/Items/Currency/CurrencyRerollImplicit",
+    regret: "Metadata/Items/Currency/CurrencyPassiveRefund",
+    vaal: "Metadata/Items/Currency/CurrencyCorrupt",
+    gcp: "Metadata/Items/Currency/CurrencyGemQuality",
+    glassblower: "Metadata/Items/Currency/CurrencyFlaskQuality",
+    armourers: "Metadata/Items/Currency/CurrencyArmourQuality",
+    whetstone: "Metadata/Items/Currency/CurrencyWeaponQuality",
+  };
+
+  static String getDisplayName(String currency) {
+    return ItemRepository.instance.baseItemMap[currencyToId[currency]].name;
+  }
 }

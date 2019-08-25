@@ -54,7 +54,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
           widget.baseItem.itemClass,
           widget.baseItem.itemLevel,
           widget.baseItem.domain,
-          SpendingReport(),
+          SpendingReport.empty(),
           null);
       _item.tags.addAll(widget.extraTags);
     } else {
