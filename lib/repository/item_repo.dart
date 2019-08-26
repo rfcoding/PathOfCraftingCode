@@ -10,10 +10,12 @@ class ItemRepository {
 
   Map<String, List<BaseItem>> itemClassToBaseItemMap;
   Map<String, ItemClass> itemClassMap;
+  Map<String, BaseItem> baseItemMap;
 
   Future<bool> initialize() async {
     itemClassToBaseItemMap = Map();
     itemClassMap = Map();
+    baseItemMap = Map();
     List<bool> answer = await Future.wait({loadBaseItemsFromJson(), loadItemClassesFromJson()});
     bool success = answer.reduce((value, element) => value && element);
     for (List<BaseItem> baseItems in itemClassToBaseItemMap.values) {
@@ -27,6 +29,7 @@ class ItemRepository {
     Map<String, dynamic> jsonMap = json.decode(data);
     jsonMap.forEach((key, data) {
       BaseItem item = BaseItem.fromJson(data);
+      baseItemMap[key] = item;
       String itemClass = item.itemClass;
 
       if (shouldLoadDomain(data["domain"]) && data["release_state"] == "released") {
