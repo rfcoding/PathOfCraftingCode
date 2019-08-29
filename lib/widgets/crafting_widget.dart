@@ -12,6 +12,7 @@ import '../repository/crafted_items_storage.dart';
 import 'fossil_select_dialog_widget.dart';
 import 'crafting_bench_options_widget.dart';
 import 'essence_widget.dart';
+import 'item_lab_widget.dart';
 import 'utils.dart';
 import 'spending_widget.dart';
 import '../crafting/essence.dart';
@@ -120,6 +121,10 @@ class CraftingWidgetState extends State<CraftingWidget> {
             title: Text("Save Item", style: TextStyle(fontSize: 20)),
             onTap: showSaveItemDialog,
           ),
+          ListTile(
+            title: Text("Item lab", style: TextStyle(fontSize: 20)),
+            onTap: _navigateToItemLab,
+          )
         ],
       ),
     );
@@ -364,6 +369,12 @@ class CraftingWidgetState extends State<CraftingWidget> {
             'assets/images/essence.png');
       }
     });
+  }
+
+  void _navigateToItemLab() {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (BuildContext context) => ItemLabWidget(item: _item)
+    ));
   }
 
   Future<bool> _showConfirmDialog() {
