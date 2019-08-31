@@ -58,9 +58,17 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-              itemCount: craftingBenchOptions.keys.length,
-              itemBuilder: buildExpandableListItem
+          child: NotificationListener(
+            onNotification: (notification) {
+              if (notification is ScrollUpdateNotification) {
+                FocusScope.of(context).requestFocus(new FocusNode());
+              }
+              return false;
+            },
+            child: ListView.builder(
+                itemCount: craftingBenchOptions.keys.length,
+                itemBuilder: buildExpandableListItem
+            ),
           ),
         ),
         SizedBox(height: 8,),
@@ -75,7 +83,9 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
 
   Widget buildExpandableListItem(BuildContext context, int index) {
     final String key = craftingBenchOptions.keys.toList()[index];
-    String displayName = craftingBenchOptions[key].first.benchDisplayName;
+    final CraftingBenchOption option = craftingBenchOptions[key].first;
+    String displayName = option.benchDisplayName;
+    String leading = option.mod.generationType == "prefix" ? "P" : "S";
 
     if (filter != null &&
         filter.isNotEmpty &&
@@ -85,6 +95,13 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
 
     return ExpansionTile(
       backgroundColor: Color(0xFF231E18),
+      leading: Text(
+        leading,
+        style: TextStyle(
+            fontSize: 18,
+            color: Color(0xFFB29155),
+            fontWeight: FontWeight.bold),
+      ),
       title: Text(displayName, style: TextStyle(color: Color(0xFFB29155)),),
       children: <Widget>[
         Column(children: buildExpandedList(craftingBenchOptions[key]),)
@@ -101,7 +118,10 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
           title: Text(option.benchDisplayName),
           trailing: option.costs.length > 0 
             ? _buildCostWidget(option.costs[0]) 
-            : Text(i.toString()), 
+            : Text(i.toString()),
+          leading: Text(
+              (craftingBenchOptions.length-i).toString(),
+              style: TextStyle(fontSize: 18)),
           onTap: () => Navigator.of(context).pop(option),
         )
       );
