@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Widget imageButton(String assetPath, String tooltip, VoidCallback callback) {
   return Expanded(
@@ -50,4 +52,23 @@ Widget emptySquare() {
         child: Image(image: AssetImage('assets/images/empty.png'), ),
     ),
   );
+}
+
+TextSpan clickableText(String text, Function onClick) {
+  return TextSpan(
+      recognizer: new TapGestureRecognizer()..onTap = onClick,
+      text: text,
+      style: TextStyle(
+          fontSize: 16,
+          color: Colors.amber,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Fontin'));
+}
+
+void openPage(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }

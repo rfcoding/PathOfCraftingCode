@@ -4,6 +4,7 @@ import 'package:poe_clicker/network/ninja_item.dart';
 import 'package:poe_clicker/network/ninja_request.dart';
 import 'package:poe_clicker/repository/item_repo.dart';
 import '../crafting/item/spending_report.dart';
+import 'utils.dart';
 
 class SpendingWidget extends StatefulWidget {
   final SpendingReport spendingReport;
@@ -99,6 +100,8 @@ class SpendingWidgetState extends State<SpendingWidget> {
             Expanded(child: widget.spendingReport.getListWidget()),
             getLeagueSelectWidget(),
             getTotalSpendingWidget(),
+            getNinjaPraiseWidget(),
+            SizedBox(height: 8,)
           ],
         ));
   }
@@ -151,5 +154,9 @@ class SpendingWidgetState extends State<SpendingWidget> {
         ],
       ),
     );
+  }
+
+  Widget getNinjaPraiseWidget() {
+    return RichText(text: clickableText("Powered by poe.ninja", () => openPage("https://poe.ninja") ),);
   }
 }
