@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'utils.dart';
 
 class AboutWidget extends StatelessWidget {
   static const GIT_URL = 'https://github.com/rfcoding/pathofcrafting';
@@ -33,9 +34,9 @@ class AboutWidget extends StatelessWidget {
                         "Path of Crafting is a crafting simulator for Path of Exile."),
                     text(
                         "\n\nThe data for the items and mods is collected by data mining the Path of Exile game files using the extractor tools "),
-                    clickableText("PyPoe", () => _openPage(PY_POE_URL)),
+                    clickableText("PyPoe", () => openPage(PY_POE_URL)),
                     text(" and "),
-                    clickableText("RePoe. ", () => _openPage(RE_POE_URL)),
+                    clickableText("RePoe. ", () => openPage(RE_POE_URL)),
                     text(
                         "\n\nThe app is created and maintained by two developers who are completely independent from GGG and Path of Exile."),
                     text(
@@ -48,7 +49,7 @@ class AboutWidget extends StatelessWidget {
             ),
           ),
           RaisedButton(
-            onPressed: () => _openPage(GIT_URL),
+            onPressed: () => openPage(GIT_URL),
             child: Text("TO WEBSITE", style: TextStyle(fontSize: 18),),
           ),
           SizedBox(height: 16,)
@@ -57,27 +58,8 @@ class AboutWidget extends StatelessWidget {
     );
   }
 
-  void _openPage(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   TextSpan text(String text) {
     return TextSpan(
         text: text, style: TextStyle(fontSize: 16, fontFamily: 'Fontin'));
-  }
-
-  TextSpan clickableText(String text, Function onClick) {
-    return TextSpan(
-        recognizer: new TapGestureRecognizer()..onTap = onClick,
-        text: text,
-        style: TextStyle(
-            fontSize: 16,
-            color: Colors.amber,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Fontin'));
   }
 }
