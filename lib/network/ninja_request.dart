@@ -14,6 +14,7 @@ class NinjaRequest {
   static const String CURRENCY_BASE_URL = "https://poe.ninja/api/Data/GetCurrencyOverview?league=%";
   static const String ESSENCE_BASE_URL = "https://poe.ninja/api/Data/GetEssenceOverview?league=%";
   static const String FOSSIL_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=Fossil";
+  static const String RESONATOR_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=Resonator";
   static const String BEAST_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=Beast";
 
   static Future<List<NinjaItem>> getCurrencyRatios(String league) async {
@@ -43,6 +44,12 @@ class NinjaRequest {
 
   static Future<List<NinjaItem>> getFossilRatios(String league) async {
     final String url = addLeague(FOSSIL_BASE_URL, league);
+    final response = await http.get(url);
+    return extractResponse(response);
+  }
+
+  static Future<List<NinjaItem>> getResonatorRatios(String league) async {
+    final String url = addLeague(RESONATOR_BASE_URL, league);
     final response = await http.get(url);
     return extractResponse(response);
   }

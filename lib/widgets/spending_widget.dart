@@ -36,6 +36,7 @@ class SpendingWidgetState extends State<SpendingWidget> {
       NinjaRequest.getCurrencyRatios(_league),
       NinjaRequest.getEssenceRatios(_league),
       NinjaRequest.getFossilRatios(_league),
+      NinjaRequest.getResonatorRatios(_league),
       NinjaRequest.getBeastRatios(_league)
     }).catchError((error) {
       print("Error loading currencies $error");
@@ -61,6 +62,7 @@ class SpendingWidgetState extends State<SpendingWidget> {
     widget.spendingReport.currencyMap.entries.forEach(calculateTotalForCurrency);
     widget.spendingReport.essenceMap.entries.forEach(calculateTotalForItem);
     widget.spendingReport.fossilMap.entries.forEach(calculateTotalForItem);
+    widget.spendingReport.resonatorMap.entries.forEach(calculateTotalForItem);
     widget.spendingReport.beastMap.entries.forEach(calculateTotalForItem);
   }
 
