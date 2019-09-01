@@ -68,7 +68,8 @@ class ModRepository {
         } else if ("suffix" == mod.generationType) {
           modMap = _suffixModMap;
         }
-        if (modMap != null && shouldLoadDomain(mod.domain) && !mod.isEssenceOnly) {
+        if (modMap != null && shouldLoadDomain(mod.domain) &&
+            !mod.isEssenceOnly) {
           String tag = spawnWeight.tag;
           List<Mod> modList = modMap[tag];
           if (modList == null) {
@@ -101,6 +102,14 @@ class ModRepository {
   }
 
   Mod getPrefix(Item item, List<Fossil> fossils) {
+    return getMod(getPossiblePrefixes(item, fossils), item, fossils);
+  }
+
+  Mod getSuffix(Item item, List<Fossil> fossils) {
+    return getMod(getPossibleSuffixes(item, fossils), item, fossils);
+  }
+
+  List<Mod> getPossiblePrefixes(Item item, List<Fossil> fossils) {
     List<Mod> possibleMods = List();
     item.getAllTags().forEach((tag) {
       List<Mod> mods = _prefixModMap[tag];
@@ -121,10 +130,10 @@ class ModRepository {
     !item.alreadyHasModGroup(mod) &&
         item.itemLevel >= mod.requiredLevel && mod.domain == item.domain
     ));
-    return getMod(possibleMods, item, fossils);
+    return possibleMods;
   }
 
-  Mod getSuffix(Item item, List<Fossil> fossils) {
+  List<Mod> getPossibleSuffixes(Item item, List<Fossil> fossils) {
     List<Mod> possibleMods = List();
     item.getAllTags().forEach((tag) {
       List<Mod> mods = _suffixModMap[tag];
@@ -148,13 +157,31 @@ class ModRepository {
         item.itemLevel >= mod.requiredLevel
         && mod.domain == item.domain
     ));
-    return getMod(possibleMods, item, fossils);
+    return possibleMods;
   }
 
   Mod getMod(List<Mod> possibleMods, Item item, List<Fossil> fossils) {
+    Map<String, ModWeightHolder> modWeightMap = getModWeights(possibleMods, item, fossils);
+    int totalWeight = modWeightMap.values
+        .map((modWeightMap) => modWeightMap.weight)
+        .reduce((total, weight) => total + weight);
+    if (totalWeight == 0) {
+      return null;
+    }
+    int roll = rng.nextInt(totalWeight);
+    int sum = 0;
+    for (MapEntry<String, ModWeightHolder> entry in modWeightMap.entries) {
+      sum += entry.value.weight;
+      if (sum >= roll) {
+        return entry.value.mod;
+      }
+    }
+    throw StateError("Expected to return mod");
+  }
+
+  Map<String, ModWeightHolder> getModWeights(List<Mod> possibleMods, Item item, List<Fossil> fossils) {
     bool isBow = item.itemClass == "Bow";
-    Map<String, int> weightIdMap = Map();
-    int totalWeight = 0;
+    Map<String, ModWeightHolder> weightIdMap = Map();
     possibleMods.forEach((mod) {
       int weight = 1;
       int defaultWeight = 0;
@@ -172,11 +199,17 @@ class ModRepository {
       }
       // Ugly bow hack :(
       if (isBow) {
-        if ((item.hasCannotRollAttackMods() && mod.spawnWeights.any((weight) => weight.tag == "no_attack_mods"))
-        || (item.hasCannotRollCasterMods() && mod.spawnWeights.any((weight) => weight.tag == "no_caster_mods"))) {
+        if ((item.hasCannotRollAttackMods() &&
+            mod.spawnWeights.any((weight) => weight.tag == "no_attack_mods"))
+            || (item.hasCannotRollCasterMods() &&
+                mod.spawnWeights.any((weight) => weight.tag ==
+                    "no_caster_mods"))) {
           weight = 0;
-        } else if (mod.spawnWeights.any((weight) => weight.tag == "bow" && weight.weight > 0)) {
-          weight = mod.spawnWeights.firstWhere((weight) => weight.tag == "bow").weight;
+        } else if (mod.spawnWeights.any((weight) => weight.tag == "bow" &&
+            weight.weight > 0)) {
+          weight = mod.spawnWeights
+              .firstWhere((weight) => weight.tag == "bow")
+              .weight;
         }
       }
       if (weight == 1) {
@@ -184,22 +217,10 @@ class ModRepository {
       }
       if (weight > 0 && !weightIdMap.containsKey(mod.id)) {
         weight = calculateFossilWeight(mod, fossils, weight);
-        totalWeight += weight;
-        weightIdMap[mod.id] = weight;
+        weightIdMap[mod.id] = ModWeightHolder(mod: mod, weight: weight);
       }
     });
-    if (totalWeight == 0) {
-      return null;
-    }
-    int roll = rng.nextInt(totalWeight);
-    int sum = 0;
-    for (MapEntry<String, int> entry in weightIdMap.entries) {
-      sum += entry.value;
-      if (sum >= roll) {
-        return _allModsMap[entry.key];
-      }
-    }
-    throw StateError("Expected to return mod");
+    return weightIdMap;
   }
 
   Mod getModById(String id) {
@@ -210,26 +231,39 @@ class ModRepository {
     String id = mod.getGroupTagString();
     List<Mod> modsInGroup = _modTierMap[id];
     Mod modWithSameId = modsInGroup.firstWhere((m) => m.id == mod.id);
-    return modsInGroup != null ? modsInGroup.length - modsInGroup.indexOf(modWithSameId) : 1;
+    return modsInGroup != null ? modsInGroup.length -
+        modsInGroup.indexOf(modWithSameId) : 1;
   }
 
   int calculateFossilWeight(Mod mod, List<Fossil> fossils, int spawnWeight) {
-    List<FossilModWeight> positiveWeights = fossils.map((fossil) => fossil.positiveModWeights)
+    List<FossilModWeight> positiveWeights = fossils.map((fossil) =>
+    fossil.positiveModWeights)
         .expand((weights) => weights)
         .where((weights) => mod.tags.contains(weights.tag))
         .toList();
 
-    List<FossilModWeight> negativeWeights = fossils.map((fossil) => fossil.negativeModWeights)
+    List<FossilModWeight> negativeWeights = fossils.map((fossil) =>
+    fossil.negativeModWeights)
         .expand((weights) => weights)
         .where((weights) => mod.tags.contains(weights.tag))
         .toList();
 
     for (FossilModWeight modWeight in negativeWeights) {
-      spawnWeight *= (modWeight.weight/100).floor();
+      spawnWeight *= (modWeight.weight / 100).floor();
     }
     for (FossilModWeight modWeight in positiveWeights) {
-      spawnWeight *= (modWeight.weight/100).floor();
+      spawnWeight *= (modWeight.weight / 100).floor();
     }
     return spawnWeight;
   }
+}
+
+class ModWeightHolder {
+  Mod mod;
+  int weight;
+
+  ModWeightHolder({
+    this.mod,
+    this.weight
+  });
 }

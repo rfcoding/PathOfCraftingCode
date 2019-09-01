@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'dart:convert';
+import 'package:poe_clicker/repository/mod_repo.dart';
+
 import '../repository/translation_repo.dart';
 import 'stat_translation.dart';
 
@@ -154,8 +156,10 @@ class Mod implements Comparable<Mod> {
     }
     if (other.domain == "crafted") {
       return -1;
+    } if (generationType == other.generationType && type == other.type) {
+      return ModRepository.instance.getModTier(this) - ModRepository.instance.getModTier(other);
     }
-    return (generationType + group).compareTo(other.generationType + group);
+    return (generationType + group).compareTo(other.generationType + other.group);
   }
 }
 
