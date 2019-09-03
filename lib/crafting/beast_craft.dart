@@ -93,8 +93,8 @@ class BeastAddPrefixRemoveSuffix extends BeastCraft {
   BeastAddPrefixRemoveSuffix() : super(displayName: "Add a Prefix, Remove a Random SuffIx", cost: BeastCraftCost("Farric Wolf Alpha", 1));
 
   Item doCraft(Item item) {
-    item.suffixes.removeAt(item.rng.nextInt(item.suffixes.length));
     item.addPrefix();
+    item.suffixes.removeAt(item.rng.nextInt(item.suffixes.length));
     return item;
   }
 
@@ -111,8 +111,8 @@ class BeastAddSuffixRemovePrefix extends BeastCraft {
   BeastAddSuffixRemovePrefix() : super(displayName: "Add a SuffIx, Remove a Random Prefix", cost: BeastCraftCost("Farric Lynx Alpha", 1));
 
   Item doCraft(Item item) {
-    item.prefixes.removeAt(item.rng.nextInt(item.prefixes.length));
     item.addSuffix();
+    item.prefixes.removeAt(item.rng.nextInt(item.prefixes.length));
     return item;
   }
 
