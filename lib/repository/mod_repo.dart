@@ -162,6 +162,9 @@ class ModRepository {
 
   Mod getMod(List<Mod> possibleMods, Item item, List<Fossil> fossils) {
     Map<String, ModWeightHolder> modWeightMap = getModWeights(possibleMods, item, fossils);
+    if (modWeightMap.isEmpty) {
+      return null;
+    }
     int totalWeight = modWeightMap.values
         .map((modWeightMap) => modWeightMap.weight)
         .reduce((total, weight) => total + weight);
@@ -176,7 +179,7 @@ class ModRepository {
         return entry.value.mod;
       }
     }
-    throw StateError("Expected to return mod");
+    return null;
   }
 
   Map<String, ModWeightHolder> getModWeights(List<Mod> possibleMods, Item item, List<Fossil> fossils) {

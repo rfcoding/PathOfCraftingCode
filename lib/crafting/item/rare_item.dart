@@ -236,17 +236,25 @@ class RareItem extends Item {
       reroll(fossils: fossils);
     } else {
       clearMods();
-      Mod mod = ModRepository.instance.getMod(forcedMods, this, List());
-      if (mod.generationType == "prefix") {
-        prefixes.add(mod);
-      } else {
-        suffixes.add(mod);
-      }
+      addForcedMods(forcedMods);
       fillMods(fossils: fossils);
     }
     spendingReport.spendFossils(fossils);
     spendingReport.spendResonator(fossils);
     return this;
+  }
+
+  void addForcedMods(List<Mod> forcedMods) {
+    for (Mod maybeMod in forcedMods) {
+      Mod mod = ModRepository.instance.getMod([maybeMod], this, List());
+      if (mod != null) {
+        if (mod.generationType == "prefix") {
+          prefixes.add(mod);
+        } else {
+          suffixes.add(mod);
+        }
+      }
+    }
   }
 
   @override

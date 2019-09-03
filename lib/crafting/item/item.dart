@@ -180,7 +180,6 @@ abstract class Item {
     if (prefix == null) {
       return;
     }
-    print("Adding Prefix: ${prefix.debugString()}");
     prefix.rerollStatValues();
     prefixes.add(prefix);
   }
@@ -190,7 +189,6 @@ abstract class Item {
     if (suffix == null) {
       return;
     }
-    print("Adding Suffix: ${suffix.debugString()}");
     suffix.rerollStatValues();
     suffixes.add(suffix);
   }
