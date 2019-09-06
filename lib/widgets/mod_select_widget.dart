@@ -61,6 +61,10 @@ class ModSelectWidgetState extends State<ModSelectWidget> {
           controller: controller,
         ),
       ),
+      ListTile(
+        trailing: Text("Chance to roll"),
+        title: Text("Mod description"),
+      ),
       Expanded(
         child: NotificationListener(
           onNotification: (notification) {
@@ -92,7 +96,7 @@ class ModSelectWidgetState extends State<ModSelectWidget> {
     }
     double percentage = 100 * modWeightHolder.weight / totalWeight;
     return ListTile(
-        title: Text(title),
+        title: Text(title, style: TextStyle(color: Color(0xFFB29155))),
         subtitle:
             Text(subtitle),
         trailing: Text("${percentage.toStringAsFixed(2)}%"),

@@ -55,7 +55,7 @@ class DialogContentState extends State<DialogContent> {
                 Fossil fossil = widget.selectableItems[index].fossil;
                 int selectedCount = widget.selectableItems.where((item) => item.selected).length;
                 return CheckboxListTile(
-                    title: Text(fossil.name, style: TextStyle(fontSize: 20),),
+                    title: Text(fossil.name, style: TextStyle(fontSize: 20, color: Color(0xFFB29155)),),
                     subtitle: Text(fossil.descriptions.map((name) => "• " + name).join("\n")),
                     value: widget.selectableItems[index].selected,
                     activeColor: Theme.of(context).buttonColor,

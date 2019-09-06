@@ -41,7 +41,7 @@ class ItemLabWidgetState extends State<ItemLabWidget> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Crafting Lab"),
+        title: Text("Mod probabilities"),
       ),
       body: _getBody(),
     );
@@ -118,7 +118,7 @@ class ItemLabWidgetState extends State<ItemLabWidget> {
     var onPressed =
         _item.hasMaxPrefixes() ? null : _showPossiblePrefixesWithWeights;
     return RaisedButton(
-      child: Text("PREFIX"),
+      child: Text("PREFIXES"),
       onPressed: onPressed,
     );
   }
@@ -127,7 +127,7 @@ class ItemLabWidgetState extends State<ItemLabWidget> {
     var onPressed =
         _item.hasMaxSuffixes() ? null : _showPossibleSuffixesWithWeights;
     return RaisedButton(
-      child: Text("SUFFIX"),
+      child: Text("SUFFIXES"),
       onPressed: onPressed,
     );
   }

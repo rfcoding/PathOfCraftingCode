@@ -118,13 +118,13 @@ class CraftingWidgetState extends State<CraftingWidget> {
             onTap: _navigateToSpendingReportWidget,
           ),
           ListTile(
+            title: Text("Mod Probabilities", style: TextStyle(fontSize: 20)),
+            onTap: _navigateToItemLab,
+          ),
+          ListTile(
             title: Text("Save Item", style: TextStyle(fontSize: 20)),
             onTap: showSaveItemDialog,
           ),
-          ListTile(
-            title: Text("Item lab", style: TextStyle(fontSize: 20)),
-            onTap: _navigateToItemLab,
-          )
         ],
       ),
     );
