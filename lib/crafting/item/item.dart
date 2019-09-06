@@ -261,6 +261,7 @@ abstract class Item {
     assert(essenceModId != null);
     Mod mod = ModRepository.instance.getModById(essenceModId);
     assert(mod != null);
+    mod.rerollStatValues();
     RareItem item = RareItem.fromItem(this, List(), List());
     if (mod.generationType == "prefix") {
       item.prefixes.add(mod);
