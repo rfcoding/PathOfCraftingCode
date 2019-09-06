@@ -380,8 +380,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
   Future<bool> _showConfirmDialog() {
     return showDialog(context: context, builder: (BuildContext context) {
       return AlertDialog(
-        title: Text("Leave?"),
-        content: new Text('Do you really want to vendor this item?'),
+        title: Text("Vendor item? "),
+        content: new Text('Unsaved progress will be lost'),
         actions: <Widget>[
           FlatButton(color: Colors.amber[800], textTheme: ButtonTextTheme.accent, child: Text("No"), onPressed: () => Navigator.of(context).pop(false),),
           FlatButton(color: Colors.amber[800], textTheme: ButtonTextTheme.accent, child: Text("Yes"), onPressed: () => Navigator.of(context).pop(true),),
