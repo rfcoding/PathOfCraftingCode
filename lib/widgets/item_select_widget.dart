@@ -29,7 +29,7 @@ class ItemSelectState extends State<ItemSelectWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select item"),
+        title: Text("Select item to craft"),
       ),
       body: _getBody(),
     );
