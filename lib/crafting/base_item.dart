@@ -64,7 +64,7 @@ class BaseItem implements Comparable<BaseItem> {
     if (reqCompare != 0) {
       return reqCompare;
     } else {
-      return requirements.level.compareTo(other.requirements.level);
+      return other.requirements.level.compareTo(this.requirements.level);
     }
   }
 }
