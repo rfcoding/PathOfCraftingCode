@@ -928,6 +928,11 @@ abstract class Item {
         allTags.addAll(mod.addsTags);
       }
     });
+    implicits.forEach((mod) {
+      if (mod.addsTags != null && mod.addsTags.isNotEmpty) {
+        allTags.addAll(mod.addsTags);
+      }
+    });
     return allTags;
   }
 

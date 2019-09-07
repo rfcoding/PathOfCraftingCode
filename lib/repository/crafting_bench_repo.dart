@@ -11,13 +11,31 @@ class CraftingBenchRepository {
   static final CraftingBenchRepository instance = CraftingBenchRepository._privateConstructor();
 
   List<CraftingBenchOption> craftingBenchOptions;
+  List<CraftingBenchOption> craftingBenchOptionsWithCost;
 
   Future<bool> initialize() async {
     craftingBenchOptions = List();
+    craftingBenchOptionsWithCost = List();
     var data = await rootBundle.loadString('data_repo/crafting_bench_options.json');
-    var jsonList = json.decode(data);
-    jsonList.forEach((data) {
-      CraftingBenchOption craftingBenchOption = CraftingBenchOption.fromJson(data);
+    var dataWithCost = await rootBundle.loadString('data_repo/crafting_bench_options_with_cost.json');
+
+    // Legacy stuff with costs
+    json.decode(dataWithCost).forEach((data) {
+      CraftingBenchOption craftingBenchOption = CraftingBenchOption.fromJsonWithCost(data);
+      craftingBenchOptionsWithCost.add(craftingBenchOption);
+    });
+
+    // 3.8 stuff
+    json.decode(data).forEach((data) {
+      String modId = data['mod_id'];
+      List<CraftingBenchOptionCost> costs = List();
+      if (craftingBenchOptionsWithCost.any((CraftingBenchOption element) => element.mod.id == modId)) {
+        costs = craftingBenchOptionsWithCost.firstWhere((CraftingBenchOption element) => element.mod.id == modId).costs;
+      } else {
+        print("ModId: $modId does not have cost");
+      }
+
+      CraftingBenchOption craftingBenchOption = CraftingBenchOption.fromJsonWithoutCost(data, costs: costs);
       craftingBenchOptions.add(craftingBenchOption);
     });
     return true;
@@ -78,7 +96,7 @@ class CraftingBenchOption implements Comparable<CraftingBenchOption> {
     this.costs
   });
 
-  factory CraftingBenchOption.fromJson(Map<String, dynamic> json) {
+  factory CraftingBenchOption.fromJsonWithCost(Map<String, dynamic> json) {
     String modId = json['mod_id'];
     Mod mod = ModRepository.instance.getModById(modId);
     String displayName = mod.getStatStringWithValueRanges().join("\n");
@@ -94,6 +112,20 @@ class CraftingBenchOption implements Comparable<CraftingBenchOption> {
       itemClasses: List<String>.from(json['item_classes']),
       mod: mod,
       costs: costs
+    );
+  }
+
+  factory CraftingBenchOption.fromJsonWithoutCost(Map<String, dynamic> json, {List<CraftingBenchOptionCost> costs = const []}) {
+    String modId = json['mod_id'];
+    Mod mod = ModRepository.instance.getModById(modId);
+    String displayName = mod.getStatStringWithValueRanges().join("\n");
+    return CraftingBenchOption(
+        benchDisplayName: displayName,
+        benchGroup: json['bench_group'],
+        benchTier: json['bench_tier'],
+        itemClasses: List<String>.from(json['item_classes']),
+        mod: mod,
+        costs: costs
     );
   }
 
