@@ -61,7 +61,7 @@ class EssenceCraftingState extends State<EssenceCraftingWidget> {
     List<Widget> listContent = List();
     for (int i = 0; i < essences.length; i++) {
       Essence essence = essences[i];
-      String essenceModId = essence.mods[widget.item.itemClass];
+      String essenceModId = essence.getModIdForItem(widget.item);
       assert(essenceModId != null);
       Mod mod = ModRepository.instance.getModById(essenceModId);
       String subtitle = mod.getStatStringWithValueRanges().join('\n');

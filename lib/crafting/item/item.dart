@@ -257,7 +257,7 @@ abstract class Item {
   }
 
   RareItem applyEssence(Essence essence) {
-    String essenceModId = essence.mods[itemClass];
+    String essenceModId = essence.getModIdForItem(this);
     assert(essenceModId != null);
     Mod mod = ModRepository.instance.getModById(essenceModId);
     assert(mod != null);
