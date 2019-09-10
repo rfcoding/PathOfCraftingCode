@@ -99,7 +99,7 @@ class ModSelectWidgetState extends State<ModSelectWidget> {
         title: Text(title, style: TextStyle(color: Color(0xFFB29155))),
         subtitle:
             Text(subtitle),
-        trailing: Text("${percentage.toStringAsFixed(2)}%"),
+        trailing: Text("${percentage.toStringAsFixed(3)}%"),
         onTap: () => Navigator.of(context).pop(mod));
   }
 }

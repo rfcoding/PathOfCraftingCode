@@ -251,13 +251,14 @@ class ModRepository {
         .where((weights) => mod.tags.contains(weights.tag))
         .toList();
 
+    double weightMultiplier = 1;
     for (FossilModWeight modWeight in negativeWeights) {
-      spawnWeight *= (modWeight.weight / 100).floor();
+      weightMultiplier *= modWeight.weight / 100;
     }
     for (FossilModWeight modWeight in positiveWeights) {
-      spawnWeight *= (modWeight.weight / 100).floor();
+      weightMultiplier *= modWeight.weight / 100;
     }
-    return spawnWeight;
+    return (spawnWeight * weightMultiplier).floor();
   }
 }
 
