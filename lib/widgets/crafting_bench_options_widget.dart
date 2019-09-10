@@ -118,7 +118,7 @@ class CraftingBenchOptionState extends State<CraftingBenchOptionsWidget> {
           title: Text(option.benchDisplayName),
           trailing: option.costs.length > 0 
             ? _buildCostWidget(option.costs[0]) 
-            : Text(i.toString()),
+            : Text("N/A"),
           leading: Text(
               (craftingBenchOptions.length-i).toString(),
               style: TextStyle(fontSize: 18)),

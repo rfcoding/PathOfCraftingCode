@@ -1,4 +1,12 @@
+import 'item/item.dart';
+import 'mod.dart';
+
 class Essence implements Comparable<Essence>{
+  static const Map<String, String> TEMP_FIX_ESSENCE_ITEM_TYPES = {
+    "Rune Dagger" : "Dagger",
+    "Warstaff" : "Staff"
+  };
+
   int level;
   Map<String, dynamic> mods;
   String name;
@@ -19,6 +27,14 @@ class Essence implements Comparable<Essence>{
 
   String getModForItemClass(String itemClass) {
     return mods[itemClass] as String;
+  }
+
+  String getModIdForItem(Item item) {
+    String itemClass = item.itemClass;
+    if (TEMP_FIX_ESSENCE_ITEM_TYPES.keys.contains(itemClass)) {
+      itemClass = TEMP_FIX_ESSENCE_ITEM_TYPES[itemClass];
+    }
+    return mods[itemClass];
   }
 
   @override
