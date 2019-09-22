@@ -20,6 +20,7 @@ abstract class Item {
   List<Mod> prefixes;
   List<Mod> suffixes;
   List<Mod> implicits;
+  List<Mod> enchantments;
   List<String> tags;
   WeaponProperties weaponProperties;
   ArmourProperties armourProperties;
@@ -34,6 +35,8 @@ abstract class Item {
   Random rng = new Random();
   Color statTextColor = Color(0xFF677F7F);
   Color modColor = Color(0xFF959AF6);
+  Color enchantColor = Color(0xFFB4B4FF);
+  Color corruptedColor = Color(0xFFD20000);
   Color coldDamage = Color(0xFF3F648E);
   Color fireDamage = Color(0xFF8A1910);
   Color lightningDamage = Color(0xFFFAD749);
@@ -47,6 +50,7 @@ abstract class Item {
       List<Mod> prefixes,
       List<Mod> suffixes,
       List<Mod> implicits,
+      List<Mod> enchantments,
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
@@ -59,11 +63,12 @@ abstract class Item {
     this.name = name;
     this.prefixes = prefixes;
     this.suffixes = suffixes;
+    this.implicits = implicits;
+    this.enchantments = enchantments;
     this.tags = tags;
     this.weaponProperties = weaponProperties;
     this.armourProperties = armourProperties;
     this.itemClass = itemClass;
-    this.implicits = implicits;
     this.itemLevel = itemLevel;
     this.domain = domain;
     this.spendingReport = spendingReport;
@@ -130,6 +135,7 @@ abstract class Item {
       "prefixes": Mod.encodeToJson(prefixes),
       "suffixes": Mod.encodeToJson(suffixes),
       "implicits": Mod.encodeToJson(implicits),
+      "enchantments": Mod.encodeToJson(enchantments),
       "tags": json.encode(tags),
       "properties": properties,
       "item_class": itemClass,
@@ -225,8 +231,18 @@ abstract class Item {
 
   void addVaalImplicit() {
     Mod implicit = ModRepository.instance.getImplicit(this);
-    implicits.clear();
-    implicits.add(implicit);
+    if (implicit != null) {
+      implicits.clear();
+      implicits.add(implicit);
+    }
+  }
+
+  void enchant() {
+    Mod enchantment = ModRepository.instance.getEnchantment(this);
+    if (enchantment != null) {
+      enchantments.clear();
+      enchantments.add(enchantment);
+    }
   }
 
   Item tryAddMasterMod(CraftingBenchOption option) {
@@ -360,6 +376,14 @@ abstract class Item {
         .toList();
   }
 
+  List<String> getEnchantmentStrings() {
+    return enchantments
+        .where((mod) => mod != null)
+        .map((mod) => mod.getStatStrings())
+        .expand((string) => string)
+        .toList();
+  }
+
   bool alreadyHasModGroup(Mod mod) {
     for (Mod ownMod in getMods()) {
       if (ownMod.group == mod.group) {
@@ -374,6 +398,7 @@ abstract class Item {
       child: Column(children: <Widget>[
         getTitleWidget(),
         getStatWidget(),
+        getEnchantmentWidget(),
         getImplicitWidget(),
         divider(),
         advancedMods ? getAdvancedModWidget(onTap) : getModWidget(onTap),
@@ -498,7 +523,7 @@ abstract class Item {
       return itemRow(
           Text(
             "Corrupted",
-            style: TextStyle(color: Colors.red, fontSize: modFontSize),
+            style: TextStyle(color: corruptedColor, fontSize: modFontSize),
             textAlign: TextAlign.center,
           )
       );
@@ -702,6 +727,18 @@ abstract class Item {
         text: TextSpan(text: text,
             style: TextStyle(color: statTextColor, fontSize: modFontSize, fontFamily: 'Fontin'),
             children: children));
+  }
+
+  Widget getEnchantmentWidget() {
+    if (enchantments == null || enchantments.isEmpty) {
+      return Column();
+    }
+    List<Widget> children = List();
+    children.add(divider());
+    children.addAll(getEnchantmentStrings()
+      .map((enchantmentString) => statRow(enchantmentString, enchantColor)).toList());
+    return Column(children: children);
+
   }
 
   Widget getImplicitWidget() {

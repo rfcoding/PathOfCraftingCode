@@ -8,7 +8,6 @@ class FossilRepository {
   FossilRepository._privateConstructor();
   static final FossilRepository instance = FossilRepository._privateConstructor();
   static final Set<String> DO_NOT_USE_FOSSILS = ({
-    "Metadata/Items/Currency/CurrencyDelveCraftingEnchant",
     "Metadata/Items/Currency/CurrencyDelveCraftingSockets",
     "Metadata/Items/Currency/CurrencyDelveCraftingMirror",
     "Metadata/Items/Currency/CurrencyDelveCraftingSellPrice",
