@@ -23,6 +23,7 @@ class RareItem extends Item {
       List<Mod> prefixes,
       List<Mod> suffixes,
       List<Mod> implicits,
+      List<Mod> enchantments,
       List<String> tags,
       WeaponProperties weaponProperties,
       ArmourProperties armourProperties,
@@ -37,6 +38,7 @@ class RareItem extends Item {
       prefixes,
       suffixes,
       implicits,
+      enchantments,
       tags,
       weaponProperties,
       armourProperties,
@@ -49,11 +51,13 @@ class RareItem extends Item {
 
   factory RareItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
-    List<Mod> prefixes = prefixesJson.map((prefix) => Mod.fromSavedJson(prefix)).toList();
+    List<Mod> prefixes = prefixesJson == null ? List() : prefixesJson.map((prefix) => Mod.fromSavedJson(prefix)).toList();
     var suffixesJson = data['suffixes'] as List;
-    List<Mod> suffixes = suffixesJson.map((suffix) => Mod.fromSavedJson(suffix)).toList();
+    List<Mod> suffixes = suffixesJson == null ? List() : suffixesJson.map((suffix) => Mod.fromSavedJson(suffix)).toList();
     var implicitsJson = data['implicits'] as List;
-    List<Mod> implicits = implicitsJson.map((implicit) => Mod.fromSavedJson(implicit)).toList();
+    List<Mod> implicits = implicitsJson == null ? List() : implicitsJson.map((implicit) => Mod.fromSavedJson(implicit)).toList();
+    var enchantmentsJson = data['enchantments'] as List;
+    List<Mod> enchantments = enchantmentsJson == null ? List() : enchantmentsJson.map((enchant) => Mod.fromSavedJson(enchant)).toList();
     List<String> tags = new List<String>.from(json.decode(data['tags']));
 
     WeaponProperties weaponProperties;
@@ -70,6 +74,7 @@ class RareItem extends Item {
       prefixes,
       suffixes,
       implicits,
+      enchantments,
       tags,
       weaponProperties,
       armourProperties,
@@ -90,6 +95,7 @@ class RareItem extends Item {
         prefixes,
         suffixes,
         item.implicits,
+        item.enchantments,
         item.tags,
         item.weaponProperties,
         item.armourProperties,
@@ -260,6 +266,10 @@ class RareItem extends Item {
       clearMods();
       addForcedMods(forcedMods);
       fillMods(fossils: fossils);
+    }
+
+    if (fossils.any((fossil) => fossil.enchants)) {
+      enchant();
     }
     spendingReport.spendFossils(fossils);
     spendingReport.spendResonator(fossils);

@@ -6,6 +6,7 @@ class Fossil {
   List<String> forcedMods;
   List<String> descriptions;
   String name;
+  bool enchants;
 
   Fossil({
     this.positiveModWeights,
@@ -14,6 +15,7 @@ class Fossil {
     this.forcedMods,
     this.descriptions,
     this.name,
+    this.enchants
   });
 
   factory Fossil.fromJson(String name, Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class Fossil {
       forcedMods: new List<String>.from(json['forced_mods']),
       descriptions: new List<String>.from(json['descriptions']),
       name: name,
+      enchants: json['enchants']
     );
   }
 }

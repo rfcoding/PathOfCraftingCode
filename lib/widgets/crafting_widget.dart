@@ -48,6 +48,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
           List(),
           List(),
           List<Mod>.from(widget.baseItem.implicits),
+          List(),
           List<String>.from(widget.baseItem.tags),
           widget.baseItem.weaponProperties,
           widget.baseItem.armourProperties,

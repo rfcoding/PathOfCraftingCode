@@ -16,6 +16,7 @@ class ModRepository {
   Map<String, List<Mod>> _prefixModMap;
   Map<String, List<Mod>> _suffixModMap;
   Map<String, List<Mod>> _implicitModMap;
+  Map<String, List<Mod>> _enchantmentMap;
   Map<String, Mod> _allModsMap;
   Map<String, List<String>> _modTagsMap;
   Map<String, List<Mod>> _modTierMap;
@@ -27,6 +28,7 @@ class ModRepository {
     _prefixModMap = Map();
     _suffixModMap = Map();
     _implicitModMap = Map();
+    _enchantmentMap = Map();
     _allModsMap = Map();
     _modTagsMap = Map();
     _modTierMap = Map();
@@ -71,6 +73,8 @@ class ModRepository {
           modMap = _suffixModMap;
         } else if ("corrupted" == mod.generationType) {
           modMap = _implicitModMap;
+        } else if ("enchantment" == mod.generationType) {
+          modMap = _enchantmentMap;
         }
         if (modMap != null && shouldLoadDomain(mod.domain) &&
             !mod.isEssenceOnly) {
@@ -115,6 +119,10 @@ class ModRepository {
 
   Mod getImplicit(Item item) {
     return getMod(getPossibleImplicits(item), item, List());
+  }
+
+  Mod getEnchantment(Item item) {
+    return getMod(getPossibleEnchantments(item), item, List());
   }
 
   List<Mod> getPossiblePrefixes(Item item, List<Fossil> fossils) {
@@ -175,6 +183,19 @@ class ModRepository {
       if (mods != null) {
         possibleMods.addAll(mods.where((mod) =>
             item.itemLevel >= mod.requiredLevel
+            && mod.domain == item.domain));
+      }
+    });
+    return possibleMods;
+  }
+
+  List<Mod> getPossibleEnchantments(Item item) {
+    List<Mod> possibleMods = List();
+    item.getAllTags().forEach((tag) {
+      List<Mod> mods = _enchantmentMap[tag];
+      if (mods != null) {
+        possibleMods.addAll(mods.where((mod) =>
+        item.itemLevel >= mod.requiredLevel
             && mod.domain == item.domain));
       }
     });
