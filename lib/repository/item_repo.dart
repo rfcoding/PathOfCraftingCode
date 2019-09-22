@@ -50,14 +50,20 @@ class ItemRepository {
     var data = await rootBundle.loadString('data_repo/item_classes.json');
     Map<String, dynamic> jsonMap = json.decode(data);
     jsonMap.forEach((key, data) {
-      ItemClass itemClass = ItemClass.fromJson(data);
+      ItemClass itemClass = ItemClass.fromJson(key, data);
       itemClassMap[key] = itemClass;
     });
     return true;
   }
 
+  List<ItemClass> getItemClasses() {
+    return itemClassMap.values.where((itemClass) => itemClassToBaseItemMap[itemClass.id] != null).toList();
+  }
+
   List<String> getItemBaseTypes() {
-    return itemClassToBaseItemMap.keys.toList();
+    List<String> baseItems = itemClassToBaseItemMap.keys.toList();
+    baseItems.sort((a, b) => a.compareTo(b));
+    return baseItems;
   }
 
   List<BaseItem> getBaseItemsForClass(String itemClass) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/crafting/item_class.dart';
 
 import '../crafting/base_item.dart';
 import '../repository/item_repo.dart';
@@ -15,14 +16,14 @@ class ItemSelectState extends State<ItemSelectWidget> {
   final _formKey = GlobalKey<FormState>();
 
   BaseItem _baseItem;
-  String _baseItemClass;
+  ItemClass _baseItemClass;
   String _shaperOrElder = "None";
   int itemLevel;
 
   @override
   void initState() {
-    _baseItemClass = ItemRepository.instance.getItemBaseTypes()[0];
-    _baseItem = ItemRepository.instance.getBaseItemsForClass(_baseItemClass)[0];
+    _baseItemClass = ItemRepository.instance.getItemClasses()[0];
+    _baseItem = ItemRepository.instance.getBaseItemsForClass(_baseItemClass.id)[0];
     super.initState();
   }
   @override
@@ -68,20 +69,20 @@ class ItemSelectState extends State<ItemSelectWidget> {
   }
 
   Widget _itemClassDropdownWidget() {
-    return DropdownButton<String>(
-      hint: Text(_baseItemClass),
+    return DropdownButton<ItemClass>(
+      hint: Text(_baseItemClass.name),
       items: ItemRepository.instance
-          .getItemBaseTypes()
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
+          .getItemClasses()
+          .map<DropdownMenuItem<ItemClass>>((ItemClass value) {
+        return DropdownMenuItem<ItemClass>(
           value: value,
-          child: Text(value),
+          child: Text(value.name),
         );
       }).toList(),
-      onChanged: (String value) {
+      onChanged: (ItemClass value) {
         setState(() {
           _baseItemClass = value;
-          _baseItem = ItemRepository.instance.getBaseItemsForClass(_baseItemClass)[0];
+          _baseItem = ItemRepository.instance.getBaseItemsForClass(_baseItemClass.id)[0];
         });
       },
     );
@@ -96,7 +97,7 @@ class ItemSelectState extends State<ItemSelectWidget> {
         });
       },
       items: ItemRepository.instance
-          .getBaseItemsForClass(_baseItemClass)
+          .getBaseItemsForClass(_baseItemClass.id)
           .map<DropdownMenuItem<BaseItem>>((BaseItem value) {
         return DropdownMenuItem<BaseItem>(
           value: value,
