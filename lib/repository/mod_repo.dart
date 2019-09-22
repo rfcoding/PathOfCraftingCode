@@ -15,6 +15,7 @@ class ModRepository {
 
   Map<String, List<Mod>> _prefixModMap;
   Map<String, List<Mod>> _suffixModMap;
+  Map<String, List<Mod>> _implicitModMap;
   Map<String, Mod> _allModsMap;
   Map<String, List<String>> _modTagsMap;
   Map<String, List<Mod>> _modTierMap;
@@ -25,6 +26,7 @@ class ModRepository {
     _initialized = false;
     _prefixModMap = Map();
     _suffixModMap = Map();
+    _implicitModMap = Map();
     _allModsMap = Map();
     _modTagsMap = Map();
     _modTierMap = Map();
@@ -67,6 +69,8 @@ class ModRepository {
           modMap = _prefixModMap;
         } else if ("suffix" == mod.generationType) {
           modMap = _suffixModMap;
+        } else if ("corrupted" == mod.generationType) {
+          modMap = _implicitModMap;
         }
         if (modMap != null && shouldLoadDomain(mod.domain) &&
             !mod.isEssenceOnly) {
@@ -107,6 +111,10 @@ class ModRepository {
 
   Mod getSuffix(Item item, List<Fossil> fossils) {
     return getMod(getPossibleSuffixes(item, fossils), item, fossils);
+  }
+
+  Mod getImplicit(Item item) {
+    return getMod(getPossibleImplicits(item), item, List());
   }
 
   List<Mod> getPossiblePrefixes(Item item, List<Fossil> fossils) {
@@ -157,6 +165,19 @@ class ModRepository {
         item.itemLevel >= mod.requiredLevel
         && mod.domain == item.domain
     ));
+    return possibleMods;
+  }
+
+  List<Mod> getPossibleImplicits(Item item) {
+    List<Mod> possibleMods = List();
+    item.getAllTags().forEach((tag) {
+      List<Mod> mods = _implicitModMap[tag];
+      if (mods != null) {
+        possibleMods.addAll(mods.where((mod) =>
+            item.itemLevel >= mod.requiredLevel
+            && mod.domain == item.domain));
+      }
+    });
     return possibleMods;
   }
 

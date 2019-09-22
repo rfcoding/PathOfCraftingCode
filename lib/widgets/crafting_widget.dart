@@ -40,7 +40,6 @@ class CraftingWidgetState extends State<CraftingWidget> {
   String lastActionImagePath = 'assets/images/empty.png';
   final _saveFormKey = GlobalKey<FormState>();
 
-
   @override
   void initState() {
     if (widget.item == null) {
@@ -56,7 +55,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
           widget.baseItem.itemLevel,
           widget.baseItem.domain,
           SpendingReport.empty(),
-          null);
+          null,
+          false);
       _item.tags.addAll(widget.extraTags);
     } else {
       _item = widget.item;
@@ -71,31 +71,28 @@ class CraftingWidgetState extends State<CraftingWidget> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text("Crafting Lobby"),
-
       ),
       endDrawer: _getDrawer(),
       body: WillPopScope(
-        child: Column(
-          children: <Widget>[
-            Expanded(child: _item.getItemWidget(
-                _showAdvancedMods,
-                () {
-                  setState(() {
-                    _showAdvancedMods = !_showAdvancedMods;
-                  });
-                })),
-            inventoryWidget()
-          ],
-        ),
-        onWillPop: () {
-          if (_globalKey.currentState.isEndDrawerOpen) {
-            Navigator.pop(context); // closes the drawer if opened
-            return Future.value(false);
-          } else {
-            return _showConfirmDialog();
-          }
-        }
-      ),
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                  child: _item.getItemWidget(_showAdvancedMods, () {
+                setState(() {
+                  _showAdvancedMods = !_showAdvancedMods;
+                });
+              })),
+              inventoryWidget()
+            ],
+          ),
+          onWillPop: () {
+            if (_globalKey.currentState.isEndDrawerOpen) {
+              Navigator.pop(context); // closes the drawer if opened
+              return Future.value(false);
+            } else {
+              return _showConfirmDialog();
+            }
+          }),
     );
   }
 
@@ -104,7 +101,10 @@ class CraftingWidgetState extends State<CraftingWidget> {
       child: ListView(
         children: <Widget>[
           CheckboxListTile(
-              title: Text('Advanced mods', style: TextStyle(fontSize: 20),),
+              title: Text(
+                'Advanced mods',
+                style: TextStyle(fontSize: 20),
+              ),
               subtitle: Text('Enable to show more information about each mod'),
               value: _showAdvancedMods,
               activeColor: Theme.of(context).buttonColor,
@@ -147,84 +147,102 @@ class CraftingWidgetState extends State<CraftingWidget> {
   }
 
   Widget craftingOptionsWidget() {
-    return Builder(
-      builder: (BuildContext context) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            imageButton(
-                'assets/images/resonator.png',
-                'Use selected fossils',
-                    () {
-                  if (_selectedFossils.length == 0) {
-                    _showToast("No fossils selected", context);
-                  } else {
-                    doAndStoreAction(
-                            () => itemChanged(_item.useFossils(_selectedFossils)),
-                        'assets/images/resonator.png');
-                  }
-                }
-            ),
-            imageButton(
-                'assets/images/fossil.png',
-                'Select fossils',
-                    () =>
-                    FossilSelectDialog.getFossilSelectionDialog(
-                        context,
-                        _selectedFossils
-                            .map((selectedFossil) => selectedFossil.name)
-                            .toList())
-                        .then((fossils) {
-                      setState(() {
-                        if(fossils != null) {
-                          _selectedFossils = fossils;
-                        }
-                      });
-                    })
-            ),
-            craftingButtonWidget(),
-            essenceButtonWidget(),
-            beastButtonWidget(),
-            iconButton(lastActionImagePath, 'Repeat last action', () => repeatLastAction()
-            ),
-          ],
-        );
-      }
-    );
+    return Builder(builder: (BuildContext context) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          fossilUseButtonWidget(),
+          fossilSelectButtonWidget(),
+          craftingButtonWidget(),
+          essenceButtonWidget(),
+          beastButtonWidget(),
+          repeatButtonWidget(),
+        ],
+      );
+    });
+  }
+
+  Widget fossilSelectButtonWidget() {
+    if (_item.corrupted) {
+      return disabledImageButton('assets/images/fossil.png',
+          'Select fossils', null);
+    }
+    return imageButton(
+        'assets/images/fossil.png',
+        'Select fossils',
+            () => FossilSelectDialog.getFossilSelectionDialog(
+            context,
+            _selectedFossils
+                .map((selectedFossil) => selectedFossil.name)
+                .toList())
+            .then((fossils) {
+          setState(() {
+            if (fossils != null) {
+              _selectedFossils = fossils;
+            }
+          });
+        }));
+  }
+
+  Widget fossilUseButtonWidget() {
+    if (_item.corrupted) {
+      return disabledImageButton('assets/images/resonator.png', 'Use selected fossils', null);
+    }
+    return imageButton('assets/images/resonator.png', 'Use selected fossils',
+            () {
+          if (_selectedFossils.length == 0) {
+            _showToast("No fossils selected", context);
+          } else {
+            doAndStoreAction(
+                    () => itemChanged(_item.useFossils(_selectedFossils)),
+                'assets/images/resonator.png');
+          }
+        });
   }
 
   Widget essenceButtonWidget() {
     if (_item.domain == "item") {
-      return imageButton(
-          'assets/images/essence.png',
-          'Essences',
-              () => _navigateToEssenceCraftWidget()
-      );
+      if (_item.corrupted) {
+        return disabledImageButton(
+            'assets/images/essence.png', 'Essences', null);
+      }
+      return imageButton('assets/images/essence.png', 'Essences',
+          () => _navigateToEssenceCraftWidget());
     }
     return emptySquare();
   }
 
   Widget craftingButtonWidget() {
     if (_item.domain == "item") {
-      return imageButton(
-          'assets/images/crafting.png',
-          'Master crafting mods',
-              () => _navigateToCraftingBench()
-      );
+      if (_item.corrupted) {
+        return disabledImageButton(
+            'assets/images/crafting.png', 'Master crafting mods', null);
+      }
+      return imageButton('assets/images/crafting.png', 'Master crafting mods',
+          () => _navigateToCraftingBench());
     }
     return emptySquare();
   }
 
   Widget beastButtonWidget() {
     if (_item.domain == "item") {
-      return imageButton(
-          'assets/images/beast.png',
-          'Beast crafting',
-              () => _navigateToMenagerie()
-      );
+      if (_item.corrupted) {
+        return disabledImageButton(
+            'assets/images/beast.png', 'Beast crafting', null);
+      }
+      return imageButton('assets/images/beast.png', 'Beast crafting',
+          () => _navigateToMenagerie());
     }
     return emptySquare();
+  }
+
+  Widget repeatButtonWidget() {
+    if (_item.corrupted) {
+      return emptySquare();
+    }
+    return iconButton(lastActionImagePath, 'Repeat last action',
+            () => repeatLastAction());
   }
 
   void doAndStoreAction(Function action, lastActionImagePath) {
@@ -251,10 +269,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
   }
 
   void showSaveItemDialog() async {
-    await showDialog(
-        context: context,
-        builder: saveItemDialogBuilder
-    );
+    await showDialog(context: context, builder: saveItemDialogBuilder);
   }
 
   Widget saveItemDialogBuilder(BuildContext context) {
@@ -269,7 +284,8 @@ class CraftingWidgetState extends State<CraftingWidget> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    decoration: new InputDecoration(labelText: "Item name", hintText: "Enter item name"),
+                    decoration: new InputDecoration(
+                        labelText: "Item name", hintText: "Enter item name"),
                     keyboardType: TextInputType.text,
                     onSaved: (input) {
                       _item.name = input;
@@ -287,23 +303,29 @@ class CraftingWidgetState extends State<CraftingWidget> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    RaisedButton(child: Text("Cancel"), onPressed: () {
-                      Navigator.of(context).pop();
-                    }),
-                    RaisedButton(child: Text("Save"), onPressed: () {
-                      Navigator.of(context).pop();
-                      saveItem();
-                    })
+                    RaisedButton(
+                        child: Text("Cancel"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        }),
+                    RaisedButton(
+                        child: Text("Save"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          saveItem();
+                        })
                   ],
                 ),
               ],
             ),
           ),
         ),
-      ],);
+      ],
+    );
   }
 
-  Widget masterCraftingOption(BuildContext context, String text, Function func) {
+  Widget masterCraftingOption(
+      BuildContext context, String text, Function func) {
     return SimpleDialogOption(
       child: Text(text),
       onPressed: () {
@@ -314,17 +336,14 @@ class CraftingWidgetState extends State<CraftingWidget> {
   }
 
   void _navigateToCraftingBench() {
-    Navigator.push(context, MaterialPageRoute(
-        builder: (BuildContext context) =>
-            CraftingBenchOptionsWidget(
-                item: _item
-            )
-    )).then((result) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) =>
+                CraftingBenchOptionsWidget(item: _item))).then((result) {
       if (result is CraftingBenchOption) {
-        doAndStoreAction(
-                () => itemChanged(_item.tryAddMasterMod(result)),
-            'assets/images/crafting.png'
-        );
+        doAndStoreAction(() => itemChanged(_item.tryAddMasterMod(result)),
+            'assets/images/crafting.png');
       }
       if (result is RemoveMods) {
         itemChanged(_item.removeMasterMods());
@@ -333,16 +352,15 @@ class CraftingWidgetState extends State<CraftingWidget> {
   }
 
   void _navigateToMenagerie() {
-    Navigator.push(context, MaterialPageRoute(
-        builder: (BuildContext context) =>
-            BeastWidget(
-                _item
-            )
-    )).then((result) {
-      if(result != null) {
+    Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => BeastWidget(_item)))
+        .then((result) {
+      if (result != null) {
         BeastCraft craft = result as BeastCraft;
         doAndStoreAction(() {
-          if(craft.canDoCraft(_item)){
+          if (craft.canDoCraft(_item)) {
             _item.spendingReport.spendBeast(craft.cost);
             itemChanged(craft.doCraft(_item));
           }
@@ -352,46 +370,64 @@ class CraftingWidgetState extends State<CraftingWidget> {
   }
 
   void _navigateToSpendingReportWidget() {
-    Navigator.push(context, MaterialPageRoute(
-      builder: (BuildContext context) =>
-          SpendingWidget(spendingReport: _item.spendingReport,)
-    ));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => SpendingWidget(
+                  spendingReport: _item.spendingReport,
+                )));
   }
 
   void _navigateToEssenceCraftWidget() {
-    Navigator.push(context, MaterialPageRoute(
-        builder: (BuildContext context) =>
-            EssenceCraftingWidget(item: _item)
-    )).then((result) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) =>
+                EssenceCraftingWidget(item: _item))).then((result) {
       if (result is Essence) {
-        doAndStoreAction(
-                () => itemChanged(_item.applyEssence(result)),
+        doAndStoreAction(() => itemChanged(_item.applyEssence(result)),
             'assets/images/essence.png');
       }
     });
   }
 
   void _navigateToItemLab() {
-    Navigator.push(context, MaterialPageRoute(
-      builder: (BuildContext context) => ItemLabWidget(item: _item)
-    ));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => ItemLabWidget(item: _item)));
   }
 
   Future<bool> _showConfirmDialog() {
-    return showDialog(context: context, builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Vendor item? "),
-        content: new Text('Unsaved progress will be lost'),
-        actions: <Widget>[
-          FlatButton(color: Colors.amber[800], textTheme: ButtonTextTheme.accent, child: Text("No"), onPressed: () => Navigator.of(context).pop(false),),
-          FlatButton(color: Colors.amber[800], textTheme: ButtonTextTheme.accent, child: Text("Yes"), onPressed: () => Navigator.of(context).pop(true),),
-        ],
-      );
-    });
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Vendor item? "),
+            content: new Text('Unsaved progress will be lost'),
+            actions: <Widget>[
+              FlatButton(
+                color: Colors.amber[800],
+                textTheme: ButtonTextTheme.accent,
+                child: Text("No"),
+                onPressed: () => Navigator.of(context).pop(false),
+              ),
+              FlatButton(
+                color: Colors.amber[800],
+                textTheme: ButtonTextTheme.accent,
+                child: Text("Yes"),
+                onPressed: () => Navigator.of(context).pop(true),
+              ),
+            ],
+          );
+        });
   }
 
   void _showToast(String text, BuildContext context) {
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(text), duration: Duration(milliseconds: 500),));
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(text),
+      duration: Duration(milliseconds: 500),
+    ));
   }
 
   void itemChanged(Item item) {

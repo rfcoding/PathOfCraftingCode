@@ -23,7 +23,8 @@ class NormalItem extends Item {
       int itemLevel,
       String domain,
       SpendingReport spendingReport,
-      Item imprint)
+      Item imprint,
+      bool corrupted)
       : super(
       name,
       prefixes,
@@ -36,7 +37,8 @@ class NormalItem extends Item {
       itemLevel,
       domain,
       spendingReport,
-      imprint);
+      imprint,
+      corrupted);
 
   factory NormalItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -69,7 +71,8 @@ class NormalItem extends Item {
         // Shitty fix for loading old items
         data['domain'] != null ? data['domain'] : 'item',
         spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null,
-        data['imprint'] != null ? Item.fromJson(data['imprint']) : null
+        data['imprint'] != null ? Item.fromJson(data['imprint']) : null,
+        data['corrupted'] != null ? data['corrupted'] : false,
     );
   }
 
@@ -86,7 +89,8 @@ class NormalItem extends Item {
         item.itemLevel,
         item.domain,
         item.spendingReport,
-        item != null ? Item.copy(item.imprint) : null);
+        item != null ? Item.copy(item.imprint) : null,
+        item.corrupted);
   }
 
   @override
@@ -169,7 +173,7 @@ class NormalItem extends Item {
   }
 
   @override
-  Widget getActionsWidget(CraftingWidgetState state) {
+  Widget getNormalActionsWidget(CraftingWidgetState state) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -179,6 +183,22 @@ class NormalItem extends Item {
               state.itemChanged(this.transmute())),
           imageButton('assets/images/alchemy.png', 'Orb of Alchemy', () =>
               state.itemChanged(this.alchemy())),
+          emptySquare(),
+          emptySquare(),
+          emptySquare(),
+          emptySquare(),
+        ]);
+  }
+
+  @override
+  Widget getDisabledActionsWidget(CraftingWidgetState state) {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          disabledImageButton(
+              'assets/images/transmute.png', 'Orb of Transmutation', null),
+          disabledImageButton('assets/images/alchemy.png', 'Orb of Alchemy', null),
           emptySquare(),
           emptySquare(),
           emptySquare(),
