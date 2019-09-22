@@ -30,7 +30,8 @@ class RareItem extends Item {
       int itemLevel,
       String domain,
       SpendingReport spendingReport,
-      Item imprint)
+      Item imprint,
+      bool corrupted)
       : super(
       name,
       prefixes,
@@ -43,7 +44,8 @@ class RareItem extends Item {
       itemLevel,
       domain,
       spendingReport,
-      imprint);
+      imprint,
+      corrupted);
 
   factory RareItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -77,6 +79,7 @@ class RareItem extends Item {
       data['domain'] != null ? data['domain'] : 'item',
       spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : SpendingReport.empty(),
       data['imprint'] != null ? Item.fromJson(data['imprint']) : null,
+      data['corrupted'] != null ? data['corrupted'] : false,
     );
   }
 
@@ -94,7 +97,8 @@ class RareItem extends Item {
         item.itemLevel,
         item.domain,
         item.spendingReport,
-        item != null ? Item.copy(item.imprint) : null);
+        item != null ? Item.copy(item.imprint) : null,
+        item.corrupted);
   }
 
   @override
@@ -200,6 +204,24 @@ class RareItem extends Item {
   RareItem chaos() {
     this.spendingReport.addSpending(CurrencyType.chaos, 1);
     reroll();
+    return this;
+  }
+
+  RareItem corrupt() {
+    this.spendingReport.addSpending(CurrencyType.vaal, 1);
+    this.corrupted = true;
+    int roll = rng.nextInt(100);
+    if (roll < 25) {
+      // No effect
+    } else if (roll < 50) {
+      // White socket == no effect
+    } else if (roll < 75) {
+      // Re-roll into rare
+      reroll();
+    } else {
+      // Implicit
+      addVaalImplicit();
+    }
     return this;
   }
 
@@ -316,7 +338,7 @@ class RareItem extends Item {
   }
 
   @override
-  Widget getActionsWidget(CraftingWidgetState state) {
+  Widget getNormalActionsWidget(CraftingWidgetState state) {
     return
       Row(mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
@@ -331,7 +353,23 @@ class RareItem extends Item {
                 state.itemChanged(this.annulment())),
             imageButton('assets/images/divine.png', 'Divine orb', () =>
                 state.itemChanged(this.divine())),
-            emptySquare()
+            imageButton('assets/images/vaal.png', 'Vaal orb', () =>
+                state.itemChanged(this.corrupt())),
+          ]);
+  }
+
+  @override
+  Widget getDisabledActionsWidget(CraftingWidgetState state) {
+    return
+      Row(mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            disabledImageButton('assets/images/scour.png', 'Orb of Scouring', null),
+            disabledImageButton('assets/images/chaos.png', 'Chaos orb', null),
+            disabledImageButton('assets/images/exalted.png', 'Exalted orb', null),
+            disabledImageButton('assets/images/annulment.png', 'Orb of Annulment', null),
+            disabledImageButton('assets/images/divine.png', 'Divine orb', null),
+            disabledImageButton('assets/images/vaal.png', 'Vaal orb', null),
           ]);
   }
 

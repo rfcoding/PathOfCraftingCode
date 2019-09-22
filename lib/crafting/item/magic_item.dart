@@ -25,6 +25,7 @@ class MagicItem extends Item {
       String domain,
       SpendingReport spendingReport,
       Item imprint,
+      bool corrupted,
       )
       : super(
       name,
@@ -38,7 +39,8 @@ class MagicItem extends Item {
       itemLevel,
       domain,
       spendingReport,
-      imprint);
+      imprint,
+      corrupted);
 
   factory MagicItem.fromJson(Map<String, dynamic> data) {
     var prefixesJson = data['prefixes'] as List;
@@ -71,7 +73,8 @@ class MagicItem extends Item {
         // Shitty fix for loading old items
         data['domain'] != null ? data['domain'] : 'item',
         spendingReportData != null ? SpendingReport.fromJson(spendingReportData) : null,
-        data['imprint'] != null ? Item.fromJson(data['imprint']) : null
+        data['imprint'] != null ? Item.fromJson(data['imprint']) : null,
+        data['corrupted'] != null ? data['corrupted'] : false,
     );
   }
 
@@ -88,7 +91,8 @@ class MagicItem extends Item {
         item.itemLevel,
         item.domain,
         item.spendingReport,
-        item != null ? Item.copy(item.imprint) : null);
+        item != null ? Item.copy(item.imprint) : null,
+        item.corrupted);
   }
 
   @override
@@ -217,7 +221,7 @@ class MagicItem extends Item {
   }
 
   @override
-  Widget getActionsWidget(CraftingWidgetState state) {
+  Widget getNormalActionsWidget(CraftingWidgetState state) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -237,6 +241,24 @@ class MagicItem extends Item {
               state.itemChanged(this.annulment())),
           imageButton('assets/images/divine.png', 'Divine orb', () =>
               state.itemChanged(this.divine())),
+        ]);
+  }
+
+  @override
+  Widget getDisabledActionsWidget(CraftingWidgetState state) {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          imageButton(
+              'assets/images/scour.png', 'Orb of Scouring', null),
+          imageButton('assets/images/alteration.png', 'Orb of Alteration', null),
+          imageButton(
+              'assets/images/augmentation.png', 'Orb of Augmentation', null),
+          imageButton(
+              'assets/images/regal.png', 'Regal orb', null),
+          imageButton('assets/images/annulment.png', 'Orb of Annulment', null),
+          imageButton('assets/images/divine.png', 'Divine orb', null),
         ]);
   }
 

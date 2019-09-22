@@ -26,6 +26,7 @@ abstract class Item {
   String itemClass;
   int itemLevel;
   String domain;
+  bool corrupted;
 
   SpendingReport spendingReport;
   Item imprint;
@@ -53,7 +54,8 @@ abstract class Item {
       int itemLevel,
       String domain,
       SpendingReport spendingReport,
-      Item imprint) {
+      Item imprint,
+      bool corrupted) {
     this.name = name;
     this.prefixes = prefixes;
     this.suffixes = suffixes;
@@ -66,6 +68,7 @@ abstract class Item {
     this.domain = domain;
     this.spendingReport = spendingReport;
     this.imprint = imprint;
+    this.corrupted = corrupted;
 
     this.implicits.forEach((implicit) {
       implicit.stats.forEach((stat) {
@@ -134,7 +137,8 @@ abstract class Item {
       "item_level": itemLevel,
       "domain": domain,
       "spending_report": spendingReport.toJson(),
-      "imprint": imprint != null ? imprint.toJson() : null
+      "imprint": imprint != null ? imprint.toJson() : null,
+      "corrupted": corrupted
     };
   }
 
@@ -217,6 +221,12 @@ abstract class Item {
     else if(mod.generationType == "suffix"){
       this.suffixes.add(mod);
     }
+  }
+
+  void addVaalImplicit() {
+    Mod implicit = ModRepository.instance.getImplicit(this);
+    implicits.clear();
+    implicits.add(implicit);
   }
 
   Item tryAddMasterMod(CraftingBenchOption option) {
@@ -367,6 +377,7 @@ abstract class Item {
         getImplicitWidget(),
         divider(),
         advancedMods ? getAdvancedModWidget(onTap) : getModWidget(onTap),
+        corruptedWidget()
       ]),
     );
   }
@@ -396,7 +407,16 @@ abstract class Item {
     );
   }
 
-  Widget getActionsWidget(CraftingWidgetState state);
+  Widget getActionsWidget(CraftingWidgetState state) {
+    if (corrupted) {
+      return getDisabledActionsWidget(state);
+    }
+    return getNormalActionsWidget(state);
+  }
+
+  Widget getNormalActionsWidget(CraftingWidgetState state);
+
+  Widget getDisabledActionsWidget(CraftingWidgetState state);
 
   Widget getAdvancedModWidget(Function onTap) {
     List<Widget> widgets = List();
@@ -471,6 +491,19 @@ abstract class Item {
       mod.stats = newStats;
     });
     return getModListWidgets(combinedMods, color);
+  }
+
+  Widget corruptedWidget() {
+    if (this.corrupted) {
+      return itemRow(
+          Text(
+            "Corrupted",
+            style: TextStyle(color: Colors.red, fontSize: modFontSize),
+            textAlign: TextAlign.center,
+          )
+      );
+    }
+    return Container();
   }
 
   Widget statRow(String text, Color color) {

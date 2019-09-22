@@ -12,7 +12,24 @@ Widget imageButton(String assetPath, String tooltip, VoidCallback callback) {
           decoration: new BoxDecoration(
             border: Border.all(color: Color(0xFF2A221A), width: 1),
           ),
-          child: Image(image: AssetImage(assetPath), ),
+          child: Image(image: AssetImage(assetPath),),
+        ),
+      ), message: tooltip,
+    ),
+  );
+}
+
+Widget disabledImageButton(String assetPath, String tooltip, VoidCallback callback) {
+  return Expanded(
+    flex: 1,
+    child: Tooltip(
+      child: InkWell(
+        onTap: callback,
+        child: Container(
+          decoration: new BoxDecoration(
+            border: Border.all(color: Color(0xFF2A221A), width: 1),
+          ),
+          child: Image(image: AssetImage(assetPath), color: Color(0xA00E0E0E), colorBlendMode: BlendMode.srcATop,),
         ),
       ), message: tooltip,
     ),
