@@ -36,6 +36,22 @@ Widget disabledImageButton(String assetPath, String tooltip, VoidCallback callba
   );
 }
 
+Widget squareImageButton(String assetPath, String tooltip, VoidCallback callback, double size) {
+  return Tooltip(
+    child: InkWell(
+      onTap: callback,
+      child: Container(
+        height: size,
+        width: size,
+        decoration: new BoxDecoration(
+          border: Border.all(color: Color(0xFF2A221A), width: 1),
+        ),
+        child: Image(image: AssetImage(assetPath), ),
+      ),
+    ), message: tooltip,
+  );
+}
+
 Widget iconButton(String assetPath, String tooltip, VoidCallback callback) {
   return Expanded(
     flex: 1,
