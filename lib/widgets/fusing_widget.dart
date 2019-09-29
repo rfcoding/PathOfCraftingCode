@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/network/ninja_item.dart';
+import 'package:poe_clicker/network/ninja_request.dart';
 import 'package:poe_clicker/widgets/utils.dart';
 
 class FusingWidget extends StatefulWidget {
@@ -21,11 +23,28 @@ class FusingWidgetState extends State<FusingWidget> {
   LinkState _linkState = LinkState();
   bool _isSpamming = false;
   bool _shouldSpam = false;
+  List<NinjaSixLink> _itemBaseList;
+  NinjaSixLink _selectedBase;
+  NinjaItem _fusing;
 
   @override
   void initState() {
+    NinjaRequest.getSixLinkArmours(NinjaRequest.SUPPORTED_LEAGUES[0]).then((
+        sixLinks) {
+      NinjaSixLink sixLink = sixLinks[0];
+      setState(() {
+        _itemBaseList = sixLinks;
+        _selectedBase = sixLink;
+      });
+    });
+    NinjaRequest.getCurrencyRatios(NinjaRequest.SUPPORTED_LEAGUES[0]).then((
+        currencies) {
+      _fusing =
+          currencies.firstWhere((currency) => currency.name == "Orb of Fusing");
+    });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,8 +59,7 @@ class FusingWidgetState extends State<FusingWidget> {
   Widget _getBody() {
     return Column(
       children: <Widget>[
-        Text("Six Links: ${_linkState.numberOfSixLinks}"),
-        Text("Fusings Used: ${_linkState.fusingsUsed}"),
+        statsWidget(),
         Expanded(
           child: itemWidget(_linkState),
         ),
@@ -50,7 +68,8 @@ class FusingWidgetState extends State<FusingWidget> {
           children: <Widget>[
             Container(
               height: 64,
-              child: Center(child: squareImageButton('assets/images/fusing.png', "Orb of Fusing", useFusing, 64))
+              child: Center(child: squareImageButton(
+                  'assets/images/fusing.png', "Orb of Fusing", useFusing, 64))
               ,
             ),
             spamButton()
@@ -79,50 +98,115 @@ class FusingWidgetState extends State<FusingWidget> {
             child: Stack(children: <Widget>[
               horizontalImage(SOCKET), // Socket 1
               new Positioned(
-                left: 96,
-                child: horizontalImage(SOCKET), // Socket 2
+                left: 96, child: horizontalImage(SOCKET), // Socket 2
               ),
               new Positioned(
                   right: 0, top: 96, child: horizontalImage(SOCKET) // Socket 3
-                  ),
+              ),
               new Positioned(top: 96, child: horizontalImage(SOCKET) // Socket 4
-                  ),
+              ),
               new Positioned(
                   top: 192, child: horizontalImage(SOCKET) // Socket 5
-                  ),
+              ),
               new Positioned(
                   right: 0, top: 192, child: horizontalImage(SOCKET) // Socket 6
-                  ),
+              ),
               new Positioned(
                 left: 48,
                 top: 16,
-                child: horizontalImage(linkState.linked(0) ? LINK_HORIZONTAL : EMPTY), // Link 1
+                child: horizontalImage(
+                    linkState.linked(0) ? LINK_HORIZONTAL : EMPTY), // Link 1
               ),
               new Positioned(
                 right: 16,
                 top: 48,
-                child: verticalImage(linkState.linked(1) ? LINK_VERTICAL : EMPTY), // Link 2
+                child: verticalImage(
+                    linkState.linked(1) ? LINK_VERTICAL : EMPTY), // Link 2
               ),
               new Positioned(
                 right: 48,
                 top: 112,
-                child: horizontalImage(linkState.linked(2) ? LINK_HORIZONTAL : EMPTY), // Link 3
+                child: horizontalImage(
+                    linkState.linked(2) ? LINK_HORIZONTAL : EMPTY), // Link 3
               ),
               new Positioned(
                 left: 16,
                 top: 144,
-                child: verticalImage(linkState.linked(3) ? LINK_VERTICAL : EMPTY), // Link 4
+                child: verticalImage(
+                    linkState.linked(3) ? LINK_VERTICAL : EMPTY), // Link 4
               ),
               new Positioned(
                 right: 48,
                 top: 208,
-                child: horizontalImage(linkState.linked(4) ? LINK_HORIZONTAL : EMPTY), // Link 5
+                child: horizontalImage(
+                    linkState.linked(4) ? LINK_HORIZONTAL : EMPTY), // Link 5
               ),
             ]),
           ),
         ),
       ),
     );
+  }
+
+  Widget statsWidget() {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          selectedBaseWidget(),
+          profitWidget(),
+          Text("Six Links: ${_linkState.numberOfSixLinks}"),
+          Text("Fusings Used: ${_linkState.fusingsUsed}"),
+        ],
+      ),
+    );
+  }
+
+  Widget selectedBaseWidget() {
+    if (_selectedBase == null) {
+      return Text("Loading item base values");
+    }
+    return Center(
+      child: baseSelectDropDown(),
+    );
+  }
+
+  Widget baseSelectDropDown() {
+    return DropdownButton<NinjaSixLink>(
+      isDense: true,
+      hint: Text("${_selectedBase.name}"),
+      onChanged: (NinjaSixLink value) {
+        setState(() {
+          _selectedBase = value;
+        });
+      },
+      items: _itemBaseList.map((item) {
+        return DropdownMenuItem<NinjaSixLink>(
+          value: item,
+          child: dropDownMenuItem(item)
+
+        );
+      }).toList(),
+    );
+  }
+
+  Widget dropDownMenuItem(NinjaSixLink item) {
+    return RichText(
+        text: TextSpan(
+            children: <TextSpan>[
+              coloredText(item.name, Color(0xFFB29155), 20),
+              coloredText("\nProfit / 6L: ${item.chaosProfit.toStringAsFixed(0)} Chaos", Colors.white, 16)
+            ]));
+  }
+
+  Widget profitWidget() {
+    if (_selectedBase == null || _fusing == null) {
+      return Text("Calculating profit...");
+    }
+    double cost = _fusing.chaosValue * _linkState.fusingsUsed;
+    double income = _selectedBase.chaosProfit * _linkState.numberOfSixLinks;
+    double profit = income - cost;
+    return Text("Profit: ${profit.toStringAsFixed(1)} Chaos",
+      style: TextStyle(color: profit > 0 ? Colors.green : Colors.red),);
   }
 
   void useFusing() {
@@ -134,20 +218,23 @@ class FusingWidgetState extends State<FusingWidget> {
   Widget spamButton() {
     if (_isSpamming) {
       return Container(
-        height: 64,
-        child: Center(child: squareImageButton('assets/images/scour.png', "Stop spamming", () => stopSpamming(), 64))
+          height: 64,
+          child: Center(child: squareImageButton(
+              'assets/images/scour.png', "Stop spamming", () => stopSpamming(),
+              64))
       );
     }
     return Container(
         height: 64,
-        child: Center(child: squareImageButton('assets/images/chaos.png', "Stop spamming", () => startSpamming(), 64))
+        child: Center(child: squareImageButton(
+            'assets/images/chaos.png', "Start spamming", () => startSpamming(),
+            64))
     );
   }
 
   void stopSpamming() {
     setState(() {
       _shouldSpam = false;
-
     });
   }
 
@@ -163,11 +250,10 @@ class FusingWidgetState extends State<FusingWidget> {
     _isSpamming = true;
     while (_shouldSpam) {
       useFusing();
-      await Future.delayed(Duration(milliseconds: 25));
-
+      await Future.delayed(Duration(milliseconds: 2));
     }
     setState(() {
-    _isSpamming = false;
+      _isSpamming = false;
     });
   }
 
@@ -190,27 +276,27 @@ class LinkState {
       from socket 5	15820	30913
    */
   static const List<List<int>> PROBABILITIES = [
-    [17818, 34818,  26766,  19672,  826, 100],
-    [3178,  6210,   4774,   3509,   147],
-    [6834,  13353,  10265,  7544],
-    [8934,  17457,  13420],
+    [17818, 34818, 26766, 19672, 826, 100],
+    [3178, 6210, 4774, 3509, 147],
+    [6834, 13353, 10265, 7544],
+    [8934, 17457, 13420],
     [15820, 30913]
   ];
   static const List<int> SUMS = [100000, 17818, 37996, 39811, 46733];
   List<bool> sockets = [false, false, false, false, false];
   Random rng = new Random();
-  int fusingsUsed = 0;
+  int fusingsUsed = -1;
   int numberOfSixLinks = 0;
 
   LinkState() {
-    reRollSimple();
+    reRoll();
   }
 
   bool linked(int link) {
     return sockets[link];
   }
 
-  bool sixLinked() {
+  bool isSixLinked() {
     return sockets[0] && sockets[1] && sockets[2] && sockets[3] && sockets[4];
   }
 
@@ -225,18 +311,16 @@ class LinkState {
   void reRoll() {
     fusingsUsed ++;
     List<bool> oldSockets = List.from(sockets);
-    print("sockets: $sockets");
-    print("oldSockets: $oldSockets");
     _rollSockets();
-    while(socketsEqual(oldSockets)) {
-      print("Sockets equal");
+    /*while (socketsEqual(oldSockets)) {
       _rollSockets();
-    }
+    }*/
 
-    if (sixLinked()) {
+    if (isSixLinked()) {
       numberOfSixLinks++;
     }
   }
+
   void _rollSockets() {
     sockets = [false, false, false, false, false];
 
@@ -260,7 +344,6 @@ class LinkState {
       int weight = weights[i];
       acc += weight;
       if (acc >= roll) {
-        print("Roll: $i");
         return i;
       }
     }
@@ -275,7 +358,10 @@ class LinkState {
   }
 
   bool socketsEqual(List<bool> other) {
-    for(int i = 0; i < sockets.length; i++) {
+    if (sockets == null || other == null || sockets.length != other.length) {
+      return false;
+    }
+    for (int i = 0; i < sockets.length; i++) {
       if (sockets[i] != other[i]) {
         return false;
       }

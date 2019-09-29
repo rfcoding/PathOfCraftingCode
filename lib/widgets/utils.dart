@@ -98,6 +98,12 @@ TextSpan clickableText(String text, Function onClick) {
           fontFamily: 'Fontin'));
 }
 
+TextSpan coloredText(String text, Color color, double fontSize) {
+  return TextSpan(
+      text: text,
+      style: TextStyle(color: color, fontSize: fontSize, fontFamily: 'Fontin'));
+}
+
 void openPage(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
