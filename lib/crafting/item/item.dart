@@ -332,8 +332,38 @@ abstract class Item {
 
   void reroll({List<Fossil> fossils: const[]});
 
-  void addRandomMod();
+  void addRandomMod() {
+    // Max mods
+    if (hasMaxMods()) {
+      return;
+    }
+    Mod mod = ModRepository.instance.getRandomMod(this, List());
+    if (mod == null) {
+      return;
+    }
+    if (mod.isPrefix()) {
+      prefixes.add(mod);
+    } else {
+      suffixes.add(mod);
+    }
+  }
 
+  void fillMods({List<Fossil> fossils: const[]}) {
+    int finalNumberOfMods = getNumberOfNewMods();
+    final int currentNumberOfMods = prefixes.length + suffixes.length;
+    int numberOfNewMods = finalNumberOfMods - currentNumberOfMods;
+
+    for (int i = 0; i < numberOfNewMods; i++) {
+      Mod mod = ModRepository.instance.getRandomMod(this, fossils);
+      if (mod.isPrefix()) {
+        prefixes.add(mod);
+      } else {
+        suffixes.add(mod);
+      }
+    }
+  }
+
+  int getNumberOfNewMods();
   bool hasMaxPrefixes() {
     return prefixes.length >= maxNumberOfPrefixes();
   }

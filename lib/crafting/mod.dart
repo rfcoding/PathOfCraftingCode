@@ -161,6 +161,14 @@ class Mod implements Comparable<Mod> {
     }
     return (generationType + group).compareTo(other.generationType + other.group);
   }
+
+  bool isPrefix() {
+    return generationType == "prefix";
+  }
+
+  bool isSuffix() {
+    return generationType == "suffix";
+  }
 }
 
 class SpawnWeight {
