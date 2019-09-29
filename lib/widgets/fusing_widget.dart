@@ -9,7 +9,6 @@ import 'package:poe_clicker/widgets/utils.dart';
 class FusingWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return FusingWidgetState();
   }
 }
@@ -69,7 +68,7 @@ class FusingWidgetState extends State<FusingWidget> {
             Container(
               height: 64,
               child: Center(child: squareImageButton(
-                  'assets/images/fusing.png', "Orb of Fusing", useFusing, 64))
+                  'assets/images/fusing.png', "Orb of Fusing", onFusingButtonClicked, 64))
               ,
             ),
             spamButton()
@@ -78,6 +77,42 @@ class FusingWidgetState extends State<FusingWidget> {
         SizedBox(height: 16,)
       ],
     );
+  }
+
+  void onFusingButtonClicked() {
+    if (_linkState.isSixLinked()) {
+      showSixLinkedDialog();
+    } else {
+      useFusing();
+    }
+  }
+
+  Future<bool> showSixLinkedDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("You got a Six Link!"),
+            content: new Text('Do you want to roll over it?'),
+            actions: <Widget>[
+              FlatButton(
+                color: Colors.amber[800],
+                textTheme: ButtonTextTheme.accent,
+                child: Text("No"),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              FlatButton(
+                color: Colors.amber[800],
+                textTheme: ButtonTextTheme.accent,
+                child: Text("Yes"),
+                onPressed: () => {
+                  useFusing(),
+                  Navigator.of(context).pop()
+                },
+              ),
+            ],
+          );
+        });
   }
 
   Widget itemWidget(LinkState linkState) {
@@ -172,7 +207,6 @@ class FusingWidgetState extends State<FusingWidget> {
 
   Widget baseSelectDropDown() {
     return DropdownButton<NinjaSixLink>(
-      isDense: true,
       hint: Text("${_selectedBase.name}"),
       onChanged: (NinjaSixLink value) {
         setState(() {
