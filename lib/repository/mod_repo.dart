@@ -109,20 +109,31 @@ class ModRepository {
     return true;
   }
 
+  Mod getRandomMod(Item item, List<Fossil> fossils) {
+    List<Mod> mods = List();
+    if (!item.hasMaxPrefixes()) {
+      mods.addAll(getPossiblePrefixes(item, fossils));
+    }
+    if (!item.hasMaxSuffixes()) {
+      mods.addAll(getPossibleSuffixes(item, fossils));
+    }
+    return selectRandomMod(mods, item, fossils);
+  }
+
   Mod getPrefix(Item item, List<Fossil> fossils) {
-    return getMod(getPossiblePrefixes(item, fossils), item, fossils);
+    return selectRandomMod(getPossiblePrefixes(item, fossils), item, fossils);
   }
 
   Mod getSuffix(Item item, List<Fossil> fossils) {
-    return getMod(getPossibleSuffixes(item, fossils), item, fossils);
+    return selectRandomMod(getPossibleSuffixes(item, fossils), item, fossils);
   }
 
   Mod getImplicit(Item item) {
-    return getMod(getPossibleImplicits(item), item, List());
+    return selectRandomMod(getPossibleImplicits(item), item, List());
   }
 
   Mod getEnchantment(Item item) {
-    return getMod(getPossibleEnchantments(item), item, List());
+    return selectRandomMod(getPossibleEnchantments(item), item, List());
   }
 
   List<Mod> getPossiblePrefixes(Item item, List<Fossil> fossils) {
@@ -202,7 +213,7 @@ class ModRepository {
     return possibleMods;
   }
 
-  Mod getMod(List<Mod> possibleMods, Item item, List<Fossil> fossils) {
+  Mod selectRandomMod(List<Mod> possibleMods, Item item, List<Fossil> fossils) {
     Map<String, ModWeightHolder> modWeightMap = getModWeights(possibleMods, item, fossils);
     if (modWeightMap.isEmpty) {
       return null;

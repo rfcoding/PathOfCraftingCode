@@ -141,29 +141,7 @@ class RareItem extends Item {
     fillMods(fossils: fossils);
   }
 
-  void fillMods({List<Fossil> fossils: const[]}) {
-    if (prefixes.isEmpty) {
-      addPrefix(fossils: fossils);
-    }
-    if (suffixes.isEmpty) {
-      addSuffix(fossils: fossils);
-    }
-    int numberOfMods = getNumberOfNewMods();
-    final int currentNumberOfMods = prefixes.length + suffixes.length;
-    int numberOfNewMods = numberOfMods - currentNumberOfMods;
-    for (int i = 0; i < numberOfNewMods; i++) {
-      if (hasMaxPrefixes()) {
-        addSuffix(fossils: fossils);
-      } else if (hasMaxSuffixes()) {
-        addPrefix(fossils: fossils);
-      } else if (rng.nextBool()) {
-        addPrefix(fossils: fossils);
-      } else {
-        addSuffix(fossils: fossils);
-      }
-    }
-  }
-
+  @override
   int getNumberOfNewMods() {
     final int roll = rng.nextInt(100);
     int numberOfMods = 0;
@@ -278,9 +256,9 @@ class RareItem extends Item {
 
   void addForcedMods(List<Mod> forcedMods) {
     for (Mod maybeMod in forcedMods) {
-      Mod mod = ModRepository.instance.getMod([maybeMod], this, List());
+      Mod mod = ModRepository.instance.selectRandomMod([maybeMod], this, List());
       if (mod != null) {
-        if (mod.generationType == "prefix") {
+        if (mod.isPrefix()) {
           prefixes.add(mod);
         } else {
           suffixes.add(mod);
@@ -310,25 +288,6 @@ class RareItem extends Item {
     } else {
       suffixes.clear();
       return this;
-    }
-  }
-
-  @override
-  void addRandomMod() {
-    // Max mods
-    if (hasMaxMods()) {
-      return;
-    }
-    if (hasMaxPrefixes()) {
-      addSuffix();
-    } else if (hasMaxSuffixes()){
-      addPrefix();
-    } else {
-      if (rng.nextBool()) {
-        addPrefix();
-      } else {
-        addSuffix();
-      }
     }
   }
 

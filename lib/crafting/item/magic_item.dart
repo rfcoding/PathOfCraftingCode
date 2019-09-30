@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/repository/mod_repo.dart';
 import 'dart:math';
 import 'dart:convert';
 import 'item.dart';
@@ -119,14 +120,7 @@ class MagicItem extends Item {
   @override
   void reroll({List<Fossil> fossils: const[]}) {
     clearMods();
-    // 1 or 2 mods, 50/50
-    final int nMods = rng.nextInt(2) + 1;
-    if (nMods == 2) {
-      addPrefix();
-      addSuffix();
-    } else {
-      rng.nextBool() ? addSuffix() : addPrefix();
-    }
+    fillMods(fossils: fossils);
   }
 
   RareItem regal() {
@@ -207,26 +201,6 @@ class MagicItem extends Item {
   }
 
   @override
-  void addRandomMod() {
-    List<Mod> mods = getMods();
-    // Max mods
-    if (mods.length == maxNumberOfAffixes()) {
-      return;
-    }
-    else if (mods.length == 0) {
-      if (rng.nextBool()) {
-        addPrefix();
-      } else {
-        addSuffix();
-      }
-    } else if (hasMaxPrefixes()) {
-      addSuffix();
-    } else {
-      addPrefix();
-    }
-  }
-
-  @override
   Widget getNormalActionsWidget(CraftingWidgetState state) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -302,5 +276,15 @@ class MagicItem extends Item {
   @override
   double getHeaderHeight() {
     return 34;
+  }
+
+  @override
+  int getNumberOfNewMods() {
+    final int roll = rng.nextInt(100);
+    if (roll >= 35) {
+      return 1;
+    } else  {
+      return 2;
+    }
   }
 }

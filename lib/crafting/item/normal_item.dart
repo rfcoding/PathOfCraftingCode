@@ -119,11 +119,6 @@ class NormalItem extends Item {
     //Do nothing
   }
 
-  @override
-  void addRandomMod() {
-    // Do nothing
-  }
-
   MagicItem transmute() {
     this.spendingReport.addSpending(CurrencyType.transmute, 1);
     MagicItem item = MagicItem.fromItem(this, List(), List());
@@ -175,6 +170,11 @@ class NormalItem extends Item {
 
   @override
   int maxNumberOfSuffixes() {
+    return 0;
+  }
+
+  @override
+  int getNumberOfNewMods() {
     return 0;
   }
 
