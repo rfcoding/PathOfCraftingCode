@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/repository/essence_repo.dart';
 import 'dart:convert';
 import 'dart:math';
+import '../essence.dart';
 import 'item.dart';
 import 'normal_item.dart';
 import 'magic_item.dart';
@@ -233,18 +235,24 @@ class RareItem extends Item {
   }
 
   RareItem useFossils(List<Fossil> fossils) {
+    Mod essenceMod;
     List<Mod> forcedMods = fossils
         .map((fossil) => fossil.forcedMods)
         .expand((mods) => mods)
         .map((modId) => ModRepository.instance.getModById(modId))
         .toList();
-    if (forcedMods.isEmpty) {
-      reroll(fossils: fossils);
-    } else {
-      clearMods();
-      addForcedMods(forcedMods);
-      fillMods(fossils: fossils);
+    int corruptEssenceChange = fossils.where((fossil) => fossil.corruptEssenceChance != null)
+        .map((fossil) => fossil.corruptEssenceChance)
+        .reduce((total, chance) => total += chance);
+    if (rng.nextInt(100) < corruptEssenceChange) {
+      Essence corruptEssence = EssenceRepository.instance.getRandomCorruptedEssence();
+      essenceMod = getEssenceModFromEssence(corruptEssence);
     }
+    clearMods();
+    addEssenceMod(essenceMod);
+    addForcedMods(forcedMods);
+    fillMods(fossils: fossils);
+
 
     if (fossils.any((fossil) => fossil.enchants)) {
       enchant();
@@ -264,6 +272,17 @@ class RareItem extends Item {
           suffixes.add(mod);
         }
       }
+    }
+  }
+
+  void addEssenceMod(Mod essenceMod) {
+    if (essenceMod == null) {
+      return;
+    }
+    if (essenceMod.isPrefix()) {
+      prefixes.add(essenceMod);
+    } else {
+      suffixes.add(essenceMod);
     }
   }
 

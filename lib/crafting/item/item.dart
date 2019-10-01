@@ -283,9 +283,7 @@ abstract class Item {
   }
 
   RareItem applyEssence(Essence essence) {
-    String essenceModId = essence.getModIdForItem(this);
-    assert(essenceModId != null);
-    Mod mod = ModRepository.instance.getModById(essenceModId);
+    Mod mod = getEssenceModFromEssence(essence);
     assert(mod != null);
     mod.rerollStatValues();
     RareItem item = RareItem.fromItem(this, List(), List());
@@ -297,6 +295,14 @@ abstract class Item {
     item.fillMods();
     spendingReport.spendEssence(essence);
     return item;
+  }
+
+  Mod getEssenceModFromEssence(Essence essence) {
+    String essenceModId = essence.getModIdForItem(this);
+    if (essenceModId == null) {
+      return null;
+    }
+    return ModRepository.instance.getModById(essenceModId);
   }
 
   Item removeMasterMods() {
