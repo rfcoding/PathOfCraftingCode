@@ -13,7 +13,6 @@ class FossilRepository {
     "Metadata/Items/Currency/CurrencyDelveCraftingSellPrice",
     "Metadata/Items/Currency/CurrencyDelveCraftingQuality",
     "Metadata/Items/Currency/CurrencyDelveCraftingLuckyModRolls",
-    "Metadata/Items/Currency/CurrencyDelveCraftingCorruptEssence"
   });
   List<Fossil> _fossils;
 
