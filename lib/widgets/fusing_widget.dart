@@ -317,7 +317,7 @@ class LinkState {
     [15820, 30913]
   ];
   static const List<int> SUMS = [100000, 17818, 37996, 39811, 46733];
-  List<bool> sockets = [false, false, false, false, false];
+  List<bool> links = [false, false, false, false, false];
   Random rng = new Random();
   int fusingsUsed = -1;
   int numberOfSixLinks = 0;
@@ -327,28 +327,32 @@ class LinkState {
   }
 
   bool linked(int link) {
-    return sockets[link];
+    return links[link];
   }
 
   bool isSixLinked() {
-    return sockets[0] && sockets[1] && sockets[2] && sockets[3] && sockets[4];
+    return links[0] && links[1] && links[2] && links[3] && links[4];
   }
 
   void reRollSimple() {
-    sockets[0] = rng.nextBool();
-    sockets[1] = rng.nextBool();
-    sockets[2] = rng.nextBool();
-    sockets[3] = rng.nextBool();
-    sockets[4] = rng.nextBool();
+    links[0] = rng.nextBool();
+    links[1] = rng.nextBool();
+    links[2] = rng.nextBool();
+    links[3] = rng.nextBool();
+    links[4] = rng.nextBool();
   }
 
   void reRoll() {
     fusingsUsed ++;
-    List<bool> oldSockets = List.from(sockets);
+    List<bool> oldLinks = List.from(links);
     _rollSockets();
-    /*while (socketsEqual(oldSockets)) {
-      _rollSockets();
-    }*/
+    if (linksEqual(oldLinks)) {
+      if (anagram()) {
+        shuffleAnagram();
+      } else {
+        mirrorLinks();
+      }
+    }
 
     if (isSixLinked()) {
       numberOfSixLinks++;
@@ -356,7 +360,7 @@ class LinkState {
   }
 
   void _rollSockets() {
-    sockets = [false, false, false, false, false];
+    links = [false, false, false, false, false];
 
     int currentSocket = 0;
     while (currentSocket < 5) {
@@ -386,20 +390,59 @@ class LinkState {
 
   int _addLinks(int currentSocket, int socketsToLink) {
     for (int i = 0; i < socketsToLink; i++) {
-      sockets[currentSocket + i] = true;
+      links[currentSocket + i] = true;
     }
     return currentSocket + socketsToLink;
   }
 
-  bool socketsEqual(List<bool> other) {
-    if (sockets == null || other == null || sockets.length != other.length) {
+  bool anagram() {
+    return links[0] == links[4] && links[1] == links[3];
+  }
+
+  void shuffleAnagram() {
+    int nLinks = maxLinks();
+    if (nLinks == 2) {
+      links = List.of([true, true, false, false, false]);
+    } else if (nLinks == 1) {
+      links = List.of([true, false, false, false, false]);
+    }
+  }
+
+  void mirrorLinks() {
+    links = List<bool>.from([
+      links[4],
+      links[3],
+      links[2],
+      links[1],
+      links[0]
+    ]);
+  }
+
+  bool linksEqual(List<bool> other) {
+    if (links == null || other == null || links.length != other.length) {
       return false;
     }
-    for (int i = 0; i < sockets.length; i++) {
-      if (sockets[i] != other[i]) {
+    for (int i = 0; i < links.length; i++) {
+      if (links[i] != other[i]) {
         return false;
       }
     }
     return true;
+  }
+
+  int maxLinks() {
+    int currentLinks = 0;
+    int maxLinks = 0;
+    for (bool link in links) {
+      if (link) {
+        currentLinks++;
+        if (currentLinks > maxLinks) {
+          maxLinks = currentLinks;
+        }
+      } else {
+        currentLinks = 0;
+      }
+    }
+    return maxLinks;
   }
 }
