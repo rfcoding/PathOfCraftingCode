@@ -7,7 +7,8 @@ import '../crafting/mod.dart' show Stat;
 class TranslationRepository {
   TranslationRepository._privateConstructor();
 
-  static final TranslationRepository instance = TranslationRepository._privateConstructor();
+  static final TranslationRepository instance =
+      TranslationRepository._privateConstructor();
 
   Map<String, StatTranslation> _translations;
 
@@ -26,7 +27,8 @@ class TranslationRepository {
       var data = jsonList[statIndex];
       List<String> ids = new List<String>.from(data['ids']);
       for (int i = 0; i < ids.length; i++) {
-        StatTranslation statTranslation = StatTranslation.fromJson(i, ids, statIndex, data["English"]);
+        StatTranslation statTranslation =
+            StatTranslation.fromJson(i, ids, statIndex, data["English"]);
         _translations[ids[i]] = statTranslation;
       }
     }
@@ -36,17 +38,22 @@ class TranslationRepository {
   List<String> getTranslationFromStats(List<Stat> stats) {
     List<StatTranslation> statTranslations = getStatTranslations(stats);
 
-    return statTranslations.map((translation) => translation.getTranslationFromStats(stats)).toSet().toList();
+    return statTranslations
+        .map((translation) => translation.getTranslationFromStats(stats))
+        .where((translation) => translation != null)
+        .toSet()
+        .toList();
   }
 
-
-  List<TranslationWithSorting> getTranslationFromStatsWithSorting(List<Stat> stats) {
+  List<TranslationWithSorting> getTranslationFromStatsWithSorting(
+      List<Stat> stats) {
     List<StatTranslation> statTranslations = getStatTranslations(stats);
 
-    return statTranslations.map((translation) =>
-        TranslationWithSorting(
+    return statTranslations
+        .map((translation) => TranslationWithSorting(
             translation: translation.getTranslationFromStats(stats),
             sorting: translation.sortingIndex))
+        .where((translation) => translation.translation != null)
         .toSet()
         .toList();
   }
@@ -54,20 +61,32 @@ class TranslationRepository {
   List<String> getTranslationFromStatsWithValueRanges(List<Stat> stats) {
     List<StatTranslation> statTranslations = getStatTranslations(stats);
 
-    return statTranslations.map((translation) => translation.getTranslationFromStatsWithValueRanges(stats)).toSet().toList();
+    return statTranslations
+        .map((translation) =>
+            translation.getTranslationFromStatsWithValueRanges(stats))
+        .where((translation) => translation != null)
+        .toSet()
+        .toList();
   }
 
   List<String> getTranslationFromStatsWithValueAndRanges(List<Stat> stats) {
     List<StatTranslation> statTranslations = getStatTranslations(stats);
 
-    return statTranslations.map((translation) => translation.getTranslationFromStatsWithValueAndRanges(stats)).toSet().toList();
+    return statTranslations
+        .map((translation) =>
+            translation.getTranslationFromStatsWithValueAndRanges(stats))
+        .where((translation) => translation != null)
+        .toSet()
+        .toList();
   }
 
   List<StatTranslation> getStatTranslations(List<Stat> stats) {
     List<StatTranslation> statTranslations = List();
-    for (Stat stat in stats.where((stat) => stat.id != "dummy_stat_display_nothing")) {
+    for (Stat stat
+        in stats.where((stat) => stat.id != "dummy_stat_display_nothing")) {
       StatTranslation statTranslation = _translations[stat.id];
-      if (statTranslation != null && !statTranslations.contains(statTranslation)) {
+      if (statTranslation != null &&
+          !statTranslations.contains(statTranslation)) {
         statTranslations.add(statTranslation);
       }
     }

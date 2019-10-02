@@ -37,7 +37,7 @@ class StatTranslation {
       }
     }
 
-    return "No translation found";
+    return null;
   }
 
   String getTranslationFromStatsWithValueRanges(List<Stat> stats) {
@@ -60,7 +60,7 @@ class StatTranslation {
       }
     }
 
-    return "No translation found";
+    return null;
   }
 
   String getTranslationFromStatsWithValueAndRanges(List<Stat> stats) {
@@ -83,7 +83,7 @@ class StatTranslation {
       }
     }
 
-    return "No translation found";
+    return null;
   }
 
   String formatTranslation(Translation translation, List<Stat> stats) {
