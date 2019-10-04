@@ -3,7 +3,13 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/network/ninja_item.dart';
+import 'package:poe_clicker/network/ninja_item.dart' as prefix0;
+import 'package:poe_clicker/network/ninja_item.dart';
 import 'package:poe_clicker/network/ninja_request.dart';
+import 'package:poe_clicker/statistics/faculty.dart';
+import 'package:poe_clicker/statistics/fusing_profit_probability.dart';
+import 'package:poe_clicker/statistics/probability.dart';
+import 'package:poe_clicker/widgets/batch_fusings_dialog.dart';
 import 'package:poe_clicker/widgets/utils.dart';
 
 class FusingWidget extends StatefulWidget {
@@ -21,15 +27,21 @@ class FusingWidgetState extends State<FusingWidget> {
 
   LinkState _linkState = LinkState();
   bool _isSpamming = false;
-  bool _shouldSpam = false;
   List<NinjaSixLink> _itemBaseList;
   NinjaSixLink _selectedBase;
   NinjaItem _fusing;
+  FusingProfitProbability _fusingProfitProbability = FusingProfitProbability();
 
   @override
   void initState() {
-    NinjaRequest.getSixLinkArmours(NinjaRequest.SUPPORTED_LEAGUES[0]).then((
-        sixLinks) {
+    Future.wait({
+      NinjaRequest.getSixLinkArmours(NinjaRequest.SUPPORTED_LEAGUES[0]),
+      NinjaRequest.getSixLinkWeapons(NinjaRequest.SUPPORTED_LEAGUES[0])
+    })
+    .then((
+        listsOfSixLinks) {
+      List<NinjaSixLink> sixLinks = listsOfSixLinks.expand((list) => list).toList();
+      sixLinks.sort((a, b) => b.chaosProfit.compareTo(a.chaosProfit));
       NinjaSixLink sixLink = sixLinks[0];
       setState(() {
         _itemBaseList = sixLinks;
@@ -51,11 +63,11 @@ class FusingWidgetState extends State<FusingWidget> {
         title: Text("Fusing simulator"),
       ),
       backgroundColor: Colors.black,
-      body: _getBody(),
+      body: _getBody(context),
     );
   }
 
-  Widget _getBody() {
+  Widget _getBody(BuildContext context) {
     return Column(
       children: <Widget>[
         statsWidget(),
@@ -71,7 +83,7 @@ class FusingWidgetState extends State<FusingWidget> {
                   'assets/images/fusing.png', "Orb of Fusing", onFusingButtonClicked, 64))
               ,
             ),
-            spamButton()
+            batchFusingButton(context)
           ],
         ),
         SizedBox(height: 16,)
@@ -188,9 +200,10 @@ class FusingWidgetState extends State<FusingWidget> {
       child: Column(
         children: <Widget>[
           selectedBaseWidget(),
-          profitWidget(),
-          Text("Six Links: ${_linkState.numberOfSixLinks}"),
           Text("Fusings Used: ${_linkState.fusingsUsed}"),
+          Text("Six Links: ${_linkState.numberOfSixLinks}"),
+          profitWidget(),
+          chanceToProfitWidget(),
         ],
       ),
     );
@@ -243,52 +256,72 @@ class FusingWidgetState extends State<FusingWidget> {
       style: TextStyle(color: profit > 0 ? Colors.green : Colors.red),);
   }
 
+  Widget chanceToProfitWidget() {
+    if (_selectedBase == null || _fusing == null) {
+      return Text("Calculating probabilities...");
+    }
+    double cost = _fusing.chaosValue * _linkState.fusingsUsed;
+    int sixLinksNeeded = (cost / _selectedBase.chaosProfit).ceil();
+    print("Six links needed: $sixLinksNeeded");
+    double winProbability = _fusingProfitProbability.profitProbability(_linkState.fusingsUsed, sixLinksNeeded);
+    return Text("Chance to profit: $winProbability");
+  }
+
   void useFusing() {
     setState(() {
       _linkState.reRoll();
     });
   }
 
-  Widget spamButton() {
-    if (_isSpamming) {
-      return Container(
+  Widget batchFusingButton(BuildContext context) {
+    String assetPath = "assets/images/fusing.png";
+    return Tooltip(
+      child: InkWell(
+        onTap: () {
+          if (!_isSpamming) {
+            _showBatchDialog();
+          }
+        },
+        child: Container(
           height: 64,
-          child: Center(child: squareImageButton(
-              'assets/images/scour.png', "Stop spamming", () => stopSpamming(),
-              64))
-      );
-    }
-    return Container(
-        height: 64,
-        child: Center(child: squareImageButton(
-            'assets/images/chaos.png', "Start spamming", () => startSpamming(),
-            64))
+          width: 64,
+          decoration: new BoxDecoration(
+            border: Border.all(color: Color(0xFF2A221A), width: 1),
+          ),
+          child: Stack(children: <Widget>[
+            new Positioned(
+              top: 16, child: Image(height: 32, width: 32, image: AssetImage(assetPath), ),
+            ),
+            new Positioned(
+              top: 16, left: 16, child: Image(height: 32, width: 32, image: AssetImage(assetPath), ),
+            ),
+            new Positioned(
+              top: 16, left: 32, child: Image(height: 32, width: 32, image: AssetImage(assetPath), ),
+            ),
+          ]),
+        ),
+      ), message: "Batch fusings",
     );
   }
 
-  void stopSpamming() {
-    setState(() {
-      _shouldSpam = false;
+  void _showBatchDialog() {
+    BatchFusingsDialog.showBatchFusingDialog(context).then((numberOfFusings) {
+      spamFusings(numberOfFusings);
     });
   }
 
-  void startSpamming() {
-    _shouldSpam = true;
-    spam();
-  }
-
-  void spam() async {
+  void spamFusings(int numberOfFusings) async {
     if (_isSpamming) {
       return;
     }
+    int fusingsRemaining = numberOfFusings;
     _isSpamming = true;
-    while (_shouldSpam) {
+    while (fusingsRemaining > 0) {
       useFusing();
-      await Future.delayed(Duration(milliseconds: 2));
+      fusingsRemaining--;
+      await Future.delayed(Duration(milliseconds: 5));
     }
-    setState(() {
-      _isSpamming = false;
-    });
+    _isSpamming = false;
   }
 
   Widget horizontalImage(String imagePath) {

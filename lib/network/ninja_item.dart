@@ -26,22 +26,22 @@ class NinjaItem {
   }
 }
 
-class NinjaArmour {
+class NinjaGear {
   String name;
   double chaosValue;
   int links;
 
-  NinjaArmour(String name, double chaosValue, int links) {
+  NinjaGear(String name, double chaosValue, int links) {
     this.name = name;
     this.chaosValue = chaosValue;
     this.links = links;
   }
 
-  factory NinjaArmour.fromJson(Map<String, dynamic> data) {
+  factory NinjaGear.fromJson(Map<String, dynamic> data) {
     if (data['chaosValue'] == null) {
       return null;
     }
-    return NinjaArmour(
+    return NinjaGear(
         data['name'],
         data['chaosValue'],
         data['links']
@@ -49,7 +49,7 @@ class NinjaArmour {
   }
 }
 
-class NinjaSixLink extends NinjaArmour {
+class NinjaSixLink extends NinjaGear {
   double chaosProfit;
   
   NinjaSixLink(String name, double chaosValue, double chaosProfit) : super(name, chaosValue, 6) {

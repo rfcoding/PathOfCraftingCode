@@ -19,6 +19,7 @@ class NinjaRequest {
   static const String RESONATOR_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=Resonator";
   static const String BEAST_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=Beast";
   static const String ARMOUR_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=UniqueArmour";
+  static const String WEAPON_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=UniqueWeapon";
 
   static Future<List<NinjaItem>> getCurrencyRatios(String league) async {
     final String url = addLeague(CURRENCY_BASE_URL, league);
@@ -66,16 +67,30 @@ class NinjaRequest {
   static Future<List<NinjaSixLink>> getSixLinkArmours(String league) async {
     final String url = addLeague(ARMOUR_BASE_URL, league);
     final response = await http.get(url);
-    List<NinjaArmour> armours = extractNinjaArmourResponse(response);
+    List<NinjaGear> armours = extractNinjaGearResponse(response);
     List<NinjaSixLink> sixLinks =  armours.where((armour) => armour.links == 6).map((sixLink) {
       if (armours.any((armour) => armour.links != 6 && armour.name == sixLink.name)) {
-        NinjaArmour baseArmour = armours.firstWhere((armour) => armour.links != 6 && armour.name == sixLink.name);
+        NinjaGear baseArmour = armours.firstWhere((armour) => armour.links != 6 && armour.name == sixLink.name);
         return NinjaSixLink(sixLink.name, sixLink.chaosValue, sixLink.chaosValue - baseArmour.chaosValue);
       }
       return null;
     }).toList();
     sixLinks.removeWhere((item) => item == null);
-    sixLinks.sort((a, b) => b.chaosProfit.compareTo(a.chaosProfit));
+    return sixLinks;
+  }
+
+  static Future<List<NinjaSixLink>> getSixLinkWeapons(String league) async {
+    final String url = addLeague(WEAPON_BASE_URL, league);
+    final response = await http.get(url);
+    List<NinjaGear> weapons = extractNinjaGearResponse(response);
+    List<NinjaSixLink> sixLinks =  weapons.where((weapon) => weapon.links == 6).map((sixLink) {
+      if (weapons.any((weapon) => weapon.links != 6 && weapon.name == sixLink.name)) {
+        NinjaGear baseWeapon = weapons.firstWhere((weapon) => weapon.links != 6 && weapon.name == sixLink.name);
+        return NinjaSixLink(sixLink.name, sixLink.chaosValue, sixLink.chaosValue - baseWeapon.chaosValue);
+      }
+      return null;
+    }).toList();
+    sixLinks.removeWhere((item) => item == null);
     return sixLinks;
   }
 
@@ -91,13 +106,13 @@ class NinjaRequest {
     return ninjaItems;
   }
 
-  static List<NinjaArmour> extractNinjaArmourResponse(Response response) {
+  static List<NinjaGear> extractNinjaGearResponse(Response response) {
     var json = jsonDecode(response.body)['lines'];
-    List<NinjaArmour> ninjaArmours = List();
+    List<NinjaGear> ninjaArmours = List();
     json.forEach((data) {
       List<double> sparklineData = new List<double>.from(data['sparkline']['data']);
       if (sparklineData.isNotEmpty) {
-        final NinjaArmour item = NinjaArmour.fromJson(data);
+        final NinjaGear item = NinjaGear.fromJson(data);
         if (item != null) {
           ninjaArmours.add(item);
         }

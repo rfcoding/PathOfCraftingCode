@@ -111,3 +111,10 @@ void openPage(String url) async {
     throw 'Could not launch $url';
   }
 }
+
+void showToast(String text, BuildContext context) {
+  Scaffold.of(context).showSnackBar(SnackBar(
+    content: Text(text),
+    duration: Duration(milliseconds: 500),
+  ));
+}
