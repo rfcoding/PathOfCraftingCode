@@ -69,9 +69,9 @@ class NinjaRequest {
     final response = await http.get(url);
     List<NinjaGear> armours = extractNinjaGearResponse(response);
     List<NinjaSixLink> sixLinks =  armours.where((armour) => armour.links == 6).map((sixLink) {
-      if (armours.any((armour) => armour.links != 6 && armour.name == sixLink.name)) {
-        NinjaGear baseArmour = armours.firstWhere((armour) => armour.links != 6 && armour.name == sixLink.name);
-        return NinjaSixLink(sixLink.name, sixLink.chaosValue, sixLink.chaosValue - baseArmour.chaosValue);
+      if (armours.any((armour) => armour.links != 6 && armour.name == sixLink.name && armour.variant == sixLink.variant)) {
+        NinjaGear baseArmour = armours.firstWhere((armour) => armour.links != 6 && armour.name == sixLink.name && armour.variant == sixLink.variant);
+        return NinjaSixLink(sixLink.name, sixLink.chaosValue, sixLink.chaosValue - baseArmour.chaosValue, sixLink.variant);
       }
       return null;
     }).toList();
@@ -84,9 +84,9 @@ class NinjaRequest {
     final response = await http.get(url);
     List<NinjaGear> weapons = extractNinjaGearResponse(response);
     List<NinjaSixLink> sixLinks =  weapons.where((weapon) => weapon.links == 6).map((sixLink) {
-      if (weapons.any((weapon) => weapon.links != 6 && weapon.name == sixLink.name)) {
-        NinjaGear baseWeapon = weapons.firstWhere((weapon) => weapon.links != 6 && weapon.name == sixLink.name);
-        return NinjaSixLink(sixLink.name, sixLink.chaosValue, sixLink.chaosValue - baseWeapon.chaosValue);
+      if (weapons.any((weapon) => weapon.links != 6 && weapon.name == sixLink.name && weapon.variant == sixLink.variant)) {
+        NinjaGear baseWeapon = weapons.firstWhere((weapon) => weapon.links != 6 && weapon.name == sixLink.name && weapon.variant == sixLink.variant);
+        return NinjaSixLink(sixLink.name, sixLink.chaosValue, sixLink.chaosValue - baseWeapon.chaosValue, sixLink.variant);
       }
       return null;
     }).toList();

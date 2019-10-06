@@ -27,7 +27,6 @@ class FusingProbabilityDialog extends StatefulWidget{
                 itemBaseList,
                 selectedBase,
                 fusing)));
-    print(result.name);
     return result != null ? result : selectedBase;
   }
 
@@ -67,8 +66,8 @@ class FusingProbabilityDialogState extends State<FusingProbabilityDialog> {
       child: Column(
         children: <Widget>[
           selectBaseWidget(),
-          Text("Fusings Used: ${widget.linkState.fusingsUsed}"),
-          Text("Six Links: ${widget.linkState.numberOfSixLinks}"),
+          text("Fusings Used: ${widget.linkState.fusingsUsed}"),
+          text("Six Links: ${widget.linkState.numberOfSixLinks}"),
           profitWidget(),
           chanceToProfitWidget(),
           RaisedButton(child: Text("Close"), onPressed: () => Navigator.of(context).pop(selectedBase),)
@@ -79,13 +78,17 @@ class FusingProbabilityDialogState extends State<FusingProbabilityDialog> {
 
   Widget selectBaseWidget() {
     return Center(
-      child: baseSelectDropDown(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: baseSelectDropDown(),
+      ),
     );
   }
 
   Widget baseSelectDropDown() {
     return DropdownButton<NinjaSixLink>(
-      hint: Text("${selectedBase.name}"),
+      isExpanded: true,
+      hint: Text("${selectedBase.toString()}"),
       onChanged: (NinjaSixLink value) {
         setState(() {
           selectedBase = value;
@@ -103,6 +106,7 @@ class FusingProbabilityDialogState extends State<FusingProbabilityDialog> {
 
   Widget dropDownMenuItem(NinjaSixLink item) {
     return RichText(
+        overflow: TextOverflow.ellipsis,
         text: TextSpan(
             children: <TextSpan>[
               coloredText(item.name, Color(0xFFB29155), 20),
@@ -115,7 +119,7 @@ class FusingProbabilityDialogState extends State<FusingProbabilityDialog> {
     double income = selectedBase.chaosProfit * widget.linkState.numberOfSixLinks;
     double profit = income - cost;
     return Text("Profit: ${profit.toStringAsFixed(1)} Chaos",
-      style: TextStyle(color: profit > 0 ? Colors.green : Colors.red),);
+      style: TextStyle(color: profit > 0 ? Colors.green : Colors.red, fontSize: 16),);
   }
 
   Widget chanceToProfitWidget() {
@@ -123,7 +127,11 @@ class FusingProbabilityDialogState extends State<FusingProbabilityDialog> {
     int sixLinksNeeded = (cost / selectedBase.chaosProfit).ceil();
     print("Six links needed: $sixLinksNeeded");
     double winProbability = _fusingProfitProbability.profitProbability(widget.linkState.fusingsUsed, sixLinksNeeded);
-    return Text("Chance to profit: ${winProbability.toStringAsFixed(2)}");
+    return text("Chance to profit: ${(100 * winProbability).toStringAsFixed(2)}%");
+  }
+
+  Widget text(String text) {
+    return Text(text, style: TextStyle(fontSize: 16),);
   }
 
 }

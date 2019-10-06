@@ -30,11 +30,13 @@ class NinjaGear {
   String name;
   double chaosValue;
   int links;
+  String variant;
 
-  NinjaGear(String name, double chaosValue, int links) {
+  NinjaGear(String name, double chaosValue, int links, String variant) {
     this.name = name;
     this.chaosValue = chaosValue;
     this.links = links;
+    this.variant = variant;
   }
 
   factory NinjaGear.fromJson(Map<String, dynamic> data) {
@@ -44,15 +46,21 @@ class NinjaGear {
     return NinjaGear(
         data['name'],
         data['chaosValue'],
-        data['links']
+        data['links'],
+        data['variant']
     );
+  }
+
+  @override
+  String toString() {
+    return variant != null ? "$name $variant" : name;
   }
 }
 
 class NinjaSixLink extends NinjaGear {
   double chaosProfit;
   
-  NinjaSixLink(String name, double chaosValue, double chaosProfit) : super(name, chaosValue, 6) {
+  NinjaSixLink(String name, double chaosValue, double chaosProfit, String variant) : super(name, chaosValue, 6, variant) {
     this.chaosProfit = chaosProfit;
   }
 }
