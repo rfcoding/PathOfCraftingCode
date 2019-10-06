@@ -10,6 +10,7 @@ import 'package:poe_clicker/statistics/faculty.dart';
 import 'package:poe_clicker/statistics/fusing_profit_probability.dart';
 import 'package:poe_clicker/statistics/probability.dart';
 import 'package:poe_clicker/widgets/batch_fusings_dialog.dart';
+import 'package:poe_clicker/widgets/fusing_probability_dialog.dart';
 import 'package:poe_clicker/widgets/utils.dart';
 
 class FusingWidget extends StatefulWidget {
@@ -27,10 +28,10 @@ class FusingWidgetState extends State<FusingWidget> {
 
   LinkState _linkState = LinkState();
   bool _isSpamming = false;
+
   List<NinjaSixLink> _itemBaseList;
   NinjaSixLink _selectedBase;
   NinjaItem _fusing;
-  FusingProfitProbability _fusingProfitProbability = FusingProfitProbability();
 
   @override
   void initState() {
@@ -80,7 +81,8 @@ class FusingWidgetState extends State<FusingWidget> {
             Container(
               height: 64,
               child: Center(child: squareImageButton(
-                  'assets/images/fusing.png', "Orb of Fusing", onFusingButtonClicked, 64))
+                  'assets/images/fusing.png', "Orb of Fusing",
+                  onFusingButtonClicked, 64))
               ,
             ),
             batchFusingButton(context)
@@ -117,7 +119,8 @@ class FusingWidgetState extends State<FusingWidget> {
                 color: Colors.amber[800],
                 textTheme: ButtonTextTheme.accent,
                 child: Text("Yes"),
-                onPressed: () => {
+                onPressed: () =>
+                {
                   useFusing(),
                   Navigator.of(context).pop()
                 },
@@ -199,72 +202,34 @@ class FusingWidgetState extends State<FusingWidget> {
     return Center(
       child: Column(
         children: <Widget>[
-          selectedBaseWidget(),
-          Text("Fusings Used: ${_linkState.fusingsUsed}"),
-          Text("Six Links: ${_linkState.numberOfSixLinks}"),
-          profitWidget(),
-          chanceToProfitWidget(),
+          SizedBox(height: 16,),
+          Text("Fusings Used: ${_linkState.fusingsUsed}", style: TextStyle(fontSize: 16),),
+          Text("Six Links: ${_linkState.numberOfSixLinks}", style: TextStyle(fontSize: 16)),
+          statDialogButton()
         ],
       ),
     );
   }
 
-  Widget selectedBaseWidget() {
-    if (_selectedBase == null) {
-      return Text("Loading item base values");
+  Widget statDialogButton() {
+    if (_linkState == null || _itemBaseList == null || _selectedBase == null || _fusing == null) {
+      return Text("Loading...", style: TextStyle(fontSize: 20),);
     }
-    return Center(
-      child: baseSelectDropDown(),
-    );
-  }
-
-  Widget baseSelectDropDown() {
-    return DropdownButton<NinjaSixLink>(
-      hint: Text("${_selectedBase.name}"),
-      onChanged: (NinjaSixLink value) {
-        setState(() {
-          _selectedBase = value;
-        });
-      },
-      items: _itemBaseList.map((item) {
-        return DropdownMenuItem<NinjaSixLink>(
-          value: item,
-          child: dropDownMenuItem(item)
-
-        );
-      }).toList(),
-    );
-  }
-
-  Widget dropDownMenuItem(NinjaSixLink item) {
     return RichText(
-        text: TextSpan(
-            children: <TextSpan>[
-              coloredText(item.name, Color(0xFFB29155), 20),
-              coloredText("\nProfit / 6L: ${item.chaosProfit.toStringAsFixed(0)} Chaos", Colors.white, 16)
-            ]));
+      textAlign: TextAlign.center,
+      text: TextSpan(
+          children: [
+            clickableText("Statistics", () =>
+            showStatDialog(),
+            fontSize: 20)
+          ]
+      ),
+    );
   }
 
-  Widget profitWidget() {
-    if (_selectedBase == null || _fusing == null) {
-      return Text("Calculating profit...");
-    }
-    double cost = _fusing.chaosValue * _linkState.fusingsUsed;
-    double income = _selectedBase.chaosProfit * _linkState.numberOfSixLinks;
-    double profit = income - cost;
-    return Text("Profit: ${profit.toStringAsFixed(1)} Chaos",
-      style: TextStyle(color: profit > 0 ? Colors.green : Colors.red),);
-  }
-
-  Widget chanceToProfitWidget() {
-    if (_selectedBase == null || _fusing == null) {
-      return Text("Calculating probabilities...");
-    }
-    double cost = _fusing.chaosValue * _linkState.fusingsUsed;
-    int sixLinksNeeded = (cost / _selectedBase.chaosProfit).ceil();
-    print("Six links needed: $sixLinksNeeded");
-    double winProbability = _fusingProfitProbability.profitProbability(_linkState.fusingsUsed, sixLinksNeeded);
-    return Text("Chance to profit: $winProbability");
+  void showStatDialog() async {
+    _selectedBase = await FusingProbabilityDialog.showProbabilityDialog(
+        context, _linkState, _itemBaseList, _selectedBase, _fusing);
   }
 
   void useFusing() {
@@ -290,13 +255,21 @@ class FusingWidgetState extends State<FusingWidget> {
           ),
           child: Stack(children: <Widget>[
             new Positioned(
-              top: 16, child: Image(height: 32, width: 32, image: AssetImage(assetPath), ),
+              top: 16,
+              child: Image(
+                height: 32, width: 32, image: AssetImage(assetPath),),
             ),
             new Positioned(
-              top: 16, left: 16, child: Image(height: 32, width: 32, image: AssetImage(assetPath), ),
+              top: 16,
+              left: 16,
+              child: Image(
+                height: 32, width: 32, image: AssetImage(assetPath),),
             ),
             new Positioned(
-              top: 16, left: 32, child: Image(height: 32, width: 32, image: AssetImage(assetPath), ),
+              top: 16,
+              left: 32,
+              child: Image(
+                height: 32, width: 32, image: AssetImage(assetPath),),
             ),
           ]),
         ),

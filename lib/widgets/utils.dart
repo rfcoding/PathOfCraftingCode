@@ -87,15 +87,16 @@ Widget emptySquare() {
   );
 }
 
-TextSpan clickableText(String text, Function onClick) {
+TextSpan clickableText(String text, Function onClick, {double fontSize = 16}) {
   return TextSpan(
       recognizer: new TapGestureRecognizer()..onTap = onClick,
       text: text,
       style: TextStyle(
-          fontSize: 16,
+          fontSize: fontSize,
           color: Colors.amber,
           fontWeight: FontWeight.bold,
-          fontFamily: 'Fontin'));
+          fontFamily: 'Fontin',
+          decoration: TextDecoration.underline));
 }
 
 TextSpan coloredText(String text, Color color, double fontSize) {
