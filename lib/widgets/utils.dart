@@ -36,6 +36,22 @@ Widget disabledImageButton(String assetPath, String tooltip, VoidCallback callba
   );
 }
 
+Widget squareImageButton(String assetPath, String tooltip, VoidCallback callback, double size) {
+  return Tooltip(
+    child: InkWell(
+      onTap: callback,
+      child: Container(
+        height: size,
+        width: size,
+        decoration: new BoxDecoration(
+          border: Border.all(color: Color(0xFF2A221A), width: 1),
+        ),
+        child: Image(image: AssetImage(assetPath), ),
+      ),
+    ), message: tooltip,
+  );
+}
+
 Widget iconButton(String assetPath, String tooltip, VoidCallback callback) {
   return Expanded(
     flex: 1,
@@ -71,15 +87,22 @@ Widget emptySquare() {
   );
 }
 
-TextSpan clickableText(String text, Function onClick) {
+TextSpan clickableText(String text, Function onClick, {double fontSize = 16}) {
   return TextSpan(
       recognizer: new TapGestureRecognizer()..onTap = onClick,
       text: text,
       style: TextStyle(
-          fontSize: 16,
+          fontSize: fontSize,
           color: Colors.amber,
           fontWeight: FontWeight.bold,
-          fontFamily: 'Fontin'));
+          fontFamily: 'Fontin',
+          decoration: TextDecoration.underline));
+}
+
+TextSpan coloredText(String text, Color color, double fontSize) {
+  return TextSpan(
+      text: text,
+      style: TextStyle(color: color, fontSize: fontSize, fontFamily: 'Fontin'));
 }
 
 void openPage(String url) async {
@@ -88,4 +111,11 @@ void openPage(String url) async {
   } else {
     throw 'Could not launch $url';
   }
+}
+
+void showToast(String text, BuildContext context) {
+  Scaffold.of(context).showSnackBar(SnackBar(
+    content: Text(text),
+    duration: Duration(milliseconds: 500),
+  ));
 }

@@ -7,6 +7,7 @@ import '../repository/translation_repo.dart';
 import '../repository/crafting_bench_repo.dart';
 import '../repository/crafted_items_storage.dart';
 import '../repository/essence_repo.dart';
+import 'fusing_widget.dart';
 import 'item_select_widget.dart';
 import 'saved_items_widget.dart';
 import 'about_widget.dart';
@@ -78,6 +79,11 @@ class MainWidgetState extends State<MainWidget> {
                 ),
                 SizedBox(height: 8,),
                 RaisedButton(
+                  onPressed: _navigateToFusingSimulator,
+                  child: Text("Fusing Simulator"),
+                ),
+                SizedBox(height: 8,),
+                RaisedButton(
                   onPressed: _navigateToAboutWidget,
                   child: Text("About"),
                 )
@@ -99,5 +105,9 @@ class MainWidgetState extends State<MainWidget> {
   
   void _navigateToAboutWidget() {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AboutWidget()));
+  }
+
+  void _navigateToFusingSimulator() {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => FusingWidget()));
   }
 }

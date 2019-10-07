@@ -19,6 +19,7 @@ class CurrencyType {
   static final String glassblower = "glassblower";
   static final String armourers = "armourers";
   static final String whetstone = "whetstone";
+  static final String fusing = "fusing";
 
   static final Map<String, String> idToCurrency = {
     "Metadata/Items/Currency/CurrencyAddModToRare" : exalt,
@@ -39,6 +40,7 @@ class CurrencyType {
     "Metadata/Items/Currency/CurrencyFlaskQuality": glassblower,
     "Metadata/Items/Currency/CurrencyArmourQuality": armourers,
     "Metadata/Items/Currency/CurrencyWeaponQuality": whetstone,
+    "Metadata/Items/Currency/CurrencyRerollSocketLinks": fusing,
   };
 
   static final Map<String, String> idToImagePath = {
@@ -60,6 +62,7 @@ class CurrencyType {
     "Metadata/Items/Currency/CurrencyFlaskQuality": 'assets/images/glassblower.png',
     "Metadata/Items/Currency/CurrencyArmourQuality": 'assets/images/armourers.png',
     "Metadata/Items/Currency/CurrencyWeaponQuality": 'assets/images/whetstone.png',
+    "Metadata/Items/Currency/CurrencyRerollSocketLinks": 'assets/images/fusing.png'
   };
 
   static final Map<String, String> currencyToId = {
@@ -81,6 +84,7 @@ class CurrencyType {
     glassblower: "Metadata/Items/Currency/CurrencyFlaskQuality",
     armourers: "Metadata/Items/Currency/CurrencyArmourQuality",
     whetstone: "Metadata/Items/Currency/CurrencyWeaponQuality",
+    fusing: "Metadata/Items/Currency/CurrencyRerollSocketLinks"
   };
 
   static String getDisplayName(String currency) {
