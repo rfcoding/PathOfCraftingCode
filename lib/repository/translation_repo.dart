@@ -82,8 +82,7 @@ class TranslationRepository {
 
   List<StatTranslation> getStatTranslations(List<Stat> stats) {
     List<StatTranslation> statTranslations = List();
-    for (Stat stat
-        in stats.where((stat) => stat.id != "dummy_stat_display_nothing")) {
+    for (Stat stat in stats.where(isValidStat)) {
       StatTranslation statTranslation = _translations[stat.id];
       if (statTranslation != null &&
           !statTranslations.contains(statTranslation)) {
@@ -91,5 +90,17 @@ class TranslationRepository {
       }
     }
     return statTranslations;
+  }
+
+  bool isValidStat(Stat stat) {
+    if (stat.id == "dummy_stat_display_nothing") {
+      return false;
+    }
+
+    if (stat.min == 0 && stat.max == 0 && stat.value == 0) {
+      return false;
+    }
+
+    return true;
   }
 }
