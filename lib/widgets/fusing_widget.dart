@@ -3,12 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/network/ninja_item.dart';
-import 'package:poe_clicker/network/ninja_item.dart' as prefix0;
-import 'package:poe_clicker/network/ninja_item.dart';
 import 'package:poe_clicker/network/ninja_request.dart';
-import 'package:poe_clicker/statistics/faculty.dart';
-import 'package:poe_clicker/statistics/fusing_profit_probability.dart';
-import 'package:poe_clicker/statistics/probability.dart';
 import 'package:poe_clicker/widgets/batch_fusings_dialog.dart';
 import 'package:poe_clicker/widgets/fusing_probability_dialog.dart';
 import 'package:poe_clicker/widgets/utils.dart';
@@ -292,7 +287,8 @@ class FusingWidgetState extends State<FusingWidget> {
     while (fusingsRemaining > 0) {
       useFusing();
       fusingsRemaining--;
-      await Future.delayed(Duration(milliseconds: 5));
+      int delay = _linkState.isSixLinked() ? 1000 : 5;
+      await Future.delayed(Duration(milliseconds: delay));
     }
     _isSpamming = false;
   }

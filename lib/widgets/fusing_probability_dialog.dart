@@ -39,7 +39,6 @@ class FusingProbabilityDialog extends StatefulWidget{
 }
 
 class FusingProbabilityDialogState extends State<FusingProbabilityDialog> {
-  final _formKey = GlobalKey<FormState>();
 
   NinjaSixLink selectedBase;
   FusingProfitProbability _fusingProfitProbability = FusingProfitProbability();
@@ -62,14 +61,15 @@ class FusingProbabilityDialogState extends State<FusingProbabilityDialog> {
   }
 
   Widget statsWidget() {
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
           selectBaseWidget(),
-          text("Fusings Used: ${widget.linkState.fusingsUsed}"),
-          text("Six Links: ${widget.linkState.numberOfSixLinks}"),
-          profitWidget(),
+          currentStateStats(),
+          SizedBox(height: 8,),
           chanceToProfitWidget(),
+          SizedBox(height: 8,),
           RaisedButton(child: Text("Close"), onPressed: () => Navigator.of(context).pop(selectedBase),)
         ],
       ),
@@ -78,9 +78,24 @@ class FusingProbabilityDialogState extends State<FusingProbabilityDialog> {
 
   Widget selectBaseWidget() {
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: baseSelectDropDown(),
+      child: baseSelectDropDown(),
+    );
+  }
+
+  Widget currentStateStats() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          text("Fusings Used: ${widget.linkState.fusingsUsed}"),
+          text("Six Links: ${widget.linkState.numberOfSixLinks}"),
+          text("Probability: ${_fusingProfitProbability.numberOfLinksProbabilityInPercent(
+              widget.linkState.fusingsUsed,
+              widget.linkState.numberOfSixLinks)
+              .toStringAsFixed(4)}%"),
+          profitWidget(),
+        ],
       ),
     );
   }
@@ -123,11 +138,50 @@ class FusingProbabilityDialogState extends State<FusingProbabilityDialog> {
   }
 
   Widget chanceToProfitWidget() {
-    double cost = widget.fusing.chaosValue * widget.linkState.fusingsUsed;
+    int fusingsUsed = widget.linkState.fusingsUsed;
+    double cost = widget.fusing.chaosValue * fusingsUsed;
     int sixLinksNeeded = (cost / selectedBase.chaosProfit).ceil();
-    print("Six links needed: $sixLinksNeeded");
-    double winProbability = _fusingProfitProbability.profitProbability(widget.linkState.fusingsUsed, sixLinksNeeded);
-    return text("Chance to profit: ${(100 * winProbability).toStringAsFixed(2)}%");
+
+    TableRow legend = TableRow(children: [
+      TableCell(child: Text("# of 6L"),),
+      TableCell(child: Text("Probability"),),
+      TableCell(child: Text("Profit"),),
+    ]);
+
+    return Column(
+      children: <Widget>[
+        Align(
+          alignment: Alignment.centerLeft,
+          child: text("Probabilities to make profit with ${widget.linkState.fusingsUsed} fusings: "),
+        ),
+        SizedBox(height: 4,),
+        Center(
+          child: Table(
+            border: TableBorder.all(color: Colors.white,),
+            children: [
+              legend,
+              row(fusingsUsed, sixLinksNeeded, cost),
+              row(fusingsUsed, sixLinksNeeded + 1, cost),
+              row(fusingsUsed, sixLinksNeeded + 2, cost),
+            ],
+          ),
+        ),
+      ],
+    );
+
+  }
+
+  TableRow row(int fusingsUsed, int sixLinksNeeded, double cost) {
+    double winProbability = 100 * _fusingProfitProbability.profitProbability(fusingsUsed, sixLinksNeeded);
+    double profit = sixLinksNeeded * selectedBase.chaosProfit - cost;
+
+    return TableRow(
+      children: [
+        TableCell(child: Text("$sixLinksNeeded")),
+        TableCell(child: Text("${winProbability.toStringAsFixed(4)}%"),),
+        TableCell(child: Text("${profit.toStringAsFixed(1)} C"))
+      ]
+    );
   }
 
   Widget text(String text) {
