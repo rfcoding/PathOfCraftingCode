@@ -105,6 +105,11 @@ TextSpan coloredText(String text, Color color, double fontSize) {
       style: TextStyle(color: color, fontSize: fontSize, fontFamily: 'Fontin'));
 }
 
+TextSpan whiteText(String text, double fontSize) {
+  return TextSpan(
+      text: text, style: TextStyle(fontSize: fontSize, fontFamily: 'Fontin'));
+}
+
 void openPage(String url) async {
   if (await canLaunch(url)) {
     await launch(url);

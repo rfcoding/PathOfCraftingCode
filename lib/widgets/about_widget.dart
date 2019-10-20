@@ -1,6 +1,4 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'utils.dart';
 
 class AboutWidget extends StatelessWidget {
@@ -30,19 +28,19 @@ class AboutWidget extends StatelessWidget {
                     child: new RichText(
                   textAlign: TextAlign.center,
                   text: new TextSpan(children: [
-                    text(
-                        "Path of Crafting is a crafting simulator for Path of Exile."),
-                    text(
-                        "\n\nThe data for the items and mods is collected by data mining the Path of Exile game files using the extractor tools "),
+                    whiteText(
+                        "Path of Crafting is a crafting simulator for Path of Exile.", 16),
+                    whiteText(
+                        "\n\nThe data for the items and mods is collected by data mining the Path of Exile game files using the extractor tools ", 16),
                     clickableText("PyPoe", () => openPage(PY_POE_URL)),
-                    text(" and "),
+                    whiteText(" and ", 16),
                     clickableText("RePoe. ", () => openPage(RE_POE_URL)),
-                    text(
-                        "\n\nThe app is created and maintained by two developers who are completely independent from GGG and Path of Exile."),
-                    text(
-                        "\n\nIf you find any bugs or would like to read more about the project, please visit our github page using the button below."),
-                    text(
-                        "\n\nThank you for downloading our app and may RNGesus be with you!"),
+                    whiteText(
+                        "\n\nThe app is created and maintained by two developers who are completely independent from GGG and Path of Exile.", 16),
+                    whiteText(
+                        "\n\nIf you find any bugs or would like to read more about the project, please visit our github page using the button below.", 16),
+                    whiteText(
+                        "\n\nThank you for downloading our app and may RNGesus be with you!", 16),
                   ]),
                 )),
               ),
@@ -56,10 +54,5 @@ class AboutWidget extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  TextSpan text(String text) {
-    return TextSpan(
-        text: text, style: TextStyle(fontSize: 16, fontFamily: 'Fontin'));
   }
 }

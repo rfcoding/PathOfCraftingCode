@@ -15,4 +15,9 @@ class FusingProfitProbability {
     }
     return chanceToWin;
   }
+
+  double numberOfLinksProbabilityInPercent(int fusingsUsed, int sixLinks) {
+    Probability probability = Probability(fusingsUsed, pi);
+    return probability.P(sixLinks) * 100;
+  }
 }
