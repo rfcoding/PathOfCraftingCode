@@ -347,6 +347,7 @@ abstract class Item {
     if (mod == null) {
       return;
     }
+    mod.rerollStatValues();
     if (mod.isPrefix()) {
       prefixes.add(mod);
     } else {
@@ -361,6 +362,7 @@ abstract class Item {
 
     for (int i = 0; i < numberOfNewMods; i++) {
       Mod mod = ModRepository.instance.getRandomMod(this, fossils);
+      mod.rerollStatValues();
       if (mod.isPrefix()) {
         prefixes.add(mod);
       } else {
