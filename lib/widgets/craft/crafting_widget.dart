@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/crafting/beast_craft.dart';
 import 'package:poe_clicker/repository/crafting_bench_repo.dart';
-import 'package:poe_clicker/widgets/beast_widget.dart';
-import '../crafting/base_item.dart';
-import '../crafting/fossil.dart';
-import '../crafting/item/item.dart';
-import '../crafting/item/normal_item.dart';
-import '../crafting/item/spending_report.dart';
-import '../crafting/mod.dart';
-import '../repository/crafted_items_storage.dart';
+import 'package:poe_clicker/widgets/craft/beast_widget.dart';
+import '../../crafting/base_item.dart';
+import '../../crafting/fossil.dart';
+import '../../crafting/item/item.dart';
+import '../../crafting/item/normal_item.dart';
+import '../../crafting/item/spending_report.dart';
+import '../../crafting/mod.dart';
+import '../../repository/crafted_items_storage.dart';
 import 'fossil_select_dialog_widget.dart';
 import 'crafting_bench_options_widget.dart';
 import 'essence_widget.dart';
-import 'item_lab_widget.dart';
-import 'utils.dart';
-import 'spending_widget.dart';
-import '../crafting/essence.dart';
+import '../item_lab_widget.dart';
+import '../utils.dart';
+import '../spending_widget.dart';
+import '../../crafting/essence.dart';
 
 class CraftingWidget extends StatefulWidget {
   final BaseItem baseItem;

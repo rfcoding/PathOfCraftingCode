@@ -1,9 +1,9 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/network/ninja_item.dart';
 import 'package:poe_clicker/statistics/fusing_profit_probability.dart';
-import 'utils.dart';
-import '../network/ninja_item.dart';
+import '../utils.dart';
 import 'fusing_widget.dart';
 
 class FusingProbabilityDialog extends StatefulWidget{

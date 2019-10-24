@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/main_widget.dart';
+import 'widgets/menu/main_widget.dart';
 
 class MyApp extends StatelessWidget {
   @override

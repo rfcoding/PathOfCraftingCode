@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../repository/crafted_items_storage.dart';
-import '../crafting/item/item.dart';
-import 'crafting_widget.dart';
+import '../../repository/crafted_items_storage.dart';
+import '../../crafting/item/item.dart';
+import '../craft/crafting_widget.dart';
 
 class SavedItemsWidget extends StatefulWidget {
 

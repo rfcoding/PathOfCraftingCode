@@ -4,9 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/network/ninja_item.dart';
 import 'package:poe_clicker/network/ninja_request.dart';
-import 'package:poe_clicker/widgets/batch_fusings_dialog.dart';
-import 'package:poe_clicker/widgets/fusing_probability_dialog.dart';
 import 'package:poe_clicker/widgets/utils.dart';
+
+import 'batch_fusings_dialog.dart';
+import 'fusing_probability_dialog.dart';
 
 class FusingWidget extends StatefulWidget {
   @override

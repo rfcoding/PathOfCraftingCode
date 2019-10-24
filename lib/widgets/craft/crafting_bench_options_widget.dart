@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/crafting/currency_type.dart';
-import '../repository/crafting_bench_repo.dart';
-import '../crafting/item/item.dart';
-import '../crafting/mod.dart';
+import '../../repository/crafting_bench_repo.dart';
+import '../../crafting/item/item.dart';
+import '../../crafting/mod.dart';
 
 class CraftingBenchOptionsWidget extends StatefulWidget {
   final Item item;
