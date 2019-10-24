@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/crafting/beast_craft.dart';
-import '../crafting/item/item.dart';
+import '../../crafting/item/item.dart';
 
 class BeastWidget extends StatefulWidget {
   final Item item;

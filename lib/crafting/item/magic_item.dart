@@ -9,7 +9,7 @@ import '../mod.dart';
 import '../properties.dart';
 import '../fossil.dart';
 import '../currency_type.dart';
-import '../../widgets/crafting_widget.dart';
+import '../../widgets/craft/crafting_widget.dart';
 import '../../widgets/utils.dart';
 import 'spending_report.dart';
 

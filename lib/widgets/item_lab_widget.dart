@@ -6,7 +6,7 @@ import 'package:poe_clicker/crafting/item/rare_item.dart';
 import 'package:poe_clicker/crafting/mod.dart';
 import 'package:poe_clicker/repository/mod_repo.dart';
 
-import 'fossil_select_dialog_widget.dart';
+import 'craft/fossil_select_dialog_widget.dart';
 import 'mod_select_widget.dart';
 
 class ItemLabWidget extends StatefulWidget {

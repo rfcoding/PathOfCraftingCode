@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'utils.dart';
+import '../utils.dart';
 
 class AboutWidget extends StatelessWidget {
   static const GIT_URL = 'https://github.com/rfcoding/pathofcrafting';

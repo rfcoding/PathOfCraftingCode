@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/crafting/item_class.dart';
 
-import '../crafting/base_item.dart';
-import '../repository/item_repo.dart';
-import 'crafting_widget.dart';
+import '../../crafting/base_item.dart';
+import '../../repository/item_repo.dart';
+import '../craft/crafting_widget.dart';
 
 class ItemSelectWidget extends StatefulWidget {
   @override

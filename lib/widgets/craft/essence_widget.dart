@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../crafting/item/item.dart';
-import '../crafting/essence.dart';
-import '../crafting/mod.dart';
-import '../repository/essence_repo.dart';
-import '../repository/mod_repo.dart';
+import '../../crafting/item/item.dart';
+import '../../crafting/essence.dart';
+import '../../crafting/mod.dart';
+import '../../repository/essence_repo.dart';
+import '../../repository/mod_repo.dart';
 
 class EssenceCraftingWidget extends StatefulWidget {
   final Item item;

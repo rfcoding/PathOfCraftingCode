@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../crafting/fossil.dart';
-import '../repository/fossil_repo.dart';
+import '../../crafting/fossil.dart';
+import '../../repository/fossil_repo.dart';
 
 class FossilSelectDialog {
   static Future<List<Fossil>> getFossilSelectionDialog(

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:poe_clicker/repository/crafting_bench_repo.dart';
 import '../mod.dart';
 import '../../repository/mod_repo.dart';
-import '../../widgets/crafting_widget.dart';
+import '../../widgets/craft/crafting_widget.dart';
 import '../properties.dart';
 import '../fossil.dart';
 import '../currency_type.dart';

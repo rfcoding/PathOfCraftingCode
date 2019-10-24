@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../repository/fossil_repo.dart';
-import '../repository/mod_repo.dart';
-import '../repository/item_repo.dart';
-import '../repository/translation_repo.dart';
-import '../repository/crafting_bench_repo.dart';
-import '../repository/crafted_items_storage.dart';
-import '../repository/essence_repo.dart';
-import 'fusing_widget.dart';
+import '../../repository/fossil_repo.dart';
+import '../../repository/mod_repo.dart';
+import '../../repository/item_repo.dart';
+import '../../repository/translation_repo.dart';
+import '../../repository/crafting_bench_repo.dart';
+import '../../repository/crafted_items_storage.dart';
+import '../../repository/essence_repo.dart';
+import '../fusing/fusing_widget.dart';
 import 'item_select_widget.dart';
 import 'saved_items_widget.dart';
 import 'about_widget.dart';
