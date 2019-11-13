@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/crafting/fossil.dart';
 import 'package:poe_clicker/crafting/item/item.dart';
+import 'package:poe_clicker/crafting/item/magic_item.dart';
+import 'package:poe_clicker/crafting/item/normal_item.dart';
 import 'package:poe_clicker/crafting/item/rare_item.dart';
 import 'package:poe_clicker/crafting/mod.dart';
 import 'package:poe_clicker/repository/mod_repo.dart';
@@ -41,7 +43,7 @@ class ItemLabWidgetState extends State<ItemLabWidget> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Mod probabilities"),
+        title: Text("Item Laboratory"),
       ),
       body: _getBody(),
     );
@@ -57,6 +59,7 @@ class ItemLabWidgetState extends State<ItemLabWidget> {
             });
           }),
         ),
+        _rarityWidget(),
         _buttonWidget()
       ],
     );
@@ -81,10 +84,11 @@ class ItemLabWidgetState extends State<ItemLabWidget> {
               Expanded(
                 flex: 1,
                 child: RaisedButton(
-                  child: Text("DIVINE"),
-                  onPressed: _divine,
+                  child: Text("FOSSILS"),
+                  onPressed: _selectFossils,
                 ),
               ),
+
             ],
           ),
           Row(
@@ -93,8 +97,8 @@ class ItemLabWidgetState extends State<ItemLabWidget> {
               Expanded(
                 flex: 1,
                 child: RaisedButton(
-                  child: Text("SELECT FOSSILS"),
-                  onPressed: _selectFossils,
+                  child: Text("RESET ITEM"),
+                  onPressed: _reset,
                 ),
               ),
               SizedBox(
@@ -103,10 +107,10 @@ class ItemLabWidgetState extends State<ItemLabWidget> {
               Expanded(
                 flex: 1,
                 child: RaisedButton(
-                  child: Text("RESET ITEM"),
-                  onPressed: _reset,
+                  child: Text("APPLY & QUIT"),
+                  onPressed: _quitAndReturnItem,
                 ),
-              )
+              ),
             ],
           )
         ],
@@ -182,9 +186,57 @@ class ItemLabWidgetState extends State<ItemLabWidget> {
     });
   }
 
-  void _divine() {
-    setState(() {
-      _item.divine();
-    });
+  void _quitAndReturnItem() {
+    Navigator.of(context).pop(_item);
+  }
+
+  bool itemCanTurnMagic() {
+    return _item.prefixes.length < 2 && _item.suffixes.length < 2;
+  }
+
+  bool itemCanTurnWhite() {
+    return _item.getMods().length == 0;
+  }
+
+  List<String> _getRarityOptions() {
+    List<String> rarityOptions = List();
+    rarityOptions.add("Rare");
+    if (itemCanTurnMagic()) {
+      rarityOptions.add("Magic");
+    }
+    if (itemCanTurnWhite()) {
+      rarityOptions.add("Normal");
+    }
+    return rarityOptions;
+  }
+  Widget _rarityWidget() {
+    final options = _getRarityOptions();
+
+    return DropdownButton<String> (
+      hint: Text("${_item.getRarity()}"),
+      onChanged: (String rarity) {
+        setState(() {
+          switch(rarity) {
+            case "Rare":
+              _item = Item.copy(RareItem.fromItem(
+                  _item, _item.prefixes, _item.suffixes));
+              break;
+            case "Magic":
+              _item = Item.copy(MagicItem.fromItem(
+                  _item, _item.prefixes, _item.suffixes));
+              break;
+            case "Normal":
+              _item = Item.copy(NormalItem.fromItem(
+                  _item, List(), List()));
+          }
+        });
+      },
+      items: options.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
   }
 }

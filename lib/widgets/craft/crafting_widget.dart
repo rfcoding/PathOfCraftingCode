@@ -116,19 +116,24 @@ class CraftingWidgetState extends State<CraftingWidget> {
               }),
           ListTile(
             title: Text("Currency Used", style: TextStyle(fontSize: 20)),
-            onTap: _navigateToSpendingReportWidget,
+            onTap: () => popDrawerAndNavigate(_navigateToSpendingReportWidget),
           ),
           ListTile(
-            title: Text("Mod Probabilities", style: TextStyle(fontSize: 20)),
-            onTap: _navigateToItemLab,
+            title: Text("Item Laboratory", style: TextStyle(fontSize: 20)),
+            onTap: () => popDrawerAndNavigate(_navigateToItemLab),
           ),
           ListTile(
             title: Text("Save Item", style: TextStyle(fontSize: 20)),
-            onTap: showSaveItemDialog,
+            onTap: () => popDrawerAndNavigate(showSaveItemDialog),
           ),
         ],
       ),
     );
+  }
+
+  void popDrawerAndNavigate(Function navigationFunction) {
+    Navigator.of(context).pop();
+    navigationFunction();
   }
 
   Widget inventoryWidget() {
@@ -396,7 +401,11 @@ class CraftingWidgetState extends State<CraftingWidget> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (BuildContext context) => ItemLabWidget(item: _item)));
+            builder: (BuildContext context) => ItemLabWidget(item: _item))).then((item) {
+              if (item != null) {
+                itemChanged(item);
+              }
+    });
   }
 
   Future<bool> _showConfirmDialog() {
