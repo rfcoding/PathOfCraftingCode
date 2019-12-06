@@ -477,9 +477,20 @@ abstract class Item {
     return getNormalActionsWidget(state);
   }
 
+  List<Widget> getWidgets(CraftingWidgetState state) {
+    if (corrupted) {
+      return getDisabledWidgets(state);
+    }
+    return getNormalWidgets(state);
+  }
+
   Widget getNormalActionsWidget(CraftingWidgetState state);
 
   Widget getDisabledActionsWidget(CraftingWidgetState state);
+
+  List<Widget> getNormalWidgets(CraftingWidgetState state);
+
+  List<Widget> getDisabledWidgets(CraftingWidgetState state);
 
   Widget getAdvancedModWidget(Function onTap) {
     List<Widget> widgets = List();

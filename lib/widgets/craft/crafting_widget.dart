@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/crafting/beast_craft.dart';
+import 'package:poe_clicker/crafting/crafting_orb.dart';
 import 'package:poe_clicker/repository/crafting_bench_repo.dart';
 import 'package:poe_clicker/widgets/craft/beast_widget.dart';
 import '../../crafting/base_item.dart';
@@ -30,7 +33,7 @@ class CraftingWidget extends StatefulWidget {
   }
 }
 
-class CraftingWidgetState extends State<CraftingWidget> {
+class CraftingWidgetState extends State<CraftingWidget> with SingleTickerProviderStateMixin{
   GlobalKey<ScaffoldState> _globalKey = GlobalKey();
 
   Item _item;
@@ -39,9 +42,18 @@ class CraftingWidgetState extends State<CraftingWidget> {
   Function lastAction;
   String lastActionImagePath = 'assets/images/empty.png';
   final _saveFormKey = GlobalKey<FormState>();
+  TabController _tabController;
+  int tabIndex = 0;
 
   @override
   void initState() {
+    _tabController = TabController(length: 3, vsync: this);
+    _tabController.addListener(() => {
+      setState(() {
+        tabIndex = _tabController.index;
+      })
+    });
+    _tabController.index = 1;
     if (widget.item == null) {
       _item = NormalItem(
           widget.baseItem.name,
@@ -137,6 +149,37 @@ class CraftingWidgetState extends State<CraftingWidget> {
   }
 
   Widget inventoryWidget() {
+    return Column(
+      children: <Widget>[
+        TabBar(
+          controller: _tabController,
+          tabs: [
+            Tab(text: "Recent",),
+            Tab(text: "Orbs",),
+            Tab(text: "Utils",)
+          ]
+        ),
+        currentCurrencyTab(_item, _tabController.index),
+      ],
+    );
+  }
+
+  Map<String, List<CraftingOrb>> recentlyUsedMap = Map();
+
+  Widget currentCurrencyTab(Item item, int selectedIndex) {
+    switch(selectedIndex) {
+      case 0:
+        return recentlyUsedTab(item);
+      case 1:
+        return inventoryTab(item);
+      case 2:
+        return inventoryTab(item);
+      default:
+        return Text("WTF");
+    }
+  }
+
+  Widget inventoryTab(Item item) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
       child: Container(
@@ -144,7 +187,7 @@ class CraftingWidgetState extends State<CraftingWidget> {
             border: Border.all(color: Color(0xFF433937), width: 3)),
         child: Column(
           children: <Widget>[
-            _item.getActionsWidget(this),
+            item.getActionsWidget(this),
             craftingOptionsWidget(),
           ],
         ),
@@ -152,21 +195,64 @@ class CraftingWidgetState extends State<CraftingWidget> {
     );
   }
 
+  Widget recentlyUsedTab(Item item) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+      child: Container(
+        decoration: new BoxDecoration(
+            border: Border.all(color: Color(0xFF433937), width: 3)),
+        child: Column(
+          children: <Widget>[
+            recentlyUsedRow(item),
+            craftingOptionsWidget(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget recentlyUsedRow(Item item) {
+    List<CraftingOrb> recentlyUsed = recentlyUsedMap[item.getRarity()];
+    if (recentlyUsed == null) {
+      recentlyUsed = List();
+    }
+    List<Widget> recentlyUsedRow = List();
+    for (int i = 0; i < 6; i++) {
+      if (i >= recentlyUsed.length) {
+        recentlyUsedRow.add(emptySquare());
+        continue;
+      }
+      recentlyUsedRow.add(recentlyUsed[i].getWidget(_item, this));
+    }
+
+    return Builder(builder: (BuildContext context) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: recentlyUsedRow,
+      );
+    });
+  }
+
   Widget craftingOptionsWidget() {
     return Builder(builder: (BuildContext context) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          fossilUseButtonWidget(),
-          fossilSelectButtonWidget(),
-          craftingButtonWidget(),
-          essenceButtonWidget(),
-          beastButtonWidget(),
-          repeatButtonWidget(),
-        ],
+        children: getCraftingOptionWidgets(),
       );
     });
+  }
+
+  List<Widget> getCraftingOptionWidgets() {
+    return [
+      fossilUseButtonWidget(),
+      fossilSelectButtonWidget(),
+      craftingButtonWidget(),
+      essenceButtonWidget(),
+      beastButtonWidget(),
+      repeatButtonWidget(),
+    ];
   }
 
   Widget fossilSelectButtonWidget() {
@@ -438,6 +524,26 @@ class CraftingWidgetState extends State<CraftingWidget> {
       content: Text(text),
       duration: Duration(milliseconds: 500),
     ));
+  }
+
+  void craftingUsedOnItem(Item item, CraftingOrb craftingOrb) {
+    setRecentCraftingUsed(_item.getRarity(), craftingOrb);
+    itemChanged(item);
+  }
+
+  void setRecentCraftingUsed(String rarity, CraftingOrb craftingOrb) {
+    List<CraftingOrb> recentlyUsed = recentlyUsedMap[rarity];
+    if (recentlyUsed == null) {
+      recentlyUsed = List();
+    }
+    if (!recentlyUsed.any((orb) => orb.description == craftingOrb.description)) {
+      recentlyUsed.insert(0, craftingOrb);
+    }
+
+    while (recentlyUsed.length > 6) {
+      recentlyUsed.removeLast();
+    }
+    recentlyUsedMap[rarity] = recentlyUsed;
   }
 
   void itemChanged(Item item) {

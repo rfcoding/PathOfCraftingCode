@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/crafting/crafting_orb.dart';
 import 'item.dart';
 import 'dart:convert';
 import 'magic_item.dart';
@@ -183,17 +184,19 @@ class NormalItem extends Item {
     return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          imageButton(
-              'assets/images/transmute.png', 'Orb of Transmutation', () =>
-              state.itemChanged(this.transmute())),
-          imageButton('assets/images/alchemy.png', 'Orb of Alchemy', () =>
-              state.itemChanged(this.alchemy())),
-          emptySquare(),
-          emptySquare(),
-          emptySquare(),
-          emptySquare(),
-        ]);
+        children: getNormalWidgets(state));
+  }
+
+  @override
+  List<Widget> getNormalWidgets(CraftingWidgetState state) {
+    return [
+      TransmutationOrb().getWidget(this, state),
+      AlchemyOrb().getWidget(this, state),
+      emptySquare(),
+      emptySquare(),
+      emptySquare(),
+      emptySquare(),
+    ];
   }
 
   @override
@@ -201,15 +204,20 @@ class NormalItem extends Item {
     return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          disabledImageButton(
-              'assets/images/transmute.png', 'Orb of Transmutation', null),
-          disabledImageButton('assets/images/alchemy.png', 'Orb of Alchemy', null),
-          emptySquare(),
-          emptySquare(),
-          emptySquare(),
-          emptySquare(),
-        ]);
+        children: getDisabledWidgets(state));
+  }
+
+  @override
+  List<Widget> getDisabledWidgets(CraftingWidgetState state) {
+    return [
+      disabledImageButton(
+          'assets/images/transmute.png', 'Orb of Transmutation', null),
+      disabledImageButton('assets/images/alchemy.png', 'Orb of Alchemy', null),
+      emptySquare(),
+      emptySquare(),
+      emptySquare(),
+      emptySquare(),
+    ];
   }
 
   @override
