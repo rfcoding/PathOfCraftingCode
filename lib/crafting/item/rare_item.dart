@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poe_clicker/crafting/crafting_orb.dart';
 import 'package:poe_clicker/repository/essence_repo.dart';
 import 'dart:convert';
 import 'dart:math';
@@ -330,20 +331,19 @@ class RareItem extends Item {
     return
       Row(mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            imageButton('assets/images/scour.png', 'Orb of Scouring', () =>
-                state.itemChanged(this.scour())),
-            imageButton('assets/images/chaos.png', 'Chaos orb', () =>
-                state.itemChanged(this.chaos())),
-            imageButton('assets/images/exalted.png', 'Exalted orb', () =>
-                state.itemChanged(this.exalt())),
-            imageButton('assets/images/annulment.png', 'Orb of Annulment', () =>
-                state.itemChanged(this.annulment())),
-            imageButton('assets/images/divine.png', 'Divine orb', () =>
-                state.itemChanged(this.divine())),
-            imageButton('assets/images/vaal.png', 'Vaal orb', () =>
-                state.itemChanged(this.corrupt())),
-          ]);
+          children: getNormalWidgets(state));
+  }
+
+  @override
+  List<Widget> getNormalWidgets(CraftingWidgetState state) {
+    return [
+      Scouring().getWidget(this, state),
+      ChaosOrb().getWidget(this, state),
+      ExaltedOrb().getWidget(this, state),
+      AnnulmentOrb().getWidget(this, state),
+      DivineOrb().getWidget(this, state),
+      VaalOrb().getWidget(this, state),
+    ];
   }
 
   @override
@@ -351,14 +351,19 @@ class RareItem extends Item {
     return
       Row(mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            disabledImageButton('assets/images/scour.png', 'Orb of Scouring', null),
-            disabledImageButton('assets/images/chaos.png', 'Chaos orb', null),
-            disabledImageButton('assets/images/exalted.png', 'Exalted orb', null),
-            disabledImageButton('assets/images/annulment.png', 'Orb of Annulment', null),
-            disabledImageButton('assets/images/divine.png', 'Divine orb', null),
-            disabledImageButton('assets/images/vaal.png', 'Vaal orb', null),
-          ]);
+          children: getDisabledWidgets(state));
+  }
+
+  @override
+  List<Widget> getDisabledWidgets(CraftingWidgetState state) {
+    return [
+      disabledImageButton('assets/images/scour.png', 'Orb of Scouring', null),
+      disabledImageButton('assets/images/chaos.png', 'Chaos orb', null),
+      disabledImageButton('assets/images/exalted.png', 'Exalted orb', null),
+      disabledImageButton('assets/images/annulment.png', 'Orb of Annulment', null),
+      disabledImageButton('assets/images/divine.png', 'Divine orb', null),
+      disabledImageButton('assets/images/vaal.png', 'Vaal orb', null),
+    ];
   }
 
   @override
