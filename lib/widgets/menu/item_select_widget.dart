@@ -117,7 +117,14 @@ class ItemSelectState extends State<ItemSelectWidget> {
 
     var result = ['None'];
     if(itemClass.elderTag != null && itemClass.shaperTag != null) {
-      result.addAll(["Elder", "Shaper", "Crusader", "Redeemer", "Hunter", "Warlord"]);
+      result.addAll([
+        "Crusader",
+        "Elder",
+        "Hunter",
+        "Redeemer",
+        "Shaper",
+        "Warlord"
+      ]);
     }
 
     return result;
