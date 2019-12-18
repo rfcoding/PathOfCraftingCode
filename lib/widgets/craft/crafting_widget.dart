@@ -149,6 +149,9 @@ class CraftingWidgetState extends State<CraftingWidget> with SingleTickerProvide
   }
 
   Widget inventoryWidget() {
+    return inventoryTab(_item);
+    // TODO: enable when we have more orbs
+    /*
     return Column(
       children: <Widget>[
         TabBar(
@@ -161,7 +164,7 @@ class CraftingWidgetState extends State<CraftingWidget> with SingleTickerProvide
         ),
         currentCurrencyTab(_item, _tabController.index),
       ],
-    );
+    );*/
   }
 
   Map<String, List<CraftingOrb>> recentlyUsedMap = Map();

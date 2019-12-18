@@ -658,69 +658,51 @@ abstract class Item {
 
     if (tags.any((tag) => tag.contains("elder"))) {
       leftStackWidgets.add(
-          Positioned(
-            top: (getHeaderHeight() - shaperElderDecorationSize) / 2,
-            child: Container(
-                height: shaperElderDecorationSize,
-                width: shaperElderDecorationSize,
-                decoration: new BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(getElderImagePath()),
-                      fit: BoxFit.fill
-                  ),
-                )
-            ),
-          )
+          influenceSymbolLeft(getElderImagePath())
       );
 
       rightStackWidgets.add(
-          Positioned(
-            top: (getHeaderHeight() - shaperElderDecorationSize) / 2,
-            left: getHeaderDecorationWidth() - shaperElderDecorationSize,
-            child: Container(
-                height: 27,
-                width: 27,
-                decoration: new BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(getElderImagePath()),
-                      fit: BoxFit.fill
-                  ),
-                )
-            ),
-          )
+          influenceSymbolRight(getElderImagePath())
       );
     } else if (tags.any((tag) => tag.contains("shaper"))) {
       leftStackWidgets.add(
-          Positioned(
-            top: (getHeaderHeight() - shaperElderDecorationSize) / 2,
-            child: Container(
-                height: shaperElderDecorationSize,
-                width: shaperElderDecorationSize,
-                decoration: new BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(getShaperImagePath()),
-                      fit: BoxFit.fill
-                  ),
-                )
-            ),
-          )
+          influenceSymbolLeft(getShaperImagePath())
       );
 
       rightStackWidgets.add(
-          Positioned(
-            top: (getHeaderHeight() - shaperElderDecorationSize) / 2,
-            left: getHeaderDecorationWidth() - 27,
-            child: Container(
-                height: shaperElderDecorationSize,
-                width: shaperElderDecorationSize,
-                decoration: new BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(getShaperImagePath()),
-                      fit: BoxFit.fill
-                  ),
-                )
-            ),
-          )
+          influenceSymbolRight(getShaperImagePath())
+      );
+    } else if (tags.any((tag) => tag.contains("crusader"))) {
+      leftStackWidgets.add(
+          influenceSymbolLeft(getCrusaderImagePath())
+      );
+
+      rightStackWidgets.add(
+          influenceSymbolRight(getCrusaderImagePath())
+      );
+    } else if (tags.any((tag) => tag.contains("basilisk"))) {
+      leftStackWidgets.add(
+          influenceSymbolLeft(getHunterImagePath())
+      );
+
+      rightStackWidgets.add(
+          influenceSymbolRight(getHunterImagePath())
+      );
+    } else if (tags.any((tag) => tag.contains("eyrie"))) {
+      leftStackWidgets.add(
+          influenceSymbolLeft(getRedeemerImagePath())
+      );
+
+      rightStackWidgets.add(
+          influenceSymbolRight(getRedeemerImagePath())
+      );
+    } else if (tags.any((tag) => tag.contains("adjudicator"))) {
+      leftStackWidgets.add(
+          influenceSymbolLeft(getWarlordImagePath())
+      );
+
+      rightStackWidgets.add(
+          influenceSymbolRight(getWarlordImagePath())
       );
     }
 
@@ -748,6 +730,39 @@ abstract class Item {
         ),
         Stack(children: rightStackWidgets),
       ],
+    );
+  }
+
+  Widget influenceSymbolRight(String imagePath) {
+    return Positioned(
+      top: (getHeaderHeight() - shaperElderDecorationSize) / 2,
+      left: getHeaderDecorationWidth() - 27,
+      child: Container(
+          height: shaperElderDecorationSize,
+          width: shaperElderDecorationSize,
+          decoration: new BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.fill
+            ),
+          )
+      ),
+    );
+  }
+
+  Widget influenceSymbolLeft(String imagePath) {
+    return Positioned(
+      top: (getHeaderHeight() - shaperElderDecorationSize) / 2,
+      child: Container(
+          height: shaperElderDecorationSize,
+          width: shaperElderDecorationSize,
+          decoration: new BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.fill
+            ),
+          )
+      ),
     );
   }
 
@@ -1037,6 +1052,22 @@ abstract class Item {
 
   String getShaperImagePath() {
     return 'assets/images/shaper-symbol.png';
+  }
+
+  String getCrusaderImagePath() {
+    return 'assets/images/crusader-symbol.png';
+  }
+
+  String getHunterImagePath() {
+    return 'assets/images/hunter-symbol.png';
+  }
+
+  String getRedeemerImagePath() {
+    return 'assets/images/redeemer-symbol.png';
+  }
+
+  String getWarlordImagePath() {
+    return 'assets/images/warlord-symbol.png';
   }
 
   List<String> getAllTags() {
