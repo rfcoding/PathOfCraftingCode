@@ -7,8 +7,8 @@ import 'package:http/http.dart';
 
 class NinjaRequest {
   static const List<String> SUPPORTED_LEAGUES = [
-    "Blight",
-    "Hardcore Blight",
+    "Metamorph",
+    "Hardcore Metamorph",
     "Standard",
     "Hardcore"
   ];
