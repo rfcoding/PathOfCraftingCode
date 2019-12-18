@@ -17,7 +17,7 @@ class ItemSelectState extends State<ItemSelectWidget> {
 
   BaseItem _baseItem;
   ItemClass _baseItemClass;
-  String _shaperOrElder = "None";
+  String _influenceType = "None";
   int itemLevel;
 
   @override
@@ -51,8 +51,8 @@ class ItemSelectState extends State<ItemSelectWidget> {
               Text("Select item", style: TextStyle(fontSize: 16)),
               _baseItemDropdownWidget(),
               SizedBox(height: 24),
-              Text("Shaper or Elder", style: TextStyle(fontSize: 16)),
-              _shaperOrElderBase(),
+              Text("Influence type", style: TextStyle(fontSize: 16)),
+              _influenceBase(),
               SizedBox(height: 24),
               Text("ItemLevel", style: TextStyle(fontSize: 16)),
               _itemLevelForm(),
@@ -107,7 +107,7 @@ class ItemSelectState extends State<ItemSelectWidget> {
     );
   }
 
-  List<String> _getShaperOrElderOptions() {
+  List<String> _getInfluenceOptions() {
     if(_baseItem == null) {
       return List();
     }
@@ -116,22 +116,23 @@ class ItemSelectState extends State<ItemSelectWidget> {
     if(itemClass.elderTag == null && itemClass.shaperTag == null) return List();
 
     var result = ['None'];
-    if(itemClass.elderTag != null) result.add("Elder");
-    if(itemClass.shaperTag != null) result.add("Shaper");
-    
+    if(itemClass.elderTag != null && itemClass.shaperTag != null) {
+      result.addAll(["Elder", "Shaper", "Crusader", "Redeemer", "Hunter", "Warlord"]);
+    }
+
     return result;
   }
 
-  Widget _shaperOrElderBase() {
-    final options = _getShaperOrElderOptions();
+  Widget _influenceBase() {
+    final options = _getInfluenceOptions();
     if(options.isEmpty){
       return Text("Not possible for this item", style: Theme.of(context).textTheme.caption);
     }
     return DropdownButton<String> (
-      hint: Text("$_shaperOrElder"),
+      hint: Text("$_influenceType"),
       onChanged: (String value) {
         setState(() {
-          _shaperOrElder = value;
+          _influenceType = value;
         });
       },
       items: options.map<DropdownMenuItem<String>>((String value) {
@@ -169,8 +170,8 @@ class ItemSelectState extends State<ItemSelectWidget> {
       print("No base item selected");
     }
     List<String> extraTags = List();
-    List<String> possibleShaperOrElderOptions = _getShaperOrElderOptions();
-    switch (_shaperOrElder) {
+    List<String> possibleShaperOrElderOptions = _getInfluenceOptions();
+    switch (_influenceType) {
       case 'Shaper':
         if(possibleShaperOrElderOptions.contains('Shaper')) {
           extraTags.add(ItemRepository.instance.getShaperTagForItemClass(_baseItem.itemClass));
@@ -179,6 +180,30 @@ class ItemSelectState extends State<ItemSelectWidget> {
       case 'Elder':
         if(possibleShaperOrElderOptions.contains('Elder')) {
           extraTags.add(ItemRepository.instance.getElderTagForItemClass(_baseItem.itemClass));
+        }
+        break;
+      case 'Crusader':
+        //Basilisk
+        if(possibleShaperOrElderOptions.contains('Crusader')) {
+          extraTags.add(ItemRepository.instance.getCrusaderTagForItemClass(_baseItem.itemClass));
+        }
+        break;
+      case 'Hunter':
+        //Crusader
+        if(possibleShaperOrElderOptions.contains('Hunter')) {
+          extraTags.add(ItemRepository.instance.getHunterTagForItemClass(_baseItem.itemClass));
+        }
+        break;
+      case 'Redeemer':
+        //Eyrie
+        if(possibleShaperOrElderOptions.contains('Redeemer')) {
+          extraTags.add(ItemRepository.instance.getRedeemerTagForItemClass(_baseItem.itemClass));
+        }
+        break;
+      case 'Warlord':
+        //Conqueror
+        if(possibleShaperOrElderOptions.contains('Warlord')) {
+          extraTags.add(ItemRepository.instance.getWarlordTagForItemClass(_baseItem.itemClass));
         }
         break;
       case 'None':

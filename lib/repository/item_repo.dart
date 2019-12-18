@@ -85,4 +85,36 @@ class ItemRepository {
     }
     return itemClass.shaperTag;
   }
+
+  String getCrusaderTagForItemClass(String id) {
+    ItemClass itemClass = itemClassMap[id];
+    if (itemClass == null) {
+      throw ArgumentError("No such item class");
+    }
+    return itemClass.crusaderTag;
+  }
+
+  String getHunterTagForItemClass(String id) {
+    ItemClass itemClass = itemClassMap[id];
+    if (itemClass == null) {
+      throw ArgumentError("No such item class");
+    }
+    return itemClass.hunterTag;
+  }
+
+  String getRedeemerTagForItemClass(String id) {
+    ItemClass itemClass = itemClassMap[id];
+    if (itemClass == null) {
+      throw ArgumentError("No such item class");
+    }
+    return itemClass.redeemerTag;
+  }
+
+  String getWarlordTagForItemClass(String id) {
+    ItemClass itemClass = itemClassMap[id];
+    if (itemClass == null) {
+      throw ArgumentError("No such item class");
+    }
+    return itemClass.warlordTag;
+  }
 }
