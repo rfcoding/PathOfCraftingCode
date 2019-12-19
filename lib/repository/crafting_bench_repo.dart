@@ -44,7 +44,7 @@ bool itemCanHaveMod(Item item, CraftingBenchOption option) {
     return false;  
   }
 
-  if (!item.hasMultiMod() && item.hasMasterMod()) {
+  if (!item.canAddCraftedModifier()) {
     return false;
   }
 

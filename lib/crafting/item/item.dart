@@ -316,8 +316,17 @@ abstract class Item {
     return getMods().any((mod) => mod.domain == "crafted");
   }
 
+  int getMasterModCount() {
+    return getMods().where((mod) => mod.domain == "crafted").length;
+  }
+
   bool hasMultiMod() {
     return getMods().any((mod) => mod.group == "ItemGenerationCanHaveMultipleCraftedMods");
+  }
+
+  bool canAddCraftedModifier() {
+    int masterModCount = getMasterModCount();
+    return (masterModCount == 0 || (hasMultiMod() && masterModCount < 3));
   }
 
   bool hasCannotChangePrefixes() {
