@@ -22,6 +22,7 @@ abstract class Item {
   List<Mod> implicits;
   List<Mod> enchantments;
   List<String> tags;
+  List<String> influenceTags;
   WeaponProperties weaponProperties;
   ArmourProperties armourProperties;
   String itemClass;
@@ -80,6 +81,8 @@ abstract class Item {
         stat.value = stat.max;
       });
     });
+
+    this.influenceTags = tags.where((tag) => isInfluenceTag(tag)).toList();
   }
 
   factory Item.fromJson(Map<String, dynamic> json) {
@@ -665,53 +668,19 @@ abstract class Item {
         )
     );
 
-    if (tags.any((tag) => tag.contains("elder"))) {
+    if (influenceTags.length == 2) {
       leftStackWidgets.add(
-          influenceSymbolLeft(getElderImagePath())
+          influenceSymbolLeft(getInfluenceImagePath(influenceTags[0]))
       );
-
       rightStackWidgets.add(
-          influenceSymbolRight(getElderImagePath())
+          influenceSymbolRight(getInfluenceImagePath(influenceTags[1]))
       );
-    } else if (tags.any((tag) => tag.contains("shaper"))) {
+    } else if (influenceTags.length == 1) {
       leftStackWidgets.add(
-          influenceSymbolLeft(getShaperImagePath())
+          influenceSymbolLeft(getInfluenceImagePath(influenceTags[0]))
       );
-
       rightStackWidgets.add(
-          influenceSymbolRight(getShaperImagePath())
-      );
-    } else if (tags.any((tag) => tag.contains("crusader"))) {
-      leftStackWidgets.add(
-          influenceSymbolLeft(getCrusaderImagePath())
-      );
-
-      rightStackWidgets.add(
-          influenceSymbolRight(getCrusaderImagePath())
-      );
-    } else if (tags.any((tag) => tag.contains("basilisk"))) {
-      leftStackWidgets.add(
-          influenceSymbolLeft(getHunterImagePath())
-      );
-
-      rightStackWidgets.add(
-          influenceSymbolRight(getHunterImagePath())
-      );
-    } else if (tags.any((tag) => tag.contains("eyrie"))) {
-      leftStackWidgets.add(
-          influenceSymbolLeft(getRedeemerImagePath())
-      );
-
-      rightStackWidgets.add(
-          influenceSymbolRight(getRedeemerImagePath())
-      );
-    } else if (tags.any((tag) => tag.contains("adjudicator"))) {
-      leftStackWidgets.add(
-          influenceSymbolLeft(getWarlordImagePath())
-      );
-
-      rightStackWidgets.add(
-          influenceSymbolRight(getWarlordImagePath())
+          influenceSymbolRight(getInfluenceImagePath(influenceTags[0]))
       );
     }
 
@@ -1053,6 +1022,32 @@ abstract class Item {
     }
 
     return Column(children: statWidgets);
+  }
+
+  bool isInfluenceTag(String tag) {
+    return tag.contains("elder") ||
+        tag.contains("shaper") ||
+        tag.contains("crusader") ||
+        tag.contains("basilisk") ||
+        tag.contains("eyrie") ||
+        tag.contains("adjudicator");
+  }
+
+  String getInfluenceImagePath(String tag) {
+    if (tag.contains("elder")) {
+      return getElderImagePath();
+    } else if (tag.contains("shaper")) {
+      return getShaperImagePath();
+    } else if (tag.contains("crusader")) {
+      return getCrusaderImagePath();
+    } else if (tag.contains("basilisk")) {
+      return getHunterImagePath();
+    } else if (tag.contains("eyrie")) {
+      return getRedeemerImagePath();
+    } else if (tag.contains("adjudicator")) {
+      return getWarlordImagePath();
+    }
+    return null;
   }
 
   String getElderImagePath() {

@@ -4,7 +4,7 @@ import '../../crafting/fossil.dart';
 import '../../repository/fossil_repo.dart';
 
 class FossilSelectDialog {
-  static Future<List<Fossil>> getFossilSelectionDialog(
+  static Future<List<Fossil>> showFossilSelectionDialog(
       BuildContext context, List<String> selected) async {
     List<SelectableItem> selectableItems = FossilRepository.instance
         .getFossils()
