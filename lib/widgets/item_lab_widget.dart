@@ -166,7 +166,7 @@ class ItemLabWidgetState extends State<ItemLabWidget> {
   }
 
   void _selectFossils() {
-    FossilSelectDialog.getFossilSelectionDialog(
+    FossilSelectDialog.showFossilSelectionDialog(
             context,
             _selectedFossils
                 .map((selectedFossil) => selectedFossil.name)

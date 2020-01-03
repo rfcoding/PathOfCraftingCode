@@ -70,6 +70,7 @@ class CraftingWidgetState extends State<CraftingWidget> with SingleTickerProvide
           SpendingReport.empty(),
           null,
           false);
+      _item.influenceTags.addAll(widget.extraTags);
       _item.tags.addAll(widget.extraTags);
     } else {
       _item = widget.item;
@@ -266,7 +267,7 @@ class CraftingWidgetState extends State<CraftingWidget> with SingleTickerProvide
     return imageButton(
         'assets/images/fossil.png',
         'Select fossils',
-            () => FossilSelectDialog.getFossilSelectionDialog(
+            () => FossilSelectDialog.showFossilSelectionDialog(
             context,
             _selectedFossils
                 .map((selectedFossil) => selectedFossil.name)
