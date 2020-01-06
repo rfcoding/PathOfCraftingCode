@@ -55,6 +55,7 @@ class DialogContentState extends State<DialogContent> {
                 return CheckboxListTile(
                     title: Text(item.name),
                     value: item.selected,
+                    activeColor: Theme.of(context).buttonColor,
                     onChanged: (selected) {
                       setState(() {
                         if (!selected || selectedCount < 2) {
