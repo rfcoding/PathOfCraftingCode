@@ -3,8 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/crafting/beast_craft.dart';
 import 'package:poe_clicker/crafting/crafting_orb.dart';
+import 'package:poe_clicker/crafting/item/rare_item.dart';
 import 'package:poe_clicker/repository/crafting_bench_repo.dart';
 import 'package:poe_clicker/widgets/craft/beast_widget.dart';
+import 'package:poe_clicker/widgets/craft/exalt_dialog.dart';
 import '../../crafting/base_item.dart';
 import '../../crafting/fossil.dart';
 import '../../crafting/item/item.dart';
@@ -533,6 +535,10 @@ class CraftingWidgetState extends State<CraftingWidget> with SingleTickerProvide
   void craftingUsedOnItem(Item item, CraftingOrb craftingOrb) {
     setRecentCraftingUsed(_item.getRarity(), craftingOrb);
     itemChanged(item);
+  }
+
+  void showExaltMenu(Item item, CraftingOrb craftingOrb) {
+    ExaltDialog.showExaltDialog(context, item, this);
   }
 
   void setRecentCraftingUsed(String rarity, CraftingOrb craftingOrb) {

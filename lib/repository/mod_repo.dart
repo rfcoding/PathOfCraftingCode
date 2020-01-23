@@ -120,6 +120,17 @@ class ModRepository {
     return selectRandomMod(mods, item, fossils);
   }
 
+  Mod getRandomModForTag(Item item, String tag) {
+    List<Mod> mods = List();
+    if (!item.hasMaxPrefixes()) {
+      mods.addAll(getPrefixesForTag(item, tag));
+    }
+    if (!item.hasMaxSuffixes()) {
+      mods.addAll(getSuffixesForTag(item, tag));
+    }
+    return selectRandomMod(mods, item, List());
+  }
+
   Mod getPrefix(Item item, List<Fossil> fossils) {
     return selectRandomMod(getPossiblePrefixes(item, fossils), item, fossils);
   }
@@ -139,11 +150,9 @@ class ModRepository {
   List<Mod> getPossiblePrefixes(Item item, List<Fossil> fossils) {
     List<Mod> possibleMods = List();
     item.getAllTags().forEach((tag) {
-      List<Mod> mods = _prefixModMap[tag];
+      List<Mod> mods = getPrefixesForTag(item, tag);
       if (mods != null) {
-        possibleMods.addAll(mods.where((mod) =>
-        !item.alreadyHasModGroup(mod) &&
-            item.itemLevel >= mod.requiredLevel && mod.domain == item.domain));
+        possibleMods.addAll(mods);
       }
     });
     fossils.map((fossil) => fossil.addedMods).expand((modId) => modId).forEach((
@@ -163,12 +172,9 @@ class ModRepository {
   List<Mod> getPossibleSuffixes(Item item, List<Fossil> fossils) {
     List<Mod> possibleMods = List();
     item.getAllTags().forEach((tag) {
-      List<Mod> mods = _suffixModMap[tag];
+      List<Mod> mods = getSuffixesForTag(item, tag);
       if (mods != null) {
-        possibleMods.addAll(mods.where((mod) =>
-        !item.alreadyHasModGroup(mod) &&
-            item.itemLevel >= mod.requiredLevel
-            && mod.domain == item.domain));
+        possibleMods.addAll(mods);
       }
     });
     fossils.map((fossil) => fossil.addedMods).expand((modId) => modId).forEach((
@@ -185,6 +191,28 @@ class ModRepository {
         && mod.domain == item.domain
     ));
     return possibleMods;
+  }
+
+  List<Mod> getPrefixesForTag(Item item, String tag) {
+    List<Mod> mods = _prefixModMap[tag];
+    if (mods != null) {
+      return mods.where((mod) =>
+      !item.alreadyHasModGroup(mod) &&
+          item.itemLevel >= mod.requiredLevel
+          && mod.domain == item.domain).toList();
+    }
+    return null;
+  }
+
+  List<Mod> getSuffixesForTag(Item item, String tag) {
+    List<Mod> mods = _suffixModMap[tag];
+    if (mods != null) {
+      return mods.where((mod) =>
+      !item.alreadyHasModGroup(mod) &&
+          item.itemLevel >= mod.requiredLevel
+          && mod.domain == item.domain).toList();
+    }
+    return null;
   }
 
   List<Mod> getPossibleImplicits(Item item) {

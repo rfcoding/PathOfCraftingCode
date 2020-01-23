@@ -89,7 +89,7 @@ class NormalItem extends Item {
         suffixes,
         List.generate(item.implicits.length, (index) => Mod.copy(item.implicits[index])),
         List.generate(item.enchantments.length, (index) => Mod.copy(item.enchantments[index])),
-        item.tags,
+        List.generate(item.tags.length, (index) => item.tags[index]),
         item.weaponProperties,
         item.armourProperties,
         item.itemClass,
