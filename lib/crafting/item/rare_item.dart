@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/crafting/crafting_orb.dart';
 import 'package:poe_clicker/repository/essence_repo.dart';
+import 'package:poe_clicker/repository/item_repo.dart';
 import 'dart:convert';
 import 'dart:math';
 import '../essence.dart';
@@ -99,7 +100,7 @@ class RareItem extends Item {
         suffixes,
         List.generate(item.implicits.length, (index) => Mod.copy(item.implicits[index])),
         List.generate(item.enchantments.length, (index) => Mod.copy(item.enchantments[index])),
-        item.tags,
+        List.generate(item.tags.length, (index) => item.tags[index]),
         item.weaponProperties,
         item.armourProperties,
         item.itemClass,
@@ -186,6 +187,64 @@ class RareItem extends Item {
     this.spendingReport.addSpending(CurrencyType.exalt, 1);
     addRandomMod();
     return this;
+  }
+
+  RareItem hunterExalt() {
+    if (hasMaxMods()) {
+      return this;
+    }
+    String tag = ItemRepository.instance.getHunterTagForItemClass(itemClass);
+    wokeExalt(tag);
+    return this;
+  }
+
+  RareItem warlordExalt() {
+    if (hasMaxMods()) {
+      return this;
+    }
+    String tag = ItemRepository.instance.getWarlordTagForItemClass(itemClass);
+    if (tag == null) {
+      return this;
+    }
+    wokeExalt(tag);
+    return this;
+  }
+
+  RareItem redeemerExalt() {
+    if (hasMaxMods()) {
+      return this;
+    }
+    String tag = ItemRepository.instance.getRedeemerTagForItemClass(itemClass);
+    wokeExalt(tag);
+    return this;
+  }
+
+  RareItem crusaderExalt() {
+    if (hasMaxMods()) {
+      return this;
+    }
+    String tag = ItemRepository.instance.getCrusaderTagForItemClass(itemClass);
+    wokeExalt(tag);
+    return this;
+  }
+
+  void wokeExalt(String tag) {
+    influenceTags.add(tag);
+    tags.add(tag);
+    Mod mod = ModRepository.instance.getRandomModForTag(this, tag);
+    print("Mod: $mod");
+    if (mod == null) {
+      influenceTags.remove(tag);
+      tags.remove(tag);
+      return;
+    }
+
+    mod.rerollStatValues();
+    if (mod.isPrefix()) {
+      prefixes.add(mod);
+    } else {
+      suffixes.add(mod);
+    }
   }
 
   RareItem chaos() {

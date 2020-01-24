@@ -117,4 +117,11 @@ class ItemRepository {
     }
     return itemClass.warlordTag;
   }
+
+  bool itemCanHaveInfluence(String itemClassName) {
+    final itemClass = ItemRepository.instance.itemClassMap[itemClassName];
+    return itemClass != null
+        && itemClass.elderTag != null
+        && itemClass.shaperTag != null;
+  }
 }

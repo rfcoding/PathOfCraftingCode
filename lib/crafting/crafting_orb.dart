@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poe_clicker/crafting/item/normal_item.dart';
+import 'package:poe_clicker/repository/item_repo.dart';
 import 'package:poe_clicker/widgets/craft/crafting_widget.dart';
 import 'package:poe_clicker/widgets/utils.dart';
 
@@ -65,7 +66,11 @@ class ExaltedOrb extends CraftingOrb {
 
   @override
   void useOnItem(Item item, CraftingWidgetState state) {
-    state.craftingUsedOnItem((item as RareItem).exalt(), this);
+    if (item.influenceTags.isEmpty && ItemRepository.instance.itemCanHaveInfluence(item.itemClass)) {
+      state.showExaltMenu(item, this);
+    } else {
+      state.craftingUsedOnItem((item as RareItem).exalt(), this);
+    }
   }
 }
 
