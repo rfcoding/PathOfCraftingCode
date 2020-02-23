@@ -195,6 +195,7 @@ class RareItem extends Item {
     }
     String tag = ItemRepository.instance.getHunterTagForItemClass(itemClass);
     wokeExalt(tag);
+    this.spendingReport.addSpending(CurrencyType.hunterExalt, 1);
     return this;
   }
 
@@ -207,6 +208,7 @@ class RareItem extends Item {
       return this;
     }
     wokeExalt(tag);
+    this.spendingReport.addSpending(CurrencyType.warlordExalt, 1);
     return this;
   }
 
@@ -216,6 +218,7 @@ class RareItem extends Item {
     }
     String tag = ItemRepository.instance.getRedeemerTagForItemClass(itemClass);
     wokeExalt(tag);
+    this.spendingReport.addSpending(CurrencyType.redeemerExalt, 1);
     return this;
   }
 
@@ -225,6 +228,7 @@ class RareItem extends Item {
     }
     String tag = ItemRepository.instance.getCrusaderTagForItemClass(itemClass);
     wokeExalt(tag);
+    this.spendingReport.addSpending(CurrencyType.crusaderExalt, 1);
     return this;
   }
 
