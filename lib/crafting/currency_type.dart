@@ -2,6 +2,10 @@ import 'package:poe_clicker/repository/item_repo.dart';
 
 class CurrencyType {
   static final String exalt = "exalt";
+  static final String hunterExalt = "hunterExalt";
+  static final String crusaderExalt = "crusaderExalt";
+  static final String redeemerExalt = "redeemerExalt";
+  static final String warlordExalt = "warlordExalt";
   static final String divine = "divine";
   static final String annulment = "annulment";
   static final String chaos = "chaos";
@@ -23,6 +27,10 @@ class CurrencyType {
 
   static final Map<String, String> idToCurrency = {
     "Metadata/Items/Currency/CurrencyAddModToRare" : exalt,
+    "Metadata/Items/AtlasExiles/AddModToRareHunter" : hunterExalt,
+    "Metadata/Items/AtlasExiles/AddModToRareCrusader" : crusaderExalt,
+    "Metadata/Items/AtlasExiles/AddModToRareRedeemer" : redeemerExalt,
+    "Metadata/Items/AtlasExiles/AddModToRareWarlord" : warlordExalt,
     "Metadata/Items/Currency/CurrencyModValues": divine,
     "Metadata/Items/Currency/CurrencyRemoveMod": annulment,
     "Metadata/Items/Currency/CurrencyRerollRare": chaos,
@@ -67,6 +75,10 @@ class CurrencyType {
 
   static final Map<String, String> currencyToId = {
     exalt: "Metadata/Items/Currency/CurrencyAddModToRare",
+    hunterExalt : "Metadata/Items/AtlasExiles/AddModToRareHunter",
+    crusaderExalt : "Metadata/Items/AtlasExiles/AddModToRareCrusader",
+    redeemerExalt : "Metadata/Items/AtlasExiles/AddModToRareRedeemer",
+    warlordExalt : "Metadata/Items/AtlasExiles/AddModToRareWarlord",
     divine: "Metadata/Items/Currency/CurrencyModValues",
     annulment: "Metadata/Items/Currency/CurrencyRemoveMod",
     chaos: "Metadata/Items/Currency/CurrencyRerollRare",

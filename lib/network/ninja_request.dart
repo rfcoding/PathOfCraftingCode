@@ -13,7 +13,7 @@ class NinjaRequest {
     "Hardcore"
   ];
 
-  static const String CURRENCY_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=Currency";
+  static const String CURRENCY_BASE_URL = "https://poe.ninja/api/data/currencyoverview?league=%&type=Currency";
   static const String ESSENCE_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=Essence";
   static const String FOSSIL_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=Fossil";
   static const String RESONATOR_BASE_URL = "https://poe.ninja/api/data/itemoverview?league=%&type=Resonator";
