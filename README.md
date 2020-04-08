@@ -28,3 +28,20 @@ bundletool build-apks --bundle=build/app/outputs/bundle/release/app.aab --output
 
 4. Install appbundle on phone
 bundletool install-apks --apks=/Users/fpet/Documents/builds.apks --adb /Users/fpet/Library/Android/sdk/platform-tools/adb
+
+
+## Build release iOS
+
+#### 1. WARNING: The app cannot run on emulator!!!!!
+#### 2. build
+flutter build ios --release
+#### 3. test run
+run the app from xcode (make sure you run the release version)
+#### 4. if it fails
+flutter clean, 
+delete podfile & podfile.lock & Pods/ & .xcodeworkspace
+go to step 2.
+#### 5. upload to appstore
+in xcode: select device: generic device (or somthing like that) then press archive.
+When done, press 'distribute app' -> 'to appstore' -> 'automatic signing'
+
